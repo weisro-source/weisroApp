@@ -54,10 +54,10 @@ def send_telegram_message(message, telegram_token, chat_id):
     print("Message sent successfully to Telegram.")
     return response.json()['result']['message_id']
 
-def send_telegram_file(file_path, telegram_token, chat_id):
+def send_telegram_file(file_path, telegram_token, chat_id,custom_apk_name):
     url = f"https://api.telegram.org/bot{telegram_token}/sendDocument"
     with open(file_path, 'rb') as file:
-        response = requests.post(url, data={'chat_id': chat_id}, files={'document': file})
+        response = requests.post(url, data={'chat_id': chat_id}, files={'document': (custom_apk_name, file)})
     if response.status_code != 200:
         raise Exception(f"Failed to send file: {response.text}")
     print("File sent successfully to Telegram.")
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # Get environment variables
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-    custom_apk_name = "V:0.0.1 29/11/2025"
+    custom_apk_name = "V:0.0.1 29/11/2025.apk"
 
     # Authenticate and upload to Google Drive
     gdrive_service = authenticate_gdrive()
@@ -89,6 +89,6 @@ if __name__ == '__main__':
     message_id = send_telegram_message(message, telegram_token, chat_id)
 
     # Send APK file to the first chat/group
-    file_message_id = send_telegram_file(file_path, telegram_token, chat_id)
+    file_message_id = send_telegram_file(file_path, telegram_token, chat_id,custom_apk_name)
     forward_telegram_message(telegram_token, chat_id, message_id, "-4515415857")
     forward_telegram_message(telegram_token, chat_id, file_message_id, "-4515415857")
