@@ -1,6 +1,8 @@
+import os
+import base64
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
-import os
+from googleapiclient.http import MediaFileUpload
 
 # Authentication and Drive setup
 def authenticate_gdrive():
@@ -10,14 +12,15 @@ def authenticate_gdrive():
         raise Exception("GDRIVE_CREDENTIALS not found in environment variables")
 
     # Decode the Base64 credentials and save it as a temporary JSON file
+    creds_json = base64.b64decode(base64_creds).decode('utf-8')
     with open('credentials.json', 'w') as f:
-        f.write(base64_creds.decode('base64'))
+        f.write(creds_json)
 
     # Authenticate using the downloaded credentials
     creds = Credentials.from_service_account_file('credentials.json')
     return build('drive', 'v3', credentials=creds)
 
-def upload_file(service, file_path, drive_folder_id="1zETSzGW1-bECl6f2clFZhrJPuMwLyoyL"):
+def upload_file(service, file_path, drive_folder_id=None):
     file_metadata = {
         'name': os.path.basename(file_path),
         'parents': [drive_folder_id] if drive_folder_id else []
