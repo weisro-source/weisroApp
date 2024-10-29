@@ -86,9 +86,9 @@ if __name__ == '__main__':
 
     # Send message to Telegram
     message = f"✅ APK uploaded successfully!\nGoogle Drive Link: {drive_link}"
-    message_id = send_telegram_message(message, telegram_token, main_chat_id)
+    message_id = send_telegram_message(message, telegram_token, chat_id)
 
     # Send APK file to the first chat/group
-    file_message_id = send_telegram_file(file_path, telegram_token, main_chat_id)
+    file_message_id = send_telegram_file(file_path, telegram_token, chat_id)
     forward_telegram_message(telegram_token, chat_id, message_id, "-4515415857")
     forward_telegram_message(telegram_token, chat_id, file_message_id, "-4515415857")
