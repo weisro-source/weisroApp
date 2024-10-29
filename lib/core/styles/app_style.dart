@@ -143,4 +143,14 @@ abstract class AppStyles {
           color: AppColors.greyColor),
     );
   }
+
+  static TextStyle style20w400Grey(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 20,
+          color: AppColors.greyColor),
+    );
+  }
 }
