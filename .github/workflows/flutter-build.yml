@@ -40,10 +40,12 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Google API Client
-        run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
+      - name: Install Python Dependencies
+        run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client requests
 
-      - name: Upload APK to Google Drive
+      - name: Upload APK to Google Drive and Send Telegram Message
         env:
           GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python upload_to_gdrive.py
