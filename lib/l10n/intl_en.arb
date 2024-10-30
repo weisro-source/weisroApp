@@ -4,5 +4,18 @@
     "Client": "Client",
     "Search_job_flexible_hours": "You can search for a job that suits you with flexible hours and an easy course of work",
     "Rent_equipment": "Rent your equipment and start earning money with weisro",
-    "Hire_employees": "You can hire employees to carry out tasks starting from an hour and up to a whole day"
+    "Hire_employees": "You can hire employees to carry out tasks starting from an hour and up to a whole day",
+    "Create_Client_account": "Create Client account",
+    "First_Name": "First Name",
+    "Last_Name": "Last Name",
+    "Country": "Country",
+    "City": "City",
+    "Postal_Code": "Postal code",
+    "Street": "The street",
+    "House_Number": "House Number",
+    "Next_Step": "Next Step",
+    "OR": "OR",
+    "Sign_Up_with_Google": "Sign Up with Google",
+    "Have_Account": "Have an account?",
+    "Log_in": "Log in"
 }

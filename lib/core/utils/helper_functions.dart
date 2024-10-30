@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HelperFunctions {
-  static void navigateToScreen(BuildContext context, Widget screen) {
+  static void navigateToScreen(BuildContext context, WidgetBuilder screen) {
     Navigator.push(
       context,
       CupertinoPageRoute(
-        builder: (context) => screen,
+        builder: (context) => screen(context),
       ),
     );
   }

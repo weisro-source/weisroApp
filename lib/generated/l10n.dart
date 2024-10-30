@@ -106,6 +106,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Create Client account`
+  String get Create_Client_account {
+    return Intl.message(
+      'Create Client account',
+      name: 'Create_Client_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name`
+  String get First_Name {
+    return Intl.message(
+      'First Name',
+      name: 'First_Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get Last_Name {
+    return Intl.message(
+      'Last Name',
+      name: 'Last_Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get Country {
+    return Intl.message(
+      'Country',
+      name: 'Country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get City {
+    return Intl.message(
+      'City',
+      name: 'City',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Postal code`
+  String get Postal_Code {
+    return Intl.message(
+      'Postal code',
+      name: 'Postal_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The street`
+  String get Street {
+    return Intl.message(
+      'The street',
+      name: 'Street',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `House Number`
+  String get House_Number {
+    return Intl.message(
+      'House Number',
+      name: 'House_Number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next Step`
+  String get Next_Step {
+    return Intl.message(
+      'Next Step',
+      name: 'Next_Step',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OR`
+  String get OR {
+    return Intl.message(
+      'OR',
+      name: 'OR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up with Google`
+  String get Sign_Up_with_Google {
+    return Intl.message(
+      'Sign Up with Google',
+      name: 'Sign_Up_with_Google',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account?`
+  String get Have_Account {
+    return Intl.message(
+      'Have an account?',
+      name: 'Have_Account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in`
+  String get Log_in {
+    return Intl.message(
+      'Log in',
+      name: 'Log_in',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

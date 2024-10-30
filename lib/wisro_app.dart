@@ -18,7 +18,6 @@ class WeisroApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale("de"),
       title: 'Wisro',
       debugShowCheckedModeBanner: HelperFunctions.isDebugMode(),
       theme: ThemeData(

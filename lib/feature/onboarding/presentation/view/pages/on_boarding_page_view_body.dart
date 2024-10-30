@@ -43,7 +43,10 @@ class _OnBoardingPageViewBodyState extends State<OnBoardingPageViewBody>
   }
 
   void _navigateToHomePage() {
-    HelperFunctions.navigateToScreen(context, const SelectedAccountTypeView());
+    HelperFunctions.navigateToScreen(
+      context,
+      (context) => const SelectedAccountTypeView(),
+    );
   }
 
   @override

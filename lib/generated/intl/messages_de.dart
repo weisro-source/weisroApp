@@ -21,11 +21,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "City" : MessageLookupByLibrary.simpleMessage("Stadt"),
     "Client" : MessageLookupByLibrary.simpleMessage("Kunde"),
+    "Country" : MessageLookupByLibrary.simpleMessage("Land"),
+    "Create_Client_account" : MessageLookupByLibrary.simpleMessage("Konto für Kunde erstellen"),
+    "First_Name" : MessageLookupByLibrary.simpleMessage("Vorname"),
+    "Have_Account" : MessageLookupByLibrary.simpleMessage("Haben Sie ein Konto?"),
     "Hire_employees" : MessageLookupByLibrary.simpleMessage("Sie können Mitarbeiter beauftragen, Aufgaben ab einer Stunde und bis zu einem ganzen Tag auszuführen"),
+    "House_Number" : MessageLookupByLibrary.simpleMessage("Hausnummer"),
+    "Last_Name" : MessageLookupByLibrary.simpleMessage("Nachname"),
+    "Log_in" : MessageLookupByLibrary.simpleMessage("Anmelden"),
+    "Next_Step" : MessageLookupByLibrary.simpleMessage("Nächster Schritt"),
+    "OR" : MessageLookupByLibrary.simpleMessage("ODER"),
+    "Postal_Code" : MessageLookupByLibrary.simpleMessage("Postleitzahl"),
     "Rent_equipment" : MessageLookupByLibrary.simpleMessage("Vermieten Sie Ihre Ausrüstung und verdienen Sie Geld mit Weisro"),
     "Search_job_flexible_hours" : MessageLookupByLibrary.simpleMessage("Sie können einen Job suchen, der zu Ihnen passt, mit flexiblen Arbeitszeiten und einem einfachen Arbeitsablauf"),
     "Selected_account" : MessageLookupByLibrary.simpleMessage("Wählen Sie aus, wofür Sie ein Konto erstellen möchten:"),
+    "Sign_Up_with_Google" : MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
+    "Street" : MessageLookupByLibrary.simpleMessage("Straße"),
     "Worker" : MessageLookupByLibrary.simpleMessage("Arbeiter")
   };
 }
