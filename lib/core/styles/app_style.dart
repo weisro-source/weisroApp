@@ -13,12 +13,56 @@ abstract class AppStyles {
     return textStyle.copyWith(fontFamily: fontFamily);
   }
 
+  static TextStyle style10w400Red(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.redColor,
+        fontSize: 10,
+      ),
+    );
+  }
+
   static TextStyle style12w400Black(context) {
     return getCustomTextStyle(
       context,
       const TextStyle(
         fontWeight: FontWeight.w400,
         color: AppColors.blackColor,
+        fontSize: 12,
+      ),
+    );
+  }
+
+  static TextStyle style12w400Second2(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.second2Color,
+        fontSize: 12,
+      ),
+    );
+  }
+
+  static TextStyle style12w400Grey(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.greyColor,
+        fontSize: 12,
+      ),
+    );
+  }
+
+  static TextStyle style12w400Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.orangeColor,
         fontSize: 12,
       ),
     );
@@ -31,6 +75,16 @@ abstract class AppStyles {
           fontWeight: FontWeight.w500,
           fontSize: 12,
           color: AppColors.greyColor),
+    );
+  }
+
+  static TextStyle style12w500Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 12,
+          color: AppColors.orangeColor),
     );
   }
 
@@ -134,6 +188,26 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle style18w500Grey(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: AppColors.greyColor),
+    );
+  }
+
+  static TextStyle style18w500Green(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: AppColors.greenColor),
+    );
+  }
+
   static TextStyle style20w500Grey(context) {
     return getCustomTextStyle(
       context,
@@ -141,6 +215,26 @@ abstract class AppStyles {
           fontWeight: FontWeight.w500,
           fontSize: 20,
           color: AppColors.greyColor),
+    );
+  }
+
+  static TextStyle style20w500Seconder(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          color: AppColors.second2Color),
+    );
+  }
+
+  static TextStyle style20w500White(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
+          color: AppColors.whiteColor),
     );
   }
 

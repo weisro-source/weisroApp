@@ -17,5 +17,8 @@ class ImagePath {
   /// Assets for imagesOnboardingImage3
   /// assets/images/onboardingImage3.png
   static const String imagesOnboardingImage3 = "assets/images/onboardingImage3.png";
+  /// Assets for sendCodeImage
+  /// assets/images/sendCodeImage.png
+  static const String sendCodeImage = "assets/images/sendCodeImage.png";
 }
 

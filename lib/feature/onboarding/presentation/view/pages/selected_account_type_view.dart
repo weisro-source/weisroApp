@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/client_register_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/account_type.dart';
@@ -27,6 +29,10 @@ class _SelectedAccountTypeViewState extends State<SelectedAccountTypeView> {
       //! navigation to worker Auth
     } else if (accountType == 1) {
       //*navigation to User Auth
+      HelperFunctions.navigateToScreen(
+        context,
+        (context) => const ClientRegisterPageView(),
+      );
     }
   }
 
@@ -67,14 +73,14 @@ class _SelectedAccountTypeViewState extends State<SelectedAccountTypeView> {
               children: [
                 AccountType(
                   title: S.of(context).Worker,
-                  iconPath: IconsPath.iconsWorker,
+                  iconPath: IconsPath.iconsWorkerIcon,
                   isSelected: selectedAccountType == 0,
                   onTap: () => _onAccountTypeTap(0),
                 ),
                 12.kw,
                 AccountType(
                   title: S.of(context).Client,
-                  iconPath: IconsPath.iconsUser,
+                  iconPath: IconsPath.iconsUserIcon,
                   isSelected: selectedAccountType == 1,
                   onTap: () => _onAccountTypeTap(1),
                 ),
