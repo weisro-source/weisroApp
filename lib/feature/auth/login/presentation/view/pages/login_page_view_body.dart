@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/core/widgets/title_for_text_from_filed.dart';
+import 'package:weisro/feature/auth/login/presentation/view/widgets/forget_password_button.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -60,12 +60,8 @@ class LoginPageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
               child: Align(
             alignment: AlignmentDirectional.bottomEnd,
-            child: TextButton(
+            child: ForgetPasswordButton(
               onPressed: () {},
-              child: Text(
-                S.of(context).Forget_Password,
-                style: AppStyles.style10w400Red(context),
-              ),
             ),
           )),
           SliverToBoxAdapter(
