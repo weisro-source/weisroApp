@@ -46,6 +46,17 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle style12w400Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.orangeColor,
+        fontSize: 12,
+      ),
+    );
+  }
+
   static TextStyle style12w500Grey(context) {
     return getCustomTextStyle(
       context,
@@ -163,6 +174,25 @@ abstract class AppStyles {
           fontWeight: FontWeight.w400,
           fontSize: 16,
           color: AppColors.greyColor),
+    );
+  }
+  static TextStyle style18w500Grey(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: AppColors.greyColor),
+    );
+  }
+
+  static TextStyle style18w500Green(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          color: AppColors.greenColor),
     );
   }
 

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weisro/core/assets_path/icons_path.dart';
-import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
+
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
-import 'package:weisro/feature/auth/presentation/view/widgets/labeled_border_box.dart';
+import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/second_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
-import '../../../../../core/widgets/app_button.dart';
-import '../../../../../core/widgets/custom_text_form_filed.dart';
-import '../../../../../core/widgets/title_for_text_from_filed.dart';
+import '../../../../../../core/widgets/app_button.dart';
+import '../../../../../../core/widgets/custom_text_form_filed.dart';
+import '../../../../../../core/widgets/title_for_text_from_filed.dart';
 import '../widgets/custom_steeper_widget.dart';
+import '../widgets/google_auth_button_widget.dart';
 import '../widgets/have_an_account.dart';
+import '../widgets/or_text_widget.dart';
 
 class ClientRegisterPageViewBody extends StatelessWidget {
   const ClientRegisterPageViewBody({super.key});
@@ -39,7 +41,11 @@ class ClientRegisterPageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 44.kh,
           ),
-          const SliverToBoxAdapter(child: CustomSteeperWidget()),
+          //* this a steeper widget
+          const SliverToBoxAdapter(
+              child: CustomSteeperWidget(
+            isTowStepActive: false,
+          )),
           SliverToBoxAdapter(
             child: 0.kh,
           ),
@@ -134,49 +140,37 @@ class ClientRegisterPageViewBody extends StatelessWidget {
             child: 24.kh,
           ),
           SliverToBoxAdapter(
-            child: AppButton(onPressed: () {}, text: S.of(context).Next_Step),
+            child: AppButton(
+                onPressed: () {
+                  HelperFunctions.navigateToScreen(context,
+                      (context) => const SecondClientRegisterPageView());
+                },
+                text: S.of(context).Next_Step),
           ),
           SliverToBoxAdapter(
             child: 16.kh,
           ),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                S.of(context).OR,
-                style: AppStyles.style14w400Grey(context)
-                    .copyWith(color: AppColors.second2Color),
-              ),
-            ),
+          const SliverToBoxAdapter(
+            child: OrTextWidget(),
           ),
           SliverToBoxAdapter(
             child: 9.kh,
           ),
           SliverToBoxAdapter(
-            child: AppButton(
+            child: GoogleAuthButtonWidget(
               onPressed: () {},
-              buttonColor: AppColors.second1Color,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    IconsPath.iconsGoogle,
-                  ),
-                  8.kw,
-                  Text(
-                    S.of(context).Sign_Up_with_Google,
-                    style: AppStyles.style14w500Grey(context),
-                  )
-                ],
-              ),
             ),
           ),
           SliverToBoxAdapter(
             child: 24.kh,
           ),
-          const SliverToBoxAdapter(
-            child: HaveAnAccount(),
+          SliverToBoxAdapter(
+            child: HaveAnAccount(
+              onPressed: () {
+                HelperFunctions.navigateToScreen(
+                    context, (context) => const LoginPageView());
+              },
+            ),
           ),
           SliverToBoxAdapter(
             child: 31.kh,

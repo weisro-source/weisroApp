@@ -6,8 +6,9 @@ import 'package:weisro/core/widgets/dashed_line_painter.dart';
 class CustomSteeperWidget extends StatelessWidget {
   const CustomSteeperWidget({
     super.key,
+    required this.isTowStepActive,
   });
-
+  final bool isTowStepActive;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -35,22 +36,27 @@ class CustomSteeperWidget extends StatelessWidget {
                   CustomPaint(
                     painter: DashedLinePainter(
                       color: AppColors.second2Color,
-                      dashWidth: 2.0,
-                      dashSpace: 1.0,
+                      dashWidth: 1.0,
+                      dashSpace: 2.0,
                     ),
                     size: const Size(112, 2),
                   ),
                   Container(
                     width: 32,
                     height: 32,
-                    decoration: const BoxDecoration(
-                      color: AppColors.second1Color,
+                    decoration: BoxDecoration(
+                      color: isTowStepActive
+                          ? AppColors.orangeColor
+                          : AppColors.second1Color,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                         child: Text(
                       "2",
-                      style: AppStyles.style20w500Seconder(context),
+                      style: AppStyles.style20w500Seconder(context).copyWith(
+                          color: isTowStepActive
+                              ? AppColors.whiteColor
+                              : AppColors.second2Color),
                     )),
                   ),
                 ],

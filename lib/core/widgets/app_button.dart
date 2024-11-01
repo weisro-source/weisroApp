@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -19,7 +20,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 342,
+      width: HelperFunctions.getScreenWidth(context),
       height: 32,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(

@@ -4,7 +4,7 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/feature/auth/presentation/view/pages/client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/client_register_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/account_type.dart';

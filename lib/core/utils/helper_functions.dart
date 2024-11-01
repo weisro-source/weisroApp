@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:weisro/core/styles/app_style.dart';
 
 class HelperFunctions {
   static void navigateToScreen(BuildContext context, WidgetBuilder screen) {
@@ -38,6 +39,34 @@ class HelperFunctions {
       builder: (context) {
         return dialog;
       },
+    );
+  }
+
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  static double getScreenHight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
+
+  static WidgetSpan textButtonSpan(
+      BuildContext context, void Function()? onPressed, String text) {
+    return WidgetSpan(
+      child: TextButton(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          padding: const EdgeInsetsDirectional.only(
+            start: 5,
+          ),
+          minimumSize: const Size(0, 0),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        child: Text(
+          text,
+          style: AppStyles.style12w500Orange(context),
+        ),
+      ),
     );
   }
 

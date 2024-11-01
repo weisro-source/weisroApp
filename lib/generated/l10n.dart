@@ -236,6 +236,186 @@ class S {
       args: [],
     );
   }
+
+  /// `Email`
+  String get Email {
+    return Intl.message(
+      'Email',
+      name: 'Email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Number`
+  String get Mobile_Number {
+    return Intl.message(
+      'Mobile Number',
+      name: 'Mobile_Number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get Password {
+    return Intl.message(
+      'Password',
+      name: 'Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get Confirm_Password {
+    return Intl.message(
+      'Confirm Password',
+      name: 'Confirm_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Account`
+  String get Create_Account {
+    return Intl.message(
+      'Create Account',
+      name: 'Create_Account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree to the`
+  String get I_agree_to_the {
+    return Intl.message(
+      'I agree to the',
+      name: 'I_agree_to_the',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of Use`
+  String get Terms_of_Use {
+    return Intl.message(
+      'Terms of Use',
+      name: 'Terms_of_Use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get Privacy_Policy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'Privacy_Policy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get the Code`
+  String get Get_the_Code {
+    return Intl.message(
+      'Get the Code',
+      name: 'Get_the_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code will be sent to the following Email`
+  String get Code_sent_to_email {
+    return Intl.message(
+      'The code will be sent to the following Email',
+      name: 'Code_sent_to_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Code`
+  String get Verify_Code {
+    return Intl.message(
+      'Verify Code',
+      name: 'Verify_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't received a code yet?`
+  String get Code_not_received {
+    return Intl.message(
+      'You haven\'t received a code yet?',
+      name: 'Code_not_received',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get Resend {
+    return Intl.message(
+      'Resend',
+      name: 'Resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations`
+  String get Congratulations {
+    return Intl.message(
+      'Congratulations',
+      name: 'Congratulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify`
+  String get Verify {
+    return Intl.message(
+      'Verify',
+      name: 'Verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The code has been`
+  String get The_Code_Has_Been {
+    return Intl.message(
+      'The code has been',
+      name: 'The_Code_Has_Been',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `successfully`
+  String get Successfully {
+    return Intl.message(
+      'successfully',
+      name: 'Successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `verified`
+  String get Verified {
+    return Intl.message(
+      'verified',
+      name: 'Verified',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
