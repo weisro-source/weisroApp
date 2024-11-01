@@ -102,6 +102,7 @@ class _OnBoardingPageViewBodyState extends State<OnBoardingPageViewBody>
               );
             },
           ),
+          20.kh,
           Padding(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 16),
             child: BottomButton(
