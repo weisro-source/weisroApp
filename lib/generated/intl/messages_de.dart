@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Create_Client_account" : MessageLookupByLibrary.simpleMessage("Konto für Kunde erstellen"),
     "Email" : MessageLookupByLibrary.simpleMessage("E-Mail"),
     "First_Name" : MessageLookupByLibrary.simpleMessage("Vorname"),
+    "Forget_Password" : MessageLookupByLibrary.simpleMessage("Passwort vergessen?"),
     "Get_the_Code" : MessageLookupByLibrary.simpleMessage("Code anfordern"),
     "Have_Account" : MessageLookupByLibrary.simpleMessage("Haben Sie ein Konto?"),
     "Hire_employees" : MessageLookupByLibrary.simpleMessage("Sie können Mitarbeiter beauftragen, Aufgaben ab einer Stunde und bis zu einem ganzen Tag auszuführen"),

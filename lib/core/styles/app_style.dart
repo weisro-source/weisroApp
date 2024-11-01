@@ -13,6 +13,17 @@ abstract class AppStyles {
     return textStyle.copyWith(fontFamily: fontFamily);
   }
 
+  static TextStyle style10w400Red(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.redColor,
+        fontSize: 10,
+      ),
+    );
+  }
+
   static TextStyle style12w400Black(context) {
     return getCustomTextStyle(
       context,
@@ -176,6 +187,7 @@ abstract class AppStyles {
           color: AppColors.greyColor),
     );
   }
+
   static TextStyle style18w500Grey(context) {
     return getCustomTextStyle(
       context,
