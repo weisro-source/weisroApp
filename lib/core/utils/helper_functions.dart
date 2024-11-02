@@ -13,11 +13,12 @@ class HelperFunctions {
     );
   }
 
-  static void navigateToScreenAndRemove(BuildContext context, Widget screen) {
+  static void navigateToScreenAndRemove(
+      BuildContext context, WidgetBuilder screen) {
     Navigator.pushAndRemoveUntil(
       context,
       CupertinoPageRoute(
-        builder: (_) => screen,
+        builder: (_) => screen(context),
       ),
       (route) {
         return false;

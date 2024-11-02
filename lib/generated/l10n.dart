@@ -117,6 +117,16 @@ class S {
     );
   }
 
+  /// `Create Worker account`
+  String get Create_Worker_Account {
+    return Intl.message(
+      'Create Worker account',
+      name: 'Create_Worker_Account',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `First Name`
   String get First_Name {
     return Intl.message(
@@ -422,6 +432,146 @@ class S {
     return Intl.message(
       'Forget Password?',
       name: 'Forget_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Code`
+  String get Send_Code {
+    return Intl.message(
+      'Send Code',
+      name: 'Send_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recover Password`
+  String get Recover_Password {
+    return Intl.message(
+      'Recover Password',
+      name: 'Recover_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How many days do you want to work during the week?`
+  String get How_Many_Days {
+    return Intl.message(
+      'How many days do you want to work during the week?',
+      name: 'How_Many_Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your favorite time to work?`
+  String get Favorite_Time {
+    return Intl.message(
+      'What\'s your favorite time to work?',
+      name: 'Favorite_Time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sa`
+  String get Sa {
+    return Intl.message(
+      'Sa',
+      name: 'Sa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Su`
+  String get Su {
+    return Intl.message(
+      'Su',
+      name: 'Su',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mo`
+  String get Mo {
+    return Intl.message(
+      'Mo',
+      name: 'Mo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tu`
+  String get Tu {
+    return Intl.message(
+      'Tu',
+      name: 'Tu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We`
+  String get We {
+    return Intl.message(
+      'We',
+      name: 'We',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Th`
+  String get Th {
+    return Intl.message(
+      'Th',
+      name: 'Th',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fr`
+  String get Fr {
+    return Intl.message(
+      'Fr',
+      name: 'Fr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Morning`
+  String get Morning {
+    return Intl.message(
+      'Morning',
+      name: 'Morning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Evening`
+  String get Evening {
+    return Intl.message(
+      'Evening',
+      name: 'Evening',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Night`
+  String get Night {
+    return Intl.message(
+      'Night',
+      name: 'Night',
       desc: '',
       args: [],
     );

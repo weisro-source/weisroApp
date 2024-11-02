@@ -1,10 +1,18 @@
 // ignore_for_file: prefer_single_quotes
 class IconsPath {
   IconsPath._();
-
+  
   /// Assets for iconsArrowLeft
   /// assets/icons/arrow_left.svg
   static const String iconsArrowLeft = "assets/icons/arrow_left.svg";
+
+  /// Assets for iconsCalender
+  /// assets/icons/calender.svg
+  static const String iconsCalender = "assets/icons/calender.svg";
+
+  /// Assets for iconsFavTime
+  /// assets/icons/fav_time.svg
+  static const String iconsFavTime = "assets/icons/fav_time.svg";
 
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
@@ -22,6 +30,10 @@ class IconsPath {
   /// assets/icons/logo.svg
   static const String iconsLogo = "assets/icons/logo.svg";
 
+  /// Assets for iconsMoon
+  /// assets/icons/moon.svg
+  static const String iconsMoon = "assets/icons/moon.svg";
+
   /// Assets for iconsSendCodeIcon
   /// assets/icons/sendCodeIcon.svg
   static const String iconsSendCodeIcon = "assets/icons/sendCodeIcon.svg";
@@ -30,11 +42,24 @@ class IconsPath {
   /// assets/icons/success.svg
   static const String iconsSuccess = "assets/icons/success.svg";
 
+  /// Assets for iconsSun
+  /// assets/icons/sun.svg
+  static const String iconsSun = "assets/icons/sun.svg";
+
+  /// Assets for iconsTimeSelected
+  /// assets/icons/time_selected.svg
+  static const String iconsTimeSelected = "assets/icons/time_selected.svg";
+
   /// Assets for iconsUserIcon
   /// assets/icons/user_icon.svg
   static const String iconsUserIcon = "assets/icons/user_icon.svg";
+
+  /// Assets for iconsWatch
+  /// assets/icons/watch.svg
+  static const String iconsWatch = "assets/icons/watch.svg";
 
   /// Assets for iconsWorkerIcon
   /// assets/icons/worker_icon.svg
   static const String iconsWorkerIcon = "assets/icons/worker_icon.svg";
 }
+

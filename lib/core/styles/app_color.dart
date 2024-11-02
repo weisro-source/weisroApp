@@ -13,4 +13,5 @@ class AppColors {
   static const Color blackColor = Color(0xFF080808);
   static const Color baseRedColor = Colors.red;
   static const Color shadowColor = Color(0x26000000);
+  static const Color shadow2Color = Color(0x3F000000);
 }

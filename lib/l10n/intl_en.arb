@@ -6,6 +6,7 @@
     "Rent_equipment": "Rent your equipment and start earning money with weisro",
     "Hire_employees": "You can hire employees to carry out tasks starting from an hour and up to a whole day",
     "Create_Client_account": "Create Client account",
+    "Create_Worker_Account": "Create Worker account",
     "First_Name": "First Name",
     "Last_Name": "Last Name",
     "Country": "Country",
@@ -36,5 +37,19 @@
     "The_Code_Has_Been": "The code has been",
     "Successfully": "successfully",
     "Verified": "verified",
-    "Forget_Password": "Forget Password?"
+    "Forget_Password": "Forget Password?",
+    "Send_Code": "Send Code",
+    "Recover_Password": "Recover Password",
+    "How_Many_Days": "How many days do you want to work during the week?",
+    "Favorite_Time": "What's your favorite time to work?",
+    "Sa": "Sa",
+    "Su": "Su",
+    "Mo": "Mo",
+    "Tu": "Tu",
+    "We": "We",
+    "Th": "Th",
+    "Fr": "Fr",
+    "Morning": "Morning",
+    "Evening": "Evening",
+    "Night": "Night"
 }

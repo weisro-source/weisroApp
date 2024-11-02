@@ -2,6 +2,10 @@
 class ImagePath {
   ImagePath._();
   
+  /// Assets for imagesForgetPassword
+  /// assets/images/forget_password.svg
+  static const String imagesForgetPassword = "assets/images/forget_password.svg";
+
   /// Assets for imagesLogo
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
@@ -17,8 +21,9 @@ class ImagePath {
   /// Assets for imagesOnboardingImage3
   /// assets/images/onboardingImage3.png
   static const String imagesOnboardingImage3 = "assets/images/onboardingImage3.png";
-  /// Assets for sendCodeImage
+
+  /// Assets for imagesSendCodeImage
   /// assets/images/sendCodeImage.png
-  static const String sendCodeImage = "assets/images/sendCodeImage.png";
+  static const String imagesSendCodeImage = "assets/images/sendCodeImage.png";
 }
 

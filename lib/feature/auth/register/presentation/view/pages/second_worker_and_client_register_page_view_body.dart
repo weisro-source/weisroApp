@@ -8,6 +8,7 @@ import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/core/widgets/title_for_text_from_filed.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/checkbox_cubit.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/worker_register_day_selected_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_steeper_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/google_auth_button_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
@@ -16,8 +17,10 @@ import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/i_agree_checkbox.dart';
 
-class SecondClientRegisterPageViewBody extends StatelessWidget {
-  const SecondClientRegisterPageViewBody({super.key});
+class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
+  const SecondWorkerAndClientRegisterPageViewBody(
+      {super.key, required this.isWorkerAuth});
+  final bool isWorkerAuth;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,10 @@ class SecondClientRegisterPageViewBody extends StatelessWidget {
               SliverToBoxAdapter(
                 child: 23.kh,
               ),
-              LabeledBorderBox(label: S.of(context).Create_Client_account),
+              LabeledBorderBox(
+                  label: isWorkerAuth
+                      ? S.of(context).Create_Worker_Account
+                      : S.of(context).Create_Client_account),
               SliverToBoxAdapter(
                 child: 44.kh,
               ),
@@ -157,8 +163,17 @@ class SecondClientRegisterPageViewBody extends StatelessWidget {
                 child: AppButton(
                   text: S.of(context).Create_Account,
                   onPressed: () {
-                    HelperFunctions.navigateToScreen(
-                        context, (context) => const OtpPageView());
+                    /// is WorkerAuth is True navigate it to worker_register_day_selected
+                    isWorkerAuth
+                        ? HelperFunctions.navigateToScreen(
+                            context,
+                            (context) =>
+                                const WorkerRegisterDaySelectedPageView())
+                        : HelperFunctions.navigateToScreen(
+                            context,
+                            (context) => const OtpPageView(
+                                  isForgetPassword: false,
+                                ));
                   },
                 ),
               ),

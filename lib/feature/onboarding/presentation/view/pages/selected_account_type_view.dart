@@ -4,7 +4,7 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/feature/auth/register/presentation/view/pages/client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/account_type.dart';
@@ -27,11 +27,19 @@ class _SelectedAccountTypeViewState extends State<SelectedAccountTypeView> {
     });
     if (accountType == 0) {
       //! navigation to worker Auth
+      HelperFunctions.navigateToScreen(
+        context,
+        (context) => const WorkerAndClientRegisterPageView(
+          isWorkerAuth: true,
+        ),
+      );
     } else if (accountType == 1) {
       //*navigation to User Auth
       HelperFunctions.navigateToScreen(
         context,
-        (context) => const ClientRegisterPageView(),
+        (context) => const WorkerAndClientRegisterPageView(
+          isWorkerAuth: false,
+        ),
       );
     }
   }

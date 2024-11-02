@@ -4,7 +4,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
-import 'package:weisro/feature/auth/register/presentation/view/pages/second_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/second_worker_and_client_register_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -16,8 +16,10 @@ import '../widgets/google_auth_button_widget.dart';
 import '../widgets/have_an_account.dart';
 import '../widgets/or_text_widget.dart';
 
-class ClientRegisterPageViewBody extends StatelessWidget {
-  const ClientRegisterPageViewBody({super.key});
+class WorkerAndClientRegisterPageViewBody extends StatelessWidget {
+  const WorkerAndClientRegisterPageViewBody(
+      {super.key, required this.isWorkerAuth});
+  final bool isWorkerAuth;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,10 @@ class ClientRegisterPageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 23.kh,
           ),
-          LabeledBorderBox(label: S.of(context).Create_Client_account),
+          LabeledBorderBox(
+              label: isWorkerAuth
+                  ? S.of(context).Create_Worker_Account
+                  : S.of(context).Create_Client_account),
           SliverToBoxAdapter(
             child: 44.kh,
           ),
@@ -142,8 +147,11 @@ class ClientRegisterPageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: AppButton(
                 onPressed: () {
-                  HelperFunctions.navigateToScreen(context,
-                      (context) => const SecondClientRegisterPageView());
+                  HelperFunctions.navigateToScreen(
+                      context,
+                      (context) => SecondWorkerAndClientRegisterPageView(
+                            isWorkerAuth: isWorkerAuth,
+                          ));
                 },
                 text: S.of(context).Next_Step),
           ),

@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl:
+  intl: null
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.10+1
   flutter_gallery_3d: ^1.1.1
@@ -48,8 +48,11 @@ flutter:
 #   assets_path: assets/images
 #   output_path: lib/core/assets_path/
 #   filename: image_path.dart
-#   field_prefix:
+#   field_prefix: null
 #   classname: ImagePath
+# flutter_intl:
+#   enabled: true
+
 flutter_assets:
   assets_path: assets/icons
   output_path: lib/core/assets_path/

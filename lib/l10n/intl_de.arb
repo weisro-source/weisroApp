@@ -6,6 +6,7 @@
     "Rent_equipment": "Vermieten Sie Ihre Ausrüstung und verdienen Sie Geld mit Weisro",
     "Hire_employees": "Sie können Mitarbeiter beauftragen, Aufgaben ab einer Stunde und bis zu einem ganzen Tag auszuführen",
     "Create_Client_account": "Konto für Kunde erstellen",
+    "Create_Worker_Account": "Arbeiterkonto erstellen",
     "First_Name": "Vorname",
     "Last_Name": "Nachname",
     "Country": "Land",
@@ -36,5 +37,19 @@
     "The_Code_Has_Been": "Der Code wurde",
     "Successfully": "erfolgreich",
     "Verified": "verifiziert",
-    "Forget_Password": "Passwort vergessen?"
+    "Forget_Password": "Passwort vergessen?",
+    "Send_Code": "Code senden",
+    "Recover_Password": "Passwort wiederherstellen",
+    "How_Many_Days": "Wie viele Tage möchten Sie in der Woche arbeiten?",
+    "Favorite_Time": "Was ist Ihre bevorzugte Arbeitszeit?",
+    "Sa": "Sa",
+    "Su": "So",
+    "Mo": "Mo",
+    "Tu": "Di",
+    "We": "Mi",
+    "Th": "Do",
+    "Fr": "Fr",
+    "Morning": "Morgen",
+    "Evening": "Abend",
+    "Night": "Nacht"
 }
