@@ -3,9 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/feature/auth/register/data/worker_time.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/worker_register_upload_image_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -124,6 +127,14 @@ class WorkerRegisterDaySelectedBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 40.kh,
           ),
+          SliverToBoxAdapter(
+            child: AppButton(
+              onPressed: () {
+                HelperFunctions.navigateToScreen(context,
+                    (context) => const WorkerRegisterUploadImagePageView());
+              },
+            ),
+          )
         ],
       ),
     );

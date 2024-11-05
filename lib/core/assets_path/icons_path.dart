@@ -34,9 +34,21 @@ class IconsPath {
   /// assets/icons/moon.svg
   static const String iconsMoon = "assets/icons/moon.svg";
 
+  /// Assets for iconsPhoto
+  /// assets/icons/photo.svg
+  static const String iconsPhoto = "assets/icons/photo.svg";
+
+  /// Assets for iconsProfile
+  /// assets/icons/profile.svg
+  static const String iconsProfile = "assets/icons/profile.svg";
+
   /// Assets for iconsSendCodeIcon
   /// assets/icons/sendCodeIcon.svg
   static const String iconsSendCodeIcon = "assets/icons/sendCodeIcon.svg";
+
+  /// Assets for iconsServices
+  /// assets/icons/services.svg
+  static const String iconsServices = "assets/icons/services.svg";
 
   /// Assets for iconsSuccess
   /// assets/icons/success.svg
@@ -46,6 +58,14 @@ class IconsPath {
   /// assets/icons/sun.svg
   static const String iconsSun = "assets/icons/sun.svg";
 
+  /// Assets for iconsTaskListMenu
+  /// assets/icons/task_list_menu.svg
+  static const String iconsTaskListMenu = "assets/icons/task_list_menu.svg";
+
+  /// Assets for iconsTimeIsMoneyClock
+  /// assets/icons/time_is_money_clock.svg
+  static const String iconsTimeIsMoneyClock = "assets/icons/time_is_money_clock.svg";
+
   /// Assets for iconsTimeSelected
   /// assets/icons/time_selected.svg
   static const String iconsTimeSelected = "assets/icons/time_selected.svg";
@@ -54,6 +74,10 @@ class IconsPath {
   /// assets/icons/user_icon.svg
   static const String iconsUserIcon = "assets/icons/user_icon.svg";
 
+  /// Assets for iconsVerify
+  /// assets/icons/verify.svg
+  static const String iconsVerify = "assets/icons/verify.svg";
+
   /// Assets for iconsWatch
   /// assets/icons/watch.svg
   static const String iconsWatch = "assets/icons/watch.svg";
@@ -61,5 +85,9 @@ class IconsPath {
   /// Assets for iconsWorkerIcon
   /// assets/icons/worker_icon.svg
   static const String iconsWorkerIcon = "assets/icons/worker_icon.svg";
+
+  /// Assets for iconsWorkerRegisterImageUploader
+  /// assets/icons/worker_register_image_uploader.svg
+  static const String iconsWorkerRegisterImageUploader = "assets/icons/worker_register_image_uploader.svg";
 }
 

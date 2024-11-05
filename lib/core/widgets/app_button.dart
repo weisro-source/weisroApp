@@ -10,34 +10,42 @@ class AppButton extends StatelessWidget {
     this.child,
     this.text,
     this.onPressed,
+    this.height,
+    this.width,
+    this.borderColor,
+    this.textStyle,
   });
 
   final Color? buttonColor;
+  final Color? borderColor;
   final Widget? child;
   final String? text;
   final VoidCallback? onPressed;
+  final double? height;
+  final double? width;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: HelperFunctions.getScreenWidth(context),
-      height: 32,
+      width: width ?? HelperFunctions.getScreenWidth(context),
+      height: height ?? 32,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              buttonColor ?? AppColors.orangeColor, // Background color
+          backgroundColor: buttonColor ?? AppColors.orangeColor,
           shape: RoundedRectangleBorder(
+            side: BorderSide(
+                color: borderColor ?? buttonColor ?? AppColors.orangeColor),
             borderRadius: BorderRadius.circular(4),
           ),
-          elevation: 6, // Similar to the shadow's blur radius
-          shadowColor: AppColors.shadowColor, // Shadow color
+          elevation: 6,
         ),
-        onPressed: onPressed, // Button action
+        onPressed: onPressed,
         child: child ??
             Center(
               child: Text(
                 text ?? "",
-                style: AppStyles.style14w500White(context),
+                style: textStyle ?? AppStyles.style14w500White(context),
               ),
             ),
       ),

@@ -51,5 +51,18 @@
     "Fr": "Fr",
     "Morning": "Morning",
     "Evening": "Evening",
-    "Night": "Night"
+    "Night": "Night",
+    "Select_Services": "Select the services you offer?",
+    "Describe_Services": "Write here what your services include?",
+    "No_Addresses": "* It is forbidden to publish any addresses or contact information",
+    "Hourly_Rate": "My fare per hour?",
+    "Hourly_Rate_Note": "* Your hourly wage for your services will be added to the value of the tax in your country",
+    "Document_Verification": "We need a document to verify that your account is not a fake account",
+    "Document_Note": "* upon verification all documents will be deleted",
+    "Upload_Profile_Picture": "Upload your real profile picture to your profile",
+    "Passport": "Passport",
+    "Identity": "Identity",
+    "Accommodation": "Accommodation",
+    "Drivers_License": "Driver's license",
+    "Profile_Image_Shaping": "Shaping your personal image"
 }

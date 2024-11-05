@@ -12,9 +12,11 @@ class QuestionWidget extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(icon),
-        Text(
-          questionText,
-          style: AppStyles.style12w500Grey(context),
+        Expanded(
+          child: Text(
+            questionText,
+            style: AppStyles.style12w500Grey(context),
+          ),
         )
       ],
     );

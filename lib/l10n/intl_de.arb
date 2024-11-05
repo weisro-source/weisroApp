@@ -51,5 +51,18 @@
     "Fr": "Fr",
     "Morning": "Morgen",
     "Evening": "Abend",
-    "Night": "Nacht"
+    "Night": "Nacht",
+    "Select_Services": "Wählen Sie die von Ihnen angebotenen Dienstleistungen aus?",
+    "Describe_Services": "Schreiben Sie hier, was Ihre Dienstleistungen umfassen?",
+    "No_Addresses": "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen",
+    "Hourly_Rate": "Mein Stundensatz?",
+    "Hourly_Rate_Note": "* Ihr Stundenlohn für Ihre Dienstleistungen wird dem Steuerwert in Ihrem Land hinzugefügt",
+    "Document_Verification": "Wir benötigen ein Dokument, um zu überprüfen, dass Ihr Konto kein Fake-Konto ist",
+    "Document_Note": "* nach der Überprüfung werden alle Dokumente gelöscht",
+    "Upload_Profile_Picture": "Laden Sie Ihr echtes Profilbild hoch",
+    "Passport": "Reisepass",
+    "Identity": "Identität",
+    "Accommodation": "Unterkunft",
+    "Drivers_License": "Führerschein",
+    "Profile_Image_Shaping": "Gestaltung Ihres persönlichen Bildes"
 }

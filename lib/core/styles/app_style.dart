@@ -24,6 +24,28 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle style10w400Second2(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w400,
+        color: AppColors.second2Color,
+        fontSize: 10,
+      ),
+    );
+  }
+
+  static TextStyle style10w500Red(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w500,
+        color: AppColors.redColor,
+        fontSize: 10,
+      ),
+    );
+  }
+
   static TextStyle style12w400Black(context) {
     return getCustomTextStyle(
       context,

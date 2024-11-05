@@ -576,6 +576,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Select the services you offer?`
+  String get Select_Services {
+    return Intl.message(
+      'Select the services you offer?',
+      name: 'Select_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write here what your services include?`
+  String get Describe_Services {
+    return Intl.message(
+      'Write here what your services include?',
+      name: 'Describe_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* It is forbidden to publish any addresses or contact information`
+  String get No_Addresses {
+    return Intl.message(
+      '* It is forbidden to publish any addresses or contact information',
+      name: 'No_Addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My fare per hour?`
+  String get Hourly_Rate {
+    return Intl.message(
+      'My fare per hour?',
+      name: 'Hourly_Rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* Your hourly wage for your services will be added to the value of the tax in your country`
+  String get Hourly_Rate_Note {
+    return Intl.message(
+      '* Your hourly wage for your services will be added to the value of the tax in your country',
+      name: 'Hourly_Rate_Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need a document to verify that your account is not a fake account`
+  String get Document_Verification {
+    return Intl.message(
+      'We need a document to verify that your account is not a fake account',
+      name: 'Document_Verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* upon verification all documents will be deleted`
+  String get Document_Note {
+    return Intl.message(
+      '* upon verification all documents will be deleted',
+      name: 'Document_Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload your real profile picture to your profile`
+  String get Upload_Profile_Picture {
+    return Intl.message(
+      'Upload your real profile picture to your profile',
+      name: 'Upload_Profile_Picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passport`
+  String get Passport {
+    return Intl.message(
+      'Passport',
+      name: 'Passport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Identity`
+  String get Identity {
+    return Intl.message(
+      'Identity',
+      name: 'Identity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accommodation`
+  String get Accommodation {
+    return Intl.message(
+      'Accommodation',
+      name: 'Accommodation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver's license`
+  String get Drivers_License {
+    return Intl.message(
+      'Driver\'s license',
+      name: 'Drivers_License',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shaping your personal image`
+  String get Profile_Image_Shaping {
+    return Intl.message(
+      'Shaping your personal image',
+      name: 'Profile_Image_Shaping',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

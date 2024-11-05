@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -69,6 +71,14 @@ class HelperFunctions {
         ),
       ),
     );
+  }
+
+  static bool isAndroid() {
+    return Platform.isAndroid;
+  }
+
+  static bool isIOS() {
+    return Platform.isIOS;
   }
 
   // static void failureSnackBar(
