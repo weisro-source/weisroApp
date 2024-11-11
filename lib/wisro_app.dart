@@ -22,7 +22,7 @@ class WeisroApp extends StatelessWidget {
       debugShowCheckedModeBanner: HelperFunctions.isDebugMode(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.orangeColor,
+          seedColor: AppColors.whiteColor,
           background: AppColors.whiteColor,
         ),
         useMaterial3: true,

@@ -20,12 +20,14 @@ class Gallery3DWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 280,
       isClip: true,
+      
       itemConfig: const GalleryItemConfig(
         width: 193,
         height: 270,
         radius: 8,
         shadows: [],
         isShowTransformMask: false,
+        
       ),
       onItemChanged: onItemChanged,
       itemBuilder: (context, index) {

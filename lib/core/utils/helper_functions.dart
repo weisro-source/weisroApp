@@ -81,6 +81,37 @@ class HelperFunctions {
     return Platform.isIOS;
   }
 
+  static void requestNextFocus(
+      FocusNode currentNode, FocusNode nextNode, BuildContext context) {
+    currentNode.unfocus(); // Unfocus the current field
+
+    FocusScope.of(context).requestFocus(nextNode); // Request focus
+  }
+
+  static bool validateForm(GlobalKey<FormState> formKey) {
+    return formKey.currentState?.validate() ?? false;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // static void failureSnackBar(
   //   BuildContext context, {
   //   required String errMessage,
@@ -116,7 +147,6 @@ class HelperFunctions {
   //       backgroundColor: AppColor.primaryColor,
   //     ),
   //   );
-}
 
   // static Future<dynamic> logOutFunctionDialog(BuildContext context) {
   //   return showDialog(

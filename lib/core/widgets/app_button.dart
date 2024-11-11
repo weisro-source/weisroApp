@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
     this.width,
     this.borderColor,
     this.textStyle,
+    this.focusNode,
   });
 
   final Color? buttonColor;
@@ -24,6 +25,7 @@ class AppButton extends StatelessWidget {
   final double? height;
   final double? width;
   final TextStyle? textStyle;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class AppButton extends StatelessWidget {
       width: width ?? HelperFunctions.getScreenWidth(context),
       height: height ?? 32,
       child: ElevatedButton(
+        focusNode: focusNode,
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor ?? AppColors.orangeColor,
           shape: RoundedRectangleBorder(
@@ -38,7 +41,7 @@ class AppButton extends StatelessWidget {
                 color: borderColor ?? buttonColor ?? AppColors.orangeColor),
             borderRadius: BorderRadius.circular(4),
           ),
-          elevation: 6,
+          elevation: 0,
         ),
         onPressed: onPressed,
         child: child ??
