@@ -65,6 +65,15 @@ class ApiService {
     return response.data;
   }
 
+  Future<Map<String, dynamic>> patch({
+    required String endPoint,
+    required var data,
+  }) async {
+    await _setHeaders();
+    var response = await dio.patch(endPoint, data: data);
+    return response.data;
+  }
+
   Future<Map<String, dynamic>> delete({
     required String endPoint,
     required int id,

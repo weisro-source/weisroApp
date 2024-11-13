@@ -19,6 +19,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.suffixIcon,
     this.enabled,
     this.validator,
+    this.textInputAction,
   });
 
   final TextEditingController? controller;
@@ -35,6 +36,7 @@ class CustomTextFormFiled extends StatelessWidget {
   final void Function(String)? onFieldSubmitted;
   final bool? enabled;
   final String? Function(String?)? validator;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,7 @@ class CustomTextFormFiled extends StatelessWidget {
       elevation: 0.0,
       shadowColor: AppColors.shadowColor,
       child: TextFormField(
+        textInputAction: textInputAction,
         maxLines: maxLines,
         minLines: minLines,
         enabled: enabled,

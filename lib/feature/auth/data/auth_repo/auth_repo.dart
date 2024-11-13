@@ -11,5 +11,9 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, SuccessLoginModel>> loginApi(
       UserClientModel userToRegister, CancelToken cancelToken);
   Future<Either<Failure, String>> verifyOtpApi(
-     Map<String,dynamic> dataToVerify, CancelToken cancelToken);
+      Map<String, dynamic> dataToVerify, CancelToken cancelToken);
+  Future<Either<Failure, String>> forgetPassword(
+      String email, CancelToken cancelToken);
+  Future<Either<Failure, String>> resetPassword(
+      Map<String, dynamic> dataToResetPassword, CancelToken cancelToken);
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,8 +20,10 @@ import '../widgets/otp_text_input.dart';
 import '../widgets/resend_code.dart';
 
 class OtpPageViewBody extends StatelessWidget {
-  const OtpPageViewBody({super.key, required this.isForgetPassword});
+  const OtpPageViewBody(
+      {super.key, required this.isForgetPassword, this.email});
   final bool isForgetPassword;
+  final String? email;
   @override
   Widget build(BuildContext context) {
     VerifyOtpCubit verifyOtpCubit = VerifyOtpCubit.get(context);
@@ -59,8 +59,11 @@ class OtpPageViewBody extends StatelessWidget {
             child: Visibility(
               visible: !isForgetPassword,
               child: CodeSendToEmailTextWidget(
-                email: RegisterCubit.get(context)
-                    .maskEmail(RegisterCubit.get(context).getEmail()),
+                //? I write Here the  !isForgetPassword for dont user RegisterCubit
+                email: !isForgetPassword
+                    ? HelperFunctions.maskEmail(
+                        RegisterCubit.get(context).getEmail())
+                    : "",
               ),
             ),
           ),
@@ -98,10 +101,13 @@ class OtpPageViewBody extends StatelessWidget {
               child: BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
                 listener: (context, verifyState) {
                   if (verifyState is VerifyOtpSuccess) {
-                    !isForgetPassword
-                        ? HelperFunctions.navigateToScreen(
-                            context, (context) => const SuccessCodePageView())
-                        : log("");
+                    HelperFunctions.navigateToScreen(
+                        context,
+                        (context) => !isForgetPassword
+                            ? const SuccessCodePageView()
+                            : NewPasswordPageView(
+                                code: verifyOtpCubit.otpController.text,
+                              ));
                   } else if (verifyState is VerifyOtpFailure) {
                     CustomDialog.showCustomDialog(
                         context, "Error in Verify Otp", verifyState.errMessage);
@@ -115,8 +121,7 @@ class OtpPageViewBody extends StatelessWidget {
                         onPressed: () async {
                           !isForgetPassword
                               ? await verifyOtpCubit.verifyOtp(context)
-                              : HelperFunctions.navigateToScreen(context,
-                                  (context) => const NewPasswordPageView());
+                              : await verifyOtpCubit.verifyOtp(context, email);
                         },
                         text: S.of(context).Verify_Code);
                   }

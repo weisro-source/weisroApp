@@ -15,22 +15,23 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
   CancelToken cancelToken = CancelToken();
   final GlobalKey<FormState> otpFormKey = GlobalKey<FormState>();
 
-  Map<String, dynamic> verifyOtpData(BuildContext context) {
+  Map<String, dynamic> verifyOtpData(BuildContext context, [String? email]) {
+    print("This Email $email");
     return {
-      "email": RegisterCubit.get(context).getEmail(),
+      "email": email ?? RegisterCubit.get(context).getEmail(),
       "otp": otpController.text
     };
   }
 
-  Future<void> verifyOtp(BuildContext context) async {
+  Future<void> verifyOtp(BuildContext context, [String? email]) async {
     if (!HelperFunctions.validateForm(otpFormKey)) {
       return;
     }
 
     emit(VerifyOtpLoading());
-    var result = await getIt
-        .get<AuthenticationRepository>()
-        .verifyOtpApi(verifyOtpData(context), cancelToken);
+    var result = await getIt.get<AuthenticationRepository>().verifyOtpApi(
+        email != null ? verifyOtpData(context, email) : verifyOtpData(context),
+        cancelToken);
     result.fold((errorInVerifyOtp) {
       emit(VerifyOtpFailure(errMessage: errorInVerifyOtp.errMassage));
     }, (verifySuccess) {

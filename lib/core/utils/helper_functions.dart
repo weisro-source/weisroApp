@@ -132,6 +132,35 @@ class HelperFunctions {
         '${tempDir.path}/resized_image_${DateTime.now().millisecondsSinceEpoch}.jpg';
     return File(filePath).writeAsBytes(bytes);
   }
+
+  // this function to mask email as this na***@gmail.com
+  static String maskEmail(String email) {
+    // Split the email into username and domain parts
+    final parts = email.split('@');
+    if (parts.length != 2) {
+      return email; // Return as-is if it’s not a valid email
+    }
+
+    final username = parts[0];
+    final domain = parts[1];
+
+    if (username.length < 3) {
+      return "$username@$domain"; // Too short to mask, so return as-is
+    }
+
+    // Take the first two characters and the last character of the username
+    final maskedUsername =
+        "${username.substring(0, 2)}******${username.substring(username.length - 1)}";
+    return "$maskedUsername@$domain";
+  }
+
+  static String? ensureStringOrNull(var message) {
+    if (message != null && message is String) {
+      return message;
+    } else {
+      return null;
+    }
+  }
 }
 
 
