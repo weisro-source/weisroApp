@@ -64,5 +64,7 @@
     "Identity": "Identität",
     "Accommodation": "Unterkunft",
     "Drivers_License": "Führerschein",
-    "Profile_Image_Shaping": "Gestaltung Ihres persönlichen Bildes"
+    "Profile_Image_Shaping": "Gestaltung Ihres persönlichen Bildes",
+    "Take_Photo": "Foto aufnehmen",
+    "Pick_From_Gallery": "Aus der Galerie auswählen"
 }

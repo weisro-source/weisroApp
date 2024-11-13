@@ -64,5 +64,7 @@
     "Identity": "Identity",
     "Accommodation": "Accommodation",
     "Drivers_License": "Driver's license",
-    "Profile_Image_Shaping": "Shaping your personal image"
+    "Profile_Image_Shaping": "Shaping your personal image",
+    "Take_Photo": "Take Photo",
+    "Pick_From_Gallery": "Pick from Gallery"
 }

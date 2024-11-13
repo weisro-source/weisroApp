@@ -41,6 +41,13 @@ class UserClientModel {
     };
   }
 
+  Map<String, dynamic> loginBody() {
+    return {
+      "email": email,
+      "password": password,
+    };
+  }
+
   static UserClientModel fromJson(Map<String, Object?> json) {
     return UserClientModel(
         firstName:

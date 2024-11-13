@@ -1,15 +1,13 @@
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weisro/core/assets_path/image_path.dart';
-import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
+
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/service_locator.dart';
-import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
+
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/models/address_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
@@ -24,6 +22,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
   static RegisterCubit get(context) => BlocProvider.of(context);
+  String getEmail() => emailController.text;
+
   // Form key
   final GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> registerSecondFormKey = GlobalKey<FormState>();
@@ -43,6 +43,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   FocusNode nextButtonFocusNode = FocusNode();
   FocusNode privacyFocusNode = FocusNode();
   FocusNode termsFocusNode = FocusNode();
+  FocusNode serviceFocusNode = FocusNode();
+  FocusNode descriptionFocusNode = FocusNode();
+  FocusNode costPerHourFocusNode = FocusNode();
 
   // Controllers for fields
   TextEditingController emailController = TextEditingController();
@@ -56,6 +59,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController streetController = TextEditingController();
   TextEditingController houseNumberController = TextEditingController();
+  TextEditingController serviceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController costPerHourController = TextEditingController();
 
   CancelToken registerClientCancelToken = CancelToken();
   String hintTextX = "xxxxxx";
@@ -65,7 +71,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   bool isPrivacyOk = false;
   List<String> selectedDay = [];
   List<String> favoriteTimes = [];
-
   Address createAddress() {
     return Address(
       city: cityController.text,
@@ -88,7 +93,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void updateSelectedDays(List<String> days) {
     selectedDay = days;
-    log("Selected days updated: $selectedDay");
+    dev.log("Selected days updated: $selectedDay");
   }
 
   void updateFavoriteTimes(String time, bool isAdd) {
@@ -97,7 +102,28 @@ class RegisterCubit extends Cubit<RegisterState> {
     } else {
       favoriteTimes.remove(time);
     }
-    log("Selected Favorite Times updated: $favoriteTimes");
+    dev.log("Selected Favorite Times updated: $favoriteTimes");
+  }
+
+// this function to mask email as this na***@gmail.com
+  String maskEmail(String email) {
+    // Split the email into username and domain parts
+    final parts = email.split('@');
+    if (parts.length != 2) {
+      return email; // Return as-is if it’s not a valid email
+    }
+
+    final username = parts[0];
+    final domain = parts[1];
+
+    if (username.length < 3) {
+      return "$username@$domain"; // Too short to mask, so return as-is
+    }
+
+    // Take the first two characters and the last character of the username
+    final maskedUsername =
+        "${username.substring(0, 2)}******${username.substring(username.length - 1)}";
+    return "$maskedUsername@$domain";
   }
 
   Future<void> registerClient() async {
@@ -111,97 +137,30 @@ class RegisterCubit extends Cubit<RegisterState> {
     registerResult.fold((errorInRegisterClient) {
       emit(RegisterFailures(errMessage: errorInRegisterClient.errMassage));
     }, (successRegisterClient) {
-      log("Register Client Success ${successRegisterClient.toString()}");
+      dev.log("Register Client Success ${successRegisterClient.toString()}");
       emit(RegisterSuccess(successRegister: successRegisterClient));
     });
   }
 
-  void showAgreementDialog(
-      BuildContext context, String dialogTitle, String dialogContent) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          elevation: 5,
-          backgroundColor: Colors.transparent,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.85,
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Column(
-                      children: [
-                        Image.asset(ImagePath.imagesLogo),
-                        5.kh,
-                        Text(
-                          dialogTitle,
-                          style: AppStyles.style20w500White(context).copyWith(
-                            color: AppColors.whiteColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(),
-                  const SizedBox(height: 15),
-                  Text(
-                    dialogContent,
-                    style: AppStyles.style16w500Black(context),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppButton(
-                        height: 45,
-                        width: 130,
-                        borderColor: Colors.transparent,
-                        buttonColor: AppColors.greenColor,
-                        text: "Ok",
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   void initializeTestData() {
     if (HelperFunctions.isDebugMode()) {
-      // Only populate fields in debug mode
-      emailController.text = "testuser@example.com";
+      // Create a random instance
+      final random = Random();
+
+      // Generate a random phone number with a 3-digit prefix and a 7-digit suffix
+      String randomPhoneNumber =
+          '+1${(random.nextInt(900) + 100)}${(random.nextInt(9000000) + 1000000)}';
+
+      // Generate a random email address
+      String randomEmail = 'user${random.nextInt(1000)}@example.com';
+
+      // Populate fields with random values in debug mode
+      emailController.text = randomEmail;
       passwordController.text = "TestPassword123";
       confirmationPasswordController.text = "TestPassword123";
       firstNameController.text = "John";
       lastNameController.text = "Doe";
-      phoneController.text = "+1234567890";
+      phoneController.text = randomPhoneNumber;
       cityController.text = "Berlin";
       postalCodeController.text = "10115";
       streetController.text = "Example Street";

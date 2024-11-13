@@ -3,10 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -19,6 +21,7 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegisterCubit registerCubit = RegisterCubit.get(context);
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       child: CustomScrollView(
@@ -53,12 +56,18 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 10.kh,
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsetsDirectional.only(start: 28),
+              padding: const EdgeInsetsDirectional.only(start: 28),
               child: CustomTextFormFiled(
                 hintText: "",
+                controller: registerCubit.serviceController,
+                focusNode: registerCubit.serviceFocusNode,
                 borderColor: AppColors.orangeColor,
+                onFieldSubmitted: (p0) => HelperFunctions.requestNextFocus(
+                    registerCubit.serviceFocusNode,
+                    registerCubit.descriptionFocusNode,
+                    context),
               ),
             ),
           ),
@@ -73,15 +82,21 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 10.kh,
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsetsDirectional.only(start: 28),
+              padding: const EdgeInsetsDirectional.only(start: 28),
               child: CustomTextFormFiled(
                 hintText: "",
                 borderColor: AppColors.orangeColor,
+                controller: registerCubit.descriptionController,
+                focusNode: registerCubit.descriptionFocusNode,
                 maxLines: 5,
                 minLines: 5,
                 height: null,
+                onFieldSubmitted: (p0) => HelperFunctions.requestNextFocus(
+                    registerCubit.descriptionFocusNode,
+                    registerCubit.costPerHourFocusNode,
+                    context),
               ),
             ),
           ),
@@ -100,10 +115,12 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 10.kh,
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsetsDirectional.only(start: 28),
+              padding: const EdgeInsetsDirectional.only(start: 28),
               child: CustomTextFormFiled(
+                controller: registerCubit.costPerHourController,
+                focusNode: registerCubit.costPerHourFocusNode,
                 hintText: "",
                 borderColor: AppColors.orangeColor,
               ),
@@ -152,6 +169,7 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 28),
               child: UploaderContainerWidget(
+                  isMultiPick: false,
                   hintText: S.of(context).Profile_Image_Shaping),
             ),
           ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/favorite_time_cubit.dart';
-import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/favorite_time_widget.dart';
 
 class FavoriteTimeGridViewWidget extends StatelessWidget {

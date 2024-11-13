@@ -49,6 +49,7 @@ class _WorkerRegisterDaySelectedBodyState
 
   @override
   Widget build(BuildContext context) {
+    RegisterCubit registerCubit = RegisterCubit.get(context);
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       child: Form(
@@ -148,12 +149,21 @@ class _WorkerRegisterDaySelectedBodyState
             ),
             SliverToBoxAdapter(
               child: AppButton(
+                text: S.of(context).Next_Step,
                 onPressed: () {
-                  HelperFunctions.navigateToScreen(context,
-                      (context) => const WorkerRegisterUploadImagePageView());
+                  HelperFunctions.navigateToScreen(
+                    context,
+                    (context) => BlocProvider.value(
+                      value: registerCubit,
+                      child: const WorkerRegisterUploadImagePageView(),
+                    ),
+                  );
                 },
               ),
-            )
+            ),
+            SliverToBoxAdapter(
+              child: 42.kh,
+            ),
           ],
         ),
       ),

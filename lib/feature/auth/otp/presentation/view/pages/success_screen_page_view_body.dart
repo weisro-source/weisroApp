@@ -75,7 +75,8 @@ class SuccessScreenPageViewBodyState extends State<SuccessScreenPageViewBody>
     _rowOpacity = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(1.0, 1.2, curve: Curves.easeIn),
+        curve: const Interval(0.9, 1.0,
+            curve: Curves.easeIn), // Corrected Interval
       ),
     );
   }

@@ -1,12 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
+import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/core/widgets/shimmer_app_button.dart';
 import 'package:weisro/feature/auth/forget_password/presentation/view/pages/new_password_view_page.dart';
+import 'package:weisro/feature/auth/otp/presentation/manager/verify_otp_cubit/verify_otp_cubit.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/success_code_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -19,83 +26,106 @@ class OtpPageViewBody extends StatelessWidget {
   final bool isForgetPassword;
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: 35.kh,
-        ),
-        const SliverPadding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: 32),
-          sliver: SliverToBoxAdapter(
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: LogoImageWidget(),
+    VerifyOtpCubit verifyOtpCubit = VerifyOtpCubit.get(context);
+    return Form(
+      key: verifyOtpCubit.otpFormKey,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: 35.kh,
+          ),
+          const SliverPadding(
+            padding: EdgeInsetsDirectional.symmetric(horizontal: 32),
+            sliver: SliverToBoxAdapter(
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: LogoImageWidget(),
+              ),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: 23.kh,
-        ),
-        SliverPadding(
-            padding: const EdgeInsetsDirectional.symmetric(horizontal: 32),
-            sliver: LabeledBorderBox(
-                label: isForgetPassword
-                    ? S.of(context).Forget_Password
-                    : S.of(context).Get_the_Code)),
-        SliverToBoxAdapter(
-          child: 37.kh,
-        ),
-        SliverToBoxAdapter(
-          child: Visibility(
-            visible: !isForgetPassword,
-            child: const CodeSendToEmailTextWidget(
-              email: "we******u@gmail.com",
+          SliverToBoxAdapter(
+            child: 23.kh,
+          ),
+          SliverPadding(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 32),
+              sliver: LabeledBorderBox(
+                  label: isForgetPassword
+                      ? S.of(context).Forget_Password
+                      : S.of(context).Get_the_Code)),
+          SliverToBoxAdapter(
+            child: 37.kh,
+          ),
+          SliverToBoxAdapter(
+            child: Visibility(
+              visible: !isForgetPassword,
+              child: CodeSendToEmailTextWidget(
+                email: RegisterCubit.get(context)
+                    .maskEmail(RegisterCubit.get(context).getEmail()),
+              ),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: 37.kh,
-        ),
-        SliverToBoxAdapter(
-            child: isForgetPassword
-                ? SvgPicture.asset(
-                    ImagePath.imagesForgetPassword,
-                    height: 160,
-                    fit: BoxFit.scaleDown,
-                  )
-                : Image.asset(
-                    ImagePath.imagesSendCodeImage,
-                    height: 160,
-                  )),
-        const SliverToBoxAdapter(
-          child: OtpTextInput(),
-        ),
-        SliverToBoxAdapter(
-          child: 16.kh,
-        ),
-        SliverToBoxAdapter(
-          child: ResendCode(
-            onTapResend: () {},
+          SliverToBoxAdapter(
+            child: 37.kh,
           ),
-        ),
-        SliverToBoxAdapter(
-          child: 16.kh,
-        ),
-        SliverPadding(
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 35),
-          sliver: SliverToBoxAdapter(
-            child: AppButton(
-                onPressed: () {
-                  !isForgetPassword
-                      ? HelperFunctions.navigateToScreen(
-                          context, (context) => const SuccessCodePageView())
-                      : HelperFunctions.navigateToScreen(
-                          context, (context) => const NewPasswordPageView());
+          SliverToBoxAdapter(
+              child: isForgetPassword
+                  ? SvgPicture.asset(
+                      ImagePath.imagesForgetPassword,
+                      height: 160,
+                      fit: BoxFit.scaleDown,
+                    )
+                  : Image.asset(
+                      ImagePath.imagesSendCodeImage,
+                      height: 160,
+                    )),
+          const SliverToBoxAdapter(
+            child: OtpTextInput(),
+          ),
+          SliverToBoxAdapter(
+            child: 16.kh,
+          ),
+          SliverToBoxAdapter(
+            child: ResendCode(
+              onTapResend: () {},
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: 16.kh,
+          ),
+          SliverPadding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 35),
+            sliver: SliverToBoxAdapter(
+              child: BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
+                listener: (context, verifyState) {
+                  if (verifyState is VerifyOtpSuccess) {
+                    !isForgetPassword
+                        ? HelperFunctions.navigateToScreen(
+                            context, (context) => const SuccessCodePageView())
+                        : log("");
+                  } else if (verifyState is VerifyOtpFailure) {
+                    CustomDialog.showCustomDialog(
+                        context, "Error in Verify Otp", verifyState.errMessage);
+                  }
                 },
-                text: S.of(context).Verify_Code),
-          ),
-        )
-      ],
+                builder: (context, verifyState) {
+                  if (verifyState is VerifyOtpLoading) {
+                    return const ShimmerAppButton.rectangular();
+                  } else {
+                    return AppButton(
+                        onPressed: () async {
+                          !isForgetPassword
+                              ? await verifyOtpCubit.verifyOtp(context)
+                              : HelperFunctions.navigateToScreen(context,
+                                  (context) => const NewPasswordPageView());
+                        },
+                        text: S.of(context).Verify_Code);
+                  }
+                },
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

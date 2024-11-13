@@ -4,10 +4,12 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/app_button.dart';
+import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/core/widgets/shimmer_app_button.dart';
 import 'package:weisro/core/widgets/title_for_text_from_filed.dart';
+import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/checkbox_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/worker_register_day_selected_page_view.dart';
@@ -208,8 +210,16 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                   child: BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, registerState) {
                       if (registerState is RegisterFailures) {
-                        registerCubit.showAgreementDialog(context,
+                        CustomDialog.showCustomDialog(context,
                             "Error in Register", registerState.errMessage);
+                      } else if (registerState is RegisterSuccess) {
+                        HelperFunctions.navigateToScreen(
+                            context,
+                            (context) => BlocProvider.value(
+                                  value: registerCubit,
+                                  child: const OtpPageView(
+                                      isForgetPassword: false),
+                                ));
                       }
                     },
                     builder: (context, state) {

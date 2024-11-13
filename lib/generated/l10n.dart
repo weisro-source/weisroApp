@@ -706,6 +706,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Take Photo`
+  String get Take_Photo {
+    return Intl.message(
+      'Take Photo',
+      name: 'Take_Photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick from Gallery`
+  String get Pick_From_Gallery {
+    return Intl.message(
+      'Pick from Gallery',
+      name: 'Pick_From_Gallery',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

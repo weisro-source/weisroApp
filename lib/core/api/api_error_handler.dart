@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -86,14 +85,26 @@ class ServerFailure extends Failure {
     // Default error message
     var error = "An error occurred";
 
-    // Check for message and error keys in response
+    // Handle Map response
     if (response is Map) {
-      // Check for common error keys and adjust messages accordingly
       if (statusCode == 409 && response['error'] == 'MongoServerError') {
-        error = response['message'];
+        error = response['message'] ?? error;
       } else if (response.containsKey('message')) {
-        error = response['message'] as String? ?? error;
+        // If `message` is a List, join it into a single string.
+        var message = response['message'];
+        if (message is List) {
+          error = message.join(', ');
+        } else if (message is String) {
+          error = message;
+        }
+      } else if (response.containsKey('error')) {
+        error = response['error'] as String? ?? error;
       }
+    }
+
+    // Handle List response
+    if (response is List) {
+      error = response.map((e) => e.toString()).join(', ');
     }
 
     LoggerHelper.error("Error extracted from response: $error");
