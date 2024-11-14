@@ -726,6 +726,28 @@ class S {
       args: [],
     );
   }
+
+  /// `Favorite page`
+  String get Favorite_page {
+    return Intl.message(
+      'Favorite page',
+      name: 'Favorite_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Favorite Yet`
+  String get NO_Favorite_Yet {
+    return Intl.message(
+      'NO Favorite Yet',
+      name: 'NO_Favorite_Yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'You_haven\'t_marked_any_favorite' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

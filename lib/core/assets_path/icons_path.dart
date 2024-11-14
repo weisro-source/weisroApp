@@ -30,13 +30,25 @@ class IconsPath {
   /// assets/icons/linesRight.svg
   static const String iconsLinesRight = "assets/icons/linesRight.svg";
 
+  /// Assets for iconsLocation
+  /// assets/icons/location.svg
+  static const String iconsLocation = "assets/icons/location.svg";
+
   /// Assets for iconsLogo
   /// assets/icons/logo.svg
   static const String iconsLogo = "assets/icons/logo.svg";
 
+  /// Assets for iconsMenu
+  /// assets/icons/menu.svg
+  static const String iconsMenu = "assets/icons/menu.svg";
+
   /// Assets for iconsMoon
   /// assets/icons/moon.svg
   static const String iconsMoon = "assets/icons/moon.svg";
+
+  /// Assets for iconsNotification
+  /// assets/icons/notification.svg
+  static const String iconsNotification = "assets/icons/notification.svg";
 
   /// Assets for iconsPhoto
   /// assets/icons/photo.svg
@@ -53,6 +65,10 @@ class IconsPath {
   /// Assets for iconsServices
   /// assets/icons/services.svg
   static const String iconsServices = "assets/icons/services.svg";
+
+  /// Assets for iconsStar
+  /// assets/icons/star.svg
+  static const String iconsStar = "assets/icons/star.svg";
 
   /// Assets for iconsSuccess
   /// assets/icons/success.svg

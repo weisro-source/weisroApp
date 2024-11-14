@@ -10,6 +10,10 @@ class ImagePath {
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
 
+  /// Assets for imagesNoFavorite
+  /// assets/images/no_favorite.png
+  static const String imagesNoFavorite = "assets/images/no_favorite.png";
+
   /// Assets for imagesOnboardingImage1
   /// assets/images/onboardingImage1.png
   static const String imagesOnboardingImage1 = "assets/images/onboardingImage1.png";
@@ -25,5 +29,9 @@ class ImagePath {
   /// Assets for imagesSendCodeImage
   /// assets/images/sendCodeImage.png
   static const String imagesSendCodeImage = "assets/images/sendCodeImage.png";
+
+  /// Assets for imagesService
+  /// assets/images/service.png
+  static const String imagesService = "assets/images/service.png";
 }
 

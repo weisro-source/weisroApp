@@ -15,6 +15,7 @@ import 'package:weisro/feature/auth/forget_password/presentation/view/pages/forg
 import 'package:weisro/feature/auth/login/presentation/managers/login_cubit.dart/login_cubit.dart';
 import 'package:weisro/feature/auth/login/presentation/view/widgets/forget_password_button.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
+import 'package:weisro/feature/favorite/presentation/view/pages/favorite_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class LoginPageViewBody extends StatelessWidget {
@@ -103,6 +104,9 @@ class LoginPageViewBody extends StatelessWidget {
             child: BlocConsumer<LoginCubit, LoginState>(
               listener: (context, loginState) {
                 if (loginState is LoginSuccess) {
+                  // change this to home page
+                  HelperFunctions.navigateToScreenAndRemove(
+                      context, (context) => const FavoritePageView());
                   log("Api login Response ${loginState.successLoginModel.toString()}");
                 } else if (loginState is LoginFailures) {
                   CustomDialog.showCustomDialog(

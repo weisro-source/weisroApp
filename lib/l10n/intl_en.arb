@@ -66,5 +66,8 @@
     "Drivers_License": "Driver's license",
     "Profile_Image_Shaping": "Shaping your personal image",
     "Take_Photo": "Take Photo",
-    "Pick_From_Gallery": "Pick from Gallery"
+    "Pick_From_Gallery": "Pick from Gallery",
+    "Favorite_page": "Favorite page",
+    "NO_Favorite_Yet": "NO Favorite Yet",
+    "You_haven't_marked_any_favorite": "You haven't marked any favorite"
 }
