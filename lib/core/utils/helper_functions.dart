@@ -161,6 +161,9 @@ class HelperFunctions {
       return null;
     }
   }
+
+  static EdgeInsetsDirectional get symmetricHorizontalPadding24 =>
+      const EdgeInsetsDirectional.symmetric(horizontal: 24);
 }
 
 

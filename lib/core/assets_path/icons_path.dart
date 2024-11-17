@@ -14,6 +14,14 @@ class IconsPath {
   /// assets/icons/calender.svg
   static const String iconsCalender = "assets/icons/calender.svg";
 
+  /// Assets for iconsCategory
+  /// assets/icons/category.svg
+  static const String iconsCategory = "assets/icons/category.svg";
+
+  /// Assets for iconsFavService
+  /// assets/icons/fav_service.svg
+  static const String iconsFavService = "assets/icons/fav_service.svg";
+
   /// Assets for iconsFavTime
   /// assets/icons/fav_time.svg
   static const String iconsFavTime = "assets/icons/fav_time.svg";
@@ -46,6 +54,10 @@ class IconsPath {
   /// assets/icons/moon.svg
   static const String iconsMoon = "assets/icons/moon.svg";
 
+  /// Assets for iconsNew
+  /// assets/icons/new.svg
+  static const String iconsNew = "assets/icons/new.svg";
+
   /// Assets for iconsNotification
   /// assets/icons/notification.svg
   static const String iconsNotification = "assets/icons/notification.svg";
@@ -57,6 +69,10 @@ class IconsPath {
   /// Assets for iconsProfile
   /// assets/icons/profile.svg
   static const String iconsProfile = "assets/icons/profile.svg";
+
+  /// Assets for iconsSearch
+  /// assets/icons/search.svg
+  static const String iconsSearch = "assets/icons/search.svg";
 
   /// Assets for iconsSendCodeIcon
   /// assets/icons/sendCodeIcon.svg
@@ -77,6 +93,10 @@ class IconsPath {
   /// Assets for iconsSun
   /// assets/icons/sun.svg
   static const String iconsSun = "assets/icons/sun.svg";
+
+  /// Assets for iconsTaks
+  /// assets/icons/taks.svg
+  static const String iconsTaks = "assets/icons/taks.svg";
 
   /// Assets for iconsTaskListMenu
   /// assets/icons/task_list_menu.svg

@@ -20,6 +20,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.enabled,
     this.validator,
     this.textInputAction,
+    this.maxLength,
   });
 
   final TextEditingController? controller;
@@ -37,6 +38,7 @@ class CustomTextFormFiled extends StatelessWidget {
   final bool? enabled;
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class CustomTextFormFiled extends StatelessWidget {
         textInputAction: textInputAction,
         maxLines: maxLines,
         minLines: minLines,
+        maxLength: maxLength,
         enabled: enabled,
         keyboardType: keyboardType,
         onTapOutside: (event) {

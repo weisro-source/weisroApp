@@ -2,9 +2,17 @@
 class ImagePath {
   ImagePath._();
   
+  /// Assets for imagesAd
+  /// assets/images/ad.png
+  static const String imagesAd = "assets/images/ad.png";
+
   /// Assets for imagesForgetPassword
   /// assets/images/forget_password.svg
   static const String imagesForgetPassword = "assets/images/forget_password.svg";
+
+  /// Assets for imagesGame
+  /// assets/images/game.png
+  static const String imagesGame = "assets/images/game.png";
 
   /// Assets for imagesLogo
   /// assets/images/logo.png
@@ -33,5 +41,9 @@ class ImagePath {
   /// Assets for imagesService
   /// assets/images/service.png
   static const String imagesService = "assets/images/service.png";
+
+  /// Assets for imagesWorker
+  /// assets/images/worker.png
+  static const String imagesWorker = "assets/images/worker.png";
 }
 

@@ -69,5 +69,16 @@
     "Pick_From_Gallery": "Aus der Galerie auswählen",
     "Favorite_page": "Favoriten-Seite",
     "NO_Favorite_Yet": "Noch keine Favoriten",
-    "You_haven't_marked_any_favorite": "Sie haben noch keine Favoriten markiert"
+    "You_haven't_marked_any_favorite": "Sie haben noch keine Favoriten markiert",
+    "Search_page": "Suchseite",
+    "Search_page_empty_message": "Die Suchseite ist leer, gehen Sie und entdecken Sie, was neu ist",
+    "Search_empty": "Suche ist leer",
+    "No_result_found": "KEIN Ergebnis gefunden",
+    "Check_search_again": "Bitte überprüfen Sie erneut, wonach Sie suchen",
+    "No_location_found": "KEIN Standort gefunden",
+    "Check_location_permission": "Bitte überprüfen Sie die Standortberechtigung",
+    "Latest_rental_services": "Neueste Mietservices",
+    "Our_Categories": "Unsere Kategorien",
+    "Rental_Workers": "Mietarbeiter",
+    "Rental_Services": "Mietdienste"
 }

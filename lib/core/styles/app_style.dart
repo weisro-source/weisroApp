@@ -24,6 +24,17 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle style8w600Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        color: AppColors.orangeColor,
+        fontSize: 8,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
   static TextStyle style10w400Red(context) {
     return getCustomTextStyle(
       context,

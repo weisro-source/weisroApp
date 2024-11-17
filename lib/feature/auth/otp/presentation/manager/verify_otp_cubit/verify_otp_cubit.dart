@@ -16,7 +16,6 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
   final GlobalKey<FormState> otpFormKey = GlobalKey<FormState>();
 
   Map<String, dynamic> verifyOtpData(BuildContext context, [String? email]) {
-    print("This Email $email");
     return {
       "email": email ?? RegisterCubit.get(context).getEmail(),
       "otp": otpController.text

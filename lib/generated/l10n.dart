@@ -748,6 +748,116 @@ class S {
   }
 
   // skipped getter for the 'You_haven\'t_marked_any_favorite' key
+
+  /// `Search page`
+  String get Search_page {
+    return Intl.message(
+      'Search page',
+      name: 'Search_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The search page is empty, go and explore what's new`
+  String get Search_page_empty_message {
+    return Intl.message(
+      'The search page is empty, go and explore what\'s new',
+      name: 'Search_page_empty_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search is empty`
+  String get Search_empty {
+    return Intl.message(
+      'Search is empty',
+      name: 'Search_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Result Found`
+  String get No_result_found {
+    return Intl.message(
+      'NO Result Found',
+      name: 'No_result_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check what you are looking for again, please`
+  String get Check_search_again {
+    return Intl.message(
+      'Check what you are looking for again, please',
+      name: 'Check_search_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Location Found`
+  String get No_location_found {
+    return Intl.message(
+      'NO Location Found',
+      name: 'No_location_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check for location permission`
+  String get Check_location_permission {
+    return Intl.message(
+      'Please check for location permission',
+      name: 'Check_location_permission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest rental services`
+  String get Latest_rental_services {
+    return Intl.message(
+      'Latest rental services',
+      name: 'Latest_rental_services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Categories`
+  String get Our_Categories {
+    return Intl.message(
+      'Our Categories',
+      name: 'Our_Categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental Workers`
+  String get Rental_Workers {
+    return Intl.message(
+      'Rental Workers',
+      name: 'Rental_Workers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental services`
+  String get Rental_Services {
+    return Intl.message(
+      'Rental services',
+      name: 'Rental_Services',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

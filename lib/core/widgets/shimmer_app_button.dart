@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 
 class ShimmerAppButton extends StatelessWidget {
@@ -15,8 +16,8 @@ class ShimmerAppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
+      baseColor: AppColors.shimmerBaseColor,
+      highlightColor: AppColors.shimmerHighlightColor,
       child: Container(
         width: HelperFunctions.getScreenWidth(context),
         height: height,
