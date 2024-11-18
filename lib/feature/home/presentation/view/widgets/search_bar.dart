@@ -8,13 +8,18 @@ import 'package:weisro/feature/home/presentation/view/widgets/custom_search_text
 class SearchBar extends StatelessWidget {
   const SearchBar({
     super.key,
+    required this.isNotificationShow,
   });
-
+  final bool isNotificationShow;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         25.kw,
+        Visibility(
+            visible: !isNotificationShow,
+            child: SvgPicture.asset(IconsPath.iconsArrowRight)),
+        Visibility(visible: !isNotificationShow, child: 23.kw),
         const Expanded(
           flex: 3,
           child: SizedBox(
@@ -22,11 +27,14 @@ class SearchBar extends StatelessWidget {
             child: CustomSearchTextField(),
           ),
         ),
-        33.kw,
-        SvgPicture.asset(
-          IconsPath.iconsNotification,
-          colorFilter:
-              const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
+        Visibility(visible: isNotificationShow, child: 33.kw),
+        Visibility(
+          visible: isNotificationShow,
+          child: SvgPicture.asset(
+            IconsPath.iconsNotification,
+            colorFilter:
+                const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
+          ),
         ),
         25.kw,
       ],

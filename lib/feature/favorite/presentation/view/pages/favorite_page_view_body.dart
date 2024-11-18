@@ -11,19 +11,21 @@ class FavoritePageViewBody extends StatelessWidget {
 //todo: add favorite Empty page I translate the empty page
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        CustomAppBar(
-          title: S.of(context).Favorite_page,
-        ),
-        SliverToBoxAdapter(
-          child: 36.kh,
-        ),
-        const ServiceItemList(),
-        SliverToBoxAdapter(
-          child: 50.kh,
-        )
-      ],
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          CustomAppBar(
+            title: S.of(context).Favorite_page,
+          ),
+          SliverToBoxAdapter(
+            child: 36.kh,
+          ),
+          const ServiceItemList(),
+          SliverToBoxAdapter(
+            child: 50.kh,
+          )
+        ],
+      ),
     );
   }
 }

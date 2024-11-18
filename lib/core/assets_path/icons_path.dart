@@ -10,6 +10,10 @@ class IconsPath {
   /// assets/icons/arrow_left.svg
   static const String iconsArrowLeft = "assets/icons/arrow_left.svg";
 
+  /// Assets for iconsArrowRight
+  /// assets/icons/arrow-right.svg
+  static const String iconsArrowRight = "assets/icons/arrow-right.svg";
+
   /// Assets for iconsCalender
   /// assets/icons/calender.svg
   static const String iconsCalender = "assets/icons/calender.svg";
@@ -29,6 +33,10 @@ class IconsPath {
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
   static const String iconsGoogle = "assets/icons/google.svg";
+
+  /// Assets for iconsHome
+  /// assets/icons/home.svg
+  static const String iconsHome = "assets/icons/home.svg";
 
   /// Assets for iconsLinesLeft
   /// assets/icons/linesLeft.svg

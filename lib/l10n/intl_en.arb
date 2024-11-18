@@ -80,5 +80,10 @@
     "Latest_rental_services": "Latest rental services",
     "Our_Categories": "Our Categories",
     "Rental_Workers": "Rental Workers",
-    "Rental_Services": "Rental services"
+    "Rental_Services": "Rental services",
+    "Favorites": "Favorite",
+    "Orders": "Orders",
+    "Home": "Home",
+    "Search": "Search",
+    "Profile": "Profile"
 }

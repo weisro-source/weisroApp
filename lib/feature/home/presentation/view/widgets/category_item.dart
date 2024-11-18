@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
+
 import 'package:weisro/feature/home/data/models/category_model.dart';
+
+import '../../../../../core/widgets/white_back_ground_for_text.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.width, required this.category});
@@ -19,19 +20,7 @@ class CategoryItem extends StatelessWidget {
         padding: const EdgeInsetsDirectional.only(bottom: 10),
         child: Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
-            width: 80,
-            height: 17,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: AppColors.whiteColor),
-            child: Center(
-              child: Text(
-                category.title,
-                style: AppStyles.style8w600Orange(context),
-              ),
-            ),
-          ),
+          child: WhiteBackGroundForText(text: category.title),
         ),
       ),
     );

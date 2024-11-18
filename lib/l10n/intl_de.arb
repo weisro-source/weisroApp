@@ -80,5 +80,10 @@
     "Latest_rental_services": "Neueste Mietservices",
     "Our_Categories": "Unsere Kategorien",
     "Rental_Workers": "Mietarbeiter",
-    "Rental_Services": "Mietdienste"
+    "Rental_Services": "Mietdienste",
+    "Favorites": "Favorit",
+    "Orders": "Bestellungen",
+    "Home": "Startseite",
+    "Search": "Suche",
+    "Profile": "Profil"
 }
