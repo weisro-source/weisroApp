@@ -83,6 +83,7 @@ class CustomTextFormFiled extends StatelessWidget {
             ),
           ),
           focusedBorder: OutlineInputBorder(
+          
             borderRadius: BorderRadius.circular(4),
             borderSide: BorderSide(
               color: borderColor,

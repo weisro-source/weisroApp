@@ -85,5 +85,16 @@
     "Orders": "Orders",
     "Home": "Home",
     "Search": "Search",
-    "Profile": "Profile"
+    "Profile": "Profile",
+    "Services_Details": "services Details",
+    "Available_Rental_Hours": "Available rental hours",
+    "To": "To",
+    "Available_Rental_Days": "Available rental days",
+    "Description_Service": "Description and terms of Service rental",
+    "Publish": "Publish",
+    "Cancel": "Cancel",
+    "Search_Page": "Search Page",
+    "Recent_search": "Recent search",
+    "Recommended_Near_You": "Recommended near you",
+    "Result_Found": "Result Found"
 }

@@ -15,10 +15,10 @@ import 'package:weisro/feature/auth/register/presentation/view/pages/worker_regi
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
+import '../../../../../../core/widgets/days_list.dart';
 import '../widgets/favorite_time_grid_view_widget.dart';
 import '../widgets/favorite_time_question_widget.dart';
 import '../widgets/question_widget.dart';
-import '../widgets/work_day.dart';
 
 class WorkerRegisterDaySelectedBody extends StatefulWidget {
   const WorkerRegisterDaySelectedBody({super.key});
@@ -81,36 +81,9 @@ class _WorkerRegisterDaySelectedBodyState
             SliverToBoxAdapter(
               child: 10.kh,
             ),
-            SliverPadding(
-              padding: const EdgeInsetsDirectional.only(start: 24),
-              sliver: SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 40,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    clipBehavior: Clip.none,
-                    itemBuilder: (context, index) {
-                      final day = WorkerTime.daysSelected(context)
-                          .values
-                          .toList()[index];
-                      return BlocBuilder<WorkerDayCubit, List<String>>(
-                        builder: (context, selectedDays) {
-                          final isSelected =
-                              context.read<WorkerDayCubit>().isSelected(day);
-                          return WorkDay(
-                            day: day,
-                            onTap: () =>
-                                context.read<WorkerDayCubit>().toggleDay(day),
-                            isSelected: isSelected,
-                          );
-                        },
-                      );
-                    },
-                    separatorBuilder: (context, index) => 10.kw,
-                    itemCount: WorkerTime.daysSelected(context).length,
-                  ),
-                ),
-              ),
+            const SliverPadding(
+              padding: EdgeInsetsDirectional.only(start: 24),
+              sliver: DaysList(),
             ),
             SliverToBoxAdapter(
               child: 40.kh,

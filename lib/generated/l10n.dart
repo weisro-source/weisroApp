@@ -908,6 +908,116 @@ class S {
       args: [],
     );
   }
+
+  /// `services Details`
+  String get Services_Details {
+    return Intl.message(
+      'services Details',
+      name: 'Services_Details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available rental hours`
+  String get Available_Rental_Hours {
+    return Intl.message(
+      'Available rental hours',
+      name: 'Available_Rental_Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To`
+  String get To {
+    return Intl.message(
+      'To',
+      name: 'To',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available rental days`
+  String get Available_Rental_Days {
+    return Intl.message(
+      'Available rental days',
+      name: 'Available_Rental_Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description and terms of Service rental`
+  String get Description_Service {
+    return Intl.message(
+      'Description and terms of Service rental',
+      name: 'Description_Service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Publish`
+  String get Publish {
+    return Intl.message(
+      'Publish',
+      name: 'Publish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get Cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'Cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Page`
+  String get Search_Page {
+    return Intl.message(
+      'Search Page',
+      name: 'Search_Page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent search`
+  String get Recent_search {
+    return Intl.message(
+      'Recent search',
+      name: 'Recent_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended near you`
+  String get Recommended_Near_You {
+    return Intl.message(
+      'Recommended near you',
+      name: 'Recommended_Near_You',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Result Found`
+  String get Result_Found {
+    return Intl.message(
+      'Result Found',
+      name: 'Result_Found',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

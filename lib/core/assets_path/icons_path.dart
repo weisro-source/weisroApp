@@ -14,6 +14,14 @@ class IconsPath {
   /// assets/icons/arrow-right.svg
   static const String iconsArrowRight = "assets/icons/arrow-right.svg";
 
+  /// Assets for iconsArrowUp
+  /// assets/icons/arrow-up.svg
+  static const String iconsArrowUp = "assets/icons/arrow-up.svg";
+
+  /// Assets for iconsBook
+  /// assets/icons/book.svg
+  static const String iconsBook = "assets/icons/book.svg";
+
   /// Assets for iconsCalender
   /// assets/icons/calender.svg
   static const String iconsCalender = "assets/icons/calender.svg";
@@ -78,6 +86,10 @@ class IconsPath {
   /// assets/icons/profile.svg
   static const String iconsProfile = "assets/icons/profile.svg";
 
+  /// Assets for iconsRecommended
+  /// assets/icons/recommended.svg
+  static const String iconsRecommended = "assets/icons/recommended.svg";
+
   /// Assets for iconsSearch
   /// assets/icons/search.svg
   static const String iconsSearch = "assets/icons/search.svg";
@@ -89,6 +101,10 @@ class IconsPath {
   /// Assets for iconsServices
   /// assets/icons/services.svg
   static const String iconsServices = "assets/icons/services.svg";
+
+  /// Assets for iconsShare
+  /// assets/icons/share.svg
+  static const String iconsShare = "assets/icons/share.svg";
 
   /// Assets for iconsStar
   /// assets/icons/star.svg
@@ -109,6 +125,10 @@ class IconsPath {
   /// Assets for iconsTaskListMenu
   /// assets/icons/task_list_menu.svg
   static const String iconsTaskListMenu = "assets/icons/task_list_menu.svg";
+
+  /// Assets for iconsTime
+  /// assets/icons/time.svg
+  static const String iconsTime = "assets/icons/time.svg";
 
   /// Assets for iconsTimeIsMoneyClock
   /// assets/icons/time_is_money_clock.svg

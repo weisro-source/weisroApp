@@ -35,7 +35,7 @@ class ServiceItem extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min, // Shrink-wrap the row
+        mainAxisSize: MainAxisSize.min, 
         children: [
           Expanded(
             flex: 1,

@@ -15,6 +15,7 @@ class AppColors {
   static const Color baseRedColor = Colors.red;
   static const Color shadowColor = Color(0x26000000);
   static const Color shadow2Color = Color(0x3F000000);
+  static const Color shadow3Color = Color(0x35000000);
   static Color shimmerBaseColor = Colors.grey[300]!;
   static Color shimmerHighlightColor = Colors.grey[100]!;
 }

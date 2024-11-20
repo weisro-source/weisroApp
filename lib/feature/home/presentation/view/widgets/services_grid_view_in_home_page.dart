@@ -21,7 +21,7 @@ class ServicesGridViewInHomePage extends StatelessWidget {
         return GestureDetector(
             onTap: () {
               HelperFunctions.navigateToScreen(
-                  context, (context) => WorkerAndServicesPageView());
+                  context, (context) => const WorkerAndServicesPageView());
             },
             child: const ServicesWidgetInHomePage());
       },
