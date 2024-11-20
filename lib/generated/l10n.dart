@@ -117,6 +117,16 @@ class S {
     );
   }
 
+  /// `Create Worker account`
+  String get Create_Worker_Account {
+    return Intl.message(
+      'Create Worker account',
+      name: 'Create_Worker_Account',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `First Name`
   String get First_Name {
     return Intl.message(
@@ -422,6 +432,588 @@ class S {
     return Intl.message(
       'Forget Password?',
       name: 'Forget_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Code`
+  String get Send_Code {
+    return Intl.message(
+      'Send Code',
+      name: 'Send_Code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recover Password`
+  String get Recover_Password {
+    return Intl.message(
+      'Recover Password',
+      name: 'Recover_Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How many days do you want to work during the week?`
+  String get How_Many_Days {
+    return Intl.message(
+      'How many days do you want to work during the week?',
+      name: 'How_Many_Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your favorite time to work?`
+  String get Favorite_Time {
+    return Intl.message(
+      'What\'s your favorite time to work?',
+      name: 'Favorite_Time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sa`
+  String get Sa {
+    return Intl.message(
+      'Sa',
+      name: 'Sa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Su`
+  String get Su {
+    return Intl.message(
+      'Su',
+      name: 'Su',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mo`
+  String get Mo {
+    return Intl.message(
+      'Mo',
+      name: 'Mo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tu`
+  String get Tu {
+    return Intl.message(
+      'Tu',
+      name: 'Tu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We`
+  String get We {
+    return Intl.message(
+      'We',
+      name: 'We',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Th`
+  String get Th {
+    return Intl.message(
+      'Th',
+      name: 'Th',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fr`
+  String get Fr {
+    return Intl.message(
+      'Fr',
+      name: 'Fr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Morning`
+  String get Morning {
+    return Intl.message(
+      'Morning',
+      name: 'Morning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Evening`
+  String get Evening {
+    return Intl.message(
+      'Evening',
+      name: 'Evening',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Night`
+  String get Night {
+    return Intl.message(
+      'Night',
+      name: 'Night',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the services you offer?`
+  String get Select_Services {
+    return Intl.message(
+      'Select the services you offer?',
+      name: 'Select_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write here what your services include?`
+  String get Describe_Services {
+    return Intl.message(
+      'Write here what your services include?',
+      name: 'Describe_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* It is forbidden to publish any addresses or contact information`
+  String get No_Addresses {
+    return Intl.message(
+      '* It is forbidden to publish any addresses or contact information',
+      name: 'No_Addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My fare per hour?`
+  String get Hourly_Rate {
+    return Intl.message(
+      'My fare per hour?',
+      name: 'Hourly_Rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* Your hourly wage for your services will be added to the value of the tax in your country`
+  String get Hourly_Rate_Note {
+    return Intl.message(
+      '* Your hourly wage for your services will be added to the value of the tax in your country',
+      name: 'Hourly_Rate_Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need a document to verify that your account is not a fake account`
+  String get Document_Verification {
+    return Intl.message(
+      'We need a document to verify that your account is not a fake account',
+      name: 'Document_Verification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `* upon verification all documents will be deleted`
+  String get Document_Note {
+    return Intl.message(
+      '* upon verification all documents will be deleted',
+      name: 'Document_Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload your real profile picture to your profile`
+  String get Upload_Profile_Picture {
+    return Intl.message(
+      'Upload your real profile picture to your profile',
+      name: 'Upload_Profile_Picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passport`
+  String get Passport {
+    return Intl.message(
+      'Passport',
+      name: 'Passport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Identity`
+  String get Identity {
+    return Intl.message(
+      'Identity',
+      name: 'Identity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accommodation`
+  String get Accommodation {
+    return Intl.message(
+      'Accommodation',
+      name: 'Accommodation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver's license`
+  String get Drivers_License {
+    return Intl.message(
+      'Driver\'s license',
+      name: 'Drivers_License',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shaping your personal image`
+  String get Profile_Image_Shaping {
+    return Intl.message(
+      'Shaping your personal image',
+      name: 'Profile_Image_Shaping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take Photo`
+  String get Take_Photo {
+    return Intl.message(
+      'Take Photo',
+      name: 'Take_Photo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick from Gallery`
+  String get Pick_From_Gallery {
+    return Intl.message(
+      'Pick from Gallery',
+      name: 'Pick_From_Gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite page`
+  String get Favorite_page {
+    return Intl.message(
+      'Favorite page',
+      name: 'Favorite_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Favorite Yet`
+  String get NO_Favorite_Yet {
+    return Intl.message(
+      'NO Favorite Yet',
+      name: 'NO_Favorite_Yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'You_haven\'t_marked_any_favorite' key
+
+  /// `Search page`
+  String get Search_page {
+    return Intl.message(
+      'Search page',
+      name: 'Search_page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The search page is empty, go and explore what's new`
+  String get Search_page_empty_message {
+    return Intl.message(
+      'The search page is empty, go and explore what\'s new',
+      name: 'Search_page_empty_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search is empty`
+  String get Search_empty {
+    return Intl.message(
+      'Search is empty',
+      name: 'Search_empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Result Found`
+  String get No_result_found {
+    return Intl.message(
+      'NO Result Found',
+      name: 'No_result_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check what you are looking for again, please`
+  String get Check_search_again {
+    return Intl.message(
+      'Check what you are looking for again, please',
+      name: 'Check_search_again',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO Location Found`
+  String get No_location_found {
+    return Intl.message(
+      'NO Location Found',
+      name: 'No_location_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check for location permission`
+  String get Check_location_permission {
+    return Intl.message(
+      'Please check for location permission',
+      name: 'Check_location_permission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest rental services`
+  String get Latest_rental_services {
+    return Intl.message(
+      'Latest rental services',
+      name: 'Latest_rental_services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Categories`
+  String get Our_Categories {
+    return Intl.message(
+      'Our Categories',
+      name: 'Our_Categories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental Workers`
+  String get Rental_Workers {
+    return Intl.message(
+      'Rental Workers',
+      name: 'Rental_Workers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental services`
+  String get Rental_Services {
+    return Intl.message(
+      'Rental services',
+      name: 'Rental_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Favorite`
+  String get Favorites {
+    return Intl.message(
+      'Favorite',
+      name: 'Favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get Orders {
+    return Intl.message(
+      'Orders',
+      name: 'Orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get Home {
+    return Intl.message(
+      'Home',
+      name: 'Home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get Search {
+    return Intl.message(
+      'Search',
+      name: 'Search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get Profile {
+    return Intl.message(
+      'Profile',
+      name: 'Profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `services Details`
+  String get Services_Details {
+    return Intl.message(
+      'services Details',
+      name: 'Services_Details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available rental hours`
+  String get Available_Rental_Hours {
+    return Intl.message(
+      'Available rental hours',
+      name: 'Available_Rental_Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To`
+  String get To {
+    return Intl.message(
+      'To',
+      name: 'To',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available rental days`
+  String get Available_Rental_Days {
+    return Intl.message(
+      'Available rental days',
+      name: 'Available_Rental_Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description and terms of Service rental`
+  String get Description_Service {
+    return Intl.message(
+      'Description and terms of Service rental',
+      name: 'Description_Service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Publish`
+  String get Publish {
+    return Intl.message(
+      'Publish',
+      name: 'Publish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get Cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'Cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Page`
+  String get Search_Page {
+    return Intl.message(
+      'Search Page',
+      name: 'Search_Page',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent search`
+  String get Recent_search {
+    return Intl.message(
+      'Recent search',
+      name: 'Recent_search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommended near you`
+  String get Recommended_Near_You {
+    return Intl.message(
+      'Recommended near you',
+      name: 'Recommended_Near_You',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Result Found`
+  String get Result_Found {
+    return Intl.message(
+      'Result Found',
+      name: 'Result_Found',
       desc: '',
       args: [],
     );

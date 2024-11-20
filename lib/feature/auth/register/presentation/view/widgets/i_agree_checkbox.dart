@@ -9,6 +9,7 @@ class IAgreeCheckbox extends StatelessWidget {
   final ValueChanged<bool?> onChanged;
   final VoidCallback? onTermsPressed;
   final String agreeText;
+  final FocusNode? focusNode;
 
   const IAgreeCheckbox({
     Key? key,
@@ -16,6 +17,7 @@ class IAgreeCheckbox extends StatelessWidget {
     required this.onChanged,
     this.onTermsPressed,
     required this.agreeText,
+    this.focusNode,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,7 @@ class IAgreeCheckbox extends StatelessWidget {
               value: isChecked,
               side: const BorderSide(color: AppColors.orangeColor),
               onChanged: onChanged,
+              focusNode: focusNode,
             ),
             Text.rich(
               TextSpan(

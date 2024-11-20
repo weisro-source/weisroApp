@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  intl:
+  intl: null
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.10+1
   flutter_gallery_3d: ^1.1.1
@@ -21,6 +21,20 @@ dependencies:
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   pinput: ^5.0.0
+  device_preview: ^1.1.0
+  dio: ^5.7.0
+  cached_network_image: ^3.3.1
+  dartz: ^0.10.1
+  shimmer: ^3.0.0
+  shared_preferences: ^2.2.3
+  meta: ^1.9.1
+  html: ^0.15.4
+  logger: ^2.4.0
+  get_it: ^8.0.2
+  intl_phone_field: ^3.2.0
+  country_code_picker: ^3.1.0
+  image_picker: ^1.0.8
+  image: ^4.3.0
 
 dev_dependencies:
   flutter_test:
@@ -48,8 +62,11 @@ flutter:
 #   assets_path: assets/images
 #   output_path: lib/core/assets_path/
 #   filename: image_path.dart
-#   field_prefix:
+#   field_prefix: null
 #   classname: ImagePath
+# flutter_intl:
+#   enabled: true
+
 flutter_assets:
   assets_path: assets/icons
   output_path: lib/core/assets_path/

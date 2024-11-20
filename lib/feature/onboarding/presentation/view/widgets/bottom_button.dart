@@ -11,10 +11,12 @@ class BottomButton extends StatefulWidget {
     super.key,
     required this.currentIndexNotifier,
     this.onPressedOnSkip,
+    this.onTapOnArrow,
   });
 
   final ValueNotifier<int> currentIndexNotifier;
   final void Function()? onPressedOnSkip;
+  final void Function()? onTapOnArrow;
 
   @override
   BottomButtonState createState() => BottomButtonState();
@@ -87,16 +89,19 @@ class BottomButtonState extends State<BottomButton>
             builder: (context, child) {
               return CustomPaint(
                 painter: CircleIndicatorPainter(_animation.value),
-                child: Center(
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: const ShapeDecoration(
-                      shape: OvalBorder(),
-                      color: AppColors.orangeColor,
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(IconsPath.iconsArrowLeft),
+                child: GestureDetector(
+                  onTap: widget.onTapOnArrow,
+                  child: Center(
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: const ShapeDecoration(
+                        shape: OvalBorder(),
+                        color: AppColors.orangeColor,
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(IconsPath.iconsArrowLeft),
+                      ),
                     ),
                   ),
                 ),

@@ -32,7 +32,7 @@ class _OnBoardingPageViewBodyState extends State<OnBoardingPageViewBody>
       onItemChanged: (index) {
         _onboardingController.currentIndexNotifier.value = index;
       },
-      onLastIndexReached: _navigateToHomePage,
+      onLastIndexReached: () {},
     );
   }
 
@@ -108,6 +108,10 @@ class _OnBoardingPageViewBodyState extends State<OnBoardingPageViewBody>
             child: BottomButton(
               currentIndexNotifier: _onboardingController.currentIndexNotifier,
               onPressedOnSkip: _navigateToHomePage,
+              onTapOnArrow: () {
+                _onboardingController.gallery3DController.animateTo(
+                    _onboardingController.currentIndexNotifier.value + 1);
+              },
             ),
           ),
           20.kh,
