@@ -234,8 +234,10 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                               if (!registerCubit.isTermsOk) {
                                 Future.delayed(const Duration(milliseconds: 50),
                                     () {
-                                  FocusScope.of(context).requestFocus(
-                                      registerCubit.termsFocusNode);
+                                  if (context.mounted) {
+                                    FocusScope.of(context).requestFocus(
+                                        registerCubit.termsFocusNode);
+                                  }
                                 });
                               } else if (!registerCubit.isPrivacyOk) {
                                 registerCubit.privacyFocusNode.requestFocus();

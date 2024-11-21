@@ -31,7 +31,7 @@ class WeisroApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: AppColors.whiteColor,
-            background: AppColors.whiteColor,
+            surface: AppColors.whiteColor,
           ),
           useMaterial3: true,
         ),

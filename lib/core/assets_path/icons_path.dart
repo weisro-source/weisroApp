@@ -38,6 +38,10 @@ class IconsPath {
   /// assets/icons/fav_time.svg
   static const String iconsFavTime = "assets/icons/fav_time.svg";
 
+  /// Assets for iconsFilter
+  /// assets/icons/filter.svg
+  static const String iconsFilter = "assets/icons/filter.svg";
+
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
   static const String iconsGoogle = "assets/icons/google.svg";

@@ -16,6 +16,8 @@ import 'package:weisro/feature/auth/register/presentation/view/widgets/question_
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
 import 'package:weisro/generated/l10n.dart';
 
+import '../../../../../core/widgets/location_widget.dart';
+
 class ServicesDetailsPageViewBody extends StatefulWidget {
   const ServicesDetailsPageViewBody({super.key});
 
@@ -111,11 +113,7 @@ class _ServicesDetailsPageViewBodyState
               Row(
                 children: [
                   24.kw,
-                  SvgPicture.asset(IconsPath.iconsLocation),
-                  8.kw,
-                  Text('Oberamen German , 3216',
-                      textAlign: TextAlign.center,
-                      style: AppStyles.style12w400Grey(context)),
+                  const LocationWidget(),
                   const Spacer(),
                   Text('\$5572 ST',
                       textAlign: TextAlign.center,

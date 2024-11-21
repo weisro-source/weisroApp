@@ -96,5 +96,10 @@
     "Search_Page": "Search Page",
     "Recent_search": "Recent search",
     "Recommended_Near_You": "Recommended near you",
-    "Result_Found": "Result Found"
+    "Result_Found": "Result Found",
+    "Search_In": "Search In",
+    "All":"All",
+    "Complete":"Complete",
+    "Reject":"Reject",
+    "Pending":"Pending"
 }

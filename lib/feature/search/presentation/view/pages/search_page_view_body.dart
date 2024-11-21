@@ -5,6 +5,7 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/styles/style_functions.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
@@ -12,6 +13,9 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/feature/search/presentation/view/pages/search_result_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
+
+import '../../../../../core/widgets/search_icon.dart';
+import '../widgets/search_result_item.dart';
 
 class SearchPageBody extends StatelessWidget {
   const SearchPageBody({super.key});
@@ -29,14 +33,7 @@ class SearchPageBody extends StatelessWidget {
             child: Container(
                 width: HelperFunctions.getScreenWidth(context),
                 height: 36,
-                decoration: const BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    color: AppColors.shadow3Color,
-                    blurRadius: 4,
-                    offset: Offset(0, -1),
-                    spreadRadius: 0,
-                  )
-                ]),
+                decoration: StyleFunctions.searchContainerDecoration(),
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 24),
                 child: CustomTextFormFiled(
                   hintText: S.of(context).Search,
@@ -45,12 +42,7 @@ class SearchPageBody extends StatelessWidget {
                     HelperFunctions.navigateToScreen(
                         context, (context) => const SearchResultPageView());
                   },
-                  prefixIcon: SvgPicture.asset(
-                    IconsPath.iconsSearch,
-                    width: 16,
-                    height: 16,
-                    fit: BoxFit.scaleDown,
-                  ),
+                  prefixIcon: const SearchIcon(),
                 )),
           ),
           SliverToBoxAdapter(
@@ -215,27 +207,6 @@ class SearchPageBody extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class SearchResultItem extends StatelessWidget {
-  const SearchResultItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        24.kw,
-        SvgPicture.asset(IconsPath.iconsLocation),
-        4.kw,
-        Text("German , Oberamen , 3216",
-            style: AppStyles.style12w400Grey(context)),
-        const Spacer(),
-        IconButton(
-            onPressed: () {}, icon: SvgPicture.asset(IconsPath.iconsArrowUp)),
-        24.kw,
-      ],
     );
   }
 }
