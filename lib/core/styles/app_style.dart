@@ -35,6 +35,17 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle style8w600Grey(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        color: AppColors.greyColor,
+        fontSize: 8,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
   static TextStyle style10w400Red(context) {
     return getCustomTextStyle(
       context,
@@ -74,6 +85,17 @@ abstract class AppStyles {
       const TextStyle(
         fontWeight: FontWeight.w500,
         color: AppColors.redColor,
+        fontSize: 10,
+      ),
+    );
+  }
+
+  static TextStyle style10w500Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+        fontWeight: FontWeight.w500,
+        color: AppColors.orangeColor,
         fontSize: 10,
       ),
     );

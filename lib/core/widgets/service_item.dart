@@ -6,6 +6,8 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 
+import 'rate_widget.dart';
+
 class ServiceItem extends StatelessWidget {
   const ServiceItem({
     super.key,
@@ -21,8 +23,7 @@ class ServiceItem extends StatelessWidget {
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side:
-              const BorderSide(width: 1, color: AppColors.second2Color),
+          side: const BorderSide(width: 1, color: AppColors.second2Color),
           borderRadius: BorderRadius.circular(4),
         ),
         shadows: const [
@@ -35,7 +36,7 @@ class ServiceItem extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min, 
+        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             flex: 1,
@@ -50,8 +51,7 @@ class ServiceItem extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding:
-                  const EdgeInsetsDirectional.symmetric(vertical: 11),
+              padding: const EdgeInsetsDirectional.symmetric(vertical: 11),
               child: Column(
                 children: [
                   Row(
@@ -61,13 +61,7 @@ class ServiceItem extends StatelessWidget {
                         style: AppStyles.style10w400Grey(context),
                       ),
                       const Spacer(),
-                      Text(
-                        "4.5",
-                        style: AppStyles.style10w400Grey(context)
-                            .copyWith(color: AppColors.orangeColor),
-                      ),
-                      5.kw,
-                      SvgPicture.asset(IconsPath.iconsStar),
+                      const RateWidget(),
                       9.kw,
                     ],
                   ),
