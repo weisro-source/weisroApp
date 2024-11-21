@@ -98,8 +98,15 @@
     "Recommended_Near_You": "Recommended near you",
     "Result_Found": "Result Found",
     "Search_In": "Search In",
-    "All":"All",
-    "Complete":"Complete",
-    "Reject":"Reject",
-    "Pending":"Pending"
+    "All": "All",
+    "Complete": "Complete",
+    "Reject": "Reject",
+    "Pending": "Pending",
+    "Filtering_By": "Filtering by",
+    "Location": "Location",
+    "Price": "price",
+    "Rate": "rate",
+    "date": "date",
+    "Type_Services": "Type Services",
+    "Book_Now": "Book Now"
 }
