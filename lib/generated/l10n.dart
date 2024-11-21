@@ -1071,6 +1071,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Filtering by`
+  String get Filtering_By {
+    return Intl.message(
+      'Filtering by',
+      name: 'Filtering_By',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location`
+  String get Location {
+    return Intl.message(
+      'Location',
+      name: 'Location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `price`
+  String get Price {
+    return Intl.message(
+      'price',
+      name: 'Price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `rate`
+  String get Rate {
+    return Intl.message(
+      'rate',
+      name: 'Rate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `date`
+  String get date {
+    return Intl.message(
+      'date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type Services`
+  String get Type_Services {
+    return Intl.message(
+      'Type Services',
+      name: 'Type_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Now`
+  String get Book_Now {
+    return Intl.message(
+      'Book Now',
+      name: 'Book_Now',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

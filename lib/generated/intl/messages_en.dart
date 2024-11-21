@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Available rental days"),
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Available rental hours"),
+        "Book_Now": MessageLookupByLibrary.simpleMessage("Book Now"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "Check_location_permission": MessageLookupByLibrary.simpleMessage(
             "Please check for location permission"),
@@ -67,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "What\'s your favorite time to work?"),
         "Favorite_page": MessageLookupByLibrary.simpleMessage("Favorite page"),
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorite"),
+        "Filtering_By": MessageLookupByLibrary.simpleMessage("Filtering by"),
         "First_Name": MessageLookupByLibrary.simpleMessage("First Name"),
         "Forget_Password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
@@ -90,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Last_Name": MessageLookupByLibrary.simpleMessage("Last Name"),
         "Latest_rental_services":
             MessageLookupByLibrary.simpleMessage("Latest rental services"),
+        "Location": MessageLookupByLibrary.simpleMessage("Location"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -114,12 +117,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Pick_From_Gallery":
             MessageLookupByLibrary.simpleMessage("Pick from Gallery"),
         "Postal_Code": MessageLookupByLibrary.simpleMessage("Postal code"),
+        "Price": MessageLookupByLibrary.simpleMessage("price"),
         "Privacy_Policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Profile_Image_Shaping":
             MessageLookupByLibrary.simpleMessage("Shaping your personal image"),
         "Publish": MessageLookupByLibrary.simpleMessage("Publish"),
+        "Rate": MessageLookupByLibrary.simpleMessage("rate"),
         "Recent_search": MessageLookupByLibrary.simpleMessage("Recent search"),
         "Recommended_Near_You":
             MessageLookupByLibrary.simpleMessage("Recommended near you"),
@@ -163,12 +168,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The code has been"),
         "To": MessageLookupByLibrary.simpleMessage("To"),
         "Tu": MessageLookupByLibrary.simpleMessage("Tu"),
+        "Type_Services": MessageLookupByLibrary.simpleMessage("Type Services"),
         "Upload_Profile_Picture": MessageLookupByLibrary.simpleMessage(
             "Upload your real profile picture to your profile"),
         "Verified": MessageLookupByLibrary.simpleMessage("verified"),
         "Verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "Verify_Code": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "We": MessageLookupByLibrary.simpleMessage("We"),
-        "Worker": MessageLookupByLibrary.simpleMessage("Worker")
+        "Worker": MessageLookupByLibrary.simpleMessage("Worker"),
+        "date": MessageLookupByLibrary.simpleMessage("date")
       };
 }
