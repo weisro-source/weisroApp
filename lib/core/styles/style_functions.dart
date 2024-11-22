@@ -21,4 +21,13 @@ class StyleFunctions {
       borderRadius: BorderRadiusDirectional.circular(4),
     );
   }
+static ShapeDecoration decorationRadius8Orange() {
+    return ShapeDecoration(
+      color: AppColors.whiteColor,
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(width: 1, color: AppColors.orangeColor),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
 }

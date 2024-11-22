@@ -123,5 +123,9 @@
     "ChangePassword": "Change Password",
     "ChangeMobileNumber": "Change mobile number",
     "EditPersonalInformation": "Edit Personal Information",
-    "ProfileOption": "Profile Option"
+    "ProfileOption": "Profile Option",
+    "Worker_Details": "Worker Details",
+    "Description": "Description :",
+    "Services_provided": "Services provided :",
+    "Book_Worker": "Book Worker"
 }

@@ -1283,6 +1283,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Worker Details`
+  String get Worker_Details {
+    return Intl.message(
+      'Worker Details',
+      name: 'Worker_Details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description :`
+  String get Description {
+    return Intl.message(
+      'Description :',
+      name: 'Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services provided :`
+  String get Services_provided {
+    return Intl.message(
+      'Services provided :',
+      name: 'Services_provided',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book Worker`
+  String get Book_Worker {
+    return Intl.message(
+      'Book Worker',
+      name: 'Book_Worker',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
