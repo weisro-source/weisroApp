@@ -108,5 +108,20 @@
     "Rate": "rate",
     "date": "date",
     "Type_Services": "Type Services",
-    "Book_Now": "Book Now"
+    "Book_Now": "Book Now",
+    "Personal_Information": "Personal Information",
+    "Full_Name": "Full Name",
+    "Postal Code": "Postal Code",
+    "LogOut": "Log Out",
+    "Language": "Language",
+    "PrivacyPolicy": "Privacy Policy",
+    "TermsCondition": "Terms & Condition",
+    "YourPosts": "Your Posts",
+    "YourOrder": "Your Order",
+    "YourFavorite": "Your Favorite",
+    "ChangeEmail": "Change Email",
+    "ChangePassword": "Change Password",
+    "ChangeMobileNumber": "Change mobile number",
+    "EditPersonalInformation": "Edit Personal Information",
+    "ProfileOption": "Profile Option"
 }
