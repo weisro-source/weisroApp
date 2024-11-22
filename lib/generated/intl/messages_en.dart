@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Available rental hours"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "Book_Worker": MessageLookupByLibrary.simpleMessage("Book Worker"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ChangeEmail": MessageLookupByLibrary.simpleMessage("Change Email"),
         "ChangeMobileNumber":
@@ -59,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Worker account"),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Write here what your services include?"),
+        "Description": MessageLookupByLibrary.simpleMessage("Description :"),
         "Description_Service": MessageLookupByLibrary.simpleMessage(
             "Description and terms of Service rental"),
         "Document_Note": MessageLookupByLibrary.simpleMessage(
@@ -170,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("services Details"),
+        "Services_provided":
+            MessageLookupByLibrary.simpleMessage("Services provided :"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
         "Street": MessageLookupByLibrary.simpleMessage("The street"),
@@ -192,6 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Verify_Code": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "We": MessageLookupByLibrary.simpleMessage("We"),
         "Worker": MessageLookupByLibrary.simpleMessage("Worker"),
+        "Worker_Details":
+            MessageLookupByLibrary.simpleMessage("Worker Details"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
