@@ -1141,6 +1141,148 @@ class S {
       args: [],
     );
   }
+
+  /// `Personal Information`
+  String get Personal_Information {
+    return Intl.message(
+      'Personal Information',
+      name: 'Personal_Information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Name`
+  String get Full_Name {
+    return Intl.message(
+      'Full Name',
+      name: 'Full_Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'Postal Code' key
+
+  /// `Log Out`
+  String get LogOut {
+    return Intl.message(
+      'Log Out',
+      name: 'LogOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get Language {
+    return Intl.message(
+      'Language',
+      name: 'Language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get PrivacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'PrivacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Condition`
+  String get TermsCondition {
+    return Intl.message(
+      'Terms & Condition',
+      name: 'TermsCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Posts`
+  String get YourPosts {
+    return Intl.message(
+      'Your Posts',
+      name: 'YourPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Order`
+  String get YourOrder {
+    return Intl.message(
+      'Your Order',
+      name: 'YourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Favorite`
+  String get YourFavorite {
+    return Intl.message(
+      'Your Favorite',
+      name: 'YourFavorite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Email`
+  String get ChangeEmail {
+    return Intl.message(
+      'Change Email',
+      name: 'ChangeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get ChangePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'ChangePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change mobile number`
+  String get ChangeMobileNumber {
+    return Intl.message(
+      'Change mobile number',
+      name: 'ChangeMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Personal Information`
+  String get EditPersonalInformation {
+    return Intl.message(
+      'Edit Personal Information',
+      name: 'EditPersonalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Option`
+  String get ProfileOption {
+    return Intl.message(
+      'Profile Option',
+      name: 'ProfileOption',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

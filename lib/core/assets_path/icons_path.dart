@@ -2,6 +2,10 @@
 class IconsPath {
   IconsPath._();
   
+  /// Assets for iconsAlert
+  /// assets/icons/alert.svg
+  static const String iconsAlert = "assets/icons/alert.svg";
+
   /// Assets for iconsArrowDown
   /// assets/icons/arrow_down.svg
   static const String iconsArrowDown = "assets/icons/arrow_down.svg";
@@ -30,6 +34,10 @@ class IconsPath {
   /// assets/icons/category.svg
   static const String iconsCategory = "assets/icons/category.svg";
 
+  /// Assets for iconsEdit
+  /// assets/icons/edit.svg
+  static const String iconsEdit = "assets/icons/edit.svg";
+
   /// Assets for iconsFavService
   /// assets/icons/fav_service.svg
   static const String iconsFavService = "assets/icons/fav_service.svg";
@@ -50,6 +58,10 @@ class IconsPath {
   /// assets/icons/home.svg
   static const String iconsHome = "assets/icons/home.svg";
 
+  /// Assets for iconsLanguage
+  /// assets/icons/language.svg
+  static const String iconsLanguage = "assets/icons/language.svg";
+
   /// Assets for iconsLinesLeft
   /// assets/icons/linesLeft.svg
   static const String iconsLinesLeft = "assets/icons/linesLeft.svg";
@@ -66,9 +78,21 @@ class IconsPath {
   /// assets/icons/location-pin.svg
   static const String iconsLocationPin = "assets/icons/location-pin.svg";
 
+  /// Assets for iconsLock
+  /// assets/icons/lock.svg
+  static const String iconsLock = "assets/icons/lock.svg";
+
+  /// Assets for iconsLogOut
+  /// assets/icons/log-out.svg
+  static const String iconsLogOut = "assets/icons/log-out.svg";
+
   /// Assets for iconsLogo
   /// assets/icons/logo.svg
   static const String iconsLogo = "assets/icons/logo.svg";
+
+  /// Assets for iconsMail
+  /// assets/icons/mail.svg
+  static const String iconsMail = "assets/icons/mail.svg";
 
   /// Assets for iconsMenu
   /// assets/icons/menu.svg
@@ -90,9 +114,17 @@ class IconsPath {
   /// assets/icons/notification.svg
   static const String iconsNotification = "assets/icons/notification.svg";
 
+  /// Assets for iconsPhone
+  /// assets/icons/phone.svg
+  static const String iconsPhone = "assets/icons/phone.svg";
+
   /// Assets for iconsPhoto
   /// assets/icons/photo.svg
   static const String iconsPhoto = "assets/icons/photo.svg";
+
+  /// Assets for iconsPost
+  /// assets/icons/post.svg
+  static const String iconsPost = "assets/icons/post.svg";
 
   /// Assets for iconsProfile
   /// assets/icons/profile.svg

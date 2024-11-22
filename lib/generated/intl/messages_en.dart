@@ -30,6 +30,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Available rental hours"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Book Now"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "ChangeEmail": MessageLookupByLibrary.simpleMessage("Change Email"),
+        "ChangeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Change mobile number"),
+        "ChangePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "Check_location_permission": MessageLookupByLibrary.simpleMessage(
             "Please check for location permission"),
         "Check_search_again": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We need a document to verify that your account is not a fake account"),
         "Drivers_License":
             MessageLookupByLibrary.simpleMessage("Driver\'s license"),
+        "EditPersonalInformation":
+            MessageLookupByLibrary.simpleMessage("Edit Personal Information"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
@@ -73,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Forget_Password":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
         "Fr": MessageLookupByLibrary.simpleMessage("Fr"),
+        "Full_Name": MessageLookupByLibrary.simpleMessage("Full Name"),
         "Get_the_Code": MessageLookupByLibrary.simpleMessage("Get the Code"),
         "Have_Account":
             MessageLookupByLibrary.simpleMessage("Have an account?"),
@@ -89,10 +97,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("I agree to the"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
+        "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Last_Name": MessageLookupByLibrary.simpleMessage("Last Name"),
         "Latest_rental_services":
             MessageLookupByLibrary.simpleMessage("Latest rental services"),
         "Location": MessageLookupByLibrary.simpleMessage("Location"),
+        "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Log in"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -114,13 +124,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "Passport": MessageLookupByLibrary.simpleMessage("Passport"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
         "Pending": MessageLookupByLibrary.simpleMessage("Pending"),
+        "Personal_Information":
+            MessageLookupByLibrary.simpleMessage("Personal Information"),
         "Pick_From_Gallery":
             MessageLookupByLibrary.simpleMessage("Pick from Gallery"),
         "Postal_Code": MessageLookupByLibrary.simpleMessage("Postal code"),
         "Price": MessageLookupByLibrary.simpleMessage("price"),
+        "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Privacy_Policy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "ProfileOption": MessageLookupByLibrary.simpleMessage("Profile Option"),
         "Profile_Image_Shaping":
             MessageLookupByLibrary.simpleMessage("Shaping your personal image"),
         "Publish": MessageLookupByLibrary.simpleMessage("Publish"),
@@ -162,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Su": MessageLookupByLibrary.simpleMessage("Su"),
         "Successfully": MessageLookupByLibrary.simpleMessage("successfully"),
         "Take_Photo": MessageLookupByLibrary.simpleMessage("Take Photo"),
+        "TermsCondition":
+            MessageLookupByLibrary.simpleMessage("Terms & Condition"),
         "Terms_of_Use": MessageLookupByLibrary.simpleMessage("Terms of Use"),
         "Th": MessageLookupByLibrary.simpleMessage("Th"),
         "The_Code_Has_Been":
@@ -176,6 +192,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Verify_Code": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "We": MessageLookupByLibrary.simpleMessage("We"),
         "Worker": MessageLookupByLibrary.simpleMessage("Worker"),
+        "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
+        "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
+        "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
         "date": MessageLookupByLibrary.simpleMessage("date")
       };
 }

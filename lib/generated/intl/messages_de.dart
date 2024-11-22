@@ -23,6 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Accommodation": MessageLookupByLibrary.simpleMessage("Unterkunft"),
+        "All": MessageLookupByLibrary.simpleMessage("Alle"),
+        "Available_Rental_Days":
+            MessageLookupByLibrary.simpleMessage("Verfügbare Miettage"),
+        "Available_Rental_Hours":
+            MessageLookupByLibrary.simpleMessage("Verfügbare Mietstunden"),
+        "Book_Now": MessageLookupByLibrary.simpleMessage("Jetzt buchen"),
+        "Cancel": MessageLookupByLibrary.simpleMessage("Abbrechen"),
+        "ChangeEmail": MessageLookupByLibrary.simpleMessage("E-Mail ändern"),
+        "ChangeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("Handynummer ändern"),
+        "ChangePassword":
+            MessageLookupByLibrary.simpleMessage("Passwort ändern"),
         "Check_location_permission": MessageLookupByLibrary.simpleMessage(
             "Bitte überprüfen Sie die Standortberechtigung"),
         "Check_search_again": MessageLookupByLibrary.simpleMessage(
@@ -33,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sie haben noch keinen Code erhalten?"),
         "Code_sent_to_email": MessageLookupByLibrary.simpleMessage(
             "Der Code wird an die folgende E-Mail-Adresse gesendet"),
+        "Complete": MessageLookupByLibrary.simpleMessage("Abgeschlossen"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Passwort bestätigen"),
         "Congratulations":
@@ -46,11 +59,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Arbeiterkonto erstellen"),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie hier, was Ihre Dienstleistungen umfassen?"),
+        "Description_Service": MessageLookupByLibrary.simpleMessage(
+            "Beschreibung und Bedingungen der Dienstleistungsvermietung"),
         "Document_Note": MessageLookupByLibrary.simpleMessage(
             "* nach der Überprüfung werden alle Dokumente gelöscht"),
         "Document_Verification": MessageLookupByLibrary.simpleMessage(
             "Wir benötigen ein Dokument, um zu überprüfen, dass Ihr Konto kein Fake-Konto ist"),
         "Drivers_License": MessageLookupByLibrary.simpleMessage("Führerschein"),
+        "EditPersonalInformation": MessageLookupByLibrary.simpleMessage(
+            "Persönliche Informationen bearbeiten"),
         "Email": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "Evening": MessageLookupByLibrary.simpleMessage("Abend"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
@@ -58,10 +75,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Favorite_page":
             MessageLookupByLibrary.simpleMessage("Favoriten-Seite"),
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorit"),
+        "Filtering_By": MessageLookupByLibrary.simpleMessage("Filtern nach"),
         "First_Name": MessageLookupByLibrary.simpleMessage("Vorname"),
         "Forget_Password":
             MessageLookupByLibrary.simpleMessage("Passwort vergessen?"),
         "Fr": MessageLookupByLibrary.simpleMessage("Fr"),
+        "Full_Name": MessageLookupByLibrary.simpleMessage("Vollständiger Name"),
         "Get_the_Code": MessageLookupByLibrary.simpleMessage("Code anfordern"),
         "Have_Account":
             MessageLookupByLibrary.simpleMessage("Haben Sie ein Konto?"),
@@ -78,9 +97,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("Ich stimme den"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identität"),
+        "Language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "Last_Name": MessageLookupByLibrary.simpleMessage("Nachname"),
         "Latest_rental_services":
             MessageLookupByLibrary.simpleMessage("Neueste Mietservices"),
+        "Location": MessageLookupByLibrary.simpleMessage("Standort"),
+        "LogOut": MessageLookupByLibrary.simpleMessage("Abmelden"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Anmelden"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Handynummer"),
@@ -101,23 +123,40 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Unsere Kategorien"),
         "Passport": MessageLookupByLibrary.simpleMessage("Reisepass"),
         "Password": MessageLookupByLibrary.simpleMessage("Passwort"),
+        "Pending": MessageLookupByLibrary.simpleMessage("Ausstehend"),
+        "Personal_Information":
+            MessageLookupByLibrary.simpleMessage("Persönliche Informationen"),
         "Pick_From_Gallery":
             MessageLookupByLibrary.simpleMessage("Aus der Galerie auswählen"),
         "Postal_Code": MessageLookupByLibrary.simpleMessage("Postleitzahl"),
+        "Price": MessageLookupByLibrary.simpleMessage("Preis"),
+        "PrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Datenschutzrichtlinie"),
         "Privacy_Policy":
             MessageLookupByLibrary.simpleMessage("Datenschutzbestimmungen"),
         "Profile": MessageLookupByLibrary.simpleMessage("Profil"),
+        "ProfileOption": MessageLookupByLibrary.simpleMessage("Profiloption"),
         "Profile_Image_Shaping": MessageLookupByLibrary.simpleMessage(
             "Gestaltung Ihres persönlichen Bildes"),
+        "Publish": MessageLookupByLibrary.simpleMessage("Veröffentlichen"),
+        "Rate": MessageLookupByLibrary.simpleMessage("Bewertung"),
+        "Recent_search": MessageLookupByLibrary.simpleMessage("Letzte Suche"),
+        "Recommended_Near_You":
+            MessageLookupByLibrary.simpleMessage("Empfohlen in Ihrer Nähe"),
         "Recover_Password":
             MessageLookupByLibrary.simpleMessage("Passwort wiederherstellen"),
+        "Reject": MessageLookupByLibrary.simpleMessage("Ablehnen"),
         "Rent_equipment": MessageLookupByLibrary.simpleMessage(
             "Vermieten Sie Ihre Ausrüstung und verdienen Sie Geld mit Weisro"),
         "Rental_Services": MessageLookupByLibrary.simpleMessage("Mietdienste"),
         "Rental_Workers": MessageLookupByLibrary.simpleMessage("Mietarbeiter"),
         "Resend": MessageLookupByLibrary.simpleMessage("Erneut senden"),
+        "Result_Found":
+            MessageLookupByLibrary.simpleMessage("Ergebnis gefunden"),
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
         "Search": MessageLookupByLibrary.simpleMessage("Suche"),
+        "Search_In": MessageLookupByLibrary.simpleMessage("Suchen in"),
+        "Search_Page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_empty": MessageLookupByLibrary.simpleMessage("Suche ist leer"),
         "Search_job_flexible_hours": MessageLookupByLibrary.simpleMessage(
             "Sie können einen Job suchen, der zu Ihnen passt, mit flexiblen Arbeitszeiten und einem einfachen Arbeitsablauf"),
@@ -129,24 +168,35 @@ class MessageLookup extends MessageLookupByLibrary {
         "Selected_account": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie aus, wofür Sie ein Konto erstellen möchten:"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
+        "Services_Details":
+            MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
         "Street": MessageLookupByLibrary.simpleMessage("Straße"),
         "Su": MessageLookupByLibrary.simpleMessage("So"),
         "Successfully": MessageLookupByLibrary.simpleMessage("erfolgreich"),
         "Take_Photo": MessageLookupByLibrary.simpleMessage("Foto aufnehmen"),
+        "TermsCondition": MessageLookupByLibrary.simpleMessage(
+            "Allgemeine Geschäftsbedingungen"),
         "Terms_of_Use":
             MessageLookupByLibrary.simpleMessage("Nutzungsbedingungen"),
         "Th": MessageLookupByLibrary.simpleMessage("Do"),
         "The_Code_Has_Been":
             MessageLookupByLibrary.simpleMessage("Der Code wurde"),
+        "To": MessageLookupByLibrary.simpleMessage("Bis"),
         "Tu": MessageLookupByLibrary.simpleMessage("Di"),
+        "Type_Services":
+            MessageLookupByLibrary.simpleMessage("Dienstleistungen"),
         "Upload_Profile_Picture": MessageLookupByLibrary.simpleMessage(
             "Laden Sie Ihr echtes Profilbild hoch"),
         "Verified": MessageLookupByLibrary.simpleMessage("verifiziert"),
         "Verify": MessageLookupByLibrary.simpleMessage("Bestätigen"),
         "Verify_Code": MessageLookupByLibrary.simpleMessage("Code bestätigen"),
         "We": MessageLookupByLibrary.simpleMessage("Mi"),
-        "Worker": MessageLookupByLibrary.simpleMessage("Arbeiter")
+        "Worker": MessageLookupByLibrary.simpleMessage("Arbeiter"),
+        "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),
+        "YourOrder": MessageLookupByLibrary.simpleMessage("Ihre Bestellung"),
+        "YourPosts": MessageLookupByLibrary.simpleMessage("Ihre Beiträge"),
+        "date": MessageLookupByLibrary.simpleMessage("Datum")
       };
 }

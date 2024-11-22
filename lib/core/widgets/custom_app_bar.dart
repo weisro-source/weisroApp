@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+
+import 'custom_action_widget.dart';
+import 'custom_leading_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -17,18 +18,13 @@ class CustomAppBar extends StatelessWidget {
       sliver: SliverAppBar(
         pinned: true,
         backgroundColor: AppColors.whiteColor,
-        leading: IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset(IconsPath.iconsNotification)),
+        leading: const CustomLeadingIcon(),
+        actions: const [CustomActionWidget()],
         title: Text(
           title,
           style: AppStyles.style18w400Grey(context),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: SvgPicture.asset(IconsPath.iconsMenu))
-        ],
       ),
     );
   }
