@@ -29,6 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Verfügbare Mietstunden"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Jetzt buchen"),
+        "Book_Worker":
+            MessageLookupByLibrary.simpleMessage("Mitarbeiter buchen"),
+        "Both": MessageLookupByLibrary.simpleMessage("Beides"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Abbrechen"),
         "ChangeEmail": MessageLookupByLibrary.simpleMessage("E-Mail ändern"),
         "ChangeMobileNumber":
@@ -51,14 +54,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "Congratulations":
             MessageLookupByLibrary.simpleMessage("Herzlichen Glückwunsch"),
         "Country": MessageLookupByLibrary.simpleMessage("Land"),
+        "Create_A_Product":
+            MessageLookupByLibrary.simpleMessage("Ein Produkt erstellen"),
         "Create_Account":
             MessageLookupByLibrary.simpleMessage("Konto erstellen"),
+        "Create_An_Ad":
+            MessageLookupByLibrary.simpleMessage("Eine Anzeige erstellen"),
         "Create_Client_account":
             MessageLookupByLibrary.simpleMessage("Konto für Kunde erstellen"),
         "Create_Worker_Account":
             MessageLookupByLibrary.simpleMessage("Arbeiterkonto erstellen"),
+        "Daily": MessageLookupByLibrary.simpleMessage("Täglich"),
+        "Days": MessageLookupByLibrary.simpleMessage("Tage"),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie hier, was Ihre Dienstleistungen umfassen?"),
+        "Description": MessageLookupByLibrary.simpleMessage("Beschreibung :"),
         "Description_Service": MessageLookupByLibrary.simpleMessage(
             "Beschreibung und Bedingungen der Dienstleistungsvermietung"),
         "Document_Note": MessageLookupByLibrary.simpleMessage(
@@ -77,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorit"),
         "Filtering_By": MessageLookupByLibrary.simpleMessage("Filtern nach"),
         "First_Name": MessageLookupByLibrary.simpleMessage("Vorname"),
+        "Forbidden_Write_Addresses": MessageLookupByLibrary.simpleMessage(
+            "Es ist verboten, Adressen und Kontaktinformationen zu schreiben. Konten, die gegen die Regeln verstoßen, werden gesperrt."),
         "Forget_Password":
             MessageLookupByLibrary.simpleMessage("Passwort vergessen?"),
         "Fr": MessageLookupByLibrary.simpleMessage("Fr"),
@@ -91,7 +103,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mein Stundensatz?"),
         "Hourly_Rate_Note": MessageLookupByLibrary.simpleMessage(
             "* Ihr Stundenlohn für Ihre Dienstleistungen wird dem Steuerwert in Ihrem Land hinzugefügt"),
+        "Hours": MessageLookupByLibrary.simpleMessage("Stunden"),
         "House_Number": MessageLookupByLibrary.simpleMessage("Hausnummer"),
+        "How_Do_You_Want_Your_Services": MessageLookupByLibrary.simpleMessage(
+            "Wie möchten Sie Ihre Dienstleistungen vermieten ?"),
         "How_Many_Days": MessageLookupByLibrary.simpleMessage(
             "Wie viele Tage möchten Sie in der Woche arbeiten?"),
         "I_agree_to_the":
@@ -118,11 +133,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "No_result_found":
             MessageLookupByLibrary.simpleMessage("KEIN Ergebnis gefunden"),
         "OR": MessageLookupByLibrary.simpleMessage("ODER"),
+        "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "Orders": MessageLookupByLibrary.simpleMessage("Bestellungen"),
         "Our_Categories":
             MessageLookupByLibrary.simpleMessage("Unsere Kategorien"),
         "Passport": MessageLookupByLibrary.simpleMessage("Reisepass"),
         "Password": MessageLookupByLibrary.simpleMessage("Passwort"),
+        "Payment_Method":
+            MessageLookupByLibrary.simpleMessage("Zahlungsmethode"),
         "Pending": MessageLookupByLibrary.simpleMessage("Ausstehend"),
         "Personal_Information":
             MessageLookupByLibrary.simpleMessage("Persönliche Informationen"),
@@ -148,6 +166,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Reject": MessageLookupByLibrary.simpleMessage("Ablehnen"),
         "Rent_equipment": MessageLookupByLibrary.simpleMessage(
             "Vermieten Sie Ihre Ausrüstung und verdienen Sie Geld mit Weisro"),
+        "Rent_per_day": MessageLookupByLibrary.simpleMessage("Miete pro Tag"),
+        "Rent_per_hour":
+            MessageLookupByLibrary.simpleMessage("Miete pro Stunde"),
+        "Rental_History": MessageLookupByLibrary.simpleMessage("Mietverlauf"),
+        "Rental_Period": MessageLookupByLibrary.simpleMessage("Mietzeitraum"),
         "Rental_Services": MessageLookupByLibrary.simpleMessage("Mietdienste"),
         "Rental_Workers": MessageLookupByLibrary.simpleMessage("Mietarbeiter"),
         "Resend": MessageLookupByLibrary.simpleMessage("Erneut senden"),
@@ -168,8 +191,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Selected_account": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie aus, wofür Sie ein Konto erstellen möchten:"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
+        "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
+            "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),
+        "Services_provided": MessageLookupByLibrary.simpleMessage(
+            "Erbrachte Dienstleistungen :"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
         "Street": MessageLookupByLibrary.simpleMessage("Straße"),
@@ -184,6 +211,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "The_Code_Has_Been":
             MessageLookupByLibrary.simpleMessage("Der Code wurde"),
         "To": MessageLookupByLibrary.simpleMessage("Bis"),
+        "Total_Cost": MessageLookupByLibrary.simpleMessage("Gesamtkosten"),
         "Tu": MessageLookupByLibrary.simpleMessage("Di"),
         "Type_Services":
             MessageLookupByLibrary.simpleMessage("Dienstleistungen"),
@@ -193,7 +221,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Verify": MessageLookupByLibrary.simpleMessage("Bestätigen"),
         "Verify_Code": MessageLookupByLibrary.simpleMessage("Code bestätigen"),
         "We": MessageLookupByLibrary.simpleMessage("Mi"),
+        "Work_for_hours_or_days": MessageLookupByLibrary.simpleMessage(
+            "Möchten Sie stunden- oder tageweise arbeiten?"),
         "Worker": MessageLookupByLibrary.simpleMessage("Arbeiter"),
+        "Worker_Details":
+            MessageLookupByLibrary.simpleMessage("Mitarbeiterdetails"),
+        "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
+            "Schreiben Sie eine Beschreibung des Dienstes und die Bedingungen für die Vermietung Ihrer Dienstleistungen ?"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Ihre Bestellung"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Ihre Beiträge"),

@@ -9,16 +9,31 @@ class LocationFlitterDropDown extends StatelessWidget {
     super.key,
     required this.selectedLocation,
     required this.locations,
+    this.width = 150,
+    this.height = 25,
+    this.borderColor = AppColors.whiteColor,
+    this.fillColor = AppColors.second1Color,
+    this.borderWidth = 2,
+    this.borderRadius = 2,
+    this.prefixIcon = IconsPath.iconsLocation,
+    this.iconColor = AppColors.orangeColor,
+    this.iconWidth = 9,
+    this.iconHeight = 9,
   });
 
   final String selectedLocation;
+  final String prefixIcon;
   final List<String> locations;
+  final double? width, height;
+  final double? iconWidth, iconHeight;
+  final double borderWidth, borderRadius;
 
+  final Color borderColor, fillColor, iconColor;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 25,
-      width: 150,
+      height: height,
+      width: width,
       child: DropdownButtonFormField<String>(
         value: selectedLocation,
         items: locations.map((location) {
@@ -36,33 +51,28 @@ class LocationFlitterDropDown extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: SvgPicture.asset(
             fit: BoxFit.scaleDown,
-            height: 9,
-            width: 9,
-            IconsPath.iconsLocation,
-            colorFilter: const ColorFilter.mode(
-                AppColors.orangeColor, BlendMode.srcIn),
+            height: iconHeight,
+            width: iconWidth,
+            prefixIcon,
+            colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
           ),
-          fillColor: AppColors.second1Color,
+          fillColor: fillColor,
           filled: true,
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: AppColors.whiteColor, width: 2),
-            borderRadius: BorderRadius.circular(2),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: AppColors.whiteColor, width: 2),
-            borderRadius: BorderRadius.circular(2),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: AppColors.whiteColor, width: 2),
-            borderRadius: BorderRadius.circular(2),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-                color: AppColors.whiteColor, width: 2),
-            borderRadius: BorderRadius.circular(2),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
         ),

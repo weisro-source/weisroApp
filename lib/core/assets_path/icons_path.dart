@@ -114,6 +114,10 @@ class IconsPath {
   /// assets/icons/notification.svg
   static const String iconsNotification = "assets/icons/notification.svg";
 
+  /// Assets for iconsPaymentCards
+  /// assets/icons/payment_cards.svg
+  static const String iconsPaymentCards = "assets/icons/payment_cards.svg";
+
   /// Assets for iconsPhone
   /// assets/icons/phone.svg
   static const String iconsPhone = "assets/icons/phone.svg";
@@ -121,6 +125,10 @@ class IconsPath {
   /// Assets for iconsPhoto
   /// assets/icons/photo.svg
   static const String iconsPhoto = "assets/icons/photo.svg";
+
+  /// Assets for iconsPhotoUpload
+  /// assets/icons/photo_upload.svg
+  static const String iconsPhotoUpload = "assets/icons/photo_upload.svg";
 
   /// Assets for iconsPost
   /// assets/icons/post.svg
@@ -197,6 +205,10 @@ class IconsPath {
   /// Assets for iconsWatch
   /// assets/icons/watch.svg
   static const String iconsWatch = "assets/icons/watch.svg";
+
+  /// Assets for iconsWorker18
+  /// assets/icons/worker18.svg
+  static const String iconsWorker18 = "assets/icons/worker18.svg";
 
   /// Assets for iconsWorkerIcon
   /// assets/icons/worker_icon.svg

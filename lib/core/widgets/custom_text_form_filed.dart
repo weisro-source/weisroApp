@@ -21,6 +21,9 @@ class CustomTextFormFiled extends StatelessWidget {
     this.validator,
     this.textInputAction,
     this.maxLength,
+    this.topPadding = 0,
+    this.fillColor,
+    this.filled,
   });
 
   final TextEditingController? controller;
@@ -39,7 +42,9 @@ class CustomTextFormFiled extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final int? maxLength;
-
+  final double topPadding;
+  final Color? fillColor;
+  final bool? filled;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -60,14 +65,15 @@ class CustomTextFormFiled extends StatelessWidget {
         focusNode: focusNode,
         validator: validator,
         decoration: InputDecoration(
+          fillColor: fillColor,
+          filled: filled,
           hintText: hintText,
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           hintStyle: AppStyles.style12w400Second2(context),
           errorText: errorText,
-          contentPadding: const EdgeInsetsDirectional.only(
-            start: 15,
-          ),
+          contentPadding:
+              EdgeInsetsDirectional.only(start: 15, top: topPadding),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(4),
             borderSide: BorderSide(
@@ -83,7 +89,6 @@ class CustomTextFormFiled extends StatelessWidget {
             ),
           ),
           focusedBorder: OutlineInputBorder(
-          
             borderRadius: BorderRadius.circular(4),
             borderSide: BorderSide(
               color: borderColor,

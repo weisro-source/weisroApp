@@ -1323,6 +1323,196 @@ class S {
       args: [],
     );
   }
+
+  /// `Create a product`
+  String get Create_A_Product {
+    return Intl.message(
+      'Create a product',
+      name: 'Create_A_Product',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create an ad`
+  String get Create_An_Ad {
+    return Intl.message(
+      'Create an ad',
+      name: 'Create_An_Ad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get Ok {
+    return Intl.message(
+      'Ok',
+      name: 'Ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How do you want to rent your services ? `
+  String get How_Do_You_Want_Your_Services {
+    return Intl.message(
+      'How do you want to rent your services ? ',
+      name: 'How_Do_You_Want_Your_Services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Both`
+  String get Both {
+    return Intl.message(
+      'Both',
+      name: 'Both',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hours`
+  String get Hours {
+    return Intl.message(
+      'Hours',
+      name: 'Hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily`
+  String get Daily {
+    return Intl.message(
+      'Daily',
+      name: 'Daily',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rent per hour`
+  String get Rent_per_hour {
+    return Intl.message(
+      'Rent per hour',
+      name: 'Rent_per_hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rent per day`
+  String get Rent_per_day {
+    return Intl.message(
+      'Rent per day',
+      name: 'Rent_per_day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a description of the service and the terms of renting your services ?`
+  String get Write_Description_Service {
+    return Intl.message(
+      'Write a description of the service and the terms of renting your services ?',
+      name: 'Write_Description_Service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conformation`
+  String get Conformation {
+    return Intl.message(
+      'Conformation',
+      name: 'Conformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to work for hours or days`
+  String get Work_for_hours_or_days {
+    return Intl.message(
+      'Do you want to work for hours or days',
+      name: 'Work_for_hours_or_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days`
+  String get Days {
+    return Intl.message(
+      'Days',
+      name: 'Days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What details of the service do you want from the worker?`
+  String get Service_Details_Request {
+    return Intl.message(
+      'What details of the service do you want from the worker?',
+      name: 'Service_Details_Request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It is forbidden to write addresses and contact information. Violating accounts are blocked.`
+  String get Forbidden_Write_Addresses {
+    return Intl.message(
+      'It is forbidden to write addresses and contact information. Violating accounts are blocked.',
+      name: 'Forbidden_Write_Addresses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment method`
+  String get Payment_Method {
+    return Intl.message(
+      'Payment method',
+      name: 'Payment_Method',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The total cost`
+  String get Total_Cost {
+    return Intl.message(
+      'The total cost',
+      name: 'Total_Cost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental period`
+  String get Rental_Period {
+    return Intl.message(
+      'Rental period',
+      name: 'Rental_Period',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental history`
+  String get Rental_History {
+    return Intl.message(
+      'Rental history',
+      name: 'Rental_History',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

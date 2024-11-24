@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/sized_box_extension.dart';
 
 class QuestionWidget extends StatelessWidget {
   const QuestionWidget(
@@ -12,6 +13,7 @@ class QuestionWidget extends StatelessWidget {
     return Row(
       children: [
         SvgPicture.asset(icon),
+        3.kw,
         Expanded(
           child: Text(
             questionText,
