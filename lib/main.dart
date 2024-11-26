@@ -1,12 +1,12 @@
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/wisro_app.dart';
 
-void main() {
+void main() async {
   // for ensure doing all lines before "runApp function"
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -19,6 +19,12 @@ void main() {
   // --------------------------------------------------
   // for initialized `ServiceLocator` for `getIt` package
   setupServiceLocator();
+  // for initialized `cacheHelper`
+  await Future.wait([
+    // for initialized cash helper class
+    CacheHelper.cacheInit(),
+    // --------------------------------------------------
+  ]);
   runApp(
     DevicePreview(
       availableLocales: const [Locale('en'), Locale('de')],

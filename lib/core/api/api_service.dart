@@ -1,21 +1,90 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/logger.dart';
 
 class ApiService {
   final Dio dio;
-
-  ApiService(this.dio);
+  ApiService(this.dio) {
+    // Attach the interceptor during initialization
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          log(
+            AnsiColor.colorize(
+              "Request: [${options.method}] ${options.uri.toString()}",
+              AnsiColor.magenta,
+            ),
+            name: "API REQUEST",
+          );
+          if (options.data != null) {
+            log(
+              AnsiColor.colorize(
+                "Request Data: ${options.data}",
+                AnsiColor.green,
+              ),
+              name: "API REQUEST",
+            );
+          }
+          return handler.next(options); // Continue the request
+        },
+        onResponse: (response, handler) {
+          log(
+            AnsiColor.colorize(
+              "Response: [${response.statusCode}] ${response.requestOptions.uri.toString()}",
+              AnsiColor.blue,
+            ),
+            name: "API RESPONSE",
+          );
+          // log(
+          //   AnsiColor.colorize(
+          //     "Response Data: ${response.data}",
+          //     AnsiColor.green,
+          //   ),
+          //   name: "API RESPONSE",
+          // );
+          return handler.next(response); // Continue the response
+        },
+        onError: (DioException error, handler) {
+          log(
+            AnsiColor.colorize(
+              "Error: [${error.response?.statusCode}] ${error.requestOptions.uri.toString()}",
+              AnsiColor.red,
+            ),
+            name: "API ERROR",
+          );
+          log(
+            AnsiColor.colorize(
+              "Error Details: ${error.message}",
+              AnsiColor.yellow,
+            ),
+            name: "API ERROR",
+          );
+          if (error.response?.data != null) {
+            log(
+              AnsiColor.colorize(
+                "Error Data: ${error.response?.data}",
+                AnsiColor.red,
+              ),
+              name: "API ERROR",
+            );
+          }
+          return handler.next(error); // Continue the error
+        },
+      ),
+    );
+  }
 
   Future<void> _setHeaders() async {
-    // String? token = await _getToken();
-    // String? token = CacheHelper.getData(key: CacheKeys.kToken);
-    String? token = "";
-    // ignore: unused_local_variable
-    String tokenDebug =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEzNzAwNjc0fQ.hNrOSLZmvRdYEw8oAiHuRBvW7I2i_N11pc0KKeKyWrc";
-    LoggerHelper.debug(token);
+    String? token = CacheHelper.getData(key: CacheKeys.kToken);
+    // String tokenDebug =
+    //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEzNzAwNjc0fQ.hNrOSLZmvRdYEw8oAiHuRBvW7I2i_N11pc0KKeKyWrc";
+    LoggerHelper.debug(token ?? "");
 
-    if (token.isNotEmpty) {
+    if (token != null && token.isNotEmpty) {
       dio.options.headers["Authorization"] = "Bearer $token";
       dio.options.headers['Content-Type'] = "application/json";
     }

@@ -6,4 +6,7 @@ class ApiEndPoints {
   static const String verifyAccountEndPoint = '/auth/verify-otp';
   static const String resendOtpEndPoint = '/auth/resend-otp';
   static const String resetPasswordEndPoint = '/auth/reset-password';
+  //get category by type end point
+  /// add type for this [service,worker]
+  static const String getCategoryByType = '/category?type=';
 }
