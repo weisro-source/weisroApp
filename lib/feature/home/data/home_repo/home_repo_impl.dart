@@ -37,7 +37,7 @@ class HomeRepositoryImplementation implements HomeRepository {
     try {
       var response = await _apiService.get(
           endPoint:
-              "${ApiEndPoints.getServiceById}$categoryId&page=$pageNumber&limit=${Constants.limitInPage}");
+              "${ApiEndPoints.getServicesById}$categoryId&page=$pageNumber&limit=${Constants.limitInPage}");
       return right(AllServicesModel.fromJson(response));
     } catch (errorInGetServicesByCategoryId) {
       return left(ErrorHandler.handleError(errorInGetServicesByCategoryId));

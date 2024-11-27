@@ -35,7 +35,9 @@ class WorkerForOneService extends StatelessWidget {
         HelperFunctions.navigateToScreen(
             context,
             (context) => type == Constants.categoryTypeServices
-                ? const ServicesDetailsPageView()
+                ? ServicesDetailsPageView(
+                    serviceId: id,
+                  )
                 : const WorkerDetailsPageView());
       },
       child: Container(

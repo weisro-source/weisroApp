@@ -12,6 +12,7 @@ import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
+import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/ad_widget_in_details.dart';
@@ -19,7 +20,10 @@ import '../../../../../core/widgets/image_list_in_details_page.dart';
 import '../../../../../core/widgets/time_widget.dart';
 
 class ServicesDetailsPageViewBody extends StatefulWidget {
-  const ServicesDetailsPageViewBody({super.key});
+  const ServicesDetailsPageViewBody(
+      {super.key, required this.serviceId, required this.oneService});
+  final String serviceId;
+  final ServiceModel oneService;
 
   @override
   State<ServicesDetailsPageViewBody> createState() =>
@@ -135,29 +139,19 @@ class _ServicesDetailsPageViewBodyState
         SliverToBoxAdapter(
           child: 26.kh,
         ),
-        SliverToBoxAdapter(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppButton(
-                height: 32,
-                width: 164,
-                buttonColor: AppColors.redColor,
-                text: S.of(context).Cancel,
-                onPressed: () {},
-              ),
-              13.kw,
-              AppButton(
-                height: 32,
-                width: 164,
-                buttonColor: AppColors.whiteColor,
-                borderColor: AppColors.orangeColor,
-                text: S.of(context).Publish,
-                textStyle: AppStyles.style18w500Green(context)
-                    .copyWith(color: AppColors.orangeColor),
-                onPressed: () {},
-              ),
-            ],
+        SliverPadding(
+          padding: HelperFunctions.symmetricHorizontalPadding24,
+          sliver: SliverToBoxAdapter(
+            child: AppButton(
+              height: 32,
+              width: 164,
+              // buttonColor: AppColors.whiteColor,
+              // borderColor: AppColors.orangeColor,
+              text: S.of(context).Book_Now,
+              // textStyle: AppStyles.style18w500Green(context)
+              //     .copyWith(color: AppColors.orangeColor),
+              onPressed: () {},
+            ),
           ),
         ),
         SliverToBoxAdapter(
