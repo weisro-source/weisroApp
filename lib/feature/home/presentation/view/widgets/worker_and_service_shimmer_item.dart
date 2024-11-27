@@ -21,11 +21,12 @@ class WorkerAndServiceShimmerItem extends StatelessWidget {
             color: Colors.grey[300],
           ),
         ),
-        const Align(
+        Align(
           alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: EdgeInsetsDirectional.only(bottom: 10),
-            child: WhiteBackGroundForText(text: "XXXXX"),
+          child: Shimmer.fromColors(
+            baseColor: AppColors.shimmerBaseColor,
+            highlightColor: AppColors.shimmerHighlightColor,
+            child: const WhiteBackGroundForText(text: "XXXXX"),
           ),
         ),
       ],

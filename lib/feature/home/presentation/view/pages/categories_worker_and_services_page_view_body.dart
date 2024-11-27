@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/home/data/models/category_model.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/advertisement_widget.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/worker_and_service_grid_shimmer_view.dart';
 import '../widgets/search_bar.dart' as search;
-import '../widgets/worker_and_service_grid_view.dart';
+import '../widgets/category_for_worker_grid_view.dart';
 
 class CategoriesWorkerAndServicesPageViewBody extends StatefulWidget {
   const CategoriesWorkerAndServicesPageViewBody(
@@ -81,13 +82,14 @@ class _CategoriesWorkerAndServicesPageViewBodyState
                 getCategoriesState is CategoriesPaginationFailures) {
               return SliverPadding(
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                sliver: WorkerAndServiceGridView(
+                sliver: CategoryForWorkerAndServiceGridView(
                   allCategories: allCategories,
+                  type: widget.type,
                 ),
               );
             } else {
               return const SliverToBoxAdapter(
-                child: SizedBox.shrink(),
+                child: CustomErrorWidgets(),
               );
             }
           },

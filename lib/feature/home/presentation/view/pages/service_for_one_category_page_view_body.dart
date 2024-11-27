@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_error_widget.dart';
+import 'package:weisro/feature/home/data/models/all_services_model.dart';
 import 'package:weisro/feature/home/presentation/managers/services_by_category_id_cubit/services_by_category_id_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/advertisement_widget.dart';
+import 'package:weisro/feature/home/presentation/view/widgets/service_for_one_category_grid_view.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/worker_and_service_grid_shimmer_view.dart';
 import '../widgets/search_bar.dart' as search;
-import '../widgets/worker_for_one_category_grid_view.dart';
 
-class WorkersForOneServicePageViewBody extends StatefulWidget {
-  const WorkersForOneServicePageViewBody({super.key, required this.categoryId});
+class ServiceForOneCategoryPageViewBody extends StatefulWidget {
+  const ServiceForOneCategoryPageViewBody(
+      {super.key, required this.categoryId});
   final String categoryId;
 
   @override
-  State<WorkersForOneServicePageViewBody> createState() =>
-      _WorkersForOneServicePageViewBodyState();
+  State<ServiceForOneCategoryPageViewBody> createState() =>
+      _ServiceForOneCategoryPageViewBodyState();
 }
 
-class _WorkersForOneServicePageViewBodyState
-    extends State<WorkersForOneServicePageViewBody> {
+class _ServiceForOneCategoryPageViewBodyState
+    extends State<ServiceForOneCategoryPageViewBody> {
   late final ScrollController _scrollController;
+
   var nextPage = 2;
 
   var isLoading = false;
@@ -45,6 +48,8 @@ class _WorkersForOneServicePageViewBodyState
     }
   }
 
+  List<Docs> allServicesForOneCategory = [];
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -59,24 +64,34 @@ class _WorkersForOneServicePageViewBodyState
         const SliverToBoxAdapter(
           child: search.SearchBar(isNotificationShow: false),
         ),
-        SliverToBoxAdapter(
-          child: 30.kh,
-        ),
         BlocConsumer<ServicesByCategoryIdCubit, ServicesByCategoryIdState>(
-          listener: (context, state) {},
+          listener: (context, getServicesByCategoryIdState) {
+            if (getServicesByCategoryIdState is ServicesByCategoryIdSuccess) {
+              allServicesForOneCategory
+                  .addAll(getServicesByCategoryIdState.services.docs ?? []);
+              hasNext =
+                  getServicesByCategoryIdState.services.hasNextPage ?? false;
+            }
+          },
           builder: (context, getServicesByCategoryIdState) {
             if (getServicesByCategoryIdState
                     is ServicesByCategoryIdPaginationLoading ||
                 getServicesByCategoryIdState
                     is ServicesByCategoryIdPaginationFailures ||
                 getServicesByCategoryIdState is ServicesByCategoryIdSuccess) {
-              return const SliverPadding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24),
-                sliver: WorkerForOneCategoryGridView(),
+              return SliverPadding(
+                padding: const EdgeInsetsDirectional.symmetric(
+                    horizontal: 24, vertical: 30),
+                sliver: ServicesForOneCategoryGridView(
+                  allServicesForOneCategory: allServicesForOneCategory,
+                ),
               );
             } else if (getServicesByCategoryIdState
                 is ServicesByCategoryIdLoading) {
-              return const WorkerAndServiceGridShimmerView();
+              return const SliverPadding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: 24, vertical: 30),
+                  sliver: WorkerAndServiceGridShimmerView());
             } else {
               return const SliverToBoxAdapter(
                 child: CustomErrorWidgets(),
@@ -84,9 +99,6 @@ class _WorkersForOneServicePageViewBodyState
             }
           },
         ),
-        SliverToBoxAdapter(
-          child: 65.kh,
-        )
       ],
     );
   }
