@@ -9,5 +9,7 @@ class ApiEndPoints {
   //get category by type end point
   /// add type for this [service,worker]
   static const String getCategoryByType = '/category?type=';
-  static const String getServiceById = '/service/?category_id=';
+  static const String getServicesById = '/service/?category_id=';
+  static const String getServiceById = '/service/';
+  
 }

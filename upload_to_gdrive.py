@@ -73,11 +73,14 @@ def forward_telegram_message(telegram_token, from_chat_id, message_id, to_chat_i
     if response.status_code != 200:
         raise Exception(f"Failed to forward message: {response.text}")
     print("Message forwarded successfully to another group.")
+# Sanitize the file name
+def sanitize_filename(filename):
+    return filename.replace(':', '_').replace('/', '_')
 if __name__ == '__main__':
     # Get environment variables
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-    custom_apk_name = "V:0.0.1+222/12/2025.apk"
+    custom_apk_name = sanitize_filename("Version-1.0.2+3_27-12-2025.apk")
 
     # Authenticate and upload to Google Drive
     gdrive_service = authenticate_gdrive()
