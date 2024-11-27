@@ -7,6 +7,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
+import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/days_list.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
@@ -33,6 +34,13 @@ class ServicesDetailsPageViewBody extends StatefulWidget {
 class _ServicesDetailsPageViewBodyState
     extends State<ServicesDetailsPageViewBody> {
   final PageController pageController = PageController();
+  TextEditingController deceptionTextController = TextEditingController();
+  @override
+  void initState() {
+    deceptionTextController.text = widget.oneService.description ?? "";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -46,13 +54,18 @@ class _ServicesDetailsPageViewBodyState
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                child: ImageListInDetailsPage(pageController: pageController),
+                child: ImageListInDetailsPage(
+                  pageController: pageController,
+                  imageList: widget.oneService.images ?? [],
+                ),
               ),
               15.kh,
-              PageIndicatorWidget(controller: pageController, count: 4),
+              PageIndicatorWidget(
+                  controller: pageController,
+                  count: widget.oneService.images?.length ?? 0),
               22.kh,
               ServiceNameRowWidget(
-                serviceName: "Service Name",
+                serviceName: widget.oneService.name ?? "",
                 onFavPressed: () {
                   // Add your logic for favorite button
                 },
@@ -61,8 +74,8 @@ class _ServicesDetailsPageViewBodyState
                 },
               ),
               15.kh,
-              const LocationPriceRowWidget(
-                price: '\$5572 ST',
+              LocationPriceRowWidget(
+                price: '\$${widget.oneService.dailyPrice} ST',
               ),
               14.kh,
               Padding(
@@ -75,14 +88,15 @@ class _ServicesDetailsPageViewBodyState
               Row(
                 children: [
                   27.kw,
-                  const TimeWidget(time: "12:09"),
+                  // this start time for service
+                  TimeWidget(time: widget.oneService.time?.start ?? ""),
                   35.kw,
                   Text(
                     S.of(context).To,
                     style: AppStyles.style14w400Grey(context),
                   ),
                   23.kw,
-                  const TimeWidget(time: "12:30")
+                  TimeWidget(time: widget.oneService.time?.end ?? "")
                 ],
               ),
               18.kh,
@@ -98,9 +112,11 @@ class _ServicesDetailsPageViewBodyState
         SliverToBoxAdapter(
           child: 12.kh,
         ),
-        const SliverPadding(
-            padding: EdgeInsetsDirectional.only(start: 24, end: 24),
-            sliver: DaysList()),
+        SliverPadding(
+            padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
+            sliver: DaysList(
+              oneServiceDays: widget.oneService.days,
+            )),
         SliverToBoxAdapter(
           child: 19.kh,
         ),
@@ -127,14 +143,18 @@ class _ServicesDetailsPageViewBodyState
         SliverPadding(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
           sliver: SliverToBoxAdapter(
-            child: Container(
-              height: 177,
-              width: HelperFunctions.getScreenWidth(context),
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.orangeColor, width: 1),
-                  borderRadius: const BorderRadius.all(Radius.circular(8))),
-            ),
-          ),
+              child: CustomTextFormFiled(
+            readOnly: true,
+            hintText: "",
+            controller: deceptionTextController,
+            enabled: true,
+            borderColor: AppColors.orangeColor,
+            fillColor: AppColors.whiteColor,
+            filled: true,
+            minLines: 4,
+            maxLines: 10,
+            topPadding: 13,
+          )),
         ),
         SliverToBoxAdapter(
           child: 26.kh,

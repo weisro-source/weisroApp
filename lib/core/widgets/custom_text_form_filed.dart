@@ -24,6 +24,7 @@ class CustomTextFormFiled extends StatelessWidget {
     this.topPadding = 0,
     this.fillColor,
     this.filled,
+    this.readOnly,
   });
 
   final TextEditingController? controller;
@@ -45,12 +46,14 @@ class CustomTextFormFiled extends StatelessWidget {
   final double topPadding;
   final Color? fillColor;
   final bool? filled;
+  final bool? readOnly;
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: 0.0,
       shadowColor: AppColors.shadowColor,
       child: TextFormField(
+        readOnly: readOnly ?? true,
         textInputAction: textInputAction,
         maxLines: maxLines,
         minLines: minLines,

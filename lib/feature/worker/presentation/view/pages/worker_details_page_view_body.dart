@@ -35,7 +35,10 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                child: ImageListInDetailsPage(pageController: pageController),
+                child: ImageListInDetailsPage(
+                  pageController: pageController,
+                  imageList: const [],
+                ),
               ),
               15.kh,
               PageIndicatorWidget(controller: pageController, count: 4),
