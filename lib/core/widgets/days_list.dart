@@ -17,19 +17,17 @@ class DaysList extends StatelessWidget {
         height: 40,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
           clipBehavior: Clip.none,
           itemBuilder: (context, index) {
-            final day = WorkerTime.daysSelected(context)
-                .values
-                .toList()[index];
+            final day = WorkerTime.daysSelected(context).values.toList()[index];
             return BlocBuilder<WorkerDayCubit, List<String>>(
               builder: (context, selectedDays) {
                 final isSelected =
                     context.read<WorkerDayCubit>().isSelected(day);
                 return WorkDay(
                   day: day,
-                  onTap: () =>
-                      context.read<WorkerDayCubit>().toggleDay(day),
+                  onTap: () => context.read<WorkerDayCubit>().toggleDay(day),
                   isSelected: isSelected,
                 );
               },

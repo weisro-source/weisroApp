@@ -27,7 +27,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, SuccessRegisterModel>> clientRegisterApi(
       UserClientModel userToRegister, CancelToken cancelToken) async {
-    log("Attempting to register user with data: ${userToRegister.toJson()}");
 
     try {
       // Send POST request to client registration endpoint
@@ -53,7 +52,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, SuccessLoginModel>> loginApi(
       UserClientModel userToRegister, CancelToken cancelToken) async {
-    log("Attempting login with data: ${userToRegister.loginBody()}");
 
     try {
       // Send POST request to login endpoint
@@ -111,7 +109,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, String>> forgetPassword(
       String email, CancelToken cancelToken) async {
-    log("Attempting to send OTP to email: $email");
 
     try {
       // Send POST request to resend OTP endpoint

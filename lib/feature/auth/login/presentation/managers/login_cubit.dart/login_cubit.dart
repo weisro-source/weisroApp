@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/core/utils/logger.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/models/success_login_model.dart';
@@ -34,6 +37,14 @@ class LoginCubit extends Cubit<LoginState> {
     emailController.text = 'nassimtok9@gmail.com';
   }
 
+  Future<void> _handelSuccessLogin(String? token) async {
+    if (token != null) {
+      await CacheHelper.setData(key: CacheKeys.kToken, value: token);
+    }
+    // await CacheHelper.setData(key: CacheKeys.kUserId, value: userId);
+    LoggerHelper.info("Successfully Cached UserData");
+  }
+
   Future<void> login(BuildContext context) async {
     if (!HelperFunctions.validateForm(loginFormKey)) {
       return;
@@ -44,7 +55,8 @@ class LoginCubit extends Cubit<LoginState> {
         .loginApi(userToLogin(), cancelToken);
     result.fold((errorInLogin) {
       emit(LoginFailures(errMessage: errorInLogin.errMassage));
-    }, (loginSuccess) {
+    }, (loginSuccess) async {
+      await _handelSuccessLogin(loginSuccess.token);
       emit(LoginSuccess(successLoginModel: loginSuccess));
     });
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
-import 'package:weisro/feature/home/presentation/view/pages/worker_services_page_view.dart';
+import 'package:weisro/feature/home/presentation/view/pages/categories_worker_services_page_view.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/services_widget_in_home_page.dart';
 
 class ServicesGridViewInHomePage extends StatelessWidget {
@@ -20,8 +20,8 @@ class ServicesGridViewInHomePage extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
             onTap: () {
-              HelperFunctions.navigateToScreen(
-                  context, (context) => const WorkerAndServicesPageView());
+              HelperFunctions.navigateToScreen(context,
+                  (context) => const CategoriesWorkerAndServicesPageView(type: "",));
             },
             child: const ServicesWidgetInHomePage());
       },

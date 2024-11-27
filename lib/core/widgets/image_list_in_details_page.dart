@@ -60,3 +60,4 @@ class ImageListInDetailsPage extends StatelessWidget {
     );
   }
 }
+  

@@ -34,30 +34,50 @@ class EditProfilePageViewBody extends StatelessWidget {
                 ),
                 20.kh,
                 const CustomDashedLine(),
+                15.kh,
+                TitleFiledEditAccount(
+                  title: S.of(context).Country,
+                ),
                 20.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).Country,
                 ),
                 15.kh,
                 const CustomDashedLine(),
+                15.kh,
+                TitleFiledEditAccount(
+                  title: S.of(context).City,
+                ),
                 20.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).City,
                 ),
                 15.kh,
                 const CustomDashedLine(),
+                15.kh,
+                TitleFiledEditAccount(
+                  title: S.of(context).Postal_Code,
+                ),
                 20.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).Postal_Code,
                 ),
                 15.kh,
                 const CustomDashedLine(),
+                15.kh,
+                TitleFiledEditAccount(
+                  title: S.of(context).Street,
+                ),
                 20.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).Street,
                 ),
                 15.kh,
                 const CustomDashedLine(),
+                15.kh,
+                TitleFiledEditAccount(
+                  title: S.of(context).House_Number,
+                ),
                 20.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).House_Number,

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:image/image.dart' as img;
+import 'package:weisro/core/utils/constant.dart';
 
 class HelperFunctions {
   static void navigateToScreen(BuildContext context, WidgetBuilder screen) {
@@ -160,6 +161,18 @@ class HelperFunctions {
     } else {
       return null;
     }
+  }
+
+  static String? ensureIsFirstItemOrNull(List<String> list) {
+    if (list.isEmpty) {
+      return null;
+    } else {
+      return list.first;
+    }
+  }
+
+  static String addImageNameForUrl(String imageName) {
+    return "${Constants.imageUrl}$imageName";
   }
 
   static EdgeInsetsDirectional get symmetricHorizontalPadding24 =>
