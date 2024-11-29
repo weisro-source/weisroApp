@@ -1,12 +1,16 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:day_night_time_picker/day_night_time_picker.dart';
+import 'package:day_night_time_picker/lib/daynight_timepicker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:image/image.dart' as img;
 import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/generated/l10n.dart';
 
 class HelperFunctions {
   static void navigateToScreen(BuildContext context, WidgetBuilder screen) {
@@ -177,6 +181,23 @@ class HelperFunctions {
 
   static EdgeInsetsDirectional get symmetricHorizontalPadding24 =>
       const EdgeInsetsDirectional.symmetric(horizontal: 24);
+
+  static showCustomTimePicker(
+      BuildContext context, void Function(DateTime)? onChangeDateTime) {
+    Navigator.of(context).push(showPicker(
+        context: context,
+        onChangeDateTime: onChangeDateTime,
+        value: Time(hour: 11, minute: 11),
+        sunrise: const TimeOfDay(hour: 6, minute: 0),
+        sunset: const TimeOfDay(hour: 18, minute: 0),
+        duskSpanInMinutes: 120,
+        onChange: (p0) {},
+        okText: S.of(context).Ok,
+        okStyle: AppStyles.style18w500Green(context),
+        cancelText: S.of(context).Cancel,
+        cancelStyle: AppStyles.style12w400Black(context)
+            .copyWith(color: AppColors.redColor)));
+  }
 }
 
 

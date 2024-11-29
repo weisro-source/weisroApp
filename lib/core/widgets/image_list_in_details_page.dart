@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -10,10 +12,12 @@ class ImageListInDetailsPage extends StatelessWidget {
     super.key,
     required this.pageController,
     required this.imageList,
+    required this.isReview,
   });
 
   final PageController pageController;
   final List<String> imageList;
+  final bool isReview;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -27,33 +31,42 @@ class ImageListInDetailsPage extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) {
-                    return Shimmer.fromColors(
-                      baseColor: AppColors.shimmerBaseColor,
-                      highlightColor: AppColors.shimmerHighlightColor,
-                      child: Container(
+                child: isReview
+                    ? Image.file(
+                        File(oneImageUrl),
                         width: 341,
                         height: 220,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(4))),
-                      ),
-                    );
-                  },
-                  width: 341,
-                  height: 220,
-                  imageUrl: HelperFunctions.addImageNameForUrl(oneImageUrl),
-                  errorWidget: (context, url, error) {
-                    return AspectRatio(
-                      aspectRatio: 1.55,
-                      child: Image.asset(
-                        ImagePath.imagesService3,
                         fit: BoxFit.cover,
+                      )
+                    : CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) {
+                          return Shimmer.fromColors(
+                            baseColor: AppColors.shimmerBaseColor,
+                            highlightColor: AppColors.shimmerHighlightColor,
+                            child: Container(
+                              width: 341,
+                              height: 220,
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(4))),
+                            ),
+                          );
+                        },
+                        width: 341,
+                        height: 220,
+                        imageUrl:
+                            HelperFunctions.addImageNameForUrl(oneImageUrl),
+                        errorWidget: (context, url, error) {
+                          return AspectRatio(
+                            aspectRatio: 1.55,
+                            child: Image.asset(
+                              ImagePath.imagesService3,
+                              fit: BoxFit.cover,
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
               )
             ],
           );

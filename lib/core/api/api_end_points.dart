@@ -11,5 +11,5 @@ class ApiEndPoints {
   static const String getCategoryByType = '/category?type=';
   static const String getServicesById = '/service/?category_id=';
   static const String getServiceById = '/service/';
-  
+  static const String addService = '/service';
 }

@@ -260,7 +260,7 @@ abstract class AppStyles {
       context,
       const TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 16,
+          fontSize: 18,
           color: AppColors.greyColor),
     );
   }

@@ -192,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "What details of the service do you want from the worker?"),
+        "Service_Name": MessageLookupByLibrary.simpleMessage("Service Name"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("services Details"),
         "Services_provided":
@@ -228,6 +229,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
-        "date": MessageLookupByLibrary.simpleMessage("date")
+        "daily_price_invalid": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid daily price."),
+        "date": MessageLookupByLibrary.simpleMessage("date"),
+        "days_missing": MessageLookupByLibrary.simpleMessage(
+            "Please select at least one day."),
+        "description_missing": MessageLookupByLibrary.simpleMessage(
+            "Please provide a description."),
+        "hourly_price_invalid": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid hourly price."),
+        "images_missing": MessageLookupByLibrary.simpleMessage(
+            "Please upload at least one image."),
+        "please_wait_publishing": MessageLookupByLibrary.simpleMessage(
+            "Please Wait, Your Service is Being Published"),
+        "publish": MessageLookupByLibrary.simpleMessage("Publish"),
+        "selected_location":
+            MessageLookupByLibrary.simpleMessage("Selected Location"),
+        "service_name_missing": MessageLookupByLibrary.simpleMessage(
+            "Please provide a service name.")
       };
 }

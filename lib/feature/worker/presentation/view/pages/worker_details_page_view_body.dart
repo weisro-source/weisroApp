@@ -38,6 +38,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                 child: ImageListInDetailsPage(
                   pageController: pageController,
                   imageList: const [],
+                  isReview: false,
                 ),
               ),
               15.kh,

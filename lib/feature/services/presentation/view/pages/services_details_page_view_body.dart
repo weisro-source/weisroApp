@@ -14,6 +14,7 @@ import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
+import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/ad_widget_in_details.dart';
@@ -22,9 +23,13 @@ import '../../../../../core/widgets/time_widget.dart';
 
 class ServicesDetailsPageViewBody extends StatefulWidget {
   const ServicesDetailsPageViewBody(
-      {super.key, required this.serviceId, required this.oneService});
+      {super.key,
+      required this.serviceId,
+      required this.oneService,
+      required this.isReview});
   final String serviceId;
   final ServiceModel oneService;
+  final bool isReview;
 
   @override
   State<ServicesDetailsPageViewBody> createState() =>
@@ -57,6 +62,7 @@ class _ServicesDetailsPageViewBodyState
                 child: ImageListInDetailsPage(
                   pageController: pageController,
                   imageList: widget.oneService.images ?? [],
+                  isReview: widget.isReview,
                 ),
               ),
               15.kh,
@@ -116,6 +122,7 @@ class _ServicesDetailsPageViewBodyState
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             sliver: DaysList(
               oneServiceDays: widget.oneService.days,
+              isReview: widget.isReview,
             )),
         SliverToBoxAdapter(
           child: 19.kh,
@@ -162,16 +169,44 @@ class _ServicesDetailsPageViewBodyState
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
-            child: AppButton(
-              height: 32,
-              width: 164,
-              // buttonColor: AppColors.whiteColor,
-              // borderColor: AppColors.orangeColor,
-              text: S.of(context).Book_Now,
-              // textStyle: AppStyles.style18w500Green(context)
-              //     .copyWith(color: AppColors.orangeColor),
-              onPressed: () {},
-            ),
+            child: widget.isReview
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: AppButton(
+                          borderColor: AppColors.redColor,
+                          buttonColor: AppColors.redColor,
+                          text: S.of(context).Cancel,
+                          onPressed: () {},
+                        ),
+                      ),
+                      10.kw,
+                      Expanded(
+                        child: AppButton(
+                          borderColor: AppColors.orangeColor,
+                          buttonColor: AppColors.whiteColor,
+                          text: S.of(context).publish,
+                          textStyle: AppStyles.style18w500Grey(context)
+                              .copyWith(color: AppColors.orangeColor),
+                          onPressed: () async {
+                            await AddServiceCubit.get(context)
+                                .addServiceCallApi(context);
+                          },
+                        ),
+                      )
+                    ],
+                  )
+                : AppButton(
+                    height: 32,
+                    width: 164,
+                    // buttonColor: AppColors.whiteColor,
+                    // borderColor: AppColors.orangeColor,
+                    text: S.of(context).Book_Now,
+                    // textStyle: AppStyles.style18w500Green(context)
+                    //     .copyWith(color: AppColors.orangeColor),
+                    onPressed: () {},
+                  ),
           ),
         ),
         SliverToBoxAdapter(

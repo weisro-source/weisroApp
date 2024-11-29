@@ -25,6 +25,8 @@ class CustomTextFormFiled extends StatelessWidget {
     this.fillColor,
     this.filled,
     this.readOnly,
+    this.borderRadius = 4,
+    this.bottomPadding = 0,
   });
 
   final TextEditingController? controller;
@@ -44,16 +46,18 @@ class CustomTextFormFiled extends StatelessWidget {
   final TextInputAction? textInputAction;
   final int? maxLength;
   final double topPadding;
+  final double bottomPadding;
   final Color? fillColor;
   final bool? filled;
   final bool? readOnly;
+  final double? borderRadius;
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: 0.0,
       shadowColor: AppColors.shadowColor,
       child: TextFormField(
-        readOnly: readOnly ?? true,
+        readOnly: readOnly ?? false,
         textInputAction: textInputAction,
         maxLines: maxLines,
         minLines: minLines,
@@ -75,38 +79,38 @@ class CustomTextFormFiled extends StatelessWidget {
           suffixIcon: suffixIcon,
           hintStyle: AppStyles.style12w400Second2(context),
           errorText: errorText,
-          contentPadding:
-              EdgeInsetsDirectional.only(start: 15, top: topPadding),
+          contentPadding: EdgeInsetsDirectional.only(
+              start: 15, top: topPadding, bottom: bottomPadding, end: 0),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: BorderSide(
               color: borderColor,
               width: 1,
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: BorderSide(
               color: borderColor,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: BorderSide(
               color: borderColor,
               width: 1,
             ),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: const BorderSide(
               color: AppColors.redColor,
               width: 1,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: const BorderSide(
               color: AppColors.redColor,
               width: 1,

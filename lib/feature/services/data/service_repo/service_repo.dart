@@ -6,4 +6,6 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 abstract class ServiceRepository {
   Future<Either<Failure, ServiceModel>> getServiceById(
       BuildContext context, String serviceId);
+  Future<Either<Failure, String>> addService(
+      BuildContext context, var service);
 }

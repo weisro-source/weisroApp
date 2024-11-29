@@ -145,5 +145,15 @@
     "Payment_Method": "Zahlungsmethode",
     "Total_Cost": "Gesamtkosten",
     "Rental_Period": "Mietzeitraum",
-    "Rental_History": "Mietverlauf"
+    "Rental_History": "Mietverlauf",
+    "daily_price_invalid": "Bitte geben Sie einen gültigen Tagespreis ein.",
+    "hourly_price_invalid": "Bitte geben Sie einen gültigen Stundenpreis ein.",
+    "description_missing": "Bitte geben Sie eine Beschreibung ein.",
+    "service_name_missing": "Bitte geben Sie einen Dienstnamen an.",
+    "days_missing": "Bitte wählen Sie mindestens einen Tag aus.",
+    "images_missing": "Bitte laden Sie mindestens ein Bild hoch.",
+    "Service_Name": "Dienstname",
+    "selected_location": "Ausgewählter Standort",
+    "publish": "Veröffentlichen",
+    "please_wait_publishing": "Bitte warten Sie, Ihr Service wird veröffentlicht"
 }

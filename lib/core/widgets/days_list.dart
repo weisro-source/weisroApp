@@ -9,8 +9,10 @@ class DaysList extends StatelessWidget {
   const DaysList({
     super.key,
     this.oneServiceDays,
+    this.isReview,
   });
   final List<String>? oneServiceDays;
+  final bool? isReview;
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -27,16 +29,20 @@ class DaysList extends StatelessWidget {
             return BlocBuilder<WorkerDayCubit, List<String>>(
               builder: (context, selectedDays) {
                 bool isSelected = false;
-                if (oneServiceDays != null) {
+
+                if (oneServiceDays != null && isReview != null && isReview!) {
+                  isSelected = oneServiceDays?.contains(dayKey) ?? false;
+                } else if (oneServiceDays != null) {
                   isSelected = oneServiceDays!.contains(dayKey);
                 } else {
-                  isSelected = context.read<WorkerDayCubit>().isSelected(day);
+                  isSelected =
+                      context.read<WorkerDayCubit>().isSelected(dayKey);
                 }
                 return WorkDay(
                   day: day,
                   onTap: () => oneServiceDays != null
                       ? null
-                      : context.read<WorkerDayCubit>().toggleDay(day),
+                      : context.read<WorkerDayCubit>().toggleDay(dayKey),
                   isSelected: isSelected,
                 );
               },

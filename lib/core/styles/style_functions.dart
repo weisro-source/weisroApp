@@ -21,9 +21,11 @@ class StyleFunctions {
       borderRadius: BorderRadiusDirectional.circular(4),
     );
   }
-static ShapeDecoration decorationRadius8Orange() {
+
+  static ShapeDecoration decorationRadius8Orange(
+      [Color containerColor = AppColors.whiteColor]) {
     return ShapeDecoration(
-      color: AppColors.whiteColor,
+      color: containerColor,
       shape: RoundedRectangleBorder(
         side: const BorderSide(width: 1, color: AppColors.orangeColor),
         borderRadius: BorderRadius.circular(8),

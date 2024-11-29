@@ -33,6 +33,7 @@ class ServicesDetailsPageView extends StatelessWidget {
             return ServicesDetailsPageViewBody(
               serviceId: serviceId,
               oneService: getServiceByIdState.oneService,
+              isReview: false,
             );
           } else {
             return const CustomErrorWidgets();
