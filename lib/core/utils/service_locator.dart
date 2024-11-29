@@ -7,6 +7,8 @@ import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo_impl.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo_impl.dart';
+import 'package:weisro/feature/profile/data/account_repo/account_repo.dart';
+import 'package:weisro/feature/profile/data/account_repo/account_repo_impl.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo_impl.dart';
 
@@ -31,4 +33,5 @@ void setupServiceLocator() {
       AuthenticationRepositoryImplementation());
   getIt.registerSingleton<HomeRepository>(HomeRepositoryImplementation());
   getIt.registerSingleton<ServiceRepository>(ServiceRepositoryImplementation());
+  getIt.registerSingleton<AccountRepository>(AccountRepositoryImplementation());
 }

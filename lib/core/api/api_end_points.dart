@@ -12,4 +12,7 @@ class ApiEndPoints {
   static const String getServicesById = '/service/?category_id=';
   static const String getServiceById = '/service/';
   static const String addService = '/service';
+
+  // user Rotes
+  static const String getInfoEndPoint = '/user/info';
 }

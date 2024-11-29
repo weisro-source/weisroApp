@@ -9,6 +9,8 @@ abstract class Constants {
   static const String messageFromResponse = 'message';
   static const String categoryTypeServices = 'services';
   static const String categoryTypeWorker = 'worker';
+  static const String deutschLanguage = 'de';
+  static const String englishLanguage = 'en';
 
   /// this global Var for all page limit in pagination Apis
 

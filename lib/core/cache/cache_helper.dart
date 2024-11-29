@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
+import 'package:weisro/feature/auth/data/models/user_client_model.dart';
 
 class CacheHelper {
   static late SharedPreferences sharedPreferences;
@@ -41,5 +43,14 @@ class CacheHelper {
 
   static Future<void> clearCache() async {
     await sharedPreferences.clear();
+  }
+
+  static cacheUserData(UserClientModel user) async {
+    await CacheHelper.setData(
+        key: CacheKeys.kUserFirstName, value: user.firstName);
+    await CacheHelper.setData(
+        key: CacheKeys.kUserLastName, value: user.lastName);
+    await CacheHelper.setData(key: CacheKeys.kUserEmail, value: user.email);
+    await CacheHelper.setData(key: CacheKeys.kUserPhone, value: user.phone);
   }
 }

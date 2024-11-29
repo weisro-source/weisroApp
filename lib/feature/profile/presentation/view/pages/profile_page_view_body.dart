@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 
 import 'package:weisro/core/widgets/custom_dash_line.dart';
+import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../data/models/profile_option.dart';
@@ -38,9 +40,12 @@ class ProfilePageViewBody extends StatelessWidget {
               ),
               20.kh,
               CustomProfileOptionWidget(
-                  item: ProfileOption(() {},
-                      title: S.of(context).Language,
-                      icon: IconsPath.iconsLanguage)),
+                  item: ProfileOption(() {
+                CustomDialog.showLanguageDialog(
+                  context,
+                  "dialogTitle",
+                );
+              }, title: S.of(context).Language, icon: IconsPath.iconsLanguage)),
               16.kh,
               CustomProfileOptionWidget(
                   item: ProfileOption(() {},
