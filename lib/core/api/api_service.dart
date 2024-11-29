@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/ansi_color.dart';
-import 'package:weisro/core/utils/logger.dart';
 
 class ApiService {
   final Dio dio;
@@ -82,7 +81,8 @@ class ApiService {
     String? token = CacheHelper.getData(key: CacheKeys.kToken);
     // String tokenDebug =
     //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEzNzAwNjc0fQ.hNrOSLZmvRdYEw8oAiHuRBvW7I2i_N11pc0KKeKyWrc";
-    LoggerHelper.debug(token ?? "");
+    // LoggerHelper.debug(token ?? "");
+    // log(token ?? "");
 
     if (token != null && token.isNotEmpty) {
       dio.options.headers["Authorization"] = "Bearer $token";

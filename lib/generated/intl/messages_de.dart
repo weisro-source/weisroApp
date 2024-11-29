@@ -193,6 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
+        "Service_Name": MessageLookupByLibrary.simpleMessage("Dienstname"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),
         "Services_provided": MessageLookupByLibrary.simpleMessage(
@@ -231,6 +232,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Ihre Bestellung"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Ihre Beiträge"),
-        "date": MessageLookupByLibrary.simpleMessage("Datum")
+        "daily_price_invalid": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie einen gültigen Tagespreis ein."),
+        "date": MessageLookupByLibrary.simpleMessage("Datum"),
+        "days_missing": MessageLookupByLibrary.simpleMessage(
+            "Bitte wählen Sie mindestens einen Tag aus."),
+        "description_missing": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie eine Beschreibung ein."),
+        "hourly_price_invalid": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie einen gültigen Stundenpreis ein."),
+        "images_missing": MessageLookupByLibrary.simpleMessage(
+            "Bitte laden Sie mindestens ein Bild hoch."),
+        "please_wait_publishing": MessageLookupByLibrary.simpleMessage(
+            "Bitte warten Sie, Ihr Service wird veröffentlicht"),
+        "publish": MessageLookupByLibrary.simpleMessage("Veröffentlichen"),
+        "selected_location":
+            MessageLookupByLibrary.simpleMessage("Ausgewählter Standort"),
+        "service_name_missing": MessageLookupByLibrary.simpleMessage(
+            "Bitte geben Sie einen Dienstnamen an.")
       };
 }

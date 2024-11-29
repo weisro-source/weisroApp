@@ -1513,6 +1513,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter a valid daily price.`
+  String get daily_price_invalid {
+    return Intl.message(
+      'Please enter a valid daily price.',
+      name: 'daily_price_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid hourly price.`
+  String get hourly_price_invalid {
+    return Intl.message(
+      'Please enter a valid hourly price.',
+      name: 'hourly_price_invalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide a description.`
+  String get description_missing {
+    return Intl.message(
+      'Please provide a description.',
+      name: 'description_missing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide a service name.`
+  String get service_name_missing {
+    return Intl.message(
+      'Please provide a service name.',
+      name: 'service_name_missing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select at least one day.`
+  String get days_missing {
+    return Intl.message(
+      'Please select at least one day.',
+      name: 'days_missing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload at least one image.`
+  String get images_missing {
+    return Intl.message(
+      'Please upload at least one image.',
+      name: 'images_missing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Name`
+  String get Service_Name {
+    return Intl.message(
+      'Service Name',
+      name: 'Service_Name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected Location`
+  String get selected_location {
+    return Intl.message(
+      'Selected Location',
+      name: 'selected_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Publish`
+  String get publish {
+    return Intl.message(
+      'Publish',
+      name: 'publish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Wait, Your Service is Being Published`
+  String get please_wait_publishing {
+    return Intl.message(
+      'Please Wait, Your Service is Being Published',
+      name: 'please_wait_publishing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

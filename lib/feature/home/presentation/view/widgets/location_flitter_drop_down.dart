@@ -1,8 +1,8 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
 
 class LocationFlitterDropDown extends StatelessWidget {
   const LocationFlitterDropDown({
@@ -19,6 +19,7 @@ class LocationFlitterDropDown extends StatelessWidget {
     this.iconColor = AppColors.orangeColor,
     this.iconWidth = 9,
     this.iconHeight = 9,
+    this.onChanged,
   });
 
   final String selectedLocation;
@@ -29,52 +30,60 @@ class LocationFlitterDropDown extends StatelessWidget {
   final double borderWidth, borderRadius;
 
   final Color borderColor, fillColor, iconColor;
+  final void Function(String?)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
       width: width,
-      child: DropdownButtonFormField<String>(
-        value: selectedLocation,
-        items: locations.map((location) {
-          return DropdownMenuItem(
-            value: location,
-            child: Text(
-              location,
-              style: AppStyles.style10w400Grey(context),
-            ),
-          );
-        }).toList(),
-        onChanged: (newValue) {
-          // Handle selection changes
+      child: DropdownSearch<String>(
+        selectedItem: selectedLocation,
+        items: (filter, loadProps) {
+          return locations;
         },
-        decoration: InputDecoration(
-          prefixIcon: SvgPicture.asset(
-            fit: BoxFit.scaleDown,
-            height: iconHeight,
-            width: iconWidth,
-            prefixIcon,
-            colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+        decoratorProps: DropDownDecoratorProps(
+          decoration: InputDecoration(
+            prefixIcon: SvgPicture.asset(
+              fit: BoxFit.scaleDown,
+              height: iconHeight,
+              width: iconWidth,
+              prefixIcon,
+              colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+            ),
+            fillColor: fillColor,
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor, width: borderWidth),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor, width: borderWidth),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor, width: borderWidth),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor, width: borderWidth),
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           ),
-          fillColor: fillColor,
-          filled: true,
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-            borderRadius: BorderRadius.circular(borderRadius),
+        ),
+        onChanged: onChanged,
+        popupProps: PopupProps.menu(
+          showSearchBox: true,
+          searchFieldProps: TextFieldProps(
+            decoration: InputDecoration(
+              hintText: "Search location",
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: borderColor, width: borderWidth),
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
+            ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor, width: borderWidth),
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 8),
         ),
       ),
     );

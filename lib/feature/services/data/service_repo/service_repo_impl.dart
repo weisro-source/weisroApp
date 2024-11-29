@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/api/api_end_points.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
 import 'package:weisro/core/api/api_service.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo.dart';
@@ -19,6 +20,22 @@ class ServiceRepositoryImplementation implements ServiceRepository {
       return right(ServiceModel.fromJson(response));
     } catch (errorInGetServiceById) {
       return left(ErrorHandler.handleError(errorInGetServiceById));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> addService(
+      BuildContext context, var service) async {
+    try {
+      var response = await _apiService.post(
+          endPoint: ApiEndPoints.addService, data: service);
+      if (response["message"] != null && response["message"] is String) {
+        return right(response["message"]);
+      } else {
+        return left(ErrorHandler.handleError(Constants.responseIsNull));
+      }
+    } catch (errorInAddService) {
+      return left(ErrorHandler.handleError(errorInAddService));
     }
   }
 }

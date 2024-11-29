@@ -54,6 +54,10 @@ class IconsPath {
   /// assets/icons/google.svg
   static const String iconsGoogle = "assets/icons/google.svg";
 
+  /// Assets for iconsGoogleMaps
+  /// assets/icons/google-maps.png
+  static const String iconsGoogleMaps = "assets/icons/google-maps.png";
+
   /// Assets for iconsHome
   /// assets/icons/home.svg
   static const String iconsHome = "assets/icons/home.svg";
@@ -69,6 +73,10 @@ class IconsPath {
   /// Assets for iconsLinesRight
   /// assets/icons/linesRight.svg
   static const String iconsLinesRight = "assets/icons/linesRight.svg";
+
+  /// Assets for iconsLoadingAnmation
+  /// assets/icons/loading_anmation.json
+  static const String iconsLoadingAnimation = "assets/icons/loading_anmation.json";
 
   /// Assets for iconsLocation
   /// assets/icons/location.svg

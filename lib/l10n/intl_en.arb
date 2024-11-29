@@ -146,5 +146,15 @@
     "Payment_Method": "Payment method",
     "Total_Cost": "The total cost",
     "Rental_Period": "Rental period",
-    "Rental_History": "Rental history"
+    "Rental_History": "Rental history",
+    "daily_price_invalid": "Please enter a valid daily price.",
+    "hourly_price_invalid": "Please enter a valid hourly price.",
+    "description_missing": "Please provide a description.",
+    "service_name_missing": "Please provide a service name.",
+    "days_missing": "Please select at least one day.",
+    "images_missing": "Please upload at least one image.",
+    "Service_Name": "Service Name",
+    "selected_location": "Selected Location",
+    "publish": "Publish",
+    "please_wait_publishing": "Please Wait, Your Service is Being Published"
 }

@@ -3,9 +3,9 @@ class ServiceModel {
   final String? name;
   final String? description;
   final List<String>? days;
-  final int? dailyPrice;
+  final num? dailyPrice;
   final Time? time;
-  final int? hourlyPrice;
+  final num? hourlyPrice;
   final List<String>? images;
   final Location? location;
   const ServiceModel(
@@ -23,9 +23,9 @@ class ServiceModel {
       String? name,
       String? description,
       List<String>? days,
-      int? dailyPrice,
+      num? dailyPrice,
       Time? time,
-      int? hourlyPrice,
+      num? hourlyPrice,
       List<String>? images,
       Location? location}) {
     return ServiceModel(
@@ -64,12 +64,12 @@ class ServiceModel {
             ? null
             : (json['days'] as List).map((e) => e as String).toList(),
         dailyPrice:
-            json['daily_price'] == null ? null : json['daily_price'] as int,
+            json['daily_price'] == null ? null : json['daily_price'] as num,
         time: json['time'] == null
             ? null
             : Time.fromJson(json['time'] as Map<String, Object?>),
         hourlyPrice:
-            json['hourly_price'] == null ? null : json['hourly_price'] as int,
+            json['hourly_price'] == null ? null : json['hourly_price'] as num,
         images: json['images'] == null
             ? null
             : (json['images'] as List).map((e) => e as String).toList(),

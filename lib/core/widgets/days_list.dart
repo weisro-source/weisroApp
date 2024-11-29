@@ -8,8 +8,11 @@ import 'package:weisro/feature/auth/register/presentation/view/widgets/work_day.
 class DaysList extends StatelessWidget {
   const DaysList({
     super.key,
+    this.oneServiceDays,
+    this.isReview,
   });
-
+  final List<String>? oneServiceDays;
+  final bool? isReview;
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -20,14 +23,26 @@ class DaysList extends StatelessWidget {
           shrinkWrap: true,
           clipBehavior: Clip.none,
           itemBuilder: (context, index) {
+            final dayKey =
+                WorkerTime.daysSelected(context).keys.toList()[index];
             final day = WorkerTime.daysSelected(context).values.toList()[index];
             return BlocBuilder<WorkerDayCubit, List<String>>(
               builder: (context, selectedDays) {
-                final isSelected =
-                    context.read<WorkerDayCubit>().isSelected(day);
+                bool isSelected = false;
+
+                if (oneServiceDays != null && isReview != null && isReview!) {
+                  isSelected = oneServiceDays?.contains(dayKey) ?? false;
+                } else if (oneServiceDays != null) {
+                  isSelected = oneServiceDays!.contains(dayKey);
+                } else {
+                  isSelected =
+                      context.read<WorkerDayCubit>().isSelected(dayKey);
+                }
                 return WorkDay(
                   day: day,
-                  onTap: () => context.read<WorkerDayCubit>().toggleDay(day),
+                  onTap: () => oneServiceDays != null
+                      ? null
+                      : context.read<WorkerDayCubit>().toggleDay(dayKey),
                   isSelected: isSelected,
                 );
               },
