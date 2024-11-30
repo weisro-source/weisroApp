@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
-import 'package:weisro/core/assets_path/icons_path.dart';
-import 'package:weisro/core/styles/app_style.dart';
-import 'package:weisro/core/utils/sized_box_extension.dart';
+
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 import 'package:weisro/feature/services/presentation/view/pages/services_details_page_view_body.dart';
-import 'package:weisro/generated/l10n.dart';
+
+import 'add_service_loading_page_view.dart';
 
 class ServiceReviewPageView extends StatelessWidget {
   const ServiceReviewPageView({Key? key, required this.oneService})
@@ -27,25 +25,7 @@ class ServiceReviewPageView extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, addServiceState) {
             if (addServiceState is AddServiceStateLoading) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Lottie.asset(
-                      IconsPath.iconsLoadingAnimation,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  25.kh,
-                  Text(
-                    S.of(context).please_wait_publishing,
-                    style: AppStyles.style18w500Green(context),
-                  )
-                ],
-              );
+              return const AddServiceLoadingPage();
             } else {
               return ServicesDetailsPageViewBody(
                 serviceId: "-404",

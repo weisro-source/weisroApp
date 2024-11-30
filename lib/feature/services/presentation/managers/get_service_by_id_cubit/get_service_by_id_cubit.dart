@@ -23,4 +23,13 @@ class GetServiceByIdCubit extends Cubit<GetServiceByIdState> {
       },
     );
   }
+
+  void changeFavoriteValueForService(bool isFavorite) {
+    if (state is GetServiceByIdSuccess) {
+      final currentState = state as GetServiceByIdSuccess;
+      final updatedService =
+          currentState.oneService.copyWith(isFavorite: !isFavorite);
+      emit(GetServiceByIdSuccess(oneService: updatedService));
+    }
+  }
 }

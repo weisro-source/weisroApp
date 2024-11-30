@@ -44,14 +44,15 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   /// Dynamically create a new ServiceModel instance
   ServiceModel get newService {
     return ServiceModel(
-        dailyPrice: num.tryParse(pricePerDayController.text) ?? 0,
-        hourlyPrice: num.tryParse(pricePerHourController.text) ?? 0,
-        images: imagePaths,
-        description: descriptionController.text,
-        days: days,
-        name: "MY Services",
-        location: const Location(latitude: 20, longitude: 30),
-        time: Time(start: formattedStartTime, end: formattedEndTime));
+        service: Service(
+            dailyPrice: num.tryParse(pricePerDayController.text) ?? 0,
+            hourlyPrice: num.tryParse(pricePerHourController.text) ?? 0,
+            images: imagePaths,
+            description: descriptionController.text,
+            days: days,
+            name: "MY Services",
+            location: const Location(latitude: 20, longitude: 30),
+            time: Time(start: formattedStartTime, end: formattedEndTime)));
   }
 
   /// Validate all inputs and return a boolean

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
+import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/onboarding/data/onboarding_image.dart';
@@ -26,6 +30,9 @@ class _OnBoardingPageViewBodyState extends State<OnBoardingPageViewBody>
   @override
   void initState() {
     super.initState();
+    if (CacheHelper.getData(key: CacheKeys.kLanguage) == null) {
+      BlocProvider.of<LanguageCubit>(context).localLang = 'en';
+    }
     _onboardingController = OnboardingController(
       vsync: this,
       itemCount: OnBoardingImage.imageList.length,

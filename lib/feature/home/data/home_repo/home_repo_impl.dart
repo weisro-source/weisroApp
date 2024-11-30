@@ -10,6 +10,7 @@ import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo.dart';
 import 'package:weisro/feature/home/data/models/all_services_model.dart';
 import 'package:weisro/feature/home/data/models/category_model.dart';
+import 'package:weisro/feature/home/data/models/last_service_model.dart';
 
 class HomeRepositoryImplementation implements HomeRepository {
   // Initialize the ApiService using dependency injection
@@ -39,6 +40,20 @@ class HomeRepositoryImplementation implements HomeRepository {
           endPoint:
               "${ApiEndPoints.getServicesById}$categoryId&page=$pageNumber&limit=${Constants.limitInPage}");
       return right(AllServicesModel.fromJson(response));
+    } catch (errorInGetServicesByCategoryId) {
+      return left(ErrorHandler.handleError(errorInGetServicesByCategoryId));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LastServicesModel>> getLastServiceApi(
+      BuildContext context,
+      [int pageNumber = 1]) async {
+    try {
+      var response = await _apiService.get(
+          endPoint:
+              "${ApiEndPoints.getLastService}page=$pageNumber&limit=${Constants.limitInPage}");
+      return right(LastServicesModel.fromJson(response));
     } catch (errorInGetServicesByCategoryId) {
       return left(ErrorHandler.handleError(errorInGetServicesByCategoryId));
     }

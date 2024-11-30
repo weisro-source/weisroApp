@@ -38,12 +38,15 @@ class LocationFlitterDropDown extends StatelessWidget {
       height: height,
       width: width,
       child: DropdownSearch<String>(
+      
         selectedItem: selectedLocation,
         items: (filter, loadProps) {
           return locations;
         },
         decoratorProps: DropDownDecoratorProps(
+          
           decoration: InputDecoration(
+          
             prefixIcon: SvgPicture.asset(
               fit: BoxFit.scaleDown,
               height: iconHeight,

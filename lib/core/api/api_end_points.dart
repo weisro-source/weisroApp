@@ -9,7 +9,15 @@ class ApiEndPoints {
   //get category by type end point
   /// add type for this [service,worker]
   static const String getCategoryByType = '/category?type=';
+  static const String getLastService = '/service/?';
   static const String getServicesById = '/service/?category_id=';
   static const String getServiceById = '/service/';
   static const String addService = '/service';
+
+  // user Rotes
+  static const String getInfoEndPoint = '/user/info';
+
+  // favorite Rotes
+  static const String getFavorite = '/user-favorites';
+  static const String addServiceToFavorite = '/user-favorites';
 }

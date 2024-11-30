@@ -1,18 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/feature/favorite/data/models/favorite_model.dart';
 
 import 'rate_widget.dart';
 
 class ServiceItem extends StatelessWidget {
   const ServiceItem({
     super.key,
+    required this.favoriteService,
   });
-
+  final Docs favoriteService;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,11 +45,20 @@ class ServiceItem extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Image.asset(
-              ImagePath.imagesService,
+            child: CachedNetworkImage(
+              imageUrl:
+                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(favoriteService.service?.images ?? []) ?? ""}",
               width: 105,
               height: 56,
               fit: BoxFit.scaleDown,
+              errorWidget: (context, url, error) {
+                return Image.asset(
+                  ImagePath.imagesService,
+                  width: 105,
+                  height: 56,
+                  fit: BoxFit.scaleDown,
+                );
+              },
             ),
           ),
           8.kw,
@@ -57,11 +71,13 @@ class ServiceItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Rent a car digging",
+                        favoriteService.service?.name ?? "",
                         style: AppStyles.style10w400Grey(context),
                       ),
                       const Spacer(),
-                      const RateWidget(),
+                      RateWidget(
+                        rate: favoriteService.service?.rate.toString() ?? "",
+                      ),
                       9.kw,
                     ],
                   ),
@@ -89,7 +105,7 @@ class ServiceItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        "\$500",
+                        "\$${favoriteService.service?.price.toString()}",
                         style: AppStyles.style10w500Red(context)
                             .copyWith(color: AppColors.orangeColor),
                       ),

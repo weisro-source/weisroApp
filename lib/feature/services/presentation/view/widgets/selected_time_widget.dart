@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/styles/style_functions.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
-import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 
 class SelectedTimeWidget extends StatelessWidget {
   const SelectedTimeWidget({
@@ -15,7 +14,7 @@ class SelectedTimeWidget extends StatelessWidget {
   final void Function(DateTime)? onChangeDateTime;
   @override
   Widget build(BuildContext context) {
-    AddServiceCubit addServiceCubit = AddServiceCubit.get(context);
+    // AddServiceCubit addServiceCubit = AddServiceCubit.get(context);
   
     return Expanded(
         child: GestureDetector(
