@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -15,6 +18,8 @@ import 'package:weisro/feature/auth/register/presentation/view/widgets/question_
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
+import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
+import 'package:weisro/feature/services/presentation/managers/get_service_by_id_cubit/get_service_by_id_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/ad_widget_in_details.dart';
@@ -42,12 +47,14 @@ class _ServicesDetailsPageViewBodyState
   TextEditingController deceptionTextController = TextEditingController();
   @override
   void initState() {
-    deceptionTextController.text = widget.oneService.description ?? "";
+    deceptionTextController.text = widget.oneService.service?.description ?? "";
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    AddServiceToFavoriteCubit addServiceToFavoriteCubit =
+        AddServiceToFavoriteCubit.get(context);
     return CustomScrollView(
       slivers: [
         CustomAppBar(
@@ -61,27 +68,46 @@ class _ServicesDetailsPageViewBodyState
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
                 child: ImageListInDetailsPage(
                   pageController: pageController,
-                  imageList: widget.oneService.images ?? [],
+                  imageList: widget.oneService.service?.images ?? [],
                   isReview: widget.isReview,
                 ),
               ),
               15.kh,
               PageIndicatorWidget(
                   controller: pageController,
-                  count: widget.oneService.images?.length ?? 0),
+                  count: widget.oneService.service?.images?.length ?? 0),
               22.kh,
-              ServiceNameRowWidget(
-                serviceName: widget.oneService.name ?? "",
-                onFavPressed: () {
-                  // Add your logic for favorite button
+              BlocConsumer<AddServiceToFavoriteCubit,
+                  AddServiceToFavoriteState>(
+                listener: (context, addServiceToFavoriteState) {
+                  if (addServiceToFavoriteState
+                      is AddServiceToFavoriteSuccess) {
+                    GetServiceByIdCubit.get(context)
+                        .changeFavoriteValueForService(
+                            widget.oneService.isFavorite ?? false);
+                    log(addServiceToFavoriteState.message);
+                  }
                 },
-                onSharePressed: () {
-                  // Add your logic for share button
+                builder: (context, addServiceToFavoriteState) {
+                  return ServiceNameRowWidget(
+                    isFav: widget.oneService.isFavorite ?? false,
+                    serviceName: widget.oneService.service?.name ?? "",
+                    onFavPressed: () async {
+                      await addServiceToFavoriteCubit.addServiceToFavorite(
+                          context, widget.oneService.service?.id ?? "");
+                      // Add your logic for favorite button
+                    },
+                    onSharePressed: () {
+                      // Add your logic for share button
+                    },
+                    isFavLoading: addServiceToFavoriteState
+                        is AddServiceToFavoriteLoading,
+                  );
                 },
               ),
               15.kh,
               LocationPriceRowWidget(
-                price: '\$${widget.oneService.dailyPrice} ST',
+                price: '\$${widget.oneService.service?.dailyPrice} ST',
               ),
               14.kh,
               Padding(
@@ -95,14 +121,15 @@ class _ServicesDetailsPageViewBodyState
                 children: [
                   27.kw,
                   // this start time for service
-                  TimeWidget(time: widget.oneService.time?.start ?? ""),
+                  TimeWidget(
+                      time: widget.oneService.service?.time?.start ?? ""),
                   35.kw,
                   Text(
                     S.of(context).To,
                     style: AppStyles.style14w400Grey(context),
                   ),
                   23.kw,
-                  TimeWidget(time: widget.oneService.time?.end ?? "")
+                  TimeWidget(time: widget.oneService.service?.time?.end ?? "")
                 ],
               ),
               18.kh,
@@ -121,7 +148,7 @@ class _ServicesDetailsPageViewBodyState
         SliverPadding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             sliver: DaysList(
-              oneServiceDays: widget.oneService.days,
+              oneServiceDays: widget.oneService.service?.days,
               isReview: widget.isReview,
             )),
         SliverToBoxAdapter(

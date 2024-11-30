@@ -45,6 +45,8 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               PageIndicatorWidget(controller: pageController, count: 4),
               22.kh,
               ServiceNameRowWidget(
+              isFav: false,
+                isFavLoading: false,
                 serviceName: "Name Worker",
                 onFavPressed: () {
                   // Add your logic for favorite button

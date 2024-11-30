@@ -15,4 +15,8 @@ class ApiEndPoints {
 
   // user Rotes
   static const String getInfoEndPoint = '/user/info';
+
+  // favorite Rotes
+  static const String getFavorite = '/user-favorites';
+  static const String addServiceToFavorite = '/user-favorites';
 }

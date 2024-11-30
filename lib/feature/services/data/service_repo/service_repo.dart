@@ -8,4 +8,6 @@ abstract class ServiceRepository {
       BuildContext context, String serviceId);
   Future<Either<Failure, String>> addService(
       BuildContext context, var service);
+  Future<Either<Failure, String>> addServiceToFavorite(
+      BuildContext context, String serviceId );
 }

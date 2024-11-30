@@ -28,7 +28,9 @@ class SearchResultPageViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: 10.kh,
         ),
-        const ServiceItemList()
+        const ServiceItemList(
+          allFavorite: [],
+        )
       ],
     );
   }

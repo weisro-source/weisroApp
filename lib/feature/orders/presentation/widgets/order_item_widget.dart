@@ -101,7 +101,9 @@ class OrderItemWidget extends StatelessWidget {
                       styleLocationText: AppStyles.style10w400Grey(context),
                     ),
                     const Spacer(),
-                    const RateWidget()
+                    const RateWidget(
+                      rate: "",
+                    )
                   ],
                 ),
               ],

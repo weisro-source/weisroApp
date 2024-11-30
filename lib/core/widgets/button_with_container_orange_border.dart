@@ -3,13 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/styles/app_color.dart';
 
 class ButtonWithContainerOrangeBorder extends StatelessWidget {
-  const ButtonWithContainerOrangeBorder({
-    super.key,
-    this.onPressed,
-    required this.icon,
-  });
+  const ButtonWithContainerOrangeBorder(
+      {super.key,
+      this.onPressed,
+      required this.icon,
+      this.color = AppColors.greyColor});
   final void Function()? onPressed;
   final String icon;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,8 +36,7 @@ class ButtonWithContainerOrangeBorder extends StatelessWidget {
             onPressed: onPressed,
             icon: SvgPicture.asset(
               icon,
-              colorFilter:
-                  const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             )),
       ),
     );

@@ -8,14 +8,15 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 class RateWidget extends StatelessWidget {
   const RateWidget({
     super.key,
+    required this.rate,
   });
-
+  final String rate;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Text(
-          "4.5",
+          rate,
           style: AppStyles.style10w400Grey(context)
               .copyWith(color: AppColors.orangeColor),
         ),

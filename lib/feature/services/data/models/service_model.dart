@@ -1,4 +1,50 @@
 class ServiceModel {
+  final Service? service;
+  final bool? isFavorite;
+  const ServiceModel({this.service, this.isFavorite});
+  ServiceModel copyWith({Service? service, bool? isFavorite}) {
+    return ServiceModel(
+        service: service ?? this.service,
+        isFavorite: isFavorite ?? this.isFavorite);
+  }
+
+  Map<String, Object?> toJson() {
+    return {'service': service?.toJson(), 'isFavorite': isFavorite};
+  }
+
+  static ServiceModel fromJson(Map<String, Object?> json) {
+    return ServiceModel(
+        service: json['service'] == null
+            ? null
+            : Service.fromJson(json['service'] as Map<String, Object?>),
+        isFavorite:
+            json['isFavorite'] == null ? null : json['isFavorite'] as bool);
+  }
+
+  @override
+  String toString() {
+    return '''ServiceModel(
+                service:${service.toString()},
+isFavorite:$isFavorite
+    ) ''';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ServiceModel &&
+        other.runtimeType == runtimeType &&
+        other.service == service &&
+        other.isFavorite == isFavorite;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(runtimeType, service, isFavorite);
+  }
+}
+
+class Service {
+  final double? rate;
   final String? id;
   final String? name;
   final String? description;
@@ -8,8 +54,10 @@ class ServiceModel {
   final num? hourlyPrice;
   final List<String>? images;
   final Location? location;
-  const ServiceModel(
-      {this.id,
+  final String? date;
+  const Service(
+      {this.rate,
+      this.id,
       this.name,
       this.description,
       this.days,
@@ -17,9 +65,11 @@ class ServiceModel {
       this.time,
       this.hourlyPrice,
       this.images,
-      this.location});
-  ServiceModel copyWith(
-      {String? id,
+      this.location,
+      this.date});
+  Service copyWith(
+      {double? rate,
+      String? id,
       String? name,
       String? description,
       List<String>? days,
@@ -27,8 +77,10 @@ class ServiceModel {
       Time? time,
       num? hourlyPrice,
       List<String>? images,
-      Location? location}) {
-    return ServiceModel(
+      Location? location,
+      String? date}) {
+    return Service(
+        rate: rate ?? this.rate,
         id: id ?? this.id,
         name: name ?? this.name,
         description: description ?? this.description,
@@ -37,11 +89,13 @@ class ServiceModel {
         time: time ?? this.time,
         hourlyPrice: hourlyPrice ?? this.hourlyPrice,
         images: images ?? this.images,
-        location: location ?? this.location);
+        location: location ?? this.location,
+        date: date ?? this.date);
   }
 
   Map<String, Object?> toJson() {
     return {
+      'rate': rate,
       '_id': id,
       'name': name,
       'description': description,
@@ -50,38 +104,53 @@ class ServiceModel {
       'time': time?.toJson(),
       'hourly_price': hourlyPrice,
       'images': images,
-      'location': location?.toJson()
+      'location': location?.toJson(),
+      'date': date
     };
   }
 
-  static ServiceModel fromJson(Map<String, Object?> json) {
-    return ServiceModel(
-        id: json['_id'] == null ? null : json['_id'] as String,
-        name: json['name'] == null ? null : json['name'] as String,
-        description:
-            json['description'] == null ? null : json['description'] as String,
-        days: json['days'] == null
-            ? null
-            : (json['days'] as List).map((e) => e as String).toList(),
-        dailyPrice:
-            json['daily_price'] == null ? null : json['daily_price'] as num,
-        time: json['time'] == null
-            ? null
-            : Time.fromJson(json['time'] as Map<String, Object?>),
-        hourlyPrice:
-            json['hourly_price'] == null ? null : json['hourly_price'] as num,
-        images: json['images'] == null
-            ? null
-            : (json['images'] as List).map((e) => e as String).toList(),
-        location: json['location'] == null
-            ? null
-            : Location.fromJson(json['location'] as Map<String, Object?>));
+  static Service fromJson(Map<String, Object?> json) {
+    return Service(
+      rate: json['rate'] == null
+          ? null
+          : (json['rate'] is int
+              ? (json['rate'] as int).toDouble()
+              : json['rate'] as double),
+      id: json['_id'] == null ? null : json['_id'] as String,
+      name: json['name'] == null ? null : json['name'] as String,
+      description:
+          json['description'] == null ? null : json['description'] as String,
+      days: json['days'] == null
+          ? null
+          : (json['days'] as List<dynamic>).map((e) => e as String).toList(),
+      dailyPrice: json['daily_price'] == null
+          ? null
+          : (json['daily_price'] is int
+              ? (json['daily_price'] as int).toDouble()
+              : json['daily_price'] as double),
+      time: json['time'] == null
+          ? null
+          : Time.fromJson(json['time'] as Map<String, Object?>),
+      hourlyPrice: json['hourly_price'] == null
+          ? null
+          : (json['hourly_price'] is int
+              ? (json['hourly_price'] as int).toDouble()
+              : json['hourly_price'] as double),
+      images: json['images'] == null
+          ? null
+          : (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, Object?>),
+      date: json['date'] == null ? null : json['date'] as String,
+    );
   }
 
   @override
   String toString() {
-    return '''ServiceModel(
-                id:$id,
+    return '''Service(
+                rate:$rate,
+id:$id,
 name:$name,
 description:$description,
 days:$days,
@@ -89,14 +158,16 @@ dailyPrice:$dailyPrice,
 time:${time.toString()},
 hourlyPrice:$hourlyPrice,
 images:$images,
-location:${location.toString()}
+location:${location.toString()},
+date:$date
     ) ''';
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ServiceModel &&
+    return other is Service &&
         other.runtimeType == runtimeType &&
+        other.rate == rate &&
         other.id == id &&
         other.name == name &&
         other.description == description &&
@@ -105,13 +176,14 @@ location:${location.toString()}
         other.time == time &&
         other.hourlyPrice == hourlyPrice &&
         other.images == images &&
-        other.location == location;
+        other.location == location &&
+        other.date == date;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, id, name, description, days, dailyPrice,
-        time, hourlyPrice, images, location);
+    return Object.hash(runtimeType, rate, id, name, description, days,
+        dailyPrice, time, hourlyPrice, images, location, date);
   }
 }
 
@@ -119,7 +191,7 @@ class Location {
   final num? latitude;
   final num? longitude;
   const Location({this.latitude, this.longitude});
-  Location copyWith({num? latitude, num? longitude}) {
+  Location copyWith({double? latitude, double? longitude}) {
     return Location(
         latitude: latitude ?? this.latitude,
         longitude: longitude ?? this.longitude);
