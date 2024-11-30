@@ -6,7 +6,8 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit/get_favorite_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
-import 'package:weisro/feature/onboarding/presentation/view/pages/onboarding_page_view.dart';
+import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
+import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -22,6 +23,9 @@ class WeisroApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetUserInfoCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetLastServicesCubit()..getLastService(context),
         ),
         BlocProvider(
           create: (context) => GetFavoriteCubit()..getAllFavorites(context),
@@ -51,7 +55,7 @@ class WeisroApp extends StatelessWidget {
               ),
               useMaterial3: true,
             ),
-            home: const OnBoardingPageView(),
+            home: const SplashView(),
           );
         },
       ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/custom_error_widget.dart';
+import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 import '../widgets/advertisement_widget.dart';
 import '../widgets/category_list_view.dart';
@@ -69,7 +72,10 @@ class HomePageViewBody extends StatelessWidget {
                   iconPath: IconsPath.iconsNew,
                 ),
                 LocationFlitterDropDown(
-                    selectedLocation: selectedLocation, locations: locations)
+                    height: 30,
+                    width: 120,
+                    selectedLocation: selectedLocation,
+                    locations: locations)
               ],
             ),
           ),
@@ -79,7 +85,21 @@ class HomePageViewBody extends StatelessWidget {
         ),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: const ServicesGridViewInHomePage(),
+          sliver: BlocBuilder<GetLastServicesCubit, GetLastServicesState>(
+            builder: (context, getLastService) {
+              if (getLastService is GetLastServicesLoading) {
+                return const ShimmerServicesGridViewInHomePage();
+              } else if (getLastService is GetLastServicesSuccess) {
+                return ServicesGridViewInHomePage(
+                  lastServices: getLastService.lastServices.docs ?? [],
+                );
+              } else {
+                return const SliverToBoxAdapter(
+                  child: CustomErrorWidgets(),
+                );
+              }
+            },
+          ),
         ),
         SliverToBoxAdapter(
           child: 114.kh,
