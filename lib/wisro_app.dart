@@ -26,7 +26,8 @@ class WeisroApp extends StatelessWidget {
           create: (context) => GetUserInfoCubit(),
         ),
         BlocProvider(
-          create: (context) => GetLastServicesCubit()..getLastService(context),
+          create: (context) =>
+              GetLastServicesCubit()..getLastService(context, ""),
         ),
         BlocProvider(
           create: (context) => GetFavoriteCubit()..getAllFavorites(context),

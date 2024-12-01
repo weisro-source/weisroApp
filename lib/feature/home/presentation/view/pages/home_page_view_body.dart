@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
+import 'package:weisro/core/styles/app_color.dart';
 
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_error_widget.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
+import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 import '../widgets/advertisement_widget.dart';
@@ -62,15 +67,45 @@ class HomePageViewBody extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TitleSectionInHomePage(
-                    title: S.of(context).Latest_rental_services,
-                    iconPath: IconsPath.iconsNew,
+                  Expanded(
+                    flex: 1,
+                    child: TitleSectionInHomePage(
+                      title: S.of(context).Latest_rental_services,
+                      iconPath: IconsPath.iconsNew,
+                    ),
                   ),
-                  // LocationFlitterDropDown(
-                  //     height: 30,
-                  //     width: 120,
-                  //     selectedLocation: selectedLocation,
-                  //     locations: locations)
+                  BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                      GetCitiesOfASpecifiedCountryState>(
+                    builder: (context, state) {
+                      if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                        List<String> cityNameList =
+                            state.cities.cities.map((e) => e.name).toList();
+                        String firstCity = cityNameList.firstWhere((cityName) =>
+                            cityName ==
+                            CacheHelper.getData(key: CacheKeys.kCityName));
+                        // String firstCity = cityNameList.first;
+                        return Expanded(
+                          flex: 1,
+                          child: LocationFlitterDropDown(
+                            fillColor: AppColors.whiteColor,
+                            borderColor: AppColors.orangeColor,
+                            iconColor: AppColors.greyColor,
+                            height: 50,
+                            iconHeight: 24,
+                            iconWidth: 10,
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            selectedLocation: firstCity,
+                            locations: cityNameList,
+                            prefixIcon: IconsPath.iconsLocation,
+                            onChanged: (selectedCategory) {},
+                          ),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

@@ -33,14 +33,7 @@ class CreateServicePageViewBody extends StatefulWidget {
 }
 
 class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
-  final List<String> locations = [
-    "All",
-    "October",
-    "New Cairo",
-    "Zamalek",
-    "Maadi"
-  ];
-  String selectedLocation = "All";
+ 
   @override
   void initState() {
     BlocProvider.of<WorkerDayCubit>(context).state.clear();
@@ -80,6 +73,10 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
                 GetCitiesOfASpecifiedCountryState>(
               builder: (context, state) {
                 if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                  List<String> cityNameList =
+                      state.cities.cities.map((e) => e.name).toList();
+                  String firstCity = cityNameList.first;
+
                   return LocationFlitterDropDown(
                     fillColor: AppColors.whiteColor,
                     borderColor: AppColors.orangeColor,
@@ -89,8 +86,8 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
                     iconWidth: 24,
                     borderWidth: 1,
                     borderRadius: 8,
-                    selectedLocation: state.cities.cities.first.name,
-                    locations: state.cities.cities.map((e) => e.name).toList(),
+                    selectedLocation: firstCity,
+                    locations: cityNameList,
                     prefixIcon: IconsPath.iconsLocation,
                     onChanged: (selectedCategory) {},
                   );
