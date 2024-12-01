@@ -77,33 +77,36 @@ class _ServicesDetailsPageViewBodyState
                   controller: pageController,
                   count: widget.oneService.service?.images?.length ?? 0),
               22.kh,
-              BlocConsumer<AddServiceToFavoriteCubit,
-                  AddServiceToFavoriteState>(
-                listener: (context, addServiceToFavoriteState) {
-                  if (addServiceToFavoriteState
-                      is AddServiceToFavoriteSuccess) {
-                    GetServiceByIdCubit.get(context)
-                        .changeFavoriteValueForService(
-                            widget.oneService.isFavorite ?? false);
-                    log(addServiceToFavoriteState.message);
-                  }
-                },
-                builder: (context, addServiceToFavoriteState) {
-                  return ServiceNameRowWidget(
-                    isFav: widget.oneService.isFavorite ?? false,
-                    serviceName: widget.oneService.service?.name ?? "",
-                    onFavPressed: () async {
-                      await addServiceToFavoriteCubit.addServiceToFavorite(
-                          context, widget.oneService.service?.id ?? "");
-                      // Add your logic for favorite button
-                    },
-                    onSharePressed: () {
-                      // Add your logic for share button
-                    },
-                    isFavLoading: addServiceToFavoriteState
-                        is AddServiceToFavoriteLoading,
-                  );
-                },
+              Visibility(
+                visible: !widget.isReview,
+                child: BlocConsumer<AddServiceToFavoriteCubit,
+                    AddServiceToFavoriteState>(
+                  listener: (context, addServiceToFavoriteState) {
+                    if (addServiceToFavoriteState
+                        is AddServiceToFavoriteSuccess) {
+                      GetServiceByIdCubit.get(context)
+                          .changeFavoriteValueForService(
+                              widget.oneService.isFavorite ?? false);
+                      log(addServiceToFavoriteState.message);
+                    }
+                  },
+                  builder: (context, addServiceToFavoriteState) {
+                    return ServiceNameRowWidget(
+                      isFav: widget.oneService.isFavorite ?? false,
+                      serviceName: widget.oneService.service?.name ?? "",
+                      onFavPressed: () async {
+                        await addServiceToFavoriteCubit.addServiceToFavorite(
+                            context, widget.oneService.service?.id ?? "");
+                        // Add your logic for favorite button
+                      },
+                      onSharePressed: () {
+                        // Add your logic for share button
+                      },
+                      isFavLoading: addServiceToFavoriteState
+                          is AddServiceToFavoriteLoading,
+                    );
+                  },
+                ),
               ),
               15.kh,
               LocationPriceRowWidget(

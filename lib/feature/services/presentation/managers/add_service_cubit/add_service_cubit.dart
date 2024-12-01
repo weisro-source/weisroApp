@@ -113,8 +113,8 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       },
       "category_id": categoryId,
       "location": {
-        "latitude": "55",
-        "longitude": "52",
+        "latitude": "48.833332",
+        "longitude": "10.100000",
       },
       "days": days,
       "daily_price": num.tryParse(pricePerDayController.text) ?? 0,
