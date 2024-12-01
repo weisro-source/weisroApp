@@ -22,4 +22,19 @@ class GetLastServicesCubit extends Cubit<GetLastServicesState> {
       },
     );
   }
+
+  void changeFavorite(String serviceId) {
+    if (state is GetLastServicesSuccess) {
+      final currentState = state as GetLastServicesSuccess;
+
+      final serviceOldList = currentState.lastServices.docs;
+      if (serviceOldList != null) {
+        for (int i = 0; i < serviceOldList.length; i++) {
+          if (serviceOldList[i].id == serviceId) {
+            serviceOldList[i] = serviceOldList[i].copyWith();
+          }
+        }
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit/get_favorite_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
@@ -32,6 +33,10 @@ class WeisroApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => LanguageCubit()..initLanguage(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetCitiesOfASpecifiedCountryCubit()..checkIfCountrySelected(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
+
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_all_countries_cubit/get_all_countries_cubit.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/second_worker_and_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/city_drop_down.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_country_dropdown.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../../core/widgets/app_button.dart';
 import '../../../../../../core/widgets/custom_text_form_filed.dart';
 import '../../../../../../core/widgets/title_for_text_from_filed.dart';
-import '../widgets/country_selected_widget.dart';
 import '../widgets/custom_steeper_widget.dart';
 import '../widgets/google_auth_button_widget.dart';
 import '../widgets/have_an_account.dart';
+import '../widgets/loading_filed.dart';
 import '../widgets/or_text_widget.dart';
 
 class WorkerAndClientRegisterPageViewBody extends StatefulWidget {
@@ -128,8 +136,34 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 5.kh,
             ),
-            const SliverToBoxAdapter(
-              child: CountrySelectedWidget(),
+
+            SliverToBoxAdapter(
+              child: BlocBuilder<GetAllCountriesCubit, GetAllCountriesState>(
+                builder: (context, getAllCountriesState) {
+                  if (getAllCountriesState is GetAllCountriesSuccess) {
+                    final countries = getAllCountriesState.countries;
+                    return CountryDropdown(
+                      countries: countries,
+                      selectedCountry:
+                          GetAllCountriesCubit.get(context).selectedCountry,
+                      onChanged: (newCountry) async {
+                        GetAllCountriesCubit.get(context).selectCountry(
+                            newCountry ?? Country(id: "", flag: "", name: ""));
+                        await GetCitiesOfASpecifiedCountryCubit.get(context)
+                            .getAllCitiesOfASpecifiedCountry(
+                                newCountry?.id ?? "");
+                      },
+                    );
+                  } else if (getAllCountriesState is GetAllCountriesLoading) {
+                    return const LoadingFiled();
+                  } else if (getAllCountriesState is GetAllCountriesFailures) {
+                    return const Center(
+                        child: Text("Failed to load countries"));
+                  }
+
+                  return const SizedBox();
+                },
+              ),
             ),
 
             SliverToBoxAdapter(
@@ -142,17 +176,27 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 5.kh,
             ),
+
             SliverToBoxAdapter(
-              child: CustomTextFormFiled(
-                controller: registerCubit.cityController,
-                focusNode: registerCubit.cityFocusNode,
-                hintText: S.of(context).City,
-                keyboardType: TextInputType.streetAddress,
-                validator: (value) => Validate.validateFieldWithTitle(
-                    value, S.of(context).City, context),
-                onFieldSubmitted: (_) {
-                  HelperFunctions.requestNextFocus(registerCubit.cityFocusNode,
-                      registerCubit.postalCodeFocusNode, context);
+              child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                  GetCitiesOfASpecifiedCountryState>(
+                builder: (context, getAllCitiesState) {
+                  if (getAllCitiesState
+                      is GetCitiesOfASpecifiedCountrySuccess) {
+                    return CityDropdown(
+                      cityList: getAllCitiesState.cities,
+                      onChanged: (value) {
+                        GetCitiesOfASpecifiedCountryCubit.get(context)
+                            .cityName = value?.name ?? "";
+                      },
+                      selectedCity: getAllCitiesState.cities.cities.first,
+                    );
+                  } else if (getAllCitiesState
+                      is GetCitiesOfASpecifiedCountryLoading) {
+                    return const LoadingFiled();
+                  } else {
+                    return const SizedBox();
+                  }
                 },
               ),
             ),
@@ -242,7 +286,35 @@ class _WorkerAndClientRegisterPageViewBodyState
                   focusNode: registerCubit.nextButtonFocusNode,
                   onPressed: () {
                     if (HelperFunctions.validateForm(
-                        registerCubit.registerFormKey)) {
+                            registerCubit.registerFormKey) &&
+                        GetCitiesOfASpecifiedCountryCubit.get(context)
+                            .cityName
+                            .isNotEmpty &&
+                        GetAllCountriesCubit.get(context)
+                            .selectedCountry
+                            .name
+                            .isNotEmpty) {
+                      CacheHelper.setData(
+                          key: CacheKeys.kCountryName,
+                          value: GetAllCountriesCubit.get(context)
+                              .selectedCountry
+                              .name);
+                      CacheHelper.setData(
+                          key: CacheKeys.kCountryId,
+                          value: GetAllCountriesCubit.get(context)
+                              .selectedCountry
+                              .id);
+                      CacheHelper.setData(
+                          key: CacheKeys.kCityName,
+                          value: GetCitiesOfASpecifiedCountryCubit.get(context)
+                              .cityName);
+                      registerCubit.cityName =
+                          GetCitiesOfASpecifiedCountryCubit.get(context)
+                              .cityName;
+                      registerCubit.countryName =
+                          GetAllCountriesCubit.get(context)
+                              .selectedCountry
+                              .name;
                       HelperFunctions.navigateToScreen(
                         context,
                         (context) => BlocProvider.value(

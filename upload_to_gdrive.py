@@ -88,7 +88,7 @@ if __name__ == '__main__':
     drive_link = upload_file(gdrive_service, file_path, custom_apk_name)
 
     # Send message to Telegram
-    message = f"✅ APK uploaded successfully!\nGoogle Drive Link: {drive_link}"
+    message = f"✅ Weisro APK uploaded successfully!\nGoogle Drive Link: {drive_link}"
     message_id = send_telegram_message(message, telegram_token, chat_id)
 
     # Send APK file to the first chat/group

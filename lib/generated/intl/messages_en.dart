@@ -118,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Location": MessageLookupByLibrary.simpleMessage("Location"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Log in"),
+        "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "Morning": MessageLookupByLibrary.simpleMessage("Morning"),
@@ -226,9 +227,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Worker Details"),
         "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
             "Write a description of the service and the terms of renting your services ?"),
+        "You_havent_marked_any_favorite": MessageLookupByLibrary.simpleMessage(
+            "You haven\'t marked any favorite"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
+        "change_email_address":
+            MessageLookupByLibrary.simpleMessage("Change your email address"),
+        "change_password":
+            MessageLookupByLibrary.simpleMessage("Change your password"),
+        "change_phone_number":
+            MessageLookupByLibrary.simpleMessage("Change your phone number"),
         "daily_price_invalid": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid daily price."),
         "date": MessageLookupByLibrary.simpleMessage("date"),

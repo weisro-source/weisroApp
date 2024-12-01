@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
-import 'package:weisro/core/styles/style_functions.dart';
 
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
@@ -12,6 +10,7 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/days_list.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
@@ -77,48 +76,28 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
+            child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                GetCitiesOfASpecifiedCountryState>(
+              builder: (context, state) {
+                if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                  return LocationFlitterDropDown(
+                    fillColor: AppColors.whiteColor,
+                    borderColor: AppColors.orangeColor,
+                    iconColor: AppColors.greyColor,
                     height: 38,
-                    width: HelperFunctions.getScreenWidth(context) * 0.5,
-                    decoration: StyleFunctions.decorationRadius8Orange(
-                        AppColors.orangeColor),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        5.kw,
-                        Image.asset(
-                          IconsPath.iconsGoogleMaps,
-                          width: 25,
-                          height: 25,
-                        ),
-                        Text(
-                          S.of(context).selected_location,
-                          style: AppStyles.style10w400Grey(context),
-                        ),
-                        5.kw
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: SizedBox(
-                    height: 38,
-                    child: CustomTextFormFiled(
-                      hintText: S.of(context).Location,
-                      controller: addServiceCubit.serviceNameController,
-                      keyboardType: TextInputType.name,
-                      borderColor: AppColors.orangeColor,
-                      borderRadius: 8,
-                    ),
-                  ),
-                ),
-              ],
+                    iconHeight: 24,
+                    iconWidth: 24,
+                    borderWidth: 1,
+                    borderRadius: 8,
+                    selectedLocation: state.cities.cities.first.name,
+                    locations: state.cities.cities.map((e) => e.name).toList(),
+                    prefixIcon: IconsPath.iconsLocation,
+                    onChanged: (selectedCategory) {},
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
             ),
           ),
         ),

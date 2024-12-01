@@ -5,10 +5,12 @@ import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:image/image.dart' as img;
 import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class HelperFunctions {
@@ -196,6 +198,16 @@ class HelperFunctions {
         cancelText: S.of(context).Cancel,
         cancelStyle: AppStyles.style12w400Black(context)
             .copyWith(color: AppColors.redColor)));
+  }
+
+  static Future<void> logoutFunction(BuildContext context) async {
+    await CacheHelper.clearCache();
+    if (context.mounted) {
+      HelperFunctions.navigateToScreenAndRemove(
+        context,
+        (context) => const LoginPageView(),
+      );
+    }
   }
 }
 

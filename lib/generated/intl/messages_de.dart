@@ -229,9 +229,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mitarbeiterdetails"),
         "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie eine Beschreibung des Dienstes und die Bedingungen für die Vermietung Ihrer Dienstleistungen ?"),
+        "You_havent_marked_any_favorite": MessageLookupByLibrary.simpleMessage(
+            "Sie haben noch keine Favoriten markiert"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Ihre Bestellung"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Ihre Beiträge"),
+        "change_email_address": MessageLookupByLibrary.simpleMessage(
+            "Ändern Sie Ihre E-Mail-Adresse"),
+        "change_password":
+            MessageLookupByLibrary.simpleMessage("Ändern Sie Ihr Passwort"),
+        "change_phone_number": MessageLookupByLibrary.simpleMessage(
+            "Ändern Sie Ihre Telefonnummer"),
         "daily_price_invalid": MessageLookupByLibrary.simpleMessage(
             "Bitte geben Sie einen gültigen Tagespreis ein."),
         "date": MessageLookupByLibrary.simpleMessage("Datum"),

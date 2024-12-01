@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
+import 'package:weisro/feature/auth/data/models/cities_model.dart';
+import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/data/models/success_login_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
@@ -16,4 +18,7 @@ abstract class AuthenticationRepository {
       String email, CancelToken cancelToken);
   Future<Either<Failure, String>> resetPassword(
       Map<String, dynamic> dataToResetPassword, CancelToken cancelToken);
+  Future<Either<Failure, CountryList>> getAllCountries();
+  Future<Either<Failure, CityList>> getCitiesOfASpecifiedCountry(
+      String countryName);
 }

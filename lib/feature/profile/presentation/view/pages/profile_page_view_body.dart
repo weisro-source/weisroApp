@@ -47,9 +47,9 @@ class ProfilePageViewBody extends StatelessWidget {
               }, title: S.of(context).Language, icon: IconsPath.iconsLanguage)),
               16.kh,
               CustomProfileOptionWidget(
-                  item: ProfileOption(() {},
-                      title: S.of(context).LogOut,
-                      icon: IconsPath.iconsLogOut)),
+                  item: ProfileOption(() {
+                CustomDialog.showLogoutDialog(context);
+              }, title: S.of(context).LogOut, icon: IconsPath.iconsLogOut)),
             ],
           ),
         ));

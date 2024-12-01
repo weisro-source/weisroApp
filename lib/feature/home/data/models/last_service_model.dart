@@ -29,7 +29,7 @@ class LastServicesModel {
       int? pagingCounter,
       bool? hasPrevPage,
       bool? hasNextPage,
-      dynamic? prevPage,
+      dynamic prevPage,
       int? nextPage}) {
     return LastServicesModel(
         docs: docs ?? this.docs,
