@@ -67,13 +67,14 @@ class RegisterCubit extends Cubit<RegisterState> {
   String hintTextX = "xxxxxx";
   String hintTextPassword = "********";
   String countryName = "Germany";
+  String cityName = "";
   bool isTermsOk = false;
   bool isPrivacyOk = false;
   List<String> selectedDay = [];
   List<String> favoriteTimes = [];
   Address createAddress() {
     return Address(
-      city: cityController.text,
+      city: cityName,
       country: countryName,
       houseNumber: houseNumberController.text,
       postalCode: postalCodeController.text,
@@ -104,7 +105,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
     dev.log("Selected Favorite Times updated: $favoriteTimes");
   }
-
 
   Future<void> registerClient() async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {

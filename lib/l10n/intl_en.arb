@@ -69,7 +69,7 @@
     "Pick_From_Gallery": "Pick from Gallery",
     "Favorite_page": "Favorite page",
     "NO_Favorite_Yet": "NO Favorite Yet",
-    "You_haven't_marked_any_favorite": "You haven't marked any favorite",
+    "You_havent_marked_any_favorite": "You haven't marked any favorite",
     "Search_page": "Search page",
     "Search_page_empty_message": "The search page is empty, go and explore what's new",
     "Search_empty": "Search is empty",
@@ -156,5 +156,9 @@
     "Service_Name": "Service Name",
     "selected_location": "Selected Location",
     "publish": "Publish",
-    "please_wait_publishing": "Please Wait, Your Service is Being Published"
+    "please_wait_publishing": "Please Wait, Your Service is Being Published",
+    "change_phone_number": "Change your phone number",
+    "change_email_address": "Change your email address",
+    "change_password": "Change your password",
+    "Logout": "Logout"
 }

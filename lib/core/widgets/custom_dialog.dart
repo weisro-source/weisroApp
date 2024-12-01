@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -174,6 +176,147 @@ class CustomDialog {
                   );
                 },
               ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static void showEditDialog(BuildContext context, String dialogTitle,
+      Widget body, String iconPath, void Function()? onPressed) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          elevation: 5,
+          backgroundColor: Colors.transparent,
+          shadowColor: AppColors.shadow2Color,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.35,
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                31.kh,
+                Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(iconPath, width: 20, height: 20),
+                      2.kw,
+                      Text(
+                        dialogTitle,
+                        style: AppStyles.style14w400Grey(context),
+                      ),
+                    ],
+                  ),
+                ),
+                30.kh,
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
+                  child: body,
+                ),
+                30.kh,
+                AppButton(
+                  width: 174,
+                  height: 32,
+                  text: S.of(context).Ok,
+                  onPressed: onPressed,
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static void showLogoutDialog(
+    BuildContext context,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          elevation: 5,
+          backgroundColor: Colors.transparent,
+          shadowColor: AppColors.shadow2Color,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: MediaQuery.of(context).size.height * 0.2,
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                31.kh,
+                Center(
+                  child: Text(
+                    S.of(context).Logout,
+                    style: AppStyles.style18w400Grey(context)
+                        .copyWith(color: AppColors.blackColor),
+                  ),
+                ),
+                30.kh,
+                Row(
+                  children: [
+                    19.kw,
+                    Expanded(
+                      child: AppButton(
+                        width: 174,
+                        height: 32,
+                        text: S.of(context).Ok,
+                        borderColor: AppColors.redColor,
+                        buttonColor: AppColors.redColor,
+                        onPressed: () async {
+                          await HelperFunctions.logoutFunction(context);
+                        },
+                      ),
+                    ),
+                    10.kw,
+                    Expanded(
+                      child: AppButton(
+                        width: 174,
+                        height: 32,
+                        text: S.of(context).Cancel,
+                        borderColor: AppColors.lightgrey2Color,
+                        buttonColor: AppColors.lightgrey2Color,
+                        onPressed: () {
+                          HelperFunctions.navigateToBack(context);
+                        },
+                      ),
+                    ),
+                    19.kw,
+                  ],
+                )
+              ],
             ),
           ),
         );

@@ -750,7 +750,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'You_haven\'t_marked_any_favorite' key
+  /// `You haven't marked any favorite`
+  String get You_havent_marked_any_favorite {
+    return Intl.message(
+      'You haven\'t marked any favorite',
+      name: 'You_havent_marked_any_favorite',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Search page`
   String get Search_page {
@@ -1609,6 +1617,46 @@ class S {
     return Intl.message(
       'Please Wait, Your Service is Being Published',
       name: 'please_wait_publishing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change your phone number`
+  String get change_phone_number {
+    return Intl.message(
+      'Change your phone number',
+      name: 'change_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change your email address`
+  String get change_email_address {
+    return Intl.message(
+      'Change your email address',
+      name: 'change_email_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change your password`
+  String get change_password {
+    return Intl.message(
+      'Change your password',
+      name: 'change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get Logout {
+    return Intl.message(
+      'Logout',
+      name: 'Logout',
       desc: '',
       args: [],
     );

@@ -3,6 +3,7 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/widgets/title_filed_edit_account.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -11,6 +12,7 @@ class EditProfilePageViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    EditUserInfoCubit editUserInfoCubit = EditUserInfoCubit.get(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -31,6 +33,7 @@ class EditProfilePageViewBody extends StatelessWidget {
                 15.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).Full_Name,
+                  controller: editUserInfoCubit.fullNameController,
                 ),
                 20.kh,
                 const CustomDashedLine(),

@@ -324,4 +324,14 @@ abstract class AppStyles {
           color: AppColors.greyColor),
     );
   }
+
+  static TextStyle style24w400Orange(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 24,
+          color: AppColors.orangeColor),
+    );
+  }
 }

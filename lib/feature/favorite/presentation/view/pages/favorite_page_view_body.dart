@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/assets_path/image_path.dart';
 
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_error_widget.dart';
+import 'package:weisro/core/widgets/no_data_screen.dart';
 import 'package:weisro/core/widgets/service_item_list.dart';
 import 'package:weisro/feature/favorite/data/models/favorite_model.dart';
 import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit/get_favorite_cubit.dart';
@@ -72,9 +74,18 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
               } else if (getFavoriteState is GetFavoriteSuccess ||
                   getFavoriteState is GetFavoritePaginationLoading ||
                   getFavoriteState is GetFavoritePaginationFailures) {
-                return ServiceItemList(
-                  allFavorite: allFavorite,
-                );
+                if (allFavorite.isEmpty) {
+                  return SliverFillRemaining(
+                    child: NoDataScreen(
+                        imagePath: ImagePath.imagesNoFavorite,
+                        title: S.of(context).NO_Favorite_Yet,
+                        subTitle: S.of(context).You_havent_marked_any_favorite),
+                  );
+                } else {
+                  return ServiceItemList(
+                    allFavorite: allFavorite,
+                  );
+                }
               } else {
                 return const SliverToBoxAdapter(child: CustomErrorWidgets());
               }

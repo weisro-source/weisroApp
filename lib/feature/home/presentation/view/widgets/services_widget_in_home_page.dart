@@ -2,20 +2,27 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
-import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/home/data/models/last_service_model.dart';
+import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 
-class ServicesWidgetInHomePage extends StatelessWidget {
+class ServicesWidgetInHomePage extends StatefulWidget {
   const ServicesWidgetInHomePage({
     super.key,
     required this.lastService,
   });
   final Docs lastService;
+
+  @override
+  State<ServicesWidgetInHomePage> createState() =>
+      _ServicesWidgetInHomePageState();
+}
+
+class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +33,7 @@ class ServicesWidgetInHomePage extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.cover,
               image: CachedNetworkImageProvider(
-                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(lastService.images ?? []) ?? ""}"))),
+                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(widget.lastService.images ?? []) ?? ""}"))),
       child: Column(
         children: [
           Align(
@@ -34,7 +41,11 @@ class ServicesWidgetInHomePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsetsDirectional.only(top: 10, end: 10),
               child: InkWell(
-                onTap: () {},
+                onTap: () async {
+                  await AddServiceToFavoriteCubit.get(context)
+                      .addServiceToFavorite(
+                          context, widget.lastService.id ?? "");
+                },
                 child: Container(
                     width: 20,
                     height: 20,
@@ -43,7 +54,8 @@ class ServicesWidgetInHomePage extends StatelessWidget {
                             side: BorderSide(color: AppColors.orangeColor)),
                         color: AppColors.whiteColor),
                     child: Center(
-                        child: SvgPicture.asset(IconsPath.iconsFavService))),
+                        child:
+                            SvgPicture.asset(IconsPath.iconsFavService))),
               ),
             ),
           ),
@@ -52,7 +64,8 @@ class ServicesWidgetInHomePage extends StatelessWidget {
             height: 22,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(4), // Add border radius here
+              borderRadius:
+                  BorderRadius.circular(4), // Add border radius here
               boxShadow: const [
                 BoxShadow(
                   color: AppColors.orangeColor,
@@ -66,7 +79,7 @@ class ServicesWidgetInHomePage extends StatelessWidget {
               children: [
                 10.kw,
                 Text(
-                  "\$${lastService.price}",
+                  "\$${widget.lastService.price}",
                   style: AppStyles.style10w500Red(context),
                 ),
                 const Spacer(),

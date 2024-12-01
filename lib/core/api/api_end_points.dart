@@ -6,6 +6,10 @@ class ApiEndPoints {
   static const String verifyAccountEndPoint = '/auth/verify-otp';
   static const String resendOtpEndPoint = '/auth/resend-otp';
   static const String resetPasswordEndPoint = '/auth/reset-password';
+  static const String countries = '/country';
+  static const String cites =
+      'https://countriesnow.space/api/v0.1/countries/cities';
+
   //get category by type end point
   /// add type for this [service,worker]
   static const String getCategoryByType = '/category?type=';

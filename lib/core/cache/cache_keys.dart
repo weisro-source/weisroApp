@@ -8,5 +8,7 @@ abstract class CacheKeys {
   static const String kUserEmail = 'kUserE-mail';
   static const String kUserPhone = 'kUserPhone';
   static const String kUserSave = 'isUserSave';
-  
+  static const String kCountryName = 'CountryName';
+  static const String kCityName = 'CityName';
+  static const String kCountryId = 'CountryId';
 }

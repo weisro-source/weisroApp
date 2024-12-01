@@ -9,6 +9,8 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/logger.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
+import 'package:weisro/feature/auth/data/models/cities_model.dart';
+import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/data/models/success_login_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
@@ -27,7 +29,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, SuccessRegisterModel>> clientRegisterApi(
       UserClientModel userToRegister, CancelToken cancelToken) async {
-
     try {
       // Send POST request to client registration endpoint
       var response = await _apiService.post(
@@ -52,7 +53,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, SuccessLoginModel>> loginApi(
       UserClientModel userToRegister, CancelToken cancelToken) async {
-
     try {
       // Send POST request to login endpoint
       var response = await _apiService.post(
@@ -109,7 +109,6 @@ class AuthenticationRepositoryImplementation
   @override
   Future<Either<Failure, String>> forgetPassword(
       String email, CancelToken cancelToken) async {
-
     try {
       // Send POST request to resend OTP endpoint
       var response = await _apiService.post(
@@ -159,6 +158,45 @@ class AuthenticationRepositoryImplementation
       LoggerHelper.logError(
           errorInResetPassword, ApiEndPoints.resetPasswordEndPoint);
       return left(ErrorHandler.handleError(errorInResetPassword));
+    }
+  }
+
+  @override
+  Future<Either<Failure, CountryList>> getAllCountries() async {
+    try {
+      var response = await _apiService.get(endPoint: ApiEndPoints.countries);
+
+      if (response is List<dynamic>) {
+        return right(CountryList.fromJson(response));
+      }
+
+      if (response is Map<String, dynamic>) {
+        if (response.containsKey('result') &&
+            response['result'] is List<dynamic>) {
+          final List<dynamic> data = response['result'];
+          return right(CountryList.fromJson(data));
+        }
+        throw const FormatException(
+            'Response Map does not contain a valid list');
+      }
+
+      throw FormatException(
+          'Unexpected response format: ${response.runtimeType}');
+    } catch (errorInGetAllCountries) {
+      return left(ErrorHandler.handleError(errorInGetAllCountries));
+    }
+  }
+
+  @override
+  Future<Either<Failure, CityList>> getCitiesOfASpecifiedCountry(
+      String countryId) async {
+    try {
+      var response = await _apiService.get(
+          endPoint: "${ApiEndPoints.countries}/$countryId");
+      return right(CityList.fromJson(response));
+    } catch (errorInGetCitiesOfASpecifiedCountry) {
+      return left(
+          ErrorHandler.handleError(errorInGetCitiesOfASpecifiedCountry));
     }
   }
 }

@@ -69,7 +69,7 @@
     "Pick_From_Gallery": "Aus der Galerie auswählen",
     "Favorite_page": "Favoriten-Seite",
     "NO_Favorite_Yet": "Noch keine Favoriten",
-    "You_haven't_marked_any_favorite": "Sie haben noch keine Favoriten markiert",
+    "You_havent_marked_any_favorite": "Sie haben noch keine Favoriten markiert",
     "Search_page": "Suchseite",
     "Search_page_empty_message": "Die Suchseite ist leer, gehen Sie und entdecken Sie, was neu ist",
     "Search_empty": "Suche ist leer",
@@ -155,5 +155,8 @@
     "Service_Name": "Dienstname",
     "selected_location": "Ausgewählter Standort",
     "publish": "Veröffentlichen",
-    "please_wait_publishing": "Bitte warten Sie, Ihr Service wird veröffentlicht"
+    "please_wait_publishing": "Bitte warten Sie, Ihr Service wird veröffentlicht",
+    "change_phone_number": "Ändern Sie Ihre Telefonnummer",
+    "change_email_address": "Ändern Sie Ihre E-Mail-Adresse",
+    "change_password": "Ändern Sie Ihr Passwort"
 }

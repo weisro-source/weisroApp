@@ -4,6 +4,7 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
 import '../widgets/code_send_success_text_widget.dart';
 import '../widgets/congratulations_widget.dart';
 import '../widgets/three_quarters_circle_painter.dart';
@@ -32,6 +33,20 @@ class SuccessScreenPageViewBodyState extends State<SuccessScreenPageViewBody>
     _initAnimationController();
     _initAnimations();
     _controller.forward();
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        // Animation is complete, navigate to login screen
+        Future.delayed(const Duration(milliseconds: 500), () {
+          // Add a delay to ensure everything is finished before navigating
+          if (mounted) {
+            HelperFunctions.navigateToScreenAndRemove(
+              context,
+              (context) => const LoginPageView(),
+            );
+          }
+        });
+      }
+    });
   }
 
   void _initAnimationController() {

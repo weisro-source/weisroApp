@@ -50,7 +50,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             images: imagePaths,
             description: descriptionController.text,
             days: days,
-            name: "MY Services",
+            name: serviceNameController.text,
             location: const Location(latitude: 20, longitude: 30),
             time: Time(start: formattedStartTime, end: formattedEndTime)));
   }
