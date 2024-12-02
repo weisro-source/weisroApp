@@ -171,7 +171,7 @@ abstract class AppStyles {
       const TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 14,
-          color: AppColors.second2Color),
+          color: AppColors.greyColor),
     );
   }
 

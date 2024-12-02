@@ -80,7 +80,7 @@ if __name__ == '__main__':
     # Get environment variables
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-    custom_apk_name = sanitize_filename("Version-1.0.2+3_27-12-2025.apk")
+    custom_apk_name = sanitize_filename("Version-1.0.4+5_2-12-2025.apk")
 
     # Authenticate and upload to Google Drive
     gdrive_service = authenticate_gdrive()

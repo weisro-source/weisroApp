@@ -106,15 +106,15 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     // Compile data for API
     return {
       "description": descriptionController.text,
-      "name": "MyService",
+      "name": serviceNameController.text,
       "time": {
         "start": formattedStartTime,
         "end": formattedEndTime,
       },
       "category_id": categoryId,
       "location": {
-        "latitude": "48.833332",
-        "longitude": "10.100000",
+        "latitude": "52.517669999",
+        "longitude": "13.405537999",
       },
       "days": days,
       "daily_price": num.tryParse(pricePerDayController.text) ?? 0,

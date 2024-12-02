@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
@@ -26,8 +28,9 @@ class WeisroApp extends StatelessWidget {
           create: (context) => GetUserInfoCubit(),
         ),
         BlocProvider(
-          create: (context) =>
-              GetLastServicesCubit()..getLastService(context, ""),
+          create: (context) => GetLastServicesCubit()
+            ..getLastService(
+                context, CacheHelper.getData(key: CacheKeys.kCityName)),
         ),
         BlocProvider(
           create: (context) => GetFavoriteCubit()..getAllFavorites(context),

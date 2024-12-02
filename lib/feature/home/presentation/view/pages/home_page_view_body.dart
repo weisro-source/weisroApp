@@ -98,7 +98,12 @@ class HomePageViewBody extends StatelessWidget {
                             selectedLocation: firstCity,
                             locations: cityNameList,
                             prefixIcon: IconsPath.iconsLocation,
-                            onChanged: (selectedCategory) {},
+                            onChanged: (selectedCategory) async {
+                              await context
+                                  .read<GetLastServicesCubit>()
+                                  .getLastService(
+                                      context, selectedCategory ?? "");
+                            },
                           ),
                         );
                       } else {

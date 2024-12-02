@@ -182,6 +182,8 @@ class HelperFunctions {
 
   static EdgeInsetsDirectional get symmetricHorizontalPadding24 =>
       const EdgeInsetsDirectional.symmetric(horizontal: 24);
+  static EdgeInsetsDirectional get symmetricHorizontalPadding34 =>
+      const EdgeInsetsDirectional.symmetric(horizontal: 34);
 
   static showCustomTimePicker(
       BuildContext context, void Function(DateTime)? onChangeDateTime) {

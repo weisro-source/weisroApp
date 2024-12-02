@@ -18,7 +18,7 @@ class AddServiceLoadingPage extends StatelessWidget {
       children: [
         Center(
           child: Lottie.asset(
-            IconsPath.iconsLoadingAnimation,
+            IconsPath.iconsLoadingAnmation,
             width: 200,
             height: 200,
             fit: BoxFit.contain,

@@ -232,12 +232,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
+        "add_text_here": MessageLookupByLibrary.simpleMessage("Add Text here"),
         "change_email_address":
             MessageLookupByLibrary.simpleMessage("Change your email address"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change your password"),
         "change_phone_number":
             MessageLookupByLibrary.simpleMessage("Change your phone number"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "create_ad_you_want":
+            MessageLookupByLibrary.simpleMessage("Create the ad you want ?"),
         "daily_price_invalid": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid daily price."),
         "date": MessageLookupByLibrary.simpleMessage("date"),

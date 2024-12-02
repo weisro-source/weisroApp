@@ -47,12 +47,12 @@ class HomeRepositoryImplementation implements HomeRepository {
 
   @override
   Future<Either<Failure, LastServicesModel>> getLastServiceApi(
-      BuildContext context,
+      BuildContext context, String cityName,
       [int pageNumber = 1]) async {
     try {
       var response = await _apiService.get(
           endPoint:
-              "${ApiEndPoints.getLastService}page=$pageNumber&limit=${Constants.limitInPage}");
+              "${ApiEndPoints.getLastService}page=$pageNumber&limit=${Constants.limitInPage}&search=$cityName");
       return right(LastServicesModel.fromJson(response));
     } catch (errorInGetServicesByCategoryId) {
       return left(ErrorHandler.handleError(errorInGetServicesByCategoryId));
