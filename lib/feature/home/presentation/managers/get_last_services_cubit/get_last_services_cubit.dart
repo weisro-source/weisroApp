@@ -10,9 +10,10 @@ part 'get_last_services_state.dart';
 class GetLastServicesCubit extends Cubit<GetLastServicesState> {
   GetLastServicesCubit() : super(GetLastServicesInitial());
 
-  Future<void> getLastService(BuildContext context,String cityName) async {
+  Future<void> getLastService(BuildContext context, String cityName) async {
     emit(GetLastServicesLoading());
-    var result = await getIt.get<HomeRepository>().getLastServiceApi(context);
+    var result =
+        await getIt.get<HomeRepository>().getLastServiceApi(context, cityName);
     result.fold(
       (errorInGetLastService) {
         emit(GetLastServicesFailures(error: errorInGetLastService));

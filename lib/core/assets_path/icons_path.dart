@@ -30,6 +30,10 @@ class IconsPath {
   /// assets/icons/calender.svg
   static const String iconsCalender = "assets/icons/calender.svg";
 
+  /// Assets for iconsCamera
+  /// assets/icons/camera.png
+  static const String iconsCamera = "assets/icons/camera.png";
+
   /// Assets for iconsCategory
   /// assets/icons/category.svg
   static const String iconsCategory = "assets/icons/category.svg";
@@ -76,7 +80,7 @@ class IconsPath {
 
   /// Assets for iconsLoadingAnmation
   /// assets/icons/loading_anmation.json
-  static const String iconsLoadingAnimation = "assets/icons/loading_anmation.json";
+  static const String iconsLoadingAnmation = "assets/icons/loading_anmation.json";
 
   /// Assets for iconsLocation
   /// assets/icons/location.svg

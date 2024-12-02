@@ -158,5 +158,8 @@
     "please_wait_publishing": "Bitte warten Sie, Ihr Service wird veröffentlicht",
     "change_phone_number": "Ändern Sie Ihre Telefonnummer",
     "change_email_address": "Ändern Sie Ihre E-Mail-Adresse",
-    "change_password": "Ändern Sie Ihr Passwort"
+    "change_password": "Ändern Sie Ihr Passwort",
+    "confirm": "Bestätigen",
+    "add_text_here": "Text hier hinzufügen",
+    "create_ad_you_want": "Erstellen Sie die Anzeige, die Sie möchten ?"
 }

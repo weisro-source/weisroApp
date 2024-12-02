@@ -1661,6 +1661,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Text here`
+  String get add_text_here {
+    return Intl.message(
+      'Add Text here',
+      name: 'add_text_here',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create the ad you want ?`
+  String get create_ad_you_want {
+    return Intl.message(
+      'Create the ad you want ?',
+      name: 'create_ad_you_want',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
