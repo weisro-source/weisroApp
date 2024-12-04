@@ -20,7 +20,7 @@ class FavoriteTimeCubit extends Cubit<List<FavoriteTimeModel>> {
       } else {
         context
             .read<RegisterCubit>()
-            .updateFavoriteTimes(timeModel.hours, true);
+            .updateFavoriteHoursTimes(timeModel.hours, true);
       }
     } else {
       _selectedTimes.remove(timeModel);
@@ -31,7 +31,7 @@ class FavoriteTimeCubit extends Cubit<List<FavoriteTimeModel>> {
       } else {
         context
             .read<RegisterCubit>()
-            .updateFavoriteTimes(timeModel.hours, false);
+            .updateFavoriteHoursTimes(timeModel.hours, false);
       }
     }
 

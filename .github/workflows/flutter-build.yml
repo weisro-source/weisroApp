@@ -6,9 +6,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  # pull_request:
+  #   branches:
+  #     - main
 
 jobs:
   build:
@@ -41,7 +41,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Python Dependencies
-        run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client requests
+        run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client requests speedtest-cli
 
       - name: Upload APK to Google Drive and Send Telegram Message
         env:

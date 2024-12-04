@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/validate.dart';
@@ -125,7 +127,10 @@ class CustomPhoneInput extends StatelessWidget {
         ),
       ),
       initialCountryCode: countryCode,
-      onCountryChanged: (value) {},
+      onCountryChanged: (value) async {
+        await CacheHelper.setData(
+            key: CacheKeys.kCountryCode, value: value.code);
+      },
       onChanged: onChanged,
     );
   }

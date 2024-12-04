@@ -38,8 +38,9 @@ class CustomAppBarInProfileView extends StatelessWidget
             minRadius: 50,
             maxRadius: 50,
             backgroundImage: CachedNetworkImageProvider(
-              "https://i.pravatar.cc/20",
-            ),
+                "https://i.pravatar.cc/20",
+                maxHeight: 50,
+                maxWidth: 50),
           ),
         ),
       ],

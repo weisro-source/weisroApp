@@ -14,6 +14,10 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
 
   TextEditingController emailController = TextEditingController(
       text: CacheHelper.getData(key: CacheKeys.kUserEmail));
-
+  TextEditingController phoneController = TextEditingController(
+      text: CacheHelper.getData(key: CacheKeys.kUserPhone));
+  FocusNode postalCodeFocusNode = FocusNode();
+  FocusNode streetFocusNode = FocusNode();
+  FocusNode houseNumberFocusNode = FocusNode();
   Future<void> initTextController() async {}
 }

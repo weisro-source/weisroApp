@@ -8,13 +8,16 @@ class CustomLeadingIcon extends StatelessWidget {
   const CustomLeadingIcon({
     super.key,
     this.iconColor = AppColors.orangeColor,
+    this.onPressed,
   });
   final Color iconColor;
+  final Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
           HelperFunctions.navigateToBack(context);
+          onPressed;
         },
         icon: SvgPicture.asset(
           IconsPath.iconsArrowRight,

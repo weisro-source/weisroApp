@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class IconsPath {
   IconsPath._();
-  
+
   /// Assets for iconsAlert
   /// assets/icons/alert.svg
   static const String iconsAlert = "assets/icons/alert.svg";
@@ -32,7 +32,7 @@ class IconsPath {
 
   /// Assets for iconsCamera
   /// assets/icons/camera.png
-  static const String iconsCamera = "assets/icons/camera.png";
+  static const String iconsCamera = "assets/icons/camera.svg";
 
   /// Assets for iconsCategory
   /// assets/icons/category.svg
@@ -80,7 +80,8 @@ class IconsPath {
 
   /// Assets for iconsLoadingAnmation
   /// assets/icons/loading_anmation.json
-  static const String iconsLoadingAnmation = "assets/icons/loading_anmation.json";
+  static const String iconsLoadingAnmation =
+      "assets/icons/loading_anmation.json";
 
   /// Assets for iconsLocation
   /// assets/icons/location.svg
@@ -176,7 +177,8 @@ class IconsPath {
 
   /// Assets for iconsStarSecondColor
   /// assets/icons/star_second_color.svg
-  static const String iconsStarSecondColor = "assets/icons/star_second_color.svg";
+  static const String iconsStarSecondColor =
+      "assets/icons/star_second_color.svg";
 
   /// Assets for iconsSuccess
   /// assets/icons/success.svg
@@ -200,7 +202,8 @@ class IconsPath {
 
   /// Assets for iconsTimeIsMoneyClock
   /// assets/icons/time_is_money_clock.svg
-  static const String iconsTimeIsMoneyClock = "assets/icons/time_is_money_clock.svg";
+  static const String iconsTimeIsMoneyClock =
+      "assets/icons/time_is_money_clock.svg";
 
   /// Assets for iconsTimeSelected
   /// assets/icons/time_selected.svg
@@ -228,6 +231,6 @@ class IconsPath {
 
   /// Assets for iconsWorkerRegisterImageUploader
   /// assets/icons/worker_register_image_uploader.svg
-  static const String iconsWorkerRegisterImageUploader = "assets/icons/worker_register_image_uploader.svg";
+  static const String iconsWorkerRegisterImageUploader =
+      "assets/icons/worker_register_image_uploader.svg";
 }
-

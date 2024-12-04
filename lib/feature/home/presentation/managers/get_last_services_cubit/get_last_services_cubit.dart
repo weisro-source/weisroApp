@@ -10,6 +10,7 @@ part 'get_last_services_state.dart';
 class GetLastServicesCubit extends Cubit<GetLastServicesState> {
   GetLastServicesCubit() : super(GetLastServicesInitial());
 
+  /// to Get last Services in home page according to city name ....
   Future<void> getLastService(BuildContext context, String cityName) async {
     emit(GetLastServicesLoading());
     var result =

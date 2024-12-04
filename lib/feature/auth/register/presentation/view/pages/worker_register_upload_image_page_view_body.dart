@@ -145,6 +145,7 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 28),
               child: UploaderContainerWidget(
+                isMultiPick: true,
                 hintText:
                     "${S.of(context).Passport} , ${S.of(context).Identity} , ${S.of(context).Accommodation} , ${S.of(context).Drivers_License}",
               ),
@@ -186,18 +187,20 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
                   borderColor: AppColors.redColor,
                   height: 32,
                   width: 151,
-                  text: "Cancel",
+                  text: S.of(context).Cancel,
                 ),
                 12.kw,
                 Theme(
                   data: ThemeData(primaryColor: AppColors.whiteColor),
                   child: AppButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await registerCubit.registerWorker();
+                    },
                     buttonColor: Colors.white,
                     borderColor: AppColors.orangeColor,
                     height: 32,
                     width: 151,
-                    text: "Send and wait ",
+                    text: S.of(context).Send_And_Wait,
                     textStyle: AppStyles.style14w500Orange(context),
                   ),
                 ),

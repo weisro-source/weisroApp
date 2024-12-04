@@ -10,6 +10,8 @@ import 'package:weisro/feature/auth/data/models/user_client_model.dart';
 abstract class AuthenticationRepository {
   Future<Either<Failure, SuccessRegisterModel>> clientRegisterApi(
       UserClientModel userToRegister, CancelToken cancelToken);
+  Future<Either<Failure, SuccessRegisterModel>> workerRegisterApi(
+      dynamic data, CancelToken cancelToken);
   Future<Either<Failure, SuccessLoginModel>> loginApi(
       UserClientModel userToRegister, CancelToken cancelToken);
   Future<Either<Failure, String>> verifyOtpApi(
