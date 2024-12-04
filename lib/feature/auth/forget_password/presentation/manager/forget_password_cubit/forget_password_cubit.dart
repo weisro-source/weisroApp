@@ -15,6 +15,9 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   FocusNode sendOtpButtonFocusNode = FocusNode();
   final GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
   CancelToken cancelToken = CancelToken();
+  void initState() {
+    emit(ForgetPasswordInitial());
+  }
 
   // this to call api to resend Otp To Forget Password
   Future<void> resendOtp() async {

@@ -2,6 +2,7 @@ class ApiEndPoints {
   ApiEndPoints._();
   // "https://api.weisro.com/api/v0" this Base Url
   static const String clientRegisterEndPoint = '/auth/register';
+  static const String workerRegisterEndPoint = '/auth/register/worker';
   static const String loginEndPoint = '/auth/login';
   static const String verifyAccountEndPoint = '/auth/verify-otp';
   static const String resendOtpEndPoint = '/auth/resend-otp';
@@ -24,4 +25,6 @@ class ApiEndPoints {
   // favorite Rotes
   static const String getFavorite = '/user-favorites';
   static const String addServiceToFavorite = '/user-favorites';
+  // ads Route
+  static const String addAds = '/advers';
 }

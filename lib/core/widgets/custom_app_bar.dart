@@ -8,9 +8,11 @@ import 'custom_leading_icon.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
-    required this.title,
+    required this.title, this.onPressed,
   });
   final String title;
+   final Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return SliverSafeArea(
@@ -18,7 +20,7 @@ class CustomAppBar extends StatelessWidget {
       sliver: SliverAppBar(
         pinned: true,
         backgroundColor: AppColors.whiteColor,
-        leading: const CustomLeadingIcon(),
+        leading:  CustomLeadingIcon(onPressed: onPressed,),
         actions: const [CustomActionWidget()],
         title: Text(
           title,

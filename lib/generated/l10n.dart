@@ -1691,6 +1691,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Send and wait`
+  String get Send_And_Wait {
+    return Intl.message(
+      'Send and wait',
+      name: 'Send_And_Wait',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

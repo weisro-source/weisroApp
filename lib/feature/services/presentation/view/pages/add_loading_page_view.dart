@@ -5,8 +5,8 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/generated/l10n.dart';
 
-class AddServiceLoadingPage extends StatelessWidget {
-  const AddServiceLoadingPage({
+class AddLoadingPage extends StatelessWidget {
+  const AddLoadingPage({
     super.key,
   });
 

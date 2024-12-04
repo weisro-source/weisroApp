@@ -199,4 +199,24 @@ class AuthenticationRepositoryImplementation
           ErrorHandler.handleError(errorInGetCitiesOfASpecifiedCountry));
     }
   }
+
+  @override
+  Future<Either<Failure, SuccessRegisterModel>> workerRegisterApi(
+      data, CancelToken cancelToken) async {
+    try {
+      // Send POST request to client registration endpoint
+      var response = await _apiService.post(
+        endPoint: ApiEndPoints.workerRegisterEndPoint,
+        needToken: false,
+        cancelToken: cancelToken,
+        data: data,
+      );
+      return right(SuccessRegisterModel.fromJson(response));
+    } catch (errorInWorkerRegister) {
+      // Log and handle error in registration process
+      LoggerHelper.logError(
+          errorInWorkerRegister, ApiEndPoints.workerRegisterEndPoint);
+      return left(ErrorHandler.handleError(errorInWorkerRegister));
+    }
+  }
 }

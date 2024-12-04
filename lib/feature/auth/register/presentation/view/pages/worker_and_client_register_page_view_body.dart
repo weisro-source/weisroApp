@@ -286,14 +286,16 @@ class _WorkerAndClientRegisterPageViewBodyState
                   focusNode: registerCubit.nextButtonFocusNode,
                   onPressed: () {
                     if (HelperFunctions.validateForm(
-                            registerCubit.registerFormKey) &&
-                        GetCitiesOfASpecifiedCountryCubit.get(context)
-                            .cityName
-                            .isNotEmpty &&
-                        GetAllCountriesCubit.get(context)
-                            .selectedCountry
-                            .name
-                            .isNotEmpty) {
+                            registerCubit.registerFormKey)
+                        //     &&
+                        // GetCitiesOfASpecifiedCountryCubit.get(context)
+                        //     .cityName
+                        //     .isNotEmpty &&
+                        // GetAllCountriesCubit.get(context)
+                        //     .selectedCountry
+                        //     .name
+                        //     .isNotEmpty
+                        ) {
                       CacheHelper.setData(
                           key: CacheKeys.kCountryName,
                           value: GetAllCountriesCubit.get(context)

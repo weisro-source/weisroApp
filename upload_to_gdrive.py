@@ -4,6 +4,15 @@ import requests
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+import speedtest
+
+# Function to check internet speed
+def print_internet_speed():
+    st = speedtest.Speedtest()
+    st.get_best_server()
+    download_speed = st.download() / 1_000_000  # Convert to Mbps
+    upload_speed = st.upload() / 1_000_000  # Convert to Mbps
+    print(f"Internet Speed: Download {download_speed:.2f} Mbps, Upload {upload_speed:.2f} Mbps")
 
 # Authentication and Drive setup
 def authenticate_gdrive():
@@ -77,6 +86,8 @@ def forward_telegram_message(telegram_token, from_chat_id, message_id, to_chat_i
 def sanitize_filename(filename):
     return filename.replace(':', '_').replace('/', '_')
 if __name__ == '__main__':
+    # Print internet speed
+    print_internet_speed()
     # Get environment variables
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')

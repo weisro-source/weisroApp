@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void initializeTestLoginData() {
-    passwordController.text = '513409409';
+    passwordController.text = 'TestPassword123';
     emailController.text = 'nassimtok9@gmail.com';
   }
 

@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class UploaderContainerWidget extends StatefulWidget {
@@ -33,11 +35,14 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
       final resizedImages = await Future.wait(
         pickedFiles.map((pickedFile) async {
           final imageFile = File(pickedFile.path);
+
           return HelperFunctions.resizeImage(imageFile);
         }),
       );
       setState(() {
-        _selectedImages = resizedImages;
+        _selectedImages.addAll(resizedImages);
+        context.read<RegisterCubit>().imagesPathsForId =
+            _selectedImages.map((e) => e.path).toList();
       });
     } else {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -46,6 +51,8 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
             await HelperFunctions.resizeImage(File(pickedFile.path));
         setState(() {
           _selectedImages = [resizedImage];
+          context.read<RegisterCubit>().imagePathForProfile =
+              _selectedImages.first.path;
         });
       }
     }

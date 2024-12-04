@@ -7,7 +7,7 @@ import 'package:weisro/feature/services/presentation/managers/add_service_cubit/
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 import 'package:weisro/feature/services/presentation/view/pages/services_details_page_view_body.dart';
 
-import 'add_service_loading_page_view.dart';
+import 'add_loading_page_view.dart';
 
 class ServiceReviewPageView extends StatelessWidget {
   const ServiceReviewPageView({Key? key, required this.oneService})
@@ -29,7 +29,7 @@ class ServiceReviewPageView extends StatelessWidget {
           listener: (context, state) {},
           builder: (context, addServiceState) {
             if (addServiceState is AddServiceStateLoading) {
-              return const AddServiceLoadingPage();
+              return const AddLoadingPage();
             } else {
               return ServicesDetailsPageViewBody(
                 serviceId: "-404",

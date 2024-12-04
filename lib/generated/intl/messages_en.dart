@@ -190,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select the services you offer?"),
         "Selected_account": MessageLookupByLibrary.simpleMessage(
             "Choose what you want to create an account:"),
+        "Send_And_Wait": MessageLookupByLibrary.simpleMessage("Send and wait"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "What details of the service do you want from the worker?"),

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_phone_input_field.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
+import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/edit_profile_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/static_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -18,11 +22,15 @@ class ProfileOption {
   final void Function()? onTap;
   ProfileOption(this.onTap, {required this.title, required this.icon});
   static List<ProfileOption> profileOptionsList(BuildContext context) {
+    EditUserInfoCubit editUserInfoCubit = EditUserInfoCubit.get(context);
     return [
       ProfileOption(() {
         HelperFunctions.navigateToScreen(
           context,
-          (context) => const EditProfilePageView(),
+          (context) => BlocProvider.value(
+            value: editUserInfoCubit,
+            child: const EditProfilePageView(),
+          ),
         );
       },
           title: S.of(context).EditPersonalInformation,
@@ -31,7 +39,10 @@ class ProfileOption {
         CustomDialog.showEditDialog(
           context,
           S.of(context).change_phone_number,
-          CustomPhoneInput(phoneController: TextEditingController()),
+          CustomPhoneInput(
+            phoneController: context.read<EditUserInfoCubit>().phoneController,
+            countryCode: CacheHelper.getData(key: CacheKeys.kCountryCode),
+          ),
           IconsPath.iconsPhone,
           () {},
         );
@@ -72,7 +83,10 @@ class ProfileOption {
           context,
           S.of(context).change_email_address,
           CustomTextFormFiled(
-            hintText: "",
+            hintText: S.of(context).Email,
+            controller: editUserInfoCubit.emailController,
+            keyboardType: TextInputType.emailAddress,
+            validator: (value) => Validate.validateEmail(value, context),
             prefixIcon: SvgPicture.asset(
               width: 20,
               height: 20,
