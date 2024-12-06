@@ -7,15 +7,17 @@ import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/ads/data/ads_repo/ads_repo.dart';
+import 'package:weisro/feature/ads/data/models/ads_model.dart';
 
 class AdsRepositoryImplementation implements AdsRepository {
   final ApiService _apiService = getIt<ApiService>();
 
   @override
-  Future<Either<Failure, String>> addAds(dynamic data,CancelToken? cancelToken) async {
+  Future<Either<Failure, String>> addAds(
+      dynamic data, CancelToken? cancelToken) async {
     try {
-      var response =
-          await _apiService.post(endPoint: ApiEndPoints.addAds, data: data,cancelToken: cancelToken );
+      var response = await _apiService.post(
+          endPoint: ApiEndPoints.addAds, data: data, cancelToken: cancelToken);
       var message = response[Constants.messageFromResponse];
       String? validMessage = HelperFunctions.ensureStringOrNull(message);
       if (validMessage != null) {
@@ -25,6 +27,18 @@ class AdsRepositoryImplementation implements AdsRepository {
       }
     } catch (errorINAddAds) {
       return left(ErrorHandler.handleError(errorINAddAds));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AdsModel>> getAdsForUserApi(
+      CancelToken? cancelToken) async {
+    try {
+      var response =
+          await _apiService.get(endPoint: "${ApiEndPoints.addAds}/?type=user");
+      return right(AdsModel.fromJson(response));
+    } catch (errorInGetUserAds) {
+      return left(ErrorHandler.handleError(errorInGetUserAds));
     }
   }
 }

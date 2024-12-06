@@ -20,6 +20,11 @@ class GetUserInfoCubit extends Cubit<GetUserInfoState> {
     // if user Save is save  do nothing
     if (CacheHelper.getData(key: CacheKeys.kUserSave) != null &&
         CacheHelper.getData(key: CacheKeys.kUserSave)) {
+      /// if need save user info
+      // if (HelperFunctions.isDebugMode()) {
+      //   await getUserClientInfo();
+      // }
+
       log("User Info Already Saved");
       return;
     } else {

@@ -51,7 +51,12 @@ class CacheHelper {
     await CacheHelper.setData(
         key: CacheKeys.kUserLastName, value: user.lastName);
     await CacheHelper.setData(key: CacheKeys.kUserEmail, value: user.email);
-    await CacheHelper.setData(key: CacheKeys.kUserPhone, value: user.phone);
+    await CacheHelper.setData(
+        key: CacheKeys.kUserStreet, value: user.address?.street);
+    await CacheHelper.setData(
+        key: CacheKeys.kHouseNumber, value: user.address?.houseNumber);
+    await CacheHelper.setData(
+        key: CacheKeys.kUserZipCode, value: user.address?.postalCode);
     await CacheHelper.setData(
         key: CacheKeys.kCityName, value: user.address?.city ?? "");
     await CacheHelper.setData(

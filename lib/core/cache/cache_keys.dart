@@ -12,4 +12,7 @@ abstract class CacheKeys {
   static const String kCityName = 'CityName';
   static const String kCountryId = 'CountryId';
   static const String kCountryCode = 'CountryCode';
+  static const String kUserZipCode = 'userZipCode';
+  static const String kUserStreet = 'userStreet';
+  static const String kHouseNumber = 'houseNumber';
 }

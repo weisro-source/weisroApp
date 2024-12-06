@@ -15,7 +15,7 @@ class AddAdsCubit extends Cubit<AddAdsState> {
   /// Creates FormData for API requests with text and image.
   ///
   /// - [text]: The text input for the form.
-  /// - [imageFile]: The image file to be uploaded (optional).
+  /// - [imageFile]: The image file to be uploaded
   ///
   /// Returns: FormData object containing the text and image.
   Future<FormData> createFormData(String text, File? imageFile) async {

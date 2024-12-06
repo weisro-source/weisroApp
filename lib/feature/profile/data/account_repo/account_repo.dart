@@ -4,4 +4,5 @@ import 'package:weisro/feature/auth/data/models/user_client_model.dart';
 
 abstract class AccountRepository {
   Future<Either<Failure, UserClientModel>> getUserClintInfo();
+  Future<Either<Failure, String>> editUserAccount(Map<String, dynamic> data);
 }
