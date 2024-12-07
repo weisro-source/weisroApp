@@ -137,6 +137,7 @@ class EditProfilePageViewBody extends StatelessWidget {
                 CustomTextFormFiled(
                   hintText: S.of(context).Postal_Code,
                   focusNode: editUserInfoCubit.postalCodeFocusNode,
+                  controller: editUserInfoCubit.postalCodeController,
                   onFieldSubmitted: (p0) {
                     HelperFunctions.requestNextFocus(
                         editUserInfoCubit.postalCodeFocusNode,
@@ -154,6 +155,7 @@ class EditProfilePageViewBody extends StatelessWidget {
                 CustomTextFormFiled(
                   hintText: S.of(context).Street,
                   focusNode: editUserInfoCubit.streetFocusNode,
+                  controller: editUserInfoCubit.streetController,
                   onFieldSubmitted: (p0) {
                     HelperFunctions.requestNextFocus(
                         editUserInfoCubit.streetFocusNode,
@@ -171,6 +173,7 @@ class EditProfilePageViewBody extends StatelessWidget {
                 CustomTextFormFiled(
                   hintText: S.of(context).House_Number,
                   focusNode: editUserInfoCubit.houseNumberFocusNode,
+                  controller: editUserInfoCubit.houseNumberController,
                 ),
                 60.kh,
               ],

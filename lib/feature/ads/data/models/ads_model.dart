@@ -1,4 +1,4 @@
-class AllServicesModel {
+class AdsModel {
   final List<Docs>? docs;
   final int? totalDocs;
   final int? limit;
@@ -9,7 +9,7 @@ class AllServicesModel {
   final bool? hasNextPage;
   final dynamic prevPage;
   final dynamic nextPage;
-  const AllServicesModel(
+  const AdsModel(
       {this.docs,
       this.totalDocs,
       this.limit,
@@ -20,7 +20,7 @@ class AllServicesModel {
       this.hasNextPage,
       this.prevPage,
       this.nextPage});
-  AllServicesModel copyWith(
+  AdsModel copyWith(
       {List<Docs>? docs,
       int? totalDocs,
       int? limit,
@@ -31,7 +31,7 @@ class AllServicesModel {
       bool? hasNextPage,
       dynamic prevPage,
       dynamic nextPage}) {
-    return AllServicesModel(
+    return AdsModel(
         docs: docs ?? this.docs,
         totalDocs: totalDocs ?? this.totalDocs,
         limit: limit ?? this.limit,
@@ -59,8 +59,8 @@ class AllServicesModel {
     };
   }
 
-  static AllServicesModel fromJson(Map<String, Object?> json) {
-    return AllServicesModel(
+  static AdsModel fromJson(Map<String, Object?> json) {
+    return AdsModel(
         docs: json['docs'] == null
             ? null
             : (json['docs'] as List)
@@ -84,7 +84,7 @@ class AllServicesModel {
 
   @override
   String toString() {
-    return '''AllServicesModel(
+    return '''AdsModel(
                 docs:${docs.toString()},
 totalDocs:$totalDocs,
 limit:$limit,
@@ -100,7 +100,7 @@ nextPage:$nextPage
 
   @override
   bool operator ==(Object other) {
-    return other is AllServicesModel &&
+    return other is AdsModel &&
         other.runtimeType == runtimeType &&
         other.docs == docs &&
         other.totalDocs == totalDocs &&
@@ -123,45 +123,37 @@ nextPage:$nextPage
 
 class Docs {
   final String? id;
-  final String? name;
-  final List<String>? images;
-  const Docs({this.id, this.name, this.images});
-  Docs copyWith({String? id, String? name, List<String>? images}) {
+  final String? image;
+  final String? text;
+  final String? date;
+  const Docs({this.id, this.image, this.text, this.date});
+  Docs copyWith({String? id, String? image, String? text, String? date}) {
     return Docs(
         id: id ?? this.id,
-        name: name ?? this.name,
-        images: images ?? this.images);
+        image: image ?? this.image,
+        text: text ?? this.text,
+        date: date ?? this.date);
   }
 
   Map<String, Object?> toJson() {
-    return {'_id': id, 'name': name, 'images': images};
+    return {'_id': id, 'image': image, 'text': text, 'date': date};
   }
 
   static Docs fromJson(Map<String, Object?> json) {
     return Docs(
-      id: json['_id'] as String?,
-      name: json['name'] as String?,
-      images: _parseImages(json['images']),
-    );
-  }
-
-  static List<String>? _parseImages(dynamic imagesJson) {
-    if (imagesJson is String) {
-      // If `images` is a single string, wrap it in a list
-      return [imagesJson];
-    } else if (imagesJson is List) {
-      // If `images` is already a list, cast elements to String
-      return imagesJson.map((e) => e as String).toList();
-    }
-    return null; // Return null for unexpected cases
+        id: json['_id'] == null ? null : json['_id'] as String,
+        image: json['image'] == null ? null : json['image'] as String,
+        text: json['text'] == null ? null : json['text'] as String,
+        date: json['date'] == null ? null : json['date'] as String);
   }
 
   @override
   String toString() {
     return '''Docs(
                 id:$id,
-name:$name,
-images:$images
+image:$image,
+text:$text,
+date:$date
     ) ''';
   }
 
@@ -170,12 +162,13 @@ images:$images
     return other is Docs &&
         other.runtimeType == runtimeType &&
         other.id == id &&
-        other.name == name &&
-        other.images == images;
+        other.image == image &&
+        other.text == text &&
+        other.date == date;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, id, name, images);
+    return Object.hash(runtimeType, id, image, text, date);
   }
 }

@@ -9,6 +9,8 @@ import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
+import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class CustomDialog {
@@ -183,8 +185,14 @@ class CustomDialog {
     );
   }
 
-  static void showEditDialog(BuildContext context, String dialogTitle,
-      Widget body, String iconPath, void Function()? onPressed) {
+  static void showEditDialog(
+    BuildContext context,
+    String dialogTitle,
+    Widget body,
+    String iconPath,
+    void Function()? onPressed,
+    void Function()? onSuccess,
+  ) {
     showDialog(
       context: context,
       builder: (context) {
@@ -233,11 +241,27 @@ class CustomDialog {
                   child: body,
                 ),
                 30.kh,
-                AppButton(
-                  width: 174,
-                  height: 32,
-                  text: S.of(context).Ok,
-                  onPressed: onPressed,
+                BlocConsumer<EditUserInfoCubit, EditUserInfoState>(
+                  listener: (context, editUserState) {
+                    if (editUserState is EditUserInfoSuccess) {
+                      onSuccess;
+                    }
+                  },
+                  builder: (context, editUserState) {
+                    if (editUserState is EditUserInfoLoading) {
+                      return const CustomLoading(
+                        animationType: "discreteCircular",
+                        size: 40,
+                      );
+                    } else {
+                      return AppButton(
+                        width: 174,
+                        height: 32,
+                        text: S.of(context).Ok,
+                        onPressed: onPressed,
+                      );
+                    }
+                  },
                 )
               ],
             ),

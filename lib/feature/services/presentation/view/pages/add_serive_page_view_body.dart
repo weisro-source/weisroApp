@@ -33,7 +33,6 @@ class CreateServicePageViewBody extends StatefulWidget {
 }
 
 class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
- 
   @override
   void initState() {
     BlocProvider.of<WorkerDayCubit>(context).state.clear();
@@ -190,6 +189,7 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
               controller: addServiceCubit.descriptionController,
               hintText: "",
               maxLines: 4,
+              maxLength: 200,
               minLines: 4,
               topPadding: 15,
             ),

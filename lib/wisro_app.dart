@@ -12,6 +12,7 @@ import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
+import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -27,6 +28,9 @@ class WeisroApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetUserInfoCubit(),
+        ),
+        BlocProvider(
+          create: (context) => EditUserInfoCubit(),
         ),
         BlocProvider(
           create: (context) => GetLastServicesCubit()

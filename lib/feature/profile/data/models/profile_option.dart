@@ -14,6 +14,7 @@ import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.d
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/edit_profile_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/static_page_view.dart';
+import 'package:weisro/feature/profile/presentation/view/pages/user_ads_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class ProfileOption {
@@ -27,10 +28,7 @@ class ProfileOption {
       ProfileOption(() {
         HelperFunctions.navigateToScreen(
           context,
-          (context) => BlocProvider.value(
-            value: editUserInfoCubit,
-            child: const EditProfilePageView(),
-          ),
+          (context) => const EditProfilePageView(),
         );
       },
           title: S.of(context).EditPersonalInformation,
@@ -44,6 +42,11 @@ class ProfileOption {
             countryCode: CacheHelper.getData(key: CacheKeys.kCountryCode),
           ),
           IconsPath.iconsPhone,
+          () async {
+            await editUserInfoCubit.editUser({
+              "phone": context.read<EditUserInfoCubit>().phoneController.text
+            });
+          },
           () {},
         );
       }, title: S.of(context).ChangeMobileNumber, icon: IconsPath.iconsPhone),
@@ -51,30 +54,46 @@ class ProfileOption {
         CustomDialog.showEditDialog(
           context,
           S.of(context).change_password,
-          Column(
-            children: [
-              CustomTextFormFiled(
-                hintText: "",
-                prefixIcon: SvgPicture.asset(
-                  width: 20,
-                  height: 20,
-                  IconsPath.iconsLock,
-                  fit: BoxFit.scaleDown,
+          Form(
+            key: editUserInfoCubit.changePasswordFormKey,
+            child: Column(
+              children: [
+                CustomTextFormFiled(
+                  hintText: S.of(context).Password,
+                  controller: editUserInfoCubit.passwordController,
+                  prefixIcon: SvgPicture.asset(
+                    width: 20,
+                    height: 20,
+                    IconsPath.iconsLock,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  validator: (value) =>
+                      Validate.validatePassword(value, context),
                 ),
-              ),
-              10.kh,
-              CustomTextFormFiled(
-                hintText: "",
-                prefixIcon: SvgPicture.asset(
-                  width: 20,
-                  height: 20,
-                  IconsPath.iconsLock,
-                  fit: BoxFit.scaleDown,
+                10.kh,
+                CustomTextFormFiled(
+                  hintText: S.of(context).Confirm_Password,
+                  controller: editUserInfoCubit.confirmPasswordController,
+                  prefixIcon: SvgPicture.asset(
+                    width: 20,
+                    height: 20,
+                    IconsPath.iconsLock,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  validator: (value) => Validate.validateConfirmPassword(value,
+                      editUserInfoCubit.passwordController.text, context),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           IconsPath.iconsLock,
+          () async {
+            if (HelperFunctions.validateForm(
+                editUserInfoCubit.changePasswordFormKey)) {
+              await editUserInfoCubit.editUser(
+                  {"password": editUserInfoCubit.passwordController.text});
+            }
+          },
           () {},
         );
       }, title: S.of(context).ChangePassword, icon: IconsPath.iconsLock),
@@ -95,6 +114,7 @@ class ProfileOption {
             ),
           ),
           IconsPath.iconsMail,
+          () async {},
           () {},
         );
       }, title: S.of(context).ChangeEmail, icon: IconsPath.iconsMail),
@@ -104,8 +124,10 @@ class ProfileOption {
       ProfileOption(() {
         context.read<BottomNavCubit>().changeIndex(1);
       }, title: S.of(context).YourOrder, icon: IconsPath.iconsTaks),
-      ProfileOption(() {},
-          title: S.of(context).YourPosts, icon: IconsPath.iconsPost),
+      ProfileOption(() {
+        HelperFunctions.navigateToScreen(
+            context, (context) => const UserAdsPageView());
+      }, title: S.of(context).YourPosts, icon: IconsPath.iconsPost),
       ProfileOption(() {
         HelperFunctions.navigateToScreen(
           context,

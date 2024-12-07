@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/core/widgets/remove_image_icon.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 
 class UploadContainer extends StatefulWidget {
@@ -41,6 +42,19 @@ class _UploadContainerState extends State<UploadContainer> {
     });
   }
 
+  void _removeImage(int index) {
+    setState(() {
+      // Remove the image from the list
+      final removedImage = _selectedImages.removeAt(index);
+
+      // Optionally, remove the image path from the cubit
+      BlocProvider.of<AddServiceCubit>(context)
+          .imagePaths
+          .remove(removedImage.path);
+      log("Image removed: ${removedImage.path}");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -68,12 +82,20 @@ class _UploadContainerState extends State<UploadContainer> {
                     mainAxisSpacing: 8,
                   ),
                   itemBuilder: (context, index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.file(
-                        _selectedImages[index],
-                        fit: BoxFit.cover,
-                      ),
+                    return Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.file(
+                            _selectedImages[index],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        RemoveImageIcon(
+                          onRemoveImage: () => _removeImage(index),
+                        )
+                      ],
                     );
                   },
                 ),

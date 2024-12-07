@@ -101,34 +101,53 @@ class HelperFunctions {
   }
 
   // Resizes the image to a specific width and height
-  static Future<File> resizeImage(File imageFile,
-      {int width = 200, int height = 200}) async {
-    // Print the original file size
-    final originalSize = await imageFile.length();
-    log("Original size: ${originalSize / 1024} KB");
+  static Future<File> resizeImage(
+    File imageFile, {
+    int width = 341,
+    int height = 220,
+    int quality = 85, // Quality for JPEG encoding (0-100)
+    bool maintainAspectRatio = true, // Maintain original aspect ratio
+  }) async {
+    try {
+      // Print the original file size
+      final originalSize = await imageFile.length();
+      log("Original size: ${originalSize / 1024} KB");
 
-    // Read bytes and decode the image
-    final bytes = await imageFile.readAsBytes();
-    final originalImage = img.decodeImage(Uint8List.fromList(bytes));
+      // Read bytes and decode the image
+      final bytes = await imageFile.readAsBytes();
+      final originalImage = img.decodeImage(Uint8List.fromList(bytes));
 
-    if (originalImage != null) {
+      if (originalImage == null) {
+        log("Failed to decode image. Returning original file.");
+        return imageFile; // Return original file if decoding fails
+      }
+
       // Resize the image
-      final resizedImage =
-          img.copyResize(originalImage, width: width, height: height);
-      final resizedBytes = Uint8List.fromList(img.encodeJpg(resizedImage));
+      img.Image resizedImage;
+      if (maintainAspectRatio) {
+        resizedImage = img.copyResize(originalImage, width: width);
+      } else {
+        resizedImage =
+            img.copyResize(originalImage, width: width, height: height);
+      }
+
+      // Encode the resized image with specified quality
+      final resizedBytes =
+          Uint8List.fromList(img.encodeJpg(resizedImage, quality: quality));
 
       // Write resized image to a temporary file
       final resizedFile = await writeToFile(resizedBytes);
 
-      // Print the resized file size
+      // Print the resized file size and percentage reduction
       final resizedSize = await resizedFile.length();
       log("Resized size: ${resizedSize / 1024} KB");
+      log("Size reduction: ${(1 - (resizedSize / originalSize)) * 100}%");
 
       return resizedFile;
+    } catch (e) {
+      log("Error resizing image: $e");
+      return imageFile; // Return original file on error
     }
-
-    // Return original file if resizing fails
-    return imageFile;
   }
 
   // Writes the resized image to a temporary file

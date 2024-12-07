@@ -167,7 +167,6 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   Future<void> addServiceCallApi(BuildContext context) async {
     emit(AddServiceStateLoading());
     FormData formData = await prepareFormData(prepareApiData(context) ?? {});
-
     if (context.mounted) {
       var result =
           await getIt.get<ServiceRepository>().addService(context, formData);
