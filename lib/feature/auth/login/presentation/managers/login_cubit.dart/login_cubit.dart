@@ -37,10 +37,11 @@ class LoginCubit extends Cubit<LoginState> {
     emailController.text = 'nassimtok9@gmail.com';
   }
 
-  Future<void> _handelSuccessLogin(String? token) async {
+  Future<void> _handelSuccessLogin(String? token, UserClientModel user) async {
     if (token != null) {
       await CacheHelper.setData(key: CacheKeys.kToken, value: token);
     }
+    await CacheHelper.cacheUserData(user);
     // await CacheHelper.setData(key: CacheKeys.kUserId, value: userId);
     LoggerHelper.info("Successfully Cached UserData");
   }
@@ -56,7 +57,8 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold((errorInLogin) {
       emit(LoginFailures(errMessage: errorInLogin.errMassage));
     }, (loginSuccess) async {
-      await _handelSuccessLogin(loginSuccess.token);
+      await _handelSuccessLogin(
+          loginSuccess.token, loginSuccess.user ?? const UserClientModel());
       emit(LoginSuccess(successLoginModel: loginSuccess));
     });
   }

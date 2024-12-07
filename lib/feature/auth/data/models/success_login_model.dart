@@ -1,26 +1,30 @@
+import 'package:weisro/feature/auth/data/models/user_client_model.dart';
+
 class SuccessLoginModel {
-  final String? name;
+  final UserClientModel? user;
   final String? token;
-  const SuccessLoginModel({this.name, this.token});
-  SuccessLoginModel copyWith({String? name, String? token}) {
+  const SuccessLoginModel({this.user, this.token});
+  SuccessLoginModel copyWith({UserClientModel? user, String? token}) {
     return SuccessLoginModel(
-        name: name ?? this.name, token: token ?? this.token);
+        user: user ?? this.user, token: token ?? this.token);
   }
 
   Map<String, Object?> toJson() {
-    return {'name': name, 'token': token};
+    return {'user': user?.toJson(), 'token': token};
   }
 
   static SuccessLoginModel fromJson(Map<String, Object?> json) {
     return SuccessLoginModel(
-        name: json['name'] == null ? null : json['name'] as String,
+        user: json['user'] == null
+            ? null
+            : UserClientModel.fromJson(json['user'] as Map<String, Object?>),
         token: json['token'] == null ? null : json['token'] as String);
   }
 
   @override
   String toString() {
     return '''SuccessLoginModel(
-                name:$name,
+                user:${user.toString()},
 token:$token
     ) ''';
   }
@@ -29,12 +33,12 @@ token:$token
   bool operator ==(Object other) {
     return other is SuccessLoginModel &&
         other.runtimeType == runtimeType &&
-        other.name == name &&
+        other.user == user &&
         other.token == token;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, name, token);
+    return Object.hash(runtimeType, user, token);
   }
 }

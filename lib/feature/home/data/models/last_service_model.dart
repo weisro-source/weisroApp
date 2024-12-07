@@ -124,31 +124,36 @@ nextPage:$nextPage
 class Docs {
   final String? id;
   final String? name;
-  final List<String>? images;
+  final List<String>? images; // Keep as a List<String>
   final CategoryId? categoryId;
   final Location? location;
   final int? price;
-  const Docs(
-      {this.id,
-      this.name,
-      this.images,
-      this.categoryId,
-      this.location,
-      this.price});
-  Docs copyWith(
-      {String? id,
-      String? name,
-      List<String>? images,
-      CategoryId? categoryId,
-      Location? location,
-      int? price}) {
+
+  const Docs({
+    this.id,
+    this.name,
+    this.images,
+    this.categoryId,
+    this.location,
+    this.price,
+  });
+
+  Docs copyWith({
+    String? id,
+    String? name,
+    List<String>? images,
+    CategoryId? categoryId,
+    Location? location,
+    int? price,
+  }) {
     return Docs(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        images: images ?? this.images,
-        categoryId: categoryId ?? this.categoryId,
-        location: location ?? this.location,
-        price: price ?? this.price);
+      id: id ?? this.id,
+      name: name ?? this.name,
+      images: images ?? this.images,
+      categoryId: categoryId ?? this.categoryId,
+      location: location ?? this.location,
+      price: price ?? this.price,
+    );
   }
 
   Map<String, Object?> toJson() {
@@ -158,38 +163,45 @@ class Docs {
       'images': images,
       'category_id': categoryId?.toJson(),
       'location': location?.toJson(),
-      'price': price
+      'price': price,
     };
   }
 
   static Docs fromJson(Map<String, Object?> json) {
     return Docs(
-        id: json['_id'] == null ? null : json['_id'] as String,
-        name: json['name'] == null ? null : json['name'] as String,
-        images: json['images'] == null
-            ? null
-            : (json['images'] as List<dynamic>)
-                .map((e) => e as String)
-                .toList(),
-        categoryId: json['category_id'] == null
-            ? null
-            : CategoryId.fromJson(json['category_id'] as Map<String, Object?>),
-        location: json['location'] == null
-            ? null
-            : Location.fromJson(json['location'] as Map<String, Object?>),
-        price: json['price'] == null ? null : json['price'] as int);
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+      images: _parseImages(json['images']), // Use the helper function
+      categoryId: json['category_id'] == null
+          ? null
+          : CategoryId.fromJson(json['category_id'] as Map<String, Object?>),
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, Object?>),
+      price: json['price'] as int?,
+    );
+  }
+
+  static List<String>? _parseImages(dynamic imagesJson) {
+    // Handle both String and List<String> cases
+    if (imagesJson is String) {
+      return [imagesJson]; // Wrap string in a list
+    } else if (imagesJson is List) {
+      return imagesJson.map((e) => e as String).toList();
+    }
+    return null; // Default case if neither
   }
 
   @override
   String toString() {
     return '''Docs(
-                id:$id,
-name:$name,
-images:$images,
-categoryId:${categoryId.toString()},
-location:${location.toString()},
-price:$price
-    ) ''';
+      id: $id,
+      name: $name,
+      images: $images,
+      categoryId: ${categoryId.toString()},
+      location: ${location.toString()},
+      price: $price
+    )''';
   }
 
   @override
@@ -207,7 +219,14 @@ price:$price
   @override
   int get hashCode {
     return Object.hash(
-        runtimeType, id, name, images, categoryId, location, price);
+      runtimeType,
+      id,
+      name,
+      images,
+      categoryId,
+      location,
+      price,
+    );
   }
 }
 

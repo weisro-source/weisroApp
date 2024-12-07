@@ -136,14 +136,23 @@ class Service {
           : (json['hourly_price'] is int
               ? (json['hourly_price'] as int).toDouble()
               : json['hourly_price'] as double),
-      images: json['images'] == null
-          ? null
-          : (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      images: _parseImages(json['images']),
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, Object?>),
       date: json['date'] == null ? null : json['date'] as String,
     );
+  }
+
+  static List<String>? _parseImages(dynamic imagesJson) {
+    if (imagesJson is String) {
+      // If `images` is a single string, wrap it in a list
+      return [imagesJson];
+    } else if (imagesJson is List) {
+      // If `images` is already a list, cast elements to String
+      return imagesJson.map((e) => e as String).toList();
+    }
+    return null; // Return null for unexpected cases
   }
 
   @override

@@ -32,10 +32,11 @@ class AdsRepositoryImplementation implements AdsRepository {
 
   @override
   Future<Either<Failure, AdsModel>> getAdsForUserApi(
-      CancelToken? cancelToken) async {
+      [int pageNumber = 1]) async {
     try {
-      var response =
-          await _apiService.get(endPoint: "${ApiEndPoints.addAds}/?type=user");
+      var response = await _apiService.get(
+          endPoint:
+              "${ApiEndPoints.addAds}/?type=user&page=$pageNumber&limit=${Constants.limitInPage}");
       return right(AdsModel.fromJson(response));
     } catch (errorInGetUserAds) {
       return left(ErrorHandler.handleError(errorInGetUserAds));

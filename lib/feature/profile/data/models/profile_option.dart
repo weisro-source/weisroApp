@@ -14,6 +14,7 @@ import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.d
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/edit_profile_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/static_page_view.dart';
+import 'package:weisro/feature/profile/presentation/view/pages/user_ads_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class ProfileOption {
@@ -123,8 +124,10 @@ class ProfileOption {
       ProfileOption(() {
         context.read<BottomNavCubit>().changeIndex(1);
       }, title: S.of(context).YourOrder, icon: IconsPath.iconsTaks),
-      ProfileOption(() {},
-          title: S.of(context).YourPosts, icon: IconsPath.iconsPost),
+      ProfileOption(() {
+        HelperFunctions.navigateToScreen(
+            context, (context) => const UserAdsPageView());
+      }, title: S.of(context).YourPosts, icon: IconsPath.iconsPost),
       ProfileOption(() {
         HelperFunctions.navigateToScreen(
           context,

@@ -9,6 +9,8 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/generated/l10n.dart';
 
+import '../../../../core/widgets/remove_image_icon.dart';
+
 /// Function to pick and resize an image
 Future<File?> pickImageWithResize(
     ImageSource source, ImagePicker picker) async {
@@ -76,26 +78,7 @@ class CreateAdInputArea extends StatelessWidget {
                               selectedImage!,
                               fit: BoxFit.cover,
                             ),
-                            Align(
-                              alignment: AlignmentDirectional.topEnd,
-                              child: GestureDetector(
-                                onTap: onRemoveImage,
-                                child: Container(
-                                  width: 21,
-                                  height: 21,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: AppColors.redColor),
-                                  child: Center(
-                                    child: Text(
-                                      'X',
-                                      style:
-                                          AppStyles.style14w500White(context),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
+                            RemoveImageIcon(onRemoveImage: onRemoveImage)
                           ],
                         ),
                 ),

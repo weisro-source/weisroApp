@@ -139,12 +139,21 @@ class Docs {
 
   static Docs fromJson(Map<String, Object?> json) {
     return Docs(
-      id: json['_id'] == null ? null : json['_id'] as String,
-      name: json['name'] == null ? null : json['name'] as String,
-      images: json['images'] == null
-          ? null
-          : (json['images'] as List).map((e) => e as String).toList(),
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+      images: _parseImages(json['images']),
     );
+  }
+
+  static List<String>? _parseImages(dynamic imagesJson) {
+    if (imagesJson is String) {
+      // If `images` is a single string, wrap it in a list
+      return [imagesJson];
+    } else if (imagesJson is List) {
+      // If `images` is already a list, cast elements to String
+      return imagesJson.map((e) => e as String).toList();
+    }
+    return null; // Return null for unexpected cases
   }
 
   @override
