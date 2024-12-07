@@ -286,37 +286,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                   focusNode: registerCubit.nextButtonFocusNode,
                   onPressed: () {
                     if (HelperFunctions.validateForm(
-                            registerCubit.registerFormKey)
-                        //     &&
-                        // GetCitiesOfASpecifiedCountryCubit.get(context)
-                        //     .cityName
-                        //     .isNotEmpty &&
-                        // GetAllCountriesCubit.get(context)
-                        //     .selectedCountry
-                        //     .name
-                        //     .isNotEmpty
-                        ) {
-                      CacheHelper.setData(
-                          key: CacheKeys.kCountryName,
-                          value: GetAllCountriesCubit.get(context)
-                              .selectedCountry
-                              .name);
-                      CacheHelper.setData(
-                          key: CacheKeys.kCountryId,
-                          value: GetAllCountriesCubit.get(context)
-                              .selectedCountry
-                              .id);
-                      CacheHelper.setData(
-                          key: CacheKeys.kCityName,
-                          value: GetCitiesOfASpecifiedCountryCubit.get(context)
-                              .cityName);
-                      registerCubit.cityName =
-                          GetCitiesOfASpecifiedCountryCubit.get(context)
-                              .cityName;
-                      registerCubit.countryName =
-                          GetAllCountriesCubit.get(context)
-                              .selectedCountry
-                              .name;
+                        registerCubit.registerFormKey)) {
                       HelperFunctions.navigateToScreen(
                         context,
                         (context) => BlocProvider.value(
