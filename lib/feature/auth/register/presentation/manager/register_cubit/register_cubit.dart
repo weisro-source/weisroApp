@@ -123,9 +123,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<FormData> prepareFormDataForWorkerRegister() async {
-    List<String> formattedTimes = [];
+    List<String> formattedStartTimes = [];
+    List<String> formattedEndTimes = [];
 
-    // Loop through each time and debug the processing
+    // Loop through each time and split it into start and end times
     for (String time in favoriteHours) {
       dev.log("Raw time: $time"); // Debug the raw time
 
@@ -145,7 +146,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         endTime = formatTimeForAPI(endTime); // Format end time
 
         if (isValidTime(startTime) && isValidTime(endTime)) {
-          formattedTimes.add('$startTime-$endTime');
+          // Add the formatted start and end times to separate lists
+          formattedStartTimes.add(startTime);
+          formattedEndTimes.add(endTime);
           dev.log("Valid time range: $startTime-$endTime");
         } else {
           dev.log("Invalid time format: $startTime-$endTime");
@@ -155,8 +158,9 @@ class RegisterCubit extends Cubit<RegisterState> {
       }
     }
 
-    // Debug the formattedTimes list before returning
-    dev.log("Formatted times: $formattedTimes");
+    // Debug the formatted times lists before returning
+    dev.log("Formatted start times: $formattedStartTimes");
+    dev.log("Formatted end times: $formattedEndTimes");
 
     FormData formData = FormData.fromMap({
       'first_name': firstNameController.text,
@@ -180,9 +184,11 @@ class RegisterCubit extends Cubit<RegisterState> {
       'validate_document': imagesPathsForId.isNotEmpty
           ? await MultipartFile.fromFile(imagesPathsForId.first)
           : null,
-      // Dynamically handle formatted times
-      for (int i = 0; i < formattedTimes.length; i++)
-        'time[$i]': formattedTimes[i],
+      // Dynamically handle formatted start and end times
+      for (int i = 0; i < formattedStartTimes.length; i++)
+        'time[$i]': formattedStartTimes[i],
+      for (int i = 0; i < formattedEndTimes.length; i++)
+        'time[$i]': formattedEndTimes[i],
       'fare_per_hour': costPerHourController.text,
       'age': '30', // Adjust this logic as needed
     });
