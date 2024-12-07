@@ -83,6 +83,7 @@ class _UploadContainerState extends State<UploadContainer> {
                   ),
                   itemBuilder: (context, index) {
                     return Stack(
+                      fit: StackFit.expand,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),

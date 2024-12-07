@@ -31,7 +31,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(4)),
           image: DecorationImage(
-              fit: BoxFit.cover,
+              fit: BoxFit.scaleDown,
               image: CachedNetworkImageProvider(
                   "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(widget.lastService.images ?? []) ?? ""}"))),
       child: Column(
@@ -54,8 +54,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
                             side: BorderSide(color: AppColors.orangeColor)),
                         color: AppColors.whiteColor),
                     child: Center(
-                        child:
-                            SvgPicture.asset(IconsPath.iconsFavService))),
+                        child: SvgPicture.asset(IconsPath.iconsFavService))),
               ),
             ),
           ),
@@ -64,8 +63,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
             height: 22,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
-              borderRadius:
-                  BorderRadius.circular(4), // Add border radius here
+              borderRadius: BorderRadius.circular(4), // Add border radius here
               boxShadow: const [
                 BoxShadow(
                   color: AppColors.orangeColor,
