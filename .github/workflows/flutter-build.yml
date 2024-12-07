@@ -17,7 +17,11 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -38,7 +42,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install Python Dependencies
         run: pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client requests speedtest-cli
