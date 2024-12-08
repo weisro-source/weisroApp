@@ -42,4 +42,23 @@ class AdsRepositoryImplementation implements AdsRepository {
       return left(ErrorHandler.handleError(errorInGetUserAds));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteAd(int adId) async {
+    try {
+      var response =
+          await _apiService.delete(endPoint: ApiEndPoints.addAds, id: adId);
+      var message = response[Constants.messageFromResponse];
+
+      // Ensure message is a non-null String
+      String? validMessage = HelperFunctions.ensureStringOrNull(message);
+      if (validMessage != null) {
+        return right(validMessage);
+      } else {
+        return left(ErrorHandler.handleError(Constants.responseIsNull));
+      }
+    } catch (errorInDeleteAd) {
+      return left(ErrorHandler.handleError(errorInDeleteAd));
+    }
+  }
 }
