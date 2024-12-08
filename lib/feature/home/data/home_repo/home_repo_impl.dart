@@ -53,6 +53,7 @@ class HomeRepositoryImplementation implements HomeRepository {
       var response = await _apiService.get(
           endPoint:
               "${ApiEndPoints.getLastService}page=$pageNumber&limit=${Constants.limitInPage}&search=$cityName");
+      print(response);
       return right(LastServicesModel.fromJson(response));
     } catch (errorInGetServicesByCategoryId) {
       return left(ErrorHandler.handleError(errorInGetServicesByCategoryId));
