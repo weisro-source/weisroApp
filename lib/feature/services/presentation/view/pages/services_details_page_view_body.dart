@@ -15,6 +15,7 @@ import 'package:weisro/core/widgets/days_list.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
+import 'package:weisro/feature/booking/presentation/view/pages/service_booking_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
@@ -235,7 +236,19 @@ class _ServicesDetailsPageViewBodyState
                     text: S.of(context).Book_Now,
                     // textStyle: AppStyles.style18w500Green(context)
                     //     .copyWith(color: AppColors.orangeColor),
-                    onPressed: () {},
+                    onPressed: () {
+                      HelperFunctions.navigateToScreen(
+                        context,
+                        (context) => BookServicePageView(
+                          isDays: widget.oneService.service?.days != null &&
+                              widget.oneService.service!.days!.isNotEmpty,
+                          isHours: widget.oneService.service?.time != null,
+                          hours:
+                              widget.oneService.service?.time ?? const Time(),
+                          days: widget.oneService.service?.days ?? [],
+                        ),
+                      );
+                    },
                   ),
           ),
         ),

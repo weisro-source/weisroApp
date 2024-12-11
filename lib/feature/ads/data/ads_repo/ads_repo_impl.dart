@@ -50,7 +50,6 @@ class AdsRepositoryImplementation implements AdsRepository {
           await _apiService.delete(endPoint: ApiEndPoints.addAds, id: adId);
       var message = response[Constants.messageFromResponse];
 
-      // Ensure message is a non-null String
       String? validMessage = HelperFunctions.ensureStringOrNull(message);
       if (validMessage != null) {
         return right(validMessage);

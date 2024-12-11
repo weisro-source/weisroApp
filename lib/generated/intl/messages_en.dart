@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Available rental hours"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Book Now"),
+        "Book_Service": MessageLookupByLibrary.simpleMessage("Book service"),
         "Book_Worker": MessageLookupByLibrary.simpleMessage("Book Worker"),
         "Both": MessageLookupByLibrary.simpleMessage("Both"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),

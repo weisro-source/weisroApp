@@ -54,7 +54,14 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
                             side: BorderSide(color: AppColors.orangeColor)),
                         color: AppColors.whiteColor),
                     child: Center(
-                        child: SvgPicture.asset(IconsPath.iconsFavService))),
+                      child: SvgPicture.asset(
+                        height: 10,
+                        width: 10,
+                        widget.lastService.isFavorite == true
+                            ? IconsPath.iconsIsFav
+                            : IconsPath.iconsFavService,
+                      ),
+                    )),
               ),
             ),
           ),

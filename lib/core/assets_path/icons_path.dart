@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class IconsPath {
   IconsPath._();
-
+  
   /// Assets for iconsAlert
   /// assets/icons/alert.svg
   static const String iconsAlert = "assets/icons/alert.svg";
@@ -31,7 +31,7 @@ class IconsPath {
   static const String iconsCalender = "assets/icons/calender.svg";
 
   /// Assets for iconsCamera
-  /// assets/icons/camera.png
+  /// assets/icons/camera.svg
   static const String iconsCamera = "assets/icons/camera.svg";
 
   /// Assets for iconsCategory
@@ -66,6 +66,10 @@ class IconsPath {
   /// assets/icons/home.svg
   static const String iconsHome = "assets/icons/home.svg";
 
+  /// Assets for iconsIsFav
+  /// assets/icons/is_fav.svg
+  static const String iconsIsFav = "assets/icons/is_fav.svg";
+
   /// Assets for iconsLanguage
   /// assets/icons/language.svg
   static const String iconsLanguage = "assets/icons/language.svg";
@@ -80,8 +84,7 @@ class IconsPath {
 
   /// Assets for iconsLoadingAnmation
   /// assets/icons/loading_anmation.json
-  static const String iconsLoadingAnmation =
-      "assets/icons/loading_anmation.json";
+  static const String iconsLoadingAnmation = "assets/icons/loading_anmation.json";
 
   /// Assets for iconsLocation
   /// assets/icons/location.svg
@@ -177,8 +180,7 @@ class IconsPath {
 
   /// Assets for iconsStarSecondColor
   /// assets/icons/star_second_color.svg
-  static const String iconsStarSecondColor =
-      "assets/icons/star_second_color.svg";
+  static const String iconsStarSecondColor = "assets/icons/star_second_color.svg";
 
   /// Assets for iconsSuccess
   /// assets/icons/success.svg
@@ -202,8 +204,7 @@ class IconsPath {
 
   /// Assets for iconsTimeIsMoneyClock
   /// assets/icons/time_is_money_clock.svg
-  static const String iconsTimeIsMoneyClock =
-      "assets/icons/time_is_money_clock.svg";
+  static const String iconsTimeIsMoneyClock = "assets/icons/time_is_money_clock.svg";
 
   /// Assets for iconsTimeSelected
   /// assets/icons/time_selected.svg
@@ -231,6 +232,6 @@ class IconsPath {
 
   /// Assets for iconsWorkerRegisterImageUploader
   /// assets/icons/worker_register_image_uploader.svg
-  static const String iconsWorkerRegisterImageUploader =
-      "assets/icons/worker_register_image_uploader.svg";
+  static const String iconsWorkerRegisterImageUploader = "assets/icons/worker_register_image_uploader.svg";
 }
+

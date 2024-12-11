@@ -204,13 +204,22 @@ class Service {
         rate: json['rate'] == null ? null : json['rate'] as int,
         id: json['_id'] == null ? null : json['_id'] as String,
         name: json['name'] == null ? null : json['name'] as String,
-        images: json['images'] == null
-            ? null
-            : (json['images'] as List).map((e) => e as String).toList(),
+        images: _parseImages(json['images']),
         location: json['location'] == null
             ? null
             : Location.fromJson(json['location'] as Map<String, Object?>),
         price: json['price'] == null ? null : json['price'] as int);
+  }
+
+  static List<String>? _parseImages(dynamic imagesJson) {
+    if (imagesJson is String) {
+      // If `images` is a single string, wrap it in a list
+      return [imagesJson];
+    } else if (imagesJson is List) {
+      // If `images` is already a list, cast elements to String
+      return imagesJson.map((e) => e as String).toList();
+    }
+    return null; // Return null for unexpected cases
   }
 
   @override
