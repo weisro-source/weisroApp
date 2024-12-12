@@ -1,13 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
@@ -16,7 +12,7 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view_body.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
 import 'package:weisro/generated/l10n.dart';
-import 'package:intl/intl.dart';
+import '../widgets/cancel_and_book_button.dart';
 import '../widgets/selected_type.dart';
 
 class BookServicePageViewBody extends StatefulWidget {
@@ -43,35 +39,8 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   final List<String> selectedHours = [];
   final List<String> selectedDays = [];
 
-  List<String> generateTimeSlots(String? startTime, String? endTime) {
-    if (startTime == null || endTime == null) {
-      return [];
-    }
-
-    try {
-      DateFormat inputFormat = DateFormat.jm(); // Input format: "8:00 AM"
-      DateFormat outputFormat =
-          DateFormat.Hm(); // Output format: "08:00" To view this
-
-      DateTime start = inputFormat.parse(startTime);
-      DateTime end = inputFormat.parse(endTime);
-
-      List<String> slots = [];
-      while (start.isBefore(end)) {
-        DateTime nextHour = start.add(const Duration(hours: 1));
-        slots.add(
-            "${outputFormat.format(start)} - ${outputFormat.format(nextHour)}");
-        start = nextHour;
-      }
-      return slots;
-    } catch (e) {
-      return [];
-    }
-  }
-
   @override
   void initState() {
-    log(widget.days.toString());
     super.initState();
   }
 
@@ -79,8 +48,8 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   Widget build(BuildContext context) {
     BookServiceCubit bookServiceCubit = BookServiceCubit.get(context);
 
-    List<String> timeSlots =
-        generateTimeSlots(widget.hours.start, widget.hours.end);
+    List<String> timeSlots = bookServiceCubit.generateTimeSlots(
+        widget.hours.start, widget.hours.end);
 
     return CustomScrollView(
       slivers: [
@@ -186,7 +155,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                 OneInformation(
                   icon: IconsPath.iconsCalender,
                   text: S.of(context).Rental_History,
-                  info: "12 / 12 / 2024",
+                  info: HelperFunctions.getFormattedDate(DateTime.now()),
                 ),
                 24.kh,
                 OneInformation(
@@ -221,32 +190,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
         ),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: SliverToBoxAdapter(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: AppButton(
-                    borderColor: AppColors.redColor,
-                    buttonColor: AppColors.redColor,
-                    text: S.of(context).Cancel,
-                    onPressed: () {},
-                  ),
-                ),
-                10.kw,
-                Expanded(
-                  child: AppButton(
-                    borderColor: AppColors.orangeColor,
-                    buttonColor: AppColors.whiteColor,
-                    text: S.of(context).Book_Now,
-                    textStyle: AppStyles.style18w500Grey(context)
-                        .copyWith(color: AppColors.orangeColor),
-                    onPressed: () async {},
-                  ),
-                )
-              ],
-            ),
-          ),
+          sliver: const CancelAndBookButton(),
         ),
       ],
     );
