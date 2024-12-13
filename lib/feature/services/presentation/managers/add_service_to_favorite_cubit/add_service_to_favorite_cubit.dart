@@ -21,7 +21,8 @@ class AddServiceToFavoriteCubit extends Cubit<AddServiceToFavoriteState> {
         emit(AddServiceToFavoriteFailures(error: errorInAddServiceToFavorite));
       },
       (addServiceToFavoriteSuccess) {
-        emit(AddServiceToFavoriteSuccess(message: addServiceToFavoriteSuccess));
+        emit(AddServiceToFavoriteSuccess(
+            message: addServiceToFavoriteSuccess, id: serviceId));
       },
     );
   }

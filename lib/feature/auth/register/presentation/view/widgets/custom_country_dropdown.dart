@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:weisro/core/widgets/shimmer_app_button.dart';
 import 'package:weisro/feature/auth/data/models/countries_model.dart';
 
 class CountryDropdown extends StatelessWidget {
@@ -44,7 +45,7 @@ class CountryDropdown extends StatelessWidget {
                 width: 24,
                 height: 16,
                 placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
+                    const ShimmerAppButton.rectangular(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               title: Text(country.name),

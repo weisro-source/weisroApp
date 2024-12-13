@@ -83,7 +83,6 @@ class HomePageViewBody extends StatelessWidget {
                         String firstCity = cityNameList.firstWhere((cityName) =>
                             cityName ==
                             CacheHelper.getData(key: CacheKeys.kCityName));
-                        // String firstCity = cityNameList.first;
                         return Expanded(
                           flex: 1,
                           child: LocationFlitterDropDown(
@@ -122,7 +121,12 @@ class HomePageViewBody extends StatelessWidget {
             padding: HelperFunctions.symmetricHorizontalPadding24,
             sliver: BlocListener<AddServiceToFavoriteCubit,
                 AddServiceToFavoriteState>(
-              listener: (context, state) {},
+              listener: (context, addServiceToFavoriteState) {
+                // if (addServiceToFavoriteState is AddServiceToFavoriteSuccess) {
+                // GetLastServicesCubit.get(context).changeFavorite(serviceId)
+                
+                // }
+              },
               child: BlocBuilder<GetLastServicesCubit, GetLastServicesState>(
                 builder: (context, getLastService) {
                   if (getLastService is GetLastServicesLoading) {

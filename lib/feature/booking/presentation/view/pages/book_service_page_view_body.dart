@@ -12,7 +12,7 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view_body.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
 import 'package:weisro/generated/l10n.dart';
-import '../widgets/cancel_and_book_button.dart';
+import '../widgets/cancel_and_button.dart';
 import '../widgets/selected_type.dart';
 
 class BookServicePageViewBody extends StatefulWidget {
@@ -190,7 +190,11 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
         ),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: const CancelAndBookButton(),
+          sliver: SliverToBoxAdapter(
+            child: CancelAndButton(
+              secondButton: S.of(context).Book_Now,
+            ),
+          ),
         ),
       ],
     );

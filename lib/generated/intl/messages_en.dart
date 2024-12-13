@@ -178,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "Result_Found": MessageLookupByLibrary.simpleMessage("Result Found"),
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
+        "Save": MessageLookupByLibrary.simpleMessage("Save"),
         "Search": MessageLookupByLibrary.simpleMessage("Search"),
         "Search_In": MessageLookupByLibrary.simpleMessage("Search In"),
         "Search_Page": MessageLookupByLibrary.simpleMessage("Search Page"),
