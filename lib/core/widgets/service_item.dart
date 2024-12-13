@@ -17,7 +17,7 @@ class ServiceItem extends StatelessWidget {
     super.key,
     required this.favoriteService,
   });
-  final Docs favoriteService;
+  final Service favoriteService;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +47,7 @@ class ServiceItem extends StatelessWidget {
             flex: 1,
             child: CachedNetworkImage(
               imageUrl:
-                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(favoriteService.service?.images ?? []) ?? ""}",
+                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(favoriteService.images ?? []) ?? ""}",
               width: 105,
               height: 56,
               fit: BoxFit.scaleDown,
@@ -71,12 +71,12 @@ class ServiceItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        favoriteService.service?.name ?? "",
+                        favoriteService.name ?? "",
                         style: AppStyles.style10w400Grey(context),
                       ),
                       const Spacer(),
                       RateWidget(
-                        rate: favoriteService.service?.rate.toString() ?? "",
+                        rate: favoriteService.rate.toString(),
                       ),
                       9.kw,
                     ],
@@ -105,7 +105,7 @@ class ServiceItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        "\$${favoriteService.service?.price.toString()}",
+                        "\$${favoriteService.price.toString()}",
                         style: AppStyles.style10w500Red(context)
                             .copyWith(color: AppColors.orangeColor),
                       ),

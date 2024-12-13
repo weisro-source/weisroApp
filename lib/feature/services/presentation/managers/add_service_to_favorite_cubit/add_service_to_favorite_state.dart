@@ -9,8 +9,9 @@ final class AddServiceToFavoriteLoading extends AddServiceToFavoriteState {}
 
 final class AddServiceToFavoriteSuccess extends AddServiceToFavoriteState {
   final String message;
+  final String id;
 
-  AddServiceToFavoriteSuccess({required this.message});
+  AddServiceToFavoriteSuccess({required this.message, required this.id});
 }
 
 final class AddServiceToFavoriteFailures extends AddServiceToFavoriteState {

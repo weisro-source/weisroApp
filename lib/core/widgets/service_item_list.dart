@@ -29,7 +29,7 @@ class ServiceItemList extends StatelessWidget {
             );
           },
           child: ServiceItem(
-            favoriteService: favoriteService,
+            favoriteService: favoriteService.service ?? const Service(),
           ),
         );
       },

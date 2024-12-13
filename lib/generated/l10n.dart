@@ -1701,6 +1701,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Book service`
+  String get Book_Service {
+    return Intl.message(
+      'Book service',
+      name: 'Book_Service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get Save {
+    return Intl.message(
+      'Save',
+      name: 'Save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

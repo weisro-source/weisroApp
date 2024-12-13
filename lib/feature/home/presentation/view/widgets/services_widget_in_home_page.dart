@@ -8,6 +8,7 @@ import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/home/data/models/last_service_model.dart';
+import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 
 class ServicesWidgetInHomePage extends StatefulWidget {
@@ -29,11 +30,14 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
       height: 162,
       width: 172,
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
-          image: DecorationImage(
-              fit: BoxFit.scaleDown,
-              image: CachedNetworkImageProvider(
-                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(widget.lastService.images ?? []) ?? ""}"))),
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        image: DecorationImage(
+          fit: BoxFit.scaleDown,
+          image: CachedNetworkImageProvider(
+            "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(widget.lastService.images ?? []) ?? ""}",
+          ),
+        ),
+      ),
       child: Column(
         children: [
           Align(
@@ -44,17 +48,34 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
                 onTap: () async {
                   await AddServiceToFavoriteCubit.get(context)
                       .addServiceToFavorite(
-                          context, widget.lastService.id ?? "");
+                    context,
+                    widget.lastService.id ?? "",
+                  );
+
+                  if (context.mounted) {
+                    GetLastServicesCubit.get(context)
+                        .changeFavorite(widget.lastService.id ?? "");
+                  }
                 },
                 child: Container(
-                    width: 20,
-                    height: 20,
-                    decoration: const ShapeDecoration(
-                        shape: CircleBorder(
-                            side: BorderSide(color: AppColors.orangeColor)),
-                        color: AppColors.whiteColor),
-                    child: Center(
-                        child: SvgPicture.asset(IconsPath.iconsFavService))),
+                  width: 20,
+                  height: 20,
+                  decoration: const ShapeDecoration(
+                    shape: CircleBorder(
+                      side: BorderSide(color: AppColors.orangeColor),
+                    ),
+                    color: AppColors.whiteColor,
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      height: 10,
+                      width: 10,
+                      widget.lastService.isFavorite == true
+                          ? IconsPath.iconsIsFav
+                          : IconsPath.iconsFavService,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -63,7 +84,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
             height: 22,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(4), // Add border radius here
+              borderRadius: BorderRadius.circular(4),
               boxShadow: const [
                 BoxShadow(
                   color: AppColors.orangeColor,

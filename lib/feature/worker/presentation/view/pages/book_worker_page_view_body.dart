@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
-import 'package:weisro/core/styles/style_functions.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
@@ -15,6 +13,8 @@ import 'package:weisro/feature/auth/register/presentation/view/widgets/favorite_
 import 'package:weisro/feature/auth/register/presentation/view/widgets/note_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/generated/l10n.dart';
+
+import '../widget/choose_widget.dart';
 
 class BookWorkerPageViewBody extends StatelessWidget {
   const BookWorkerPageViewBody({super.key});
@@ -43,12 +43,14 @@ class BookWorkerPageViewBody extends StatelessWidget {
                   child: ChooseWidget(
                 chooseTitle: S.of(context).Days,
                 icon: IconsPath.iconsCalender,
+                isSelected: false,
               )),
               10.kw,
               Expanded(
                   child: ChooseWidget(
                 chooseTitle: S.of(context).Hours,
                 icon: IconsPath.iconsTime,
+                isSelected: false,
               )),
               24.kw,
             ],
@@ -213,33 +215,6 @@ class OneInformation extends StatelessWidget {
           style: AppStyles.style14w500Orange(context),
         )
       ],
-    );
-  }
-}
-
-class ChooseWidget extends StatelessWidget {
-  const ChooseWidget({
-    super.key,
-    required this.icon,
-    required this.chooseTitle,
-  });
-  final String icon, chooseTitle;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 31,
-      decoration: StyleFunctions.decorationRadius8Orange(),
-      child: Row(
-        children: [
-          12.kw,
-          SvgPicture.asset(icon),
-          8.kw,
-          Text(
-            chooseTitle,
-            style: AppStyles.style14w400Grey(context),
-          )
-        ],
-      ),
     );
   }
 }

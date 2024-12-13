@@ -14,6 +14,7 @@ import 'package:weisro/feature/home/presentation/managers/get_last_services_cubi
 import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
+import 'package:weisro/feature/search/presentation/managers/cubit/search_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class WeisroApp extends StatelessWidget {
@@ -49,6 +50,9 @@ class WeisroApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GetAllCountriesCubit()..getAllCountries(),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

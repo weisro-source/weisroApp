@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
@@ -11,6 +12,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/feature/search/presentation/managers/cubit/search_cubit.dart';
 import 'package:weisro/feature/search/presentation/view/pages/search_result_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -40,7 +42,11 @@ class SearchPageBody extends StatelessWidget {
                   borderColor: AppColors.orangeColor,
                   onFieldSubmitted: (_) {
                     HelperFunctions.navigateToScreen(
-                        context, (context) => const SearchResultPageView());
+                        context,
+                        (context) => SearchResultPageView(
+                              cityName:
+                                  context.read<SearchCubit>().searchController.text,
+                            ));
                   },
                   prefixIcon: const SearchIcon(),
                 )),

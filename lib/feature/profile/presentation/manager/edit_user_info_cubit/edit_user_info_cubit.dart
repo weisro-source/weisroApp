@@ -11,10 +11,15 @@ part 'edit_user_info_state.dart';
 class EditUserInfoCubit extends Cubit<EditUserInfoState> {
   EditUserInfoCubit() : super(EditUserInfoInitial());
   static EditUserInfoCubit get(context) => BlocProvider.of(context);
-  TextEditingController fullNameController = TextEditingController(
-      text:
-          "${CacheHelper.getData(key: CacheKeys.kUserFirstName)} ${CacheHelper.getData(key: CacheKeys.kUserLastName)} ");
+  final GlobalKey<FormState> editAccountFormKey = GlobalKey<FormState>();
 
+  // TextEditingController fullNameController = TextEditingController(
+  //     text:
+  //         "${CacheHelper.getData(key: CacheKeys.kUserFirstName)} ${CacheHelper.getData(key: CacheKeys.kUserLastName)} ");
+  TextEditingController firstNameController = TextEditingController(
+      text: CacheHelper.getData(key: CacheKeys.kUserFirstName));
+  TextEditingController lastNameController = TextEditingController(
+      text: CacheHelper.getData(key: CacheKeys.kUserLastName));
   TextEditingController emailController = TextEditingController(
       text: CacheHelper.getData(key: CacheKeys.kUserEmail));
   TextEditingController phoneController = TextEditingController(
@@ -33,7 +38,18 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
   FocusNode postalCodeFocusNode = FocusNode();
   FocusNode streetFocusNode = FocusNode();
   FocusNode houseNumberFocusNode = FocusNode();
-  Future<void> initTextController() async {}
+
+  void initControllers() {
+    firstNameController.text =
+        CacheHelper.getData(key: CacheKeys.kUserFirstName);
+    lastNameController.text = CacheHelper.getData(key: CacheKeys.kUserLastName);
+    postalCodeController.text =
+        CacheHelper.getData(key: CacheKeys.kUserZipCode);
+    streetController.text = CacheHelper.getData(key: CacheKeys.kUserStreet);
+    houseNumberController.text =
+        CacheHelper.getData(key: CacheKeys.kHouseNumber);
+  }
+
   Future<void> editUser(Map<String, dynamic> data) async {
     emit(EditUserInfoLoading());
     var result = await getIt.get<AccountRepository>().editUserAccount(data);

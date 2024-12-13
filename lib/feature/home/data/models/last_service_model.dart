@@ -128,6 +128,7 @@ class Docs {
   final CategoryId? categoryId;
   final Location? location;
   final int? price;
+  final bool? isFavorite;
 
   const Docs({
     this.id,
@@ -136,24 +137,25 @@ class Docs {
     this.categoryId,
     this.location,
     this.price,
+    this.isFavorite,
   });
 
-  Docs copyWith({
-    String? id,
-    String? name,
-    List<String>? images,
-    CategoryId? categoryId,
-    Location? location,
-    int? price,
-  }) {
+  Docs copyWith(
+      {String? id,
+      String? name,
+      List<String>? images,
+      CategoryId? categoryId,
+      Location? location,
+      int? price,
+      bool? isFavorite}) {
     return Docs(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      images: images ?? this.images,
-      categoryId: categoryId ?? this.categoryId,
-      location: location ?? this.location,
-      price: price ?? this.price,
-    );
+        id: id ?? this.id,
+        name: name ?? this.name,
+        images: images ?? this.images,
+        categoryId: categoryId ?? this.categoryId,
+        location: location ?? this.location,
+        price: price ?? this.price,
+        isFavorite: isFavorite ?? this.isFavorite);
   }
 
   Map<String, Object?> toJson() {
@@ -169,17 +171,18 @@ class Docs {
 
   static Docs fromJson(Map<String, Object?> json) {
     return Docs(
-      id: json['_id'] as String?,
-      name: json['name'] as String?,
-      images: _parseImages(json['images']), // Use the helper function
-      categoryId: json['category_id'] == null
-          ? null
-          : CategoryId.fromJson(json['category_id'] as Map<String, Object?>),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, Object?>),
-      price: json['price'] as int?,
-    );
+        id: json['_id'] as String?,
+        name: json['name'] as String?,
+        images: _parseImages(json['images']), // Use the helper function
+        categoryId: json['category_id'] == null
+            ? null
+            : CategoryId.fromJson(json['category_id'] as Map<String, Object?>),
+        location: json['location'] == null
+            ? null
+            : Location.fromJson(json['location'] as Map<String, Object?>),
+        price: json['price'] as int?,
+        isFavorite:
+            json['isFavorite'] == null ? null : json['isFavorite'] as bool);
   }
 
   static List<String>? _parseImages(dynamic imagesJson) {
