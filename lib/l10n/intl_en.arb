@@ -166,5 +166,7 @@
     "create_ad_you_want": "Create the ad you want ?",
     "Send_And_Wait": "Send and wait",
     "Book_Service":"Book service",
-    "Save":"Save"
+    "Save":"Save",
+    "End":"End",
+    "Start":"Start"
 }

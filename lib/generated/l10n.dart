@@ -1721,6 +1721,26 @@ class S {
       args: [],
     );
   }
+
+  /// `End`
+  String get End {
+    return Intl.message(
+      'End',
+      name: 'End',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start`
+  String get Start {
+    return Intl.message(
+      'Start',
+      name: 'Start',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

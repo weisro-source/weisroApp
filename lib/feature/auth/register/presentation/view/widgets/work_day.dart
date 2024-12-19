@@ -12,9 +12,10 @@ class WorkDay extends StatelessWidget {
   final String day;
   final void Function()? onTap;
   final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return GestureDetector( 
       onTap: onTap,
       child: AspectRatio(
         aspectRatio: 1,

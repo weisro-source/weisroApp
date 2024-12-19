@@ -80,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "EditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Edit Personal Information"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
+        "End": MessageLookupByLibrary.simpleMessage("End"),
         "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
             "What\'s your favorite time to work?"),
@@ -203,6 +204,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Services provided :"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
+        "Start": MessageLookupByLibrary.simpleMessage("Start"),
         "Street": MessageLookupByLibrary.simpleMessage("The street"),
         "Su": MessageLookupByLibrary.simpleMessage("Su"),
         "Successfully": MessageLookupByLibrary.simpleMessage("successfully"),

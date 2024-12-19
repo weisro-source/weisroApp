@@ -32,7 +32,7 @@ class EditProfilePageViewBody extends StatefulWidget {
 }
 
 class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
-  String newCity = "";
+  String  newCity = "";
   @override
   void initState() {
     BlocProvider.of<EditUserInfoCubit>(context).initControllers();
@@ -133,11 +133,14 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                       if (state is GetCitiesOfASpecifiedCountrySuccess) {
                         List<String> cityNameList =
                             state.cities.cities.map((e) => e.name).toList();
-                        String firstCity = cityNameList.firstWhere((cityName) =>
-                            cityName ==
-                            CacheHelper.getData(key: CacheKeys.kCityName));
-                        // String firstCity = cityNameList.first;
-                        // String firstCity = cityNameList.first;
+
+                        String firstCity = cityNameList.firstWhere(
+                            (cityName) =>
+                                cityName ==
+                                CacheHelper.getData(key: CacheKeys.kCityName),
+                            orElse: () => cityNameList.isNotEmpty
+                                ? cityNameList.first
+                                : '');
                         return LocationFlitterDropDown(
                           fillColor: AppColors.whiteColor,
                           borderColor: AppColors.greyColor,

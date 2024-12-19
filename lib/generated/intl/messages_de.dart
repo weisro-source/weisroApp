@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Verfügbare Mietstunden"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Jetzt buchen"),
+        "Book_Service": MessageLookupByLibrary.simpleMessage("Dienst buchen"),
         "Book_Worker":
             MessageLookupByLibrary.simpleMessage("Mitarbeiter buchen"),
         "Both": MessageLookupByLibrary.simpleMessage("Beides"),
@@ -79,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "EditPersonalInformation": MessageLookupByLibrary.simpleMessage(
             "Persönliche Informationen bearbeiten"),
         "Email": MessageLookupByLibrary.simpleMessage("E-Mail"),
+        "End": MessageLookupByLibrary.simpleMessage("Beenden"),
         "Evening": MessageLookupByLibrary.simpleMessage("Abend"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
             "Was ist Ihre bevorzugte Arbeitszeit?"),
@@ -177,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Result_Found":
             MessageLookupByLibrary.simpleMessage("Ergebnis gefunden"),
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
+        "Save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "Search": MessageLookupByLibrary.simpleMessage("Suche"),
         "Search_In": MessageLookupByLibrary.simpleMessage("Suchen in"),
         "Search_Page": MessageLookupByLibrary.simpleMessage("Suchseite"),
@@ -190,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wählen Sie die von Ihnen angebotenen Dienstleistungen aus?"),
         "Selected_account": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie aus, wofür Sie ein Konto erstellen möchten:"),
+        "Send_And_Wait":
+            MessageLookupByLibrary.simpleMessage("Senden und warten"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
@@ -200,6 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Erbrachte Dienstleistungen :"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
+        "Start": MessageLookupByLibrary.simpleMessage("Starten"),
         "Street": MessageLookupByLibrary.simpleMessage("Straße"),
         "Su": MessageLookupByLibrary.simpleMessage("So"),
         "Successfully": MessageLookupByLibrary.simpleMessage("erfolgreich"),

@@ -47,7 +47,4 @@ class BookServiceCubit extends Cubit<BookServiceState> {
       return [];
     }
   }
-
- 
-
 }
