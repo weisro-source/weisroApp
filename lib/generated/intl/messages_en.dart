@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Code_sent_to_email": MessageLookupByLibrary.simpleMessage(
             "The code will be sent to the following Email"),
         "Complete": MessageLookupByLibrary.simpleMessage("Complete"),
+        "Complete_Information": MessageLookupByLibrary.simpleMessage(
+            "Please complete the information"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "Conformation": MessageLookupByLibrary.simpleMessage("Conformation"),
@@ -75,11 +77,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "* upon verification all documents will be deleted"),
         "Document_Verification": MessageLookupByLibrary.simpleMessage(
             "We need a document to verify that your account is not a fake account"),
+        "Dont_Have_Account":
+            MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "Drivers_License":
             MessageLookupByLibrary.simpleMessage("Driver\'s license"),
         "EditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Edit Personal Information"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
+        "End": MessageLookupByLibrary.simpleMessage("End"),
         "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
             "What\'s your favorite time to work?"),
@@ -188,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_page": MessageLookupByLibrary.simpleMessage("Search page"),
         "Search_page_empty_message": MessageLookupByLibrary.simpleMessage(
             "The search page is empty, go and explore what\'s new"),
+        "Select_Location":
+            MessageLookupByLibrary.simpleMessage("Select location"),
         "Select_Services": MessageLookupByLibrary.simpleMessage(
             "Select the services you offer?"),
         "Selected_account": MessageLookupByLibrary.simpleMessage(
@@ -201,8 +208,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("services Details"),
         "Services_provided":
             MessageLookupByLibrary.simpleMessage("Services provided :"),
+        "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
+        "Start": MessageLookupByLibrary.simpleMessage("Start"),
         "Street": MessageLookupByLibrary.simpleMessage("The street"),
         "Su": MessageLookupByLibrary.simpleMessage("Su"),
         "Successfully": MessageLookupByLibrary.simpleMessage("successfully"),

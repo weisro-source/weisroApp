@@ -17,9 +17,14 @@ import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/
 import 'package:weisro/feature/search/presentation/managers/cubit/search_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
-class WeisroApp extends StatelessWidget {
+class WeisroApp extends StatefulWidget {
   const WeisroApp({Key? key}) : super(key: key);
 
+  @override
+  State<WeisroApp> createState() => _WeisroAppState();
+}
+
+class _WeisroAppState extends State<WeisroApp> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -69,6 +74,7 @@ class WeisroApp extends StatelessWidget {
                 BlocProvider.of<LanguageCubit>(context).localLang ?? 'en'),
             title: 'Wisro',
             debugShowCheckedModeBanner: HelperFunctions.isDebugMode(),
+            // themeMode: ThemeMode.dark,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: AppColors.whiteColor,

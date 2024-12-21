@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
+import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/booking/presentation/manager/book_service_cubit/book_service_cubit.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
@@ -38,6 +40,15 @@ String selected = '';
 class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   final List<String> selectedHours = [];
   final List<String> selectedDays = [];
+  late Map<String, String> daysKeysValues;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Initialize daysKeysValues here, where localization is available
+    daysKeysValues = WorkerTime.daysSelected(context);
+    //  addPostFrameCallback to delay the call to selectedType until after the build to resolve this error
+  }
 
   @override
   void initState() {
@@ -193,8 +204,13 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
           sliver: SliverToBoxAdapter(
             child: CancelAndButton(
               secondButton: S.of(context).Book_Now,
+              onBookPressed: () {},
+              onCancelPressed: () {},
             ),
           ),
+        ),
+        SliverToBoxAdapter(
+          child: 36.kh,
         ),
       ],
     );
@@ -256,50 +272,66 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   }
 
   Widget _buildDaysList() {
+    final daysKeys = WorkerTime.daysSelected(context)
+        .keys
+        .toList(); // Convert keys to a list such Saturday , Sunday
+    final daysValues = WorkerTime.daysSelected(context)
+        .values
+        .toList(); // Convert values to a list such sa , su
     return ListView.separated(
       key: const ValueKey("days"),
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: widget.days.length,
+      itemCount: daysKeys.length,
       separatorBuilder: (context, index) => 10.kh,
       itemBuilder: (context, index) {
-        String day = widget.days[index];
-        final isSelected = selectedDays.contains(day);
-
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              if (isSelected) {
-                selectedDays.remove(day);
-              } else {
-                selectedDays.add(day);
-              }
-            });
-          },
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: isSelected ? AppColors.orangeColor : AppColors.whiteColor,
-              border: Border.all(color: AppColors.orangeColor),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(IconsPath.iconsFavTime),
-                8.kw,
-                Text(
-                  day,
-                  style: TextStyle(
-                    color: isSelected
-                        ? AppColors.whiteColor
-                        : AppColors.orangeColor.withOpacity(0.7),
-                    fontWeight: FontWeight.bold,
-                  ),
+        String dayKey = daysKeys[index];
+        String dayValue = daysValues[index];
+        bool isContained = widget.days.contains(dayKey);
+        String dayDate = HelperFunctions.getDateForDay(dayKey);
+        return Column(
+          children: [
+            GestureDetector(
+              onTap: isContained ? () {} : null,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color:
+                      isContained ? AppColors.whiteColor : AppColors.redColor,
+                  border: Border.all(color: AppColors.orangeColor),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    20.kw,
+                    SvgPicture.asset(IconsPath.iconsFavTime),
+                    8.kw,
+                    Text(dayValue,
+                        style: AppStyles.style12w500Orange(context).copyWith(
+                            color: isContained
+                                ? AppColors.orangeColor
+                                : AppColors.whiteColor)),
+                    8.kw,
+                    Text(dayDate,
+                        style: AppStyles.style12w500Orange(context).copyWith(
+                            color: isContained
+                                ? AppColors.orangeColor
+                                : AppColors.whiteColor)),
+                    const Spacer(),
+                    Text(
+                      "7 pm - 9 am",
+                      style: AppStyles.style10w400Second2(context).copyWith(
+                          color: isContained
+                              ? AppColors.orangeColor
+                              : AppColors.whiteColor),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         );
       },
     );

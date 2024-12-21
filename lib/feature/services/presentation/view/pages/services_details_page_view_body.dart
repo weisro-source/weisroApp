@@ -102,6 +102,7 @@ class _ServicesDetailsPageViewBodyState
                       },
                       onSharePressed: () {
                         // Add your logic for share button
+                        // final serviceId = widget.oneService.service?.id ?? "";
                       },
                       isFavLoading: addServiceToFavoriteState
                           is AddServiceToFavoriteLoading,

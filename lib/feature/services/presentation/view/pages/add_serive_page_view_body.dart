@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
-
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
-import 'package:weisro/core/widgets/days_list.dart';
-import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
+import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
+import 'package:weisro/feature/services/presentation/managers/service_day_cubit.dart';
 import 'package:weisro/feature/services/presentation/view/pages/service_review_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/price_for_service.dart';
 import '../widgets/rent_time.dart';
+import '../widgets/select_location_button.dart';
 import '../widgets/selected_time_for_create_service.dart';
+import '../widgets/service_day_list.dart';
 import '../widgets/upload_container.dart';
+import 'location_name.dart';
 
 class CreateServicePageViewBody extends StatefulWidget {
   const CreateServicePageViewBody({super.key});
@@ -37,6 +39,20 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
   void initState() {
     BlocProvider.of<WorkerDayCubit>(context).state.clear();
     super.initState();
+  }
+
+  void _setAllDays(TimeOfDay? startTime, TimeOfDay? endTime) {
+    final cubit = context.read<ServiceDayCubit>();
+    final days = WorkerTime.daysSelected(context).keys;
+
+    for (final day in days) {
+      cubit.updateTime(day, startTime, endTime);
+    }
+  }
+
+  void _set24x7Mode() {
+    _setAllDays(const TimeOfDay(hour: 0, minute: 0),
+        const TimeOfDay(hour: 23, minute: 59));
   }
 
   @override
@@ -65,37 +81,49 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
           ),
         ),
         SliverToBoxAdapter(child: 16.kh),
-        SliverPadding(
-          padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: SliverToBoxAdapter(
-            child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
-                GetCitiesOfASpecifiedCountryState>(
-              builder: (context, state) {
-                if (state is GetCitiesOfASpecifiedCountrySuccess) {
-                  List<String> cityNameList =
-                      state.cities.cities.map((e) => e.name).toList();
-                  String firstCity = cityNameList.first;
+        // SliverPadding(
+        //   padding: HelperFunctions.symmetricHorizontalPadding24,
+        //   sliver: SliverToBoxAdapter(
+        //     child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+        //         GetCitiesOfASpecifiedCountryState>(
+        //       builder: (context, state) {
+        //         if (state is GetCitiesOfASpecifiedCountrySuccess) {
+        //           List<String> cityNameList =
+        //               state.cities.cities.map((e) => e.name).toList();
+        //           String firstCity = cityNameList.first;
 
-                  return LocationFlitterDropDown(
-                    fillColor: AppColors.whiteColor,
-                    borderColor: AppColors.orangeColor,
-                    iconColor: AppColors.greyColor,
-                    height: 38,
-                    iconHeight: 24,
-                    iconWidth: 24,
-                    borderWidth: 1,
-                    borderRadius: 8,
-                    selectedLocation: firstCity,
-                    locations: cityNameList,
-                    prefixIcon: IconsPath.iconsLocation,
-                    onChanged: (selectedCategory) {},
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
-          ),
+        //           return LocationFlitterDropDown(
+        //             fillColor: AppColors.whiteColor,
+        //             borderColor: AppColors.orangeColor,
+        //             iconColor: AppColors.greyColor,
+        //             height: 38,
+        //             iconHeight: 24,
+        //             iconWidth: 24,
+        //             borderWidth: 1,
+        //             borderRadius: 8,
+        //             selectedLocation: firstCity,
+        //             locations: cityNameList,
+        //             prefixIcon: IconsPath.iconsLocation,
+        //             onChanged: (selectedCategory) {},
+        //           );
+        //         } else {
+        //           return const SizedBox();
+        //         }
+        //       },
+        //     ),
+        //   ),
+        // ),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverPadding(
+              padding: HelperFunctions.symmetricHorizontalPadding24,
+              sliver: SliverToBoxAdapter(
+                child: addServiceCubit.selectedLocation != null
+                    ? LocationName(addServiceCubit: addServiceCubit)
+                    : SelectLocationButton(addServiceCubit: addServiceCubit),
+              ),
+            );
+          },
         ),
         SliverToBoxAdapter(child: 16.kh),
         BlocBuilder<CategoriesCubit, CategoriesState>(
@@ -169,10 +197,19 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
                   icon: IconsPath.iconsCalender,
                   questionText: S.of(context).Available_Rental_Days)),
         ),
+        SliverToBoxAdapter(child: 30.kh),
+        SliverPadding(
+          padding: HelperFunctions.symmetricHorizontalPadding24,
+          sliver: SliverToBoxAdapter(
+              child: AppButton(
+            text: "24/7",
+            onPressed: _set24x7Mode,
+          )),
+        ),
         SliverToBoxAdapter(child: 20.kh),
         SliverPadding(
             padding: HelperFunctions.symmetricHorizontalPadding24,
-            sliver: const DaysList()),
+            sliver: const ServiceDayList()),
         SliverToBoxAdapter(child: 40.kh),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
@@ -201,8 +238,9 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
           sliver: SliverToBoxAdapter(
             child: AppButton(
               onPressed: () async {
-                addServiceCubit.days =
-                    BlocProvider.of<WorkerDayCubit>(context).state;
+                // here to storage days list form state ...
+                // addServiceCubit.days =
+                //     BlocProvider.of<WorkerDayCubit>(context).state;
                 if (addServiceCubit.validateInputs(context)) {
                   HelperFunctions.navigateToScreen(
                     context,

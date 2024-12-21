@@ -6,9 +6,11 @@ import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cub
 import 'worker_and_client_register_page_view_body.dart';
 
 class WorkerAndClientRegisterPageView extends StatelessWidget {
-  const WorkerAndClientRegisterPageView({Key? key, required this.isWorkerAuth})
+  const WorkerAndClientRegisterPageView(
+      {Key? key, required this.isWorkerAuth, this.isGoogleAuth = false})
       : super(key: key);
   final bool isWorkerAuth;
+  final bool isGoogleAuth;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -16,14 +18,13 @@ class WorkerAndClientRegisterPageView extends StatelessWidget {
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
-      
-      
         BlocProvider<WorkerDayCubit>(create: (context) => WorkerDayCubit()),
       ],
       child: Scaffold(
           body: SafeArea(
               child: WorkerAndClientRegisterPageViewBody(
         isWorkerAuth: isWorkerAuth,
+        isGoogleAuth: isGoogleAuth,
       ))),
     );
   }

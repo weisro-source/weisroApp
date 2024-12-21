@@ -236,6 +236,43 @@ class HelperFunctions {
     /// formatting date dd/mm/yyyy
     return DateFormat('dd/MM/yyyy').format(date);
   }
+   /// Get the date for a specific day of the week (e.g., "Sunday", "Monday")
+  static String getDateForDay(String dayKey) {
+    // Define a mapping of day names to integers (Sunday = 0, Monday = 1, ..., Saturday = 6)
+    Map<String, int> dayToIndex = {
+      "Sunday": DateTime.sunday,
+      "Monday": DateTime.monday,
+      "Tuesday": DateTime.tuesday,
+      "Wednesday": DateTime.wednesday,
+      "Thursday": DateTime.thursday,
+      "Friday": DateTime.friday,
+      "Saturday": DateTime.saturday,
+    };
+
+    // Get the current date
+    DateTime now = DateTime.now();
+
+    // Find the weekday index of the current date (Sunday = 7 -> 0 for compatibility)
+    int currentWeekday = now.weekday % 7;
+
+    // Get the target weekday index
+    int? targetWeekday = dayToIndex[dayKey];
+
+    if (targetWeekday == null) {
+      return ''; // Return an empty string if the dayKey is invalid
+    }
+
+    // Calculate the difference between the target and current weekday
+    int difference = targetWeekday - currentWeekday;
+
+    // Compute the date for the target day
+    DateTime targetDate = now.add(Duration(days: difference));
+
+    // Format the date as "MMM dd" (e.g., "Dec 18")
+    String formattedDate = DateFormat('MMM dd').format(targetDate);
+
+    return formattedDate;
+  }
 }
 
 // static void failureSnackBar(

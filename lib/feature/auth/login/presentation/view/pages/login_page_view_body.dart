@@ -14,8 +14,10 @@ import 'package:weisro/core/widgets/title_for_text_from_filed.dart';
 import 'package:weisro/feature/auth/forget_password/presentation/view/pages/forget_password_page_view.dart';
 import 'package:weisro/feature/auth/login/presentation/managers/login_cubit.dart/login_cubit.dart';
 import 'package:weisro/feature/auth/login/presentation/view/widgets/forget_password_button.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/have_an_account.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
+import 'package:weisro/feature/onboarding/presentation/view/pages/selected_account_type_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class LoginPageViewBody extends StatelessWidget {
@@ -138,6 +140,19 @@ class LoginPageViewBody extends StatelessWidget {
                       text: S.of(context).Log_in,
                     );
                   }
+                },
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: 23.kh,
+            ),
+            SliverToBoxAdapter(
+              child: HaveAnAccount(
+                title: S.of(context).Dont_Have_Account,
+                buttonTitle: S.of(context).Sign_Up,
+                onPressed: () {
+                  HelperFunctions.navigateToScreen(
+                      context, (context) => const SelectedAccountTypeView());
                 },
               ),
             ),

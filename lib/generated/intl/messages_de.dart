@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Available_Rental_Hours":
             MessageLookupByLibrary.simpleMessage("Verfügbare Mietstunden"),
         "Book_Now": MessageLookupByLibrary.simpleMessage("Jetzt buchen"),
+        "Book_Service": MessageLookupByLibrary.simpleMessage("Dienst buchen"),
         "Book_Worker":
             MessageLookupByLibrary.simpleMessage("Mitarbeiter buchen"),
         "Both": MessageLookupByLibrary.simpleMessage("Beides"),
@@ -49,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Code_sent_to_email": MessageLookupByLibrary.simpleMessage(
             "Der Code wird an die folgende E-Mail-Adresse gesendet"),
         "Complete": MessageLookupByLibrary.simpleMessage("Abgeschlossen"),
+        "Complete_Information": MessageLookupByLibrary.simpleMessage(
+            "Bitte vervollständigen Sie die Informationen"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Passwort bestätigen"),
         "Congratulations":
@@ -75,10 +78,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "* nach der Überprüfung werden alle Dokumente gelöscht"),
         "Document_Verification": MessageLookupByLibrary.simpleMessage(
             "Wir benötigen ein Dokument, um zu überprüfen, dass Ihr Konto kein Fake-Konto ist"),
+        "Dont_Have_Account":
+            MessageLookupByLibrary.simpleMessage("Sie haben noch kein Konto?"),
         "Drivers_License": MessageLookupByLibrary.simpleMessage("Führerschein"),
         "EditPersonalInformation": MessageLookupByLibrary.simpleMessage(
             "Persönliche Informationen bearbeiten"),
         "Email": MessageLookupByLibrary.simpleMessage("E-Mail"),
+        "End": MessageLookupByLibrary.simpleMessage("Beenden"),
         "Evening": MessageLookupByLibrary.simpleMessage("Abend"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
             "Was ist Ihre bevorzugte Arbeitszeit?"),
@@ -177,6 +183,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Result_Found":
             MessageLookupByLibrary.simpleMessage("Ergebnis gefunden"),
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
+        "Save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "Search": MessageLookupByLibrary.simpleMessage("Suche"),
         "Search_In": MessageLookupByLibrary.simpleMessage("Suchen in"),
         "Search_Page": MessageLookupByLibrary.simpleMessage("Suchseite"),
@@ -186,10 +193,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_page_empty_message": MessageLookupByLibrary.simpleMessage(
             "Die Suchseite ist leer, gehen Sie und entdecken Sie, was neu ist"),
+        "Select_Location":
+            MessageLookupByLibrary.simpleMessage("Standort auswählen"),
         "Select_Services": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie die von Ihnen angebotenen Dienstleistungen aus?"),
         "Selected_account": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie aus, wofür Sie ein Konto erstellen möchten:"),
+        "Send_And_Wait":
+            MessageLookupByLibrary.simpleMessage("Senden und warten"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
@@ -198,8 +209,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),
         "Services_provided": MessageLookupByLibrary.simpleMessage(
             "Erbrachte Dienstleistungen :"),
+        "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrieren"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
+        "Start": MessageLookupByLibrary.simpleMessage("Starten"),
         "Street": MessageLookupByLibrary.simpleMessage("Straße"),
         "Su": MessageLookupByLibrary.simpleMessage("So"),
         "Successfully": MessageLookupByLibrary.simpleMessage("erfolgreich"),

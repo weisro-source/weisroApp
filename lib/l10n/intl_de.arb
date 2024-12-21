@@ -161,5 +161,14 @@
     "change_password": "Ändern Sie Ihr Passwort",
     "confirm": "Bestätigen",
     "add_text_here": "Text hier hinzufügen",
-    "create_ad_you_want": "Erstellen Sie die Anzeige, die Sie möchten ?"
+    "create_ad_you_want": "Erstellen Sie die Anzeige, die Sie möchten ?",
+    "Send_And_Wait": "Senden und warten",
+    "Book_Service": "Dienst buchen",
+    "Save": "Speichern",
+    "End": "Beenden",
+    "Start": "Starten",
+    "Select_Location": "Standort auswählen",
+    "Complete_Information": "Bitte vervollständigen Sie die Informationen",
+    "Dont_Have_Account": "Sie haben noch kein Konto?",
+    "Sign_Up": "Registrieren"
 }
