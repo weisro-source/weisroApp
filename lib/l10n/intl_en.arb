@@ -172,6 +172,12 @@
     "Select_Location": "Select location",
     "Complete_Information": "Please complete the information",
     "Dont_Have_Account": "Don't have an account?",
-    "Sign_Up": "Sign up"
-    
+    "Sign_Up": "Sign up",
+    "Ad_Deleted": "Ad Deleted!",
+    "Ad_Deleted_Success": "The ad has been successfully deleted.",
+    "Ad_Deletion_Failed": "Deletion Failed!",
+    "Ad_Deletion_Error": "Could not delete the ad.",
+    "Delete_Confirmation_Title": "Delete Confirmation",
+    "Delete_Confirmation_Message": "Are you sure you want to delete this ad?",
+    "No_Services_Available": "There are no services available in this area"
 }

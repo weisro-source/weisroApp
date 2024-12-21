@@ -8,7 +8,7 @@ part 'delete_ad_state.dart';
 
 class DeleteAdCubit extends Cubit<DeleteAdState> {
   DeleteAdCubit() : super(DeleteAdInitial());
-  Future<void> deleteAd(int adId) async {
+  Future<void> deleteAd(String adId) async {
     emit(DeleteAdLoading());
     var result = await getIt.get<AdsRepository>().deleteAd(adId);
     result.fold(

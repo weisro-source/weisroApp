@@ -170,5 +170,12 @@
     "Select_Location": "Standort auswählen",
     "Complete_Information": "Bitte vervollständigen Sie die Informationen",
     "Dont_Have_Account": "Sie haben noch kein Konto?",
-    "Sign_Up": "Registrieren"
+    "Sign_Up": "Registrieren",
+    "Ad_Deleted": "Anzeige gelöscht!",
+    "Ad_Deleted_Success": "Die Anzeige wurde erfolgreich gelöscht.",
+    "Ad_Deletion_Failed": "Löschen fehlgeschlagen!",
+    "Ad_Deletion_Error": "Die Anzeige konnte nicht gelöscht werden.",
+    "Delete_Confirmation_Title": "Löschbestätigung",
+    "Delete_Confirmation_Message": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
+    "No_Services_Available": "Es sind keine Dienste in diesem Gebiet verfügbar"
 }

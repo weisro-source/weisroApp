@@ -1781,6 +1781,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Ad Deleted!`
+  String get Ad_Deleted {
+    return Intl.message(
+      'Ad Deleted!',
+      name: 'Ad_Deleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The ad has been successfully deleted.`
+  String get Ad_Deleted_Success {
+    return Intl.message(
+      'The ad has been successfully deleted.',
+      name: 'Ad_Deleted_Success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Failed!`
+  String get Ad_Deletion_Failed {
+    return Intl.message(
+      'Deletion Failed!',
+      name: 'Ad_Deletion_Failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Could not delete the ad.`
+  String get Ad_Deletion_Error {
+    return Intl.message(
+      'Could not delete the ad.',
+      name: 'Ad_Deletion_Error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Confirmation`
+  String get Delete_Confirmation_Title {
+    return Intl.message(
+      'Delete Confirmation',
+      name: 'Delete_Confirmation_Title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this ad?`
+  String get Delete_Confirmation_Message {
+    return Intl.message(
+      'Are you sure you want to delete this ad?',
+      name: 'Delete_Confirmation_Message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are no services available in this area`
+  String get No_Services_Available {
+    return Intl.message(
+      'There are no services available in this area',
+      name: 'No_Services_Available',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

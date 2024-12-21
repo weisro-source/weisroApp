@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/feature/ads/data/models/ads_model.dart';
 import 'package:weisro/feature/ads/presentation/managers/get_user_ads_cubit/get_user_ads_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/user_posts_list_view.dart';
+import '../widgets/user_posts_list_view_shimmer.dart';
 
 class UserAdsPageViewBody extends StatefulWidget {
   const UserAdsPageViewBody({super.key});
@@ -43,6 +45,7 @@ class _UserAdsPageViewBodyState extends State<UserAdsPageViewBody> {
     }
   }
 
+  List<Docs> allAds = [];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,14 +61,23 @@ class _UserAdsPageViewBodyState extends State<UserAdsPageViewBody> {
             ),
           ),
           24.kh,
-          BlocBuilder<GetUserAdsCubit, GetUserAdsState>(
-            builder: (context, getUserAdsState) {
+          BlocConsumer<GetUserAdsCubit, GetUserAdsState>(
+            listener: (context, getUserAdsState) {
               if (getUserAdsState is GetUserAdsSuccess) {
+                allAds.addAll(getUserAdsState.allAds.docs ?? []);
+                hasNext = getUserAdsState.allAds.hasNextPage ?? false;
+              }
+            },
+            builder: (context, getUserAdsState) {
+              if (getUserAdsState is GetUserAdsSuccess ||
+                  getUserAdsState is GetUserAdsPaginationLoading ||
+                  getUserAdsState is GetUserAdsPaginationFailures) {
                 return Padding(
                   padding: HelperFunctions.symmetricHorizontalPadding24,
                   child: UserPostsListView(
-                    allUserAds: getUserAdsState.allAds.docs ?? [],
+                    allUserAds: allAds,
                   ),
+
                 );
               } else if (getUserAdsState is GetUserAdsLoading) {
                 return Padding(
