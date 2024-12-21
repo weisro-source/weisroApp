@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';

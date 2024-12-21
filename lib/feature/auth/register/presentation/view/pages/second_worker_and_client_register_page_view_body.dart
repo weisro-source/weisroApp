@@ -24,8 +24,10 @@ import '../widgets/i_agree_checkbox.dart';
 
 class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
   const SecondWorkerAndClientRegisterPageViewBody(
-      {super.key, required this.isWorkerAuth});
+      {super.key, required this.isWorkerAuth, this.isGoogleAuth = false});
   final bool isWorkerAuth;
+  final bool isGoogleAuth;
+
   @override
   Widget build(BuildContext context) {
     RegisterCubit registerCubit = RegisterCubit.get(context);
@@ -57,9 +59,11 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                   child: 23.kh,
                 ),
                 LabeledBorderBox(
-                    label: isWorkerAuth
-                        ? S.of(context).Create_Worker_Account
-                        : S.of(context).Create_Client_account),
+                    label: isGoogleAuth
+                        ? S.of(context).Complete_Information
+                        : isWorkerAuth
+                            ? S.of(context).Create_Worker_Account
+                            : S.of(context).Create_Client_account),
                 SliverToBoxAdapter(
                   child: 44.kh,
                 ),
@@ -69,31 +73,37 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                   isTowStepActive: true,
                 )),
                 SliverToBoxAdapter(
-                    child: TitleForTextFromFiled(
-                  title: S.of(context).Email,
+                    child: Visibility(
+                  visible: !isGoogleAuth,
+                  child: TitleForTextFromFiled(
+                    title: S.of(context).Email,
+                  ),
                 )),
                 SliverToBoxAdapter(
-                  child: 5.kh,
+                  child: Visibility(visible: !isGoogleAuth, child: 5.kh),
                 ),
                 // but the
                 SliverToBoxAdapter(
-                  child: CustomTextFormFiled(
-                    hintText: "Username@example.com",
-                    controller: registerCubit.emailController,
-                    focusNode: registerCubit.emailFocusNode,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) =>
-                        Validate.validateEmail(value, context),
-                    onFieldSubmitted: (p0) {
-                      HelperFunctions.requestNextFocus(
-                          registerCubit.emailFocusNode,
-                          registerCubit.phoneNumberFocusNode,
-                          context);
-                    },
+                  child: Visibility(
+                    visible: !isGoogleAuth,
+                    child: CustomTextFormFiled(
+                      hintText: "Username@example.com",
+                      controller: registerCubit.emailController,
+                      focusNode: registerCubit.emailFocusNode,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) =>
+                          Validate.validateEmail(value, context),
+                      onFieldSubmitted: (p0) {
+                        HelperFunctions.requestNextFocus(
+                            registerCubit.emailFocusNode,
+                            registerCubit.phoneNumberFocusNode,
+                            context);
+                      },
+                    ),
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: 20.kh,
+                  child: Visibility(visible: !isGoogleAuth, child: 20.kh),
                 ),
                 SliverToBoxAdapter(
                     child: TitleForTextFromFiled(
@@ -272,8 +282,11 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                   child: 10.kh,
                 ),
                 SliverToBoxAdapter(
-                  child: GoogleAuthButtonWidget(
-                    onPressed: () {},
+                  child: Visibility(
+                    visible: !isGoogleAuth,
+                    child: GoogleAuthButtonWidget(
+                      onPressed: () {},
+                    ),
                   ),
                 ),
                 SliverToBoxAdapter(

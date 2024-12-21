@@ -50,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Code_sent_to_email": MessageLookupByLibrary.simpleMessage(
             "Der Code wird an die folgende E-Mail-Adresse gesendet"),
         "Complete": MessageLookupByLibrary.simpleMessage("Abgeschlossen"),
+        "Complete_Information": MessageLookupByLibrary.simpleMessage(
+            "Bitte vervollständigen Sie die Informationen"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Passwort bestätigen"),
         "Congratulations":
@@ -76,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "* nach der Überprüfung werden alle Dokumente gelöscht"),
         "Document_Verification": MessageLookupByLibrary.simpleMessage(
             "Wir benötigen ein Dokument, um zu überprüfen, dass Ihr Konto kein Fake-Konto ist"),
+        "Dont_Have_Account":
+            MessageLookupByLibrary.simpleMessage("Sie haben noch kein Konto?"),
         "Drivers_License": MessageLookupByLibrary.simpleMessage("Führerschein"),
         "EditPersonalInformation": MessageLookupByLibrary.simpleMessage(
             "Persönliche Informationen bearbeiten"),
@@ -189,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_page_empty_message": MessageLookupByLibrary.simpleMessage(
             "Die Suchseite ist leer, gehen Sie und entdecken Sie, was neu ist"),
+        "Select_Location":
+            MessageLookupByLibrary.simpleMessage("Standort auswählen"),
         "Select_Services": MessageLookupByLibrary.simpleMessage(
             "Wählen Sie die von Ihnen angebotenen Dienstleistungen aus?"),
         "Selected_account": MessageLookupByLibrary.simpleMessage(
@@ -203,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),
         "Services_provided": MessageLookupByLibrary.simpleMessage(
             "Erbrachte Dienstleistungen :"),
+        "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrieren"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
         "Start": MessageLookupByLibrary.simpleMessage("Starten"),

@@ -165,8 +165,13 @@
     "add_text_here": "Add Text here",
     "create_ad_you_want": "Create the ad you want ?",
     "Send_And_Wait": "Send and wait",
-    "Book_Service":"Book service",
-    "Save":"Save",
-    "End":"End",
-    "Start":"Start"
+    "Book_Service": "Book service",
+    "Save": "Save",
+    "End": "End",
+    "Start": "Start",
+    "Select_Location": "Select location",
+    "Complete_Information": "Please complete the information",
+    "Dont_Have_Account": "Don't have an account?",
+    "Sign_Up": "Sign up"
+    
 }

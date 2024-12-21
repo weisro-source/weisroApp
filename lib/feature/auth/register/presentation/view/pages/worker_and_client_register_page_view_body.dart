@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
@@ -12,6 +11,7 @@ import 'package:weisro/feature/auth/register/presentation/manager/get_all_countr
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/second_worker_and_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/city_drop_down.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_country_dropdown.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
@@ -28,8 +28,9 @@ import '../widgets/or_text_widget.dart';
 
 class WorkerAndClientRegisterPageViewBody extends StatefulWidget {
   const WorkerAndClientRegisterPageViewBody(
-      {super.key, required this.isWorkerAuth});
+      {super.key, required this.isWorkerAuth, this.isGoogleAuth = false});
   final bool isWorkerAuth;
+  final bool isGoogleAuth;
 
   @override
   State<WorkerAndClientRegisterPageViewBody> createState() =>
@@ -38,8 +39,6 @@ class WorkerAndClientRegisterPageViewBody extends StatefulWidget {
 
 class _WorkerAndClientRegisterPageViewBodyState
     extends State<WorkerAndClientRegisterPageViewBody> {
-  String selectedCountryCode = 'US';
-
   @override
   Widget build(BuildContext context) {
     RegisterCubit registerCubit = RegisterCubit.get(context);
@@ -62,9 +61,11 @@ class _WorkerAndClientRegisterPageViewBodyState
               child: 23.kh,
             ),
             LabeledBorderBox(
-                label: widget.isWorkerAuth
-                    ? S.of(context).Create_Worker_Account
-                    : S.of(context).Create_Client_account),
+                label: widget.isGoogleAuth
+                    ? S.of(context).Complete_Information
+                    : widget.isWorkerAuth
+                        ? S.of(context).Create_Worker_Account
+                        : S.of(context).Create_Client_account),
             SliverToBoxAdapter(
               child: 44.kh,
             ),
@@ -77,56 +78,68 @@ class _WorkerAndClientRegisterPageViewBodyState
               child: 0.kh,
             ),
             SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).First_Name,
+                child: Visibility(
+              visible: !widget.isGoogleAuth,
+              child: TitleForTextFromFiled(
+                title: S.of(context).First_Name,
+              ),
             )),
             SliverToBoxAdapter(
-              child: 5.kh,
+              child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
             ),
             SliverToBoxAdapter(
-              child: CustomTextFormFiled(
-                hintText: S.of(context).First_Name,
-                controller: registerCubit.firstNameController,
-                focusNode: registerCubit.firstNameFocusNode,
-                keyboardType: TextInputType.name,
-                validator: (value) => Validate.validateFieldWithTitle(
-                    value, S.of(context).First_Name, context),
-                onFieldSubmitted: (p0) {
-                  HelperFunctions.requestNextFocus(
-                      registerCubit.firstNameFocusNode,
-                      registerCubit.lastNameFocusNode,
-                      context);
-                },
+              child: Visibility(
+                visible: !widget.isGoogleAuth,
+                child: CustomTextFormFiled(
+                  hintText: S.of(context).First_Name,
+                  controller: registerCubit.firstNameController,
+                  focusNode: registerCubit.firstNameFocusNode,
+                  keyboardType: TextInputType.name,
+                  validator: (value) => Validate.validateFieldWithTitle(
+                      value, S.of(context).First_Name, context),
+                  onFieldSubmitted: (p0) {
+                    HelperFunctions.requestNextFocus(
+                        registerCubit.firstNameFocusNode,
+                        registerCubit.lastNameFocusNode,
+                        context);
+                  },
+                ),
               ),
             ),
             SliverToBoxAdapter(
-              child: 20.kh,
+              child: Visibility(visible: !widget.isGoogleAuth, child: 20.kh),
             ),
             SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).Last_Name,
+                child: Visibility(
+              visible: !widget.isGoogleAuth,
+              child: TitleForTextFromFiled(
+                title: S.of(context).Last_Name,
+              ),
             )),
             SliverToBoxAdapter(
-              child: 5.kh,
+              child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
             ),
             SliverToBoxAdapter(
-              child: CustomTextFormFiled(
-                hintText: S.of(context).Last_Name,
-                controller: registerCubit.lastNameController,
-                focusNode: registerCubit.lastNameFocusNode,
-                validator: (value) => Validate.validateFieldWithTitle(
-                    value, S.of(context).Last_Name, context),
-                keyboardType: TextInputType.name,
-                onFieldSubmitted: (p0) {
-                  HelperFunctions.requestNextFocus(
-                      registerCubit.lastNameFocusNode,
-                      registerCubit.lastNameFocusNode,
-                      context);
-                },
+              child: Visibility(
+                visible: !widget.isGoogleAuth,
+                child: CustomTextFormFiled(
+                  hintText: S.of(context).Last_Name,
+                  controller: registerCubit.lastNameController,
+                  focusNode: registerCubit.lastNameFocusNode,
+                  validator: (value) => Validate.validateFieldWithTitle(
+                      value, S.of(context).Last_Name, context),
+                  keyboardType: TextInputType.name,
+                  onFieldSubmitted: (p0) {
+                    HelperFunctions.requestNextFocus(
+                        registerCubit.lastNameFocusNode,
+                        registerCubit.lastNameFocusNode,
+                        context);
+                  },
+                ),
               ),
             ),
             SliverToBoxAdapter(
-              child: 20.kh,
+              child: Visibility(visible: !widget.isGoogleAuth, child: 20.kh),
             ),
             SliverToBoxAdapter(
                 child: TitleForTextFromFiled(
@@ -292,6 +305,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                           value: registerCubit,
                           child: SecondWorkerAndClientRegisterPageView(
                             isWorkerAuth: widget.isWorkerAuth,
+                            isGoogleAuth: widget.isGoogleAuth,
                           ),
                         ),
                       );
@@ -310,7 +324,16 @@ class _WorkerAndClientRegisterPageViewBodyState
             ),
             SliverToBoxAdapter(
               child: GoogleAuthButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  // if result is true navigator
+                  HelperFunctions.navigateToScreenAndRemove(
+                    context,
+                    (context) => WorkerAndClientRegisterPageView(
+                      isWorkerAuth: widget.isWorkerAuth,
+                      isGoogleAuth: true,
+                    ),
+                  );
+                },
               ),
             ),
             SliverToBoxAdapter(
@@ -318,6 +341,8 @@ class _WorkerAndClientRegisterPageViewBodyState
             ),
             SliverToBoxAdapter(
               child: HaveAnAccount(
+                title: S.of(context).Have_Account,
+                buttonTitle: S.of(context).Log_in,
                 onPressed: () {
                   HelperFunctions.navigateToScreen(
                       context, (context) => const LoginPageView());

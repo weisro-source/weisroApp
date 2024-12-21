@@ -166,5 +166,9 @@
     "Book_Service": "Dienst buchen",
     "Save": "Speichern",
     "End": "Beenden",
-    "Start": "Starten"
+    "Start": "Starten",
+    "Select_Location": "Standort auswählen",
+    "Complete_Information": "Bitte vervollständigen Sie die Informationen",
+    "Dont_Have_Account": "Sie haben noch kein Konto?",
+    "Sign_Up": "Registrieren"
 }

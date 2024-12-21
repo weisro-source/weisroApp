@@ -35,9 +35,16 @@ class AddServiceCubit extends Cubit<AddServiceState> {
 
   final List<String> imagePaths = []; // Store image paths
   String selectedRentTime = ''; // Default rent time
-
+  String? selectedLocationName; // Store the name of the selected location
+  Location? selectedLocation; // Store latitude and longitude
   void updateRentTime(String rentTime) {
     selectedRentTime = rentTime;
+    emit(AddServiceStateChanged());
+  }
+
+  void updateLocation(String locationName, Location location) {
+    selectedLocationName = locationName;
+    selectedLocation = location;
     emit(AddServiceStateChanged());
   }
 
@@ -113,8 +120,8 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       },
       "category_id": categoryId,
       "location": {
-        "latitude": "52.517669999",
-        "longitude": "13.405537999",
+        "latitude": selectedLocation?.latitude ?? "52.517669999",
+        "longitude": selectedLocation?.longitude ?? "13.405537999",
       },
       "days": days,
       "daily_price": num.tryParse(pricePerDayController.text) ?? 0,

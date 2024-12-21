@@ -74,6 +74,7 @@ class _WeisroAppState extends State<WeisroApp> {
                 BlocProvider.of<LanguageCubit>(context).localLang ?? 'en'),
             title: 'Wisro',
             debugShowCheckedModeBanner: HelperFunctions.isDebugMode(),
+            // themeMode: ThemeMode.dark,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: AppColors.whiteColor,
