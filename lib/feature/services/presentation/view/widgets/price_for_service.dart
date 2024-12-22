@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
@@ -20,8 +21,8 @@ class PriceForService extends StatelessWidget {
         return Row(
           children: [
             24.kw,
-            if (addServiceCubit.selectedRentTime == S.of(context).Daily ||
-                addServiceCubit.selectedRentTime == S.of(context).Both)
+            if (addServiceCubit.selectedRentTime == Constants.dailyKey ||
+                addServiceCubit.selectedRentTime == Constants.bothKey)
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -47,8 +48,8 @@ class PriceForService extends StatelessWidget {
                   ],
                 ),
               ),
-            if (addServiceCubit.selectedRentTime == S.of(context).Hours ||
-                addServiceCubit.selectedRentTime == S.of(context).Both)
+            if (addServiceCubit.selectedRentTime == Constants.hoursKey ||
+                addServiceCubit.selectedRentTime == Constants.bothKey)
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

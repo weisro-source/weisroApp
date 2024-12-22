@@ -9,7 +9,6 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
-import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
@@ -37,7 +36,7 @@ class CreateServicePageViewBody extends StatefulWidget {
 class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
   @override
   void initState() {
-    BlocProvider.of<WorkerDayCubit>(context).state.clear();
+    BlocProvider.of<ServiceDayCubit>(context).state.clear();
     super.initState();
   }
 
@@ -81,38 +80,6 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
           ),
         ),
         SliverToBoxAdapter(child: 16.kh),
-        // SliverPadding(
-        //   padding: HelperFunctions.symmetricHorizontalPadding24,
-        //   sliver: SliverToBoxAdapter(
-        //     child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
-        //         GetCitiesOfASpecifiedCountryState>(
-        //       builder: (context, state) {
-        //         if (state is GetCitiesOfASpecifiedCountrySuccess) {
-        //           List<String> cityNameList =
-        //               state.cities.cities.map((e) => e.name).toList();
-        //           String firstCity = cityNameList.first;
-
-        //           return LocationFlitterDropDown(
-        //             fillColor: AppColors.whiteColor,
-        //             borderColor: AppColors.orangeColor,
-        //             iconColor: AppColors.greyColor,
-        //             height: 38,
-        //             iconHeight: 24,
-        //             iconWidth: 24,
-        //             borderWidth: 1,
-        //             borderRadius: 8,
-        //             selectedLocation: firstCity,
-        //             locations: cityNameList,
-        //             prefixIcon: IconsPath.iconsLocation,
-        //             onChanged: (selectedCategory) {},
-        //           );
-        //         } else {
-        //           return const SizedBox();
-        //         }
-        //       },
-        //     ),
-        //   ),
-        // ),
         BlocBuilder<AddServiceCubit, AddServiceState>(
           builder: (context, state) {
             return SliverPadding(
@@ -186,31 +153,66 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
           child: PriceForService(),
         ),
         SliverToBoxAdapter(child: 30.kh),
-        const SliverToBoxAdapter(
-          child: SelectedTimeForCreateService(),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverVisibility(
+              visible: addServiceCubit.isHourly(),
+              sliver: const SliverToBoxAdapter(
+                child: SelectedTimeForCreateService(),
+              ),
+            );
+          },
         ),
         SliverToBoxAdapter(child: 30.kh),
-        SliverPadding(
-          padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: SliverToBoxAdapter(
-              child: QuestionWidget(
-                  icon: IconsPath.iconsCalender,
-                  questionText: S.of(context).Available_Rental_Days)),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverPadding(
+              padding: HelperFunctions.symmetricHorizontalPadding24,
+              sliver: SliverToBoxAdapter(
+                child: Visibility(
+                  visible: addServiceCubit.isDaily(),
+                  child: QuestionWidget(
+                      icon: IconsPath.iconsCalender,
+                      questionText: S.of(context).Available_Rental_Days),
+                ),
+              ),
+            );
+          },
         ),
         SliverToBoxAdapter(child: 30.kh),
-        SliverPadding(
-          padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: SliverToBoxAdapter(
-              child: AppButton(
-            text: "24/7",
-            onPressed: _set24x7Mode,
-          )),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverPadding(
+              padding: HelperFunctions.symmetricHorizontalPadding24,
+              sliver: SliverToBoxAdapter(
+                  child: Visibility(
+                visible: addServiceCubit.isDaily(),
+                child: AppButton(
+                  text: "24/7",
+                  onPressed: _set24x7Mode,
+                ),
+              )),
+            );
+          },
         ),
         SliverToBoxAdapter(child: 20.kh),
-        SliverPadding(
-            padding: HelperFunctions.symmetricHorizontalPadding24,
-            sliver: const ServiceDayList()),
-        SliverToBoxAdapter(child: 40.kh),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverVisibility(
+              visible: addServiceCubit.isDaily(),
+              sliver: SliverPadding(
+                  padding: HelperFunctions.symmetricHorizontalPadding24,
+                  sliver: const ServiceDayList()),
+            );
+          },
+        ),
+        BlocBuilder<AddServiceCubit, AddServiceState>(
+          builder: (context, state) {
+            return SliverVisibility(
+                visible: addServiceCubit.isDaily(),
+                sliver: SliverToBoxAdapter(child: 40.kh));
+          },
+        ),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
@@ -241,6 +243,10 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
                 // here to storage days list form state ...
                 // addServiceCubit.days =
                 //     BlocProvider.of<WorkerDayCubit>(context).state;
+                // Access the state from the ServiceDayCubit
+                addServiceCubit.serviceDaysState =
+                    BlocProvider.of<ServiceDayCubit>(context).state;
+
                 if (addServiceCubit.validateInputs(context)) {
                   HelperFunctions.navigateToScreen(
                     context,
@@ -266,3 +272,36 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
     );
   }
 }
+    //! this comment  for show cites in system
+   // SliverPadding(
+        //   padding: HelperFunctions.symmetricHorizontalPadding24,
+        //   sliver: SliverToBoxAdapter(
+        //     child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+        //         GetCitiesOfASpecifiedCountryState>(
+        //       builder: (context, state) {
+        //         if (state is GetCitiesOfASpecifiedCountrySuccess) {
+        //           List<String> cityNameList =
+        //               state.cities.cities.map((e) => e.name).toList();
+        //           String firstCity = cityNameList.first;
+
+        //           return LocationFlitterDropDown(
+        //             fillColor: AppColors.whiteColor,
+        //             borderColor: AppColors.orangeColor,
+        //             iconColor: AppColors.greyColor,
+        //             height: 38,
+        //             iconHeight: 24,
+        //             iconWidth: 24,
+        //             borderWidth: 1,
+        //             borderRadius: 8,
+        //             selectedLocation: firstCity,
+        //             locations: cityNameList,
+        //             prefixIcon: IconsPath.iconsLocation,
+        //             onChanged: (selectedCategory) {},
+        //           );
+        //         } else {
+        //           return const SizedBox();
+        //         }
+        //       },
+        //     ),
+        //   ),
+        // ),

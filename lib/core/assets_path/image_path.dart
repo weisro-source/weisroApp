@@ -22,6 +22,10 @@ class ImagePath {
   /// assets/images/no_favorite.png
   static const String imagesNoFavorite = "assets/images/no_favorite.png";
 
+  /// Assets for imagesNotFound
+  /// assets/images/notFound.png
+  static const String imagesNotFound = "assets/images/notFound.png";
+
   /// Assets for imagesOnboardingImage1
   /// assets/images/onboardingImage1.png
   static const String imagesOnboardingImage1 = "assets/images/onboardingImage1.png";

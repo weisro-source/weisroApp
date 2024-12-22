@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo.dart';
@@ -22,6 +23,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   DateTime endDateTime = DateTime.now().add(const Duration(hours: 5));
   String? errorMessage;
   String? categoryId;
+  Map<String, Map<String, TimeOfDay?>> serviceDaysState = {};
 
   /// Format the startDateTime to 'hh:mm'
   String get formattedStartTime {
@@ -34,7 +36,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   }
 
   final List<String> imagePaths = []; // Store image paths
-  String selectedRentTime = ''; // Default rent time
+  String selectedRentTime = Constants.bothKey; // Default rent time
   String? selectedLocationName; // Store the name of the selected location
   Location? selectedLocation; // Store latitude and longitude
   void updateRentTime(String rentTime) {
@@ -50,13 +52,22 @@ class AddServiceCubit extends Cubit<AddServiceState> {
 
   /// Dynamically create a new ServiceModel instance
   ServiceModel get newService {
+    List<Day> formattedDays = serviceDaysState.entries.map((entry) {
+      final day = entry.key; // The day name, e.g., "Sunday"
+      final times = entry.value; // The time map with "start" and "end"
+      return Day(
+        day: day,
+        start: times['start']?.toString(),
+        end: times['end']?.toString(),
+      );
+    }).toList();
     return ServiceModel(
         service: Service(
             dailyPrice: num.tryParse(pricePerDayController.text) ?? 0,
             hourlyPrice: num.tryParse(pricePerHourController.text) ?? 0,
             images: imagePaths,
             description: descriptionController.text,
-            days: days,
+            days: formattedDays,
             name: serviceNameController.text,
             location: const Location(latitude: 20, longitude: 30),
             time: Time(start: formattedStartTime, end: formattedEndTime)));
@@ -71,16 +82,16 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     if (serviceNameController.text.isEmpty) {
       errors.add(S.of(context).service_name_missing);
     }
-    if (selectedRentTime == S.of(context).Days ||
-        selectedRentTime == S.of(context).Both) {
+    if (selectedRentTime == Constants.dailyKey ||
+        selectedRentTime == Constants.bothKey) {
       if (pricePerDayController.text.isEmpty ||
           num.tryParse(pricePerDayController.text) == null) {
         errors.add(S.of(context).daily_price_invalid);
       }
     }
 
-    if (selectedRentTime == S.of(context).Hours ||
-        selectedRentTime == S.of(context).Both) {
+    if (selectedRentTime == Constants.hoursKey ||
+        selectedRentTime == Constants.bothKey) {
       if (pricePerHourController.text.isEmpty ||
           num.tryParse(pricePerHourController.text) == null) {
         errors.add(S.of(context).hourly_price_invalid);
@@ -91,7 +102,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       errors.add(S.of(context).description_missing);
     }
 
-    if (days.isEmpty) {
+    if (serviceDaysState.isEmpty) {
       errors.add(S.of(context).days_missing);
     }
     if (imagePaths.isEmpty) {
@@ -111,6 +122,18 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   /// Validate Inputs and Return API Data
   Map<String, dynamic>? prepareApiData(BuildContext context) {
     // Compile data for API
+
+    // Format days as a list of objects with day, start, and end
+    List<Map<String, String?>> formattedDays =
+        serviceDaysState.entries.map((entry) {
+      final dayKey = entry.key;
+      final timeMap = entry.value;
+      return {
+        "day": dayKey,
+        "start": timeMap['start']?.format(context),
+        "end": timeMap['end']?.format(context),
+      };
+    }).toList();
     return {
       "description": descriptionController.text,
       "name": serviceNameController.text,
@@ -123,7 +146,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
         "latitude": selectedLocation?.latitude ?? "52.517669999",
         "longitude": selectedLocation?.longitude ?? "13.405537999",
       },
-      "days": days,
+      "days": formattedDays,
       "daily_price": num.tryParse(pricePerDayController.text) ?? 0,
       "hourly_price": num.tryParse(pricePerHourController.text) ?? 0,
       "images": imagePaths,
@@ -145,15 +168,17 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             .add(MapEntry("location[latitude]", value["latitude"].toString()));
         formData.fields.add(
             MapEntry("location[longitude]", value["longitude"].toString()));
+      } else if (key == "days") {
+        List<Map<String, String?>> days =
+            List<Map<String, String?>>.from(value);
+        for (int i = 0; i < days.length; i++) {
+          formData.fields.add(MapEntry("days[$i][day]", days[i]["day"] ?? ""));
+          formData.fields
+              .add(MapEntry("days[$i][start]", days[i]["start"] ?? ""));
+          formData.fields.add(MapEntry("days[$i][end]", days[i]["end"] ?? ""));
+        }
       }
     });
-
-    if (apiData["days"] != null) {
-      List<String> days = apiData["days"];
-      for (int i = 0; i < days.length; i++) {
-        formData.fields.add(MapEntry("days[$i]", days[i]));
-      }
-    }
 
     if (apiData["images"] != null) {
       List<String> images = apiData["images"];
@@ -169,6 +194,16 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     }
 
     return formData;
+  }
+
+  bool isDaily() {
+    return selectedRentTime == Constants.dailyKey ||
+        selectedRentTime == Constants.bothKey;
+  }
+
+  bool isHourly() {
+    return selectedRentTime == Constants.hoursKey ||
+        selectedRentTime == Constants.bothKey;
   }
 
   Future<void> addServiceCallApi(BuildContext context) async {

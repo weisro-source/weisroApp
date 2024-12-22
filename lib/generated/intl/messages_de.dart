@@ -23,6 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Accommodation": MessageLookupByLibrary.simpleMessage("Unterkunft"),
+        "Ad_Deleted": MessageLookupByLibrary.simpleMessage("Anzeige gelöscht!"),
+        "Ad_Deleted_Success": MessageLookupByLibrary.simpleMessage(
+            "Die Anzeige wurde erfolgreich gelöscht."),
+        "Ad_Deletion_Error": MessageLookupByLibrary.simpleMessage(
+            "Die Anzeige konnte nicht gelöscht werden."),
+        "Ad_Deletion_Failed":
+            MessageLookupByLibrary.simpleMessage("Löschen fehlgeschlagen!"),
         "All": MessageLookupByLibrary.simpleMessage("Alle"),
         "Available_Rental_Days":
             MessageLookupByLibrary.simpleMessage("Verfügbare Miettage"),
@@ -69,6 +76,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Arbeiterkonto erstellen"),
         "Daily": MessageLookupByLibrary.simpleMessage("Täglich"),
         "Days": MessageLookupByLibrary.simpleMessage("Tage"),
+        "Delete_Confirmation_Message": MessageLookupByLibrary.simpleMessage(
+            "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?"),
+        "Delete_Confirmation_Title":
+            MessageLookupByLibrary.simpleMessage("Löschbestätigung"),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie hier, was Ihre Dienstleistungen umfassen?"),
         "Description": MessageLookupByLibrary.simpleMessage("Beschreibung :"),
@@ -134,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Night": MessageLookupByLibrary.simpleMessage("Nacht"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
+        "No_Services_Available": MessageLookupByLibrary.simpleMessage(
+            "Es sind keine Dienste in diesem Gebiet verfügbar"),
         "No_location_found":
             MessageLookupByLibrary.simpleMessage("KEIN Standort gefunden"),
         "No_result_found":

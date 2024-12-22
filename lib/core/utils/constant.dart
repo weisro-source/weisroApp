@@ -11,6 +11,9 @@ abstract class Constants {
   static const String categoryTypeWorker = 'worker';
   static const String deutschLanguage = 'de';
   static const String englishLanguage = 'en';
+  static const String dailyKey = 'daily';
+  static const String bothKey = 'both';
+  static const String hoursKey = 'hours';
 
   /// this global Var for all page limit in pagination Apis
 

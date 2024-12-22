@@ -15,6 +15,7 @@ import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.da
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/cubit/search_cubit.dart';
+import 'package:weisro/feature/services/presentation/managers/service_day_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class WeisroApp extends StatefulWidget {
@@ -58,6 +59,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => SearchCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ServiceDayCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

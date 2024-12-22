@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:weisro/core/api/api_end_points.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
@@ -17,10 +18,11 @@ class HomeRepositoryImplementation implements HomeRepository {
   final ApiService _apiService = getIt<ApiService>();
   @override
   Future<Either<Failure, CategoryModel>> getCategoriesByTypeApi(
-      String type, BuildContext context,
+      String type, BuildContext context, CancelToken? cancelToken,
       [int pageNumber = 1]) async {
     try {
       var response = await _apiService.get(
+        cancelToken: cancelToken,
         endPoint:
             "${ApiEndPoints.getCategoryByType}$type&page=$pageNumber&limit=${Constants.limitInPage}",
       );

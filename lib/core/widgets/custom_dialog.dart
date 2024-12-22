@@ -271,6 +271,90 @@ class CustomDialog {
     );
   }
 
+  static Future<bool> showDeleteConfirmationDialog(
+      BuildContext context, String dialogTitle, String body) async {
+    return await showDialog<bool>(
+          context: context,
+          builder: (context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              elevation: 5,
+              backgroundColor: Colors.transparent,
+              shadowColor: AppColors.shadow2Color,
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.35,
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    31.kh,
+                    Center(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(ImagePath.imagesLogo),
+                        ],
+                      ),
+                    ),
+                    10.kh,
+                    Text(
+                      dialogTitle,
+                      style: AppStyles.style14w500Grey(context),
+                    ),
+                    10.kh,
+                    Text(
+                      body,
+                      style: AppStyles.style14w400Grey(context),
+                    ),
+                    30.kh,
+                    Row(
+                      children: [
+                        10.kw,
+                        Expanded(
+                          child: AppButton(
+                            width: 174,
+                            height: 32,
+                            text: S.of(context).Ok,
+                            onPressed: () =>
+                                Navigator.of(context).pop(true), // Confirm,
+                          ),
+                        ),
+                        10.kw,
+                        Expanded(
+                          child: AppButton(
+                              width: 174,
+                              height: 32,
+                              text: S.of(context).Cancel,
+                              borderColor: AppColors.lightgrey2Color,
+                              buttonColor: AppColors.lightgrey2Color,
+                              onPressed: () =>
+                                  Navigator.of(context).pop(false)),
+                        ),
+                        10.kw,
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ) ??
+        false; // Default to false if dialog is dismissed
+  }
+
   static void showLogoutDialog(
     BuildContext context,
   ) {

@@ -44,10 +44,10 @@ class AdsRepositoryImplementation implements AdsRepository {
   }
 
   @override
-  Future<Either<Failure, String>> deleteAd(int adId) async {
+  Future<Either<Failure, String>> deleteAd(String adId) async {
     try {
-      var response =
-          await _apiService.delete(endPoint: ApiEndPoints.addAds, id: adId);
+      var response = await _apiService.delete(
+          endPoint: "${ApiEndPoints.addAds}/", id: adId);
       var message = response[Constants.messageFromResponse];
 
       String? validMessage = HelperFunctions.ensureStringOrNull(message);

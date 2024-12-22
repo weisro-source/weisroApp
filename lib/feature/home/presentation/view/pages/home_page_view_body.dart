@@ -15,6 +15,7 @@ import 'package:weisro/feature/services/presentation/managers/add_service_to_fav
 import 'package:weisro/generated/l10n.dart';
 import '../widgets/advertisement_widget.dart';
 import '../widgets/category_list_view.dart';
+import '../widgets/not_found_widget.dart';
 import '../widgets/search_bar.dart' as search;
 import '../widgets/services_grid_view_in_home_page.dart';
 import '../widgets/shimmer_services_grid_view_in_home_page.dart';
@@ -150,9 +151,15 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                     if (getLastService is GetLastServicesLoading) {
                       return const ShimmerServicesGridViewInHomePage();
                     } else if (getLastService is GetLastServicesSuccess) {
-                      return ServicesGridViewInHomePage(
-                        lastServices: getLastService.lastServices.docs ?? [],
-                      );
+                      if (getLastService.lastServices.docs?.isEmpty ?? false) {
+                        return const SliverToBoxAdapter(
+                          child: NotFoundWidget(),
+                        );
+                      } else {
+                        return ServicesGridViewInHomePage(
+                          lastServices: getLastService.lastServices.docs ?? [],
+                        );
+                      }
                     } else {
                       return const SliverToBoxAdapter(
                         child: CustomErrorWidgets(),

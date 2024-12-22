@@ -145,7 +145,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> delete({
     required String endPoint,
-    required int id,
+    required String id,
   }) async {
     await _setHeaders();
     var response = await dio.delete('$endPoint$id');

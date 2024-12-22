@@ -28,7 +28,7 @@ class BookServicePageViewBody extends StatefulWidget {
 
   final bool isDays, isHours;
   final Time hours;
-  final List<String> days;
+  final List<Day>? days;
 
   @override
   State<BookServicePageViewBody> createState() =>
@@ -287,7 +287,9 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
       itemBuilder: (context, index) {
         String dayKey = daysKeys[index];
         String dayValue = daysValues[index];
-        bool isContained = widget.days.contains(dayKey);
+        bool isContained =
+            widget.days?.any((day) => day.day == dayKey) ?? false;
+
         String dayDate = HelperFunctions.getDateForDay(dayKey);
         return Column(
           children: [
@@ -320,11 +322,14 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                                 : AppColors.whiteColor)),
                     const Spacer(),
                     Text(
-                      "7 pm - 9 am",
+                      isContained
+                          ? "${widget.days?.firstWhere((day) => day.day == dayKey).start} - ${widget.days?.firstWhere((day) => day.day == dayKey).end}"
+                          : "",
                       style: AppStyles.style10w400Second2(context).copyWith(
-                          color: isContained
-                              ? AppColors.orangeColor
-                              : AppColors.whiteColor),
+                        color: isContained
+                            ? AppColors.orangeColor
+                            : AppColors.whiteColor,
+                      ),
                     ),
                     const Spacer(),
                   ],
