@@ -36,7 +36,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   }
 
   final List<String> imagePaths = []; // Store image paths
-  String selectedRentTime = ''; // Default rent time
+  String selectedRentTime = Constants.bothKey; // Default rent time
   String? selectedLocationName; // Store the name of the selected location
   Location? selectedLocation; // Store latitude and longitude
   void updateRentTime(String rentTime) {
@@ -82,16 +82,16 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     if (serviceNameController.text.isEmpty) {
       errors.add(S.of(context).service_name_missing);
     }
-    if (selectedRentTime == S.of(context).Days ||
-        selectedRentTime == S.of(context).Both) {
+    if (selectedRentTime == Constants.dailyKey ||
+        selectedRentTime == Constants.bothKey) {
       if (pricePerDayController.text.isEmpty ||
           num.tryParse(pricePerDayController.text) == null) {
         errors.add(S.of(context).daily_price_invalid);
       }
     }
 
-    if (selectedRentTime == S.of(context).Hours ||
-        selectedRentTime == S.of(context).Both) {
+    if (selectedRentTime == Constants.hoursKey ||
+        selectedRentTime == Constants.bothKey) {
       if (pricePerHourController.text.isEmpty ||
           num.tryParse(pricePerHourController.text) == null) {
         errors.add(S.of(context).hourly_price_invalid);
@@ -102,9 +102,9 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       errors.add(S.of(context).description_missing);
     }
 
-    // if (days.isEmpty) {
-    //   errors.add(S.of(context).days_missing);
-    // }
+    if (serviceDaysState.isEmpty) {
+      errors.add(S.of(context).days_missing);
+    }
     if (imagePaths.isEmpty) {
       errors.add(S.of(context).images_missing);
     }

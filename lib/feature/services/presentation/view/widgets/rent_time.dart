@@ -25,6 +25,13 @@ class _RentTimeState extends State<RentTime> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _selectedRentTime =
+        BlocProvider.of<AddServiceCubit>(context).selectedRentTime;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       children: [

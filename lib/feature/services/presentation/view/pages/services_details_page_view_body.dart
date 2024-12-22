@@ -114,28 +114,42 @@ class _ServicesDetailsPageViewBodyState
               LocationPriceRowWidget(
                 price: '\$${widget.oneService.service?.dailyPrice} ST',
               ),
-              14.kh,
-              Padding(
-                padding: const EdgeInsetsDirectional.only(start: 24),
-                child: QuestionWidget(
-                    icon: IconsPath.iconsTimeIsMoneyClock,
-                    questionText: S.of(context).Available_Rental_Hours),
+              Visibility(
+                  visible: widget.oneService.service?.time?.start != null &&
+                      widget.oneService.service?.time?.end != null,
+                  child: 14.kh),
+              Visibility(
+                visible: widget.oneService.service?.time?.start != null &&
+                    widget.oneService.service?.time?.end != null,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(start: 24),
+                  child: QuestionWidget(
+                      icon: IconsPath.iconsTimeIsMoneyClock,
+                      questionText: S.of(context).Available_Rental_Hours),
+                ),
               ),
-              14.kh,
-              Row(
-                children: [
-                  27.kw,
-                  // this start time for service
-                  TimeWidget(
-                      time: widget.oneService.service?.time?.start ?? ""),
-                  35.kw,
-                  Text(
-                    S.of(context).To,
-                    style: AppStyles.style14w400Grey(context),
-                  ),
-                  23.kw,
-                  TimeWidget(time: widget.oneService.service?.time?.end ?? "")
-                ],
+              Visibility(
+                  visible: widget.oneService.service?.time?.start != null &&
+                      widget.oneService.service?.time?.end != null,
+                  child: 14.kh),
+              Visibility(
+                visible: widget.oneService.service?.time?.start != null &&
+                    widget.oneService.service?.time?.end != null,
+                child: Row(
+                  children: [
+                    27.kw,
+                    // this start time for service
+                    TimeWidget(
+                        time: widget.oneService.service?.time?.start ?? ""),
+                    35.kw,
+                    Text(
+                      S.of(context).To,
+                      style: AppStyles.style14w400Grey(context),
+                    ),
+                    23.kw,
+                    TimeWidget(time: widget.oneService.service?.time?.end ?? "")
+                  ],
+                ),
               ),
               18.kh,
               Padding(
@@ -201,6 +215,7 @@ class _ServicesDetailsPageViewBodyState
         SliverToBoxAdapter(
           child: 26.kh,
         ),
+        //! if page from add
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
@@ -232,7 +247,10 @@ class _ServicesDetailsPageViewBodyState
                       )
                     ],
                   )
-                : AppButton(
+                :
+                //! if page not from add
+
+                AppButton(
                     height: 32,
                     width: 164,
                     // buttonColor: AppColors.whiteColor,
@@ -249,11 +267,7 @@ class _ServicesDetailsPageViewBodyState
                           isHours: widget.oneService.service?.time != null,
                           hours:
                               widget.oneService.service?.time ?? const Time(),
-                          days: widget.oneService.service?.days
-                                  ?.map((day) => day.day)
-                                  .whereType<String>()
-                                  .toList() ??
-                              [],
+                          days: widget.oneService.service?.days,
                         ),
                       );
                     },

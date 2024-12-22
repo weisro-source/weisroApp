@@ -9,7 +9,6 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
-import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
@@ -37,7 +36,7 @@ class CreateServicePageViewBody extends StatefulWidget {
 class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
   @override
   void initState() {
-    BlocProvider.of<WorkerDayCubit>(context).state.clear();
+    BlocProvider.of<ServiceDayCubit>(context).state.clear();
     super.initState();
   }
 
