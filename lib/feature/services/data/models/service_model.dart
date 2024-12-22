@@ -48,49 +48,54 @@ class Service {
   final String? id;
   final String? name;
   final String? description;
-  final List<String>? days;
+  final List<Day>? days;
   final num? dailyPrice;
   final Time? time;
   final num? hourlyPrice;
   final List<String>? images;
   final Location? location;
   final String? date;
-  const Service(
-      {this.rate,
-      this.id,
-      this.name,
-      this.description,
-      this.days,
-      this.dailyPrice,
-      this.time,
-      this.hourlyPrice,
-      this.images,
-      this.location,
-      this.date});
-  Service copyWith(
-      {double? rate,
-      String? id,
-      String? name,
-      String? description,
-      List<String>? days,
-      num? dailyPrice,
-      Time? time,
-      num? hourlyPrice,
-      List<String>? images,
-      Location? location,
-      String? date}) {
+
+  const Service({
+    this.rate,
+    this.id,
+    this.name,
+    this.description,
+    this.days,
+    this.dailyPrice,
+    this.time,
+    this.hourlyPrice,
+    this.images,
+    this.location,
+    this.date,
+  });
+
+  Service copyWith({
+    double? rate,
+    String? id,
+    String? name,
+    String? description,
+    List<Day>? days,
+    num? dailyPrice,
+    Time? time,
+    num? hourlyPrice,
+    List<String>? images,
+    Location? location,
+    String? date,
+  }) {
     return Service(
-        rate: rate ?? this.rate,
-        id: id ?? this.id,
-        name: name ?? this.name,
-        description: description ?? this.description,
-        days: days ?? this.days,
-        dailyPrice: dailyPrice ?? this.dailyPrice,
-        time: time ?? this.time,
-        hourlyPrice: hourlyPrice ?? this.hourlyPrice,
-        images: images ?? this.images,
-        location: location ?? this.location,
-        date: date ?? this.date);
+      rate: rate ?? this.rate,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      days: days ?? this.days,
+      dailyPrice: dailyPrice ?? this.dailyPrice,
+      time: time ?? this.time,
+      hourlyPrice: hourlyPrice ?? this.hourlyPrice,
+      images: images ?? this.images,
+      location: location ?? this.location,
+      date: date ?? this.date,
+    );
   }
 
   Map<String, Object?> toJson() {
@@ -99,13 +104,13 @@ class Service {
       '_id': id,
       'name': name,
       'description': description,
-      'days': days,
+      'days': days?.map((day) => day.toJson()).toList(),
       'daily_price': dailyPrice,
       'time': time?.toJson(),
       'hourly_price': hourlyPrice,
       'images': images,
       'location': location?.toJson(),
-      'date': date
+      'date': date,
     };
   }
 
@@ -116,13 +121,14 @@ class Service {
           : (json['rate'] is int
               ? (json['rate'] as int).toDouble()
               : json['rate'] as double),
-      id: json['_id'] == null ? null : json['_id'] as String,
-      name: json['name'] == null ? null : json['name'] as String,
-      description:
-          json['description'] == null ? null : json['description'] as String,
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+      description: json['description'] as String?,
       days: json['days'] == null
           ? null
-          : (json['days'] as List<dynamic>).map((e) => e as String).toList(),
+          : (json['days'] as List<dynamic>)
+              .map((e) => Day.fromJson(e as Map<String, Object?>))
+              .toList(),
       dailyPrice: json['daily_price'] == null
           ? null
           : (json['daily_price'] is int
@@ -140,59 +146,48 @@ class Service {
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, Object?>),
-      date: json['date'] == null ? null : json['date'] as String,
+      date: json['date'] as String?,
     );
   }
 
   static List<String>? _parseImages(dynamic imagesJson) {
     if (imagesJson is String) {
-      // If `images` is a single string, wrap it in a list
       return [imagesJson];
     } else if (imagesJson is List) {
-      // If `images` is already a list, cast elements to String
       return imagesJson.map((e) => e as String).toList();
     }
-    return null; // Return null for unexpected cases
+    return null;
+  }
+}
+
+class Day {
+  final String? day;
+  final String? start;
+  final String? end;
+  final String? id;
+
+  const Day({this.day, this.start, this.end, this.id});
+
+  Day copyWith({String? day, String? start, String? end, String? id}) {
+    return Day(
+      day: day ?? this.day,
+      start: start ?? this.start,
+      end: end ?? this.end,
+      id: id ?? this.id,
+    );
   }
 
-  @override
-  String toString() {
-    return '''Service(
-                rate:$rate,
-id:$id,
-name:$name,
-description:$description,
-days:$days,
-dailyPrice:$dailyPrice,
-time:${time.toString()},
-hourlyPrice:$hourlyPrice,
-images:$images,
-location:${location.toString()},
-date:$date
-    ) ''';
+  Map<String, Object?> toJson() {
+    return {'day': day, 'start': start, 'end': end, '_id': id};
   }
 
-  @override
-  bool operator ==(Object other) {
-    return other is Service &&
-        other.runtimeType == runtimeType &&
-        other.rate == rate &&
-        other.id == id &&
-        other.name == name &&
-        other.description == description &&
-        other.days == days &&
-        other.dailyPrice == dailyPrice &&
-        other.time == time &&
-        other.hourlyPrice == hourlyPrice &&
-        other.images == images &&
-        other.location == location &&
-        other.date == date;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(runtimeType, rate, id, name, description, days,
-        dailyPrice, time, hourlyPrice, images, location, date);
+  static Day fromJson(Map<String, Object?> json) {
+    return Day(
+      day: json['day'] as String?,
+      start: json['start'] as String?,
+      end: json['end'] as String?,
+      id: json['_id'] as String?,
+    );
   }
 }
 

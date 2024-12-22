@@ -153,7 +153,10 @@ class _ServicesDetailsPageViewBodyState
         SliverPadding(
             padding: const EdgeInsetsDirectional.only(start: 24, end: 24),
             sliver: DaysList(
-              oneServiceDays: widget.oneService.service?.days,
+              oneServiceDays: widget.oneService.service?.days
+                  ?.map((day) => day.day)
+                  .whereType<String>() // Remove null values
+                  .toList(),
               isReview: widget.isReview,
             )),
         SliverToBoxAdapter(
@@ -246,7 +249,11 @@ class _ServicesDetailsPageViewBodyState
                           isHours: widget.oneService.service?.time != null,
                           hours:
                               widget.oneService.service?.time ?? const Time(),
-                          days: widget.oneService.service?.days ?? [],
+                          days: widget.oneService.service?.days
+                                  ?.map((day) => day.day)
+                                  .whereType<String>()
+                                  .toList() ??
+                              [],
                         ),
                       );
                     },
