@@ -1851,6 +1851,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select at least one day`
+  String get Select_At_Least_One_Day {
+    return Intl.message(
+      'Please select at least one day',
+      name: 'Select_At_Least_One_Day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incomplete Information`
+  String get Incomplete_Information {
+    return Intl.message(
+      'Incomplete Information',
+      name: 'Incomplete_Information',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

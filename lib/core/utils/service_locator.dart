@@ -7,6 +7,8 @@ import 'package:weisro/feature/ads/data/ads_repo/ads_repo.dart';
 import 'package:weisro/feature/ads/data/ads_repo/ads_repo_impl.dart';
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo_impl.dart';
+import 'package:weisro/feature/booking/data/booking_repo/booking_repo.dart';
+import 'package:weisro/feature/booking/data/booking_repo/booking_repo_impl.dart';
 import 'package:weisro/feature/favorite/data/favorite_repo/favorite_repo.dart';
 import 'package:weisro/feature/favorite/data/favorite_repo/favorite_repo_impl.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo.dart';
@@ -40,6 +42,6 @@ void setupServiceLocator() {
   getIt.registerSingleton<AccountRepository>(AccountRepositoryImplementation());
   getIt.registerSingleton<FavoriteRepository>(
       FavoriteRepositoryImplementation());
-  getIt.registerSingleton<AdsRepository>(
-      AdsRepositoryImplementation());
+  getIt.registerSingleton<AdsRepository>(AdsRepositoryImplementation());
+  getIt.registerSingleton<BookingRepository>(BookingRepositoryImplementation());
 }

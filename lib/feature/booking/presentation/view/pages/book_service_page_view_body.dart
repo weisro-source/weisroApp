@@ -8,6 +8,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
+import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/booking/presentation/manager/book_service_cubit/book_service_cubit.dart';
@@ -27,12 +28,14 @@ class BookServicePageViewBody extends StatefulWidget {
     required this.days,
     required this.dayPrice,
     required this.hourPrice,
+    required this.serviceId,
   });
 
   final bool isDays, isHours;
   final Time hours;
   final List<Day>? days;
   final num dayPrice, hourPrice;
+  final String serviceId;
 
   @override
   State<BookServicePageViewBody> createState() =>
@@ -218,8 +221,21 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
           sliver: SliverToBoxAdapter(
             child: CancelAndButton(
               secondButton: S.of(context).Book_Now,
-              onBookPressed: () {},
-              onCancelPressed: () {},
+              onBookPressed: () async {
+                if (bookServiceCubit.validateInput(
+                    selectedDayModels, context)) {
+                  await bookServiceCubit.addServiceBooking(
+                      widget.serviceId, selectedDayModels, "");
+                } else {
+                  CustomDialog.showCustomDialog(
+                      context,
+                      S.of(context).Incomplete_Information,
+                      bookServiceCubit.errorValidateMessage);
+                }
+              },
+              onCancelPressed: () {
+                HelperFunctions.navigateToBack(context);
+              },
             ),
           ),
         ),
