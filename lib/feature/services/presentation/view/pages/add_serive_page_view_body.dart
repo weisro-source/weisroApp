@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
@@ -257,6 +258,9 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
                       ),
                     ),
                   );
+                  // FormData formData = await addServiceCubit.prepareFormData(
+                  //     addServiceCubit.prepareApiData(context) ?? {});
+                  // print(formData.fields);
                   // await addServiceCubit.addServiceCallApi(context);
                 } else {
                   CustomDialog.showCustomDialog(

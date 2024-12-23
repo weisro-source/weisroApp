@@ -44,7 +44,7 @@ class _ServiceDayListState extends State<ServiceDayList> {
       }
     }
   }
-
+  
   /// toggle day in
   void _toggleDay(BuildContext context, String dayKey) {
     final cubit = context.read<ServiceDayCubit>();

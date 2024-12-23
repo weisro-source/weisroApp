@@ -27,12 +27,12 @@ class AddServiceCubit extends Cubit<AddServiceState> {
 
   /// Format the startDateTime to 'hh:mm'
   String get formattedStartTime {
-    return DateFormat('hh:mm a').format(startDateTime);
+    return DateFormat('hh:mm').format(startDateTime);
   }
 
   /// Format the endDateTime to 'hh:mm'
   String get formattedEndTime {
-    return DateFormat('hh:mm a').format(endDateTime);
+    return DateFormat('hh:mm').format(endDateTime);
   }
 
   final List<String> imagePaths = []; // Store image paths
@@ -120,8 +120,18 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   }
 
   /// Validate Inputs and Return API Data
+  /// Validate Inputs and Return API Data
   Map<String, dynamic>? prepareApiData(BuildContext context) {
     // Compile data for API
+
+    // Helper to format time without AM/PM
+    String? formatTimeWithoutAmPm(TimeOfDay? time) {
+      if (time == null) return null;
+      final localizations = MaterialLocalizations.of(context);
+      final formattedTime =
+          localizations.formatTimeOfDay(time, alwaysUse24HourFormat: true);
+      return formattedTime;
+    }
 
     // Format days as a list of objects with day, start, and end
     List<Map<String, String?>> formattedDays =
@@ -130,10 +140,11 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       final timeMap = entry.value;
       return {
         "day": dayKey,
-        "start": timeMap['start']?.format(context),
-        "end": timeMap['end']?.format(context),
+        "start": formatTimeWithoutAmPm(timeMap['start']),
+        "end": formatTimeWithoutAmPm(timeMap['end']),
       };
     }).toList();
+
     return {
       "description": descriptionController.text,
       "name": serviceNameController.text,

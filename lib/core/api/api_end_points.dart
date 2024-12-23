@@ -27,5 +27,6 @@ class ApiEndPoints {
   static const String addServiceToFavorite = '/user-favorites';
   // ads Route
   static const String addAds = '/advers';
-  
+  // booking Route
+  static const String addServiceBooking = '/booking/service';
 }

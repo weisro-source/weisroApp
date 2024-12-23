@@ -161,6 +161,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                       onChanged: (newCountry) async {
                         GetAllCountriesCubit.get(context).selectCountry(
                             newCountry ?? Country(id: "", flag: "", name: ""));
+                        registerCubit.countryName = newCountry?.name ?? "";
                         await GetCitiesOfASpecifiedCountryCubit.get(context)
                             .getAllCitiesOfASpecifiedCountry(
                                 newCountry?.id ?? "");
@@ -200,6 +201,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                       onChanged: (value) {
                         GetCitiesOfASpecifiedCountryCubit.get(context)
                             .cityName = value?.name ?? "";
+                        registerCubit.cityName = value?.name ?? "";
                       },
                       selectedCity: getAllCitiesState.cities.cities.first,
                     );

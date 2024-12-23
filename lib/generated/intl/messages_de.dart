@@ -129,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("Ich stimme den"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identität"),
+        "Incomplete_Information": MessageLookupByLibrary.simpleMessage(
+            "Unvollständige Informationen"),
         "Language": MessageLookupByLibrary.simpleMessage("Sprache"),
         "Last_Name": MessageLookupByLibrary.simpleMessage("Nachname"),
         "Latest_rental_services":
@@ -206,6 +208,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Search_page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_page_empty_message": MessageLookupByLibrary.simpleMessage(
             "Die Suchseite ist leer, gehen Sie und entdecken Sie, was neu ist"),
+        "Select_At_Least_One_Day": MessageLookupByLibrary.simpleMessage(
+            "Bitte wählen Sie mindestens einen Tag aus"),
         "Select_Location":
             MessageLookupByLibrary.simpleMessage("Standort auswählen"),
         "Select_Services": MessageLookupByLibrary.simpleMessage(

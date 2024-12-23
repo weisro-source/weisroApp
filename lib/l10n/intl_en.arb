@@ -179,5 +179,7 @@
     "Ad_Deletion_Error": "Could not delete the ad.",
     "Delete_Confirmation_Title": "Delete Confirmation",
     "Delete_Confirmation_Message": "Are you sure you want to delete this ad?",
-    "No_Services_Available": "There are no services available in this area"
+    "No_Services_Available": "There are no services available in this area",
+    "Select_At_Least_One_Day": "Please select at least one day",
+    "Incomplete_Information": "Incomplete Information"
 }

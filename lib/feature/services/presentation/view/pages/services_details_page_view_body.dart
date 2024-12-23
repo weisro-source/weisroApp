@@ -271,6 +271,7 @@ class _ServicesDetailsPageViewBodyState
                           dayPrice: widget.oneService.service?.dailyPrice ?? 0,
                           hourPrice:
                               widget.oneService.service?.hourlyPrice ?? 0,
+                          serviceId: widget.oneService.service?.id ?? "",
                         ),
                       );
                     },
