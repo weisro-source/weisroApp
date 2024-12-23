@@ -12,11 +12,14 @@ class BookServicePageView extends StatefulWidget {
       required this.isDays,
       required this.isHours,
       required this.hours,
-      required this.days})
+      required this.days,
+      required this.dayPrice,
+      required this.hourPrice})
       : super(key: key);
   final bool isDays, isHours;
   final Time hours;
   final List<Day>? days;
+  final num dayPrice, hourPrice;
 
   @override
   State<BookServicePageView> createState() => _BookServicePageViewState();
@@ -39,6 +42,8 @@ class _BookServicePageViewState extends State<BookServicePageView> {
         isHours: widget.isHours,
         hours: widget.hours,
         days: widget.days,
+        dayPrice: widget.dayPrice,
+        hourPrice: widget.hourPrice,
       )),
     );
   }
