@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/generated/l10n.dart';
 
 part 'book_service_state.dart';
@@ -8,13 +9,13 @@ part 'book_service_state.dart';
 class BookServiceCubit extends Cubit<BookServiceState> {
   BookServiceCubit() : super(BookServiceInitial());
   static BookServiceCubit get(context) => BlocProvider.of(context);
-  String hourSelected = "Hour";
-  String dailySelected = "Day";
+  String hourSelected = Constants.hoursKey;
+  String dailySelected = Constants.dailyKey;
   String selectedType(String select, BuildContext context) {
     switch (select) {
-      case 'Hour':
+      case Constants.hoursKey:
         return S.of(context).Rent_per_hour;
-      case 'Day':
+      case Constants.dailyKey:
         return S.of(context).Rent_per_day;
 
       default:
@@ -46,5 +47,9 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     } catch (e) {
       return [];
     }
+  }
+
+  num totalDayPrice(int numberOfDays, num dailyPrice) {
+    return numberOfDays * dailyPrice;
   }
 }

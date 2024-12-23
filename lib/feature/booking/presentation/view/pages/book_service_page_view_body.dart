@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
@@ -24,27 +25,33 @@ class BookServicePageViewBody extends StatefulWidget {
     required this.isHours,
     required this.hours,
     required this.days,
+    required this.dayPrice,
+    required this.hourPrice,
   });
 
   final bool isDays, isHours;
   final Time hours;
   final List<Day>? days;
+  final num dayPrice, hourPrice;
 
   @override
   State<BookServicePageViewBody> createState() =>
       _BookServicePageViewBodyState();
 }
 
-String selected = '';
-
 class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   final List<String> selectedHours = [];
   final List<String> selectedDays = [];
+  final List<String> selectedDayModels = [];
+
+  num totalDayPrice = 0;
+  late String selected;
+
   late Map<String, String> daysKeysValues;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     // Initialize daysKeysValues here, where localization is available
     daysKeysValues = WorkerTime.daysSelected(context);
     //  addPostFrameCallback to delay the call to selectedType until after the build to resolve this error
@@ -53,6 +60,9 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   @override
   void initState() {
     super.initState();
+    selected = widget.isDays
+        ? Constants.dailyKey
+        : Constants.hoursKey; // Set the value of selected in initState
   }
 
   @override
@@ -172,13 +182,17 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                 OneInformation(
                   icon: IconsPath.iconsWatch,
                   text: S.of(context).Rental_Period,
-                  info: "12 hours",
+                  info: selected == bookServiceCubit.hourSelected
+                      ? "12Hours"
+                      : "${selectedDayModels.length} ${S.of(context).Days}",
                 ),
                 24.kh,
                 OneInformation(
                   icon: IconsPath.iconsMoneyBag,
                   text: S.of(context).Total_Cost,
-                  info: "\$23.4",
+                  info: selected == bookServiceCubit.hourSelected
+                      ? "\$23.4"
+                      : "$totalDayPrice",
                 ),
                 24.kh,
                 OneInformation(
@@ -291,15 +305,45 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
             widget.days?.any((day) => day.day == dayKey) ?? false;
 
         String dayDate = HelperFunctions.getDateForDay(dayKey);
+        String dayId = widget.days
+                ?.firstWhere((day) => day.day == dayKey,
+                    orElse: () => const Day(
+                        day: "", start: "", end: "", id: "") // Fallback Day
+                    )
+                .id ??
+            "";
+
+        // Check if the day id is in the selectedDayModels list
+        bool isDaySelected = selectedDayModels.contains(dayId);
         return Column(
           children: [
             GestureDetector(
-              onTap: isContained ? () {} : null,
+              onTap: isContained
+                  ? () {
+                      setState(() {
+                        String dayId = widget.days
+                                ?.firstWhere((day) => day.day == dayKey)
+                                .id ??
+                            "";
+                        if (selectedDayModels.contains(dayId)) {
+                          selectedDayModels.remove(dayId); // Unselect the day
+                        } else {
+                          selectedDayModels.add(dayId); // Select the day
+                        }
+                      });
+                      totalDayPrice = BookServiceCubit.get(context)
+                          .totalDayPrice(
+                              selectedDayModels.length, widget.dayPrice);
+                    }
+                  : null,
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color:
-                      isContained ? AppColors.whiteColor : AppColors.redColor,
+                  color: isContained
+                      ? isDaySelected
+                          ? AppColors.orangeColor
+                          : AppColors.whiteColor
+                      : AppColors.redColor,
                   border: Border.all(color: AppColors.orangeColor),
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -312,13 +356,17 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                     Text(dayValue,
                         style: AppStyles.style12w500Orange(context).copyWith(
                             color: isContained
-                                ? AppColors.orangeColor
+                                ? isDaySelected
+                                    ? AppColors.whiteColor
+                                    : AppColors.orangeColor
                                 : AppColors.whiteColor)),
                     8.kw,
                     Text(dayDate,
                         style: AppStyles.style12w500Orange(context).copyWith(
                             color: isContained
-                                ? AppColors.orangeColor
+                                ? isDaySelected
+                                    ? AppColors.whiteColor
+                                    : AppColors.orangeColor
                                 : AppColors.whiteColor)),
                     const Spacer(),
                     Text(
@@ -327,7 +375,9 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                           : "",
                       style: AppStyles.style10w400Second2(context).copyWith(
                         color: isContained
-                            ? AppColors.orangeColor
+                            ? isDaySelected
+                                ? AppColors.whiteColor
+                                : AppColors.orangeColor
                             : AppColors.whiteColor,
                       ),
                     ),

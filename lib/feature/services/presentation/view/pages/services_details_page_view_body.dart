@@ -268,6 +268,9 @@ class _ServicesDetailsPageViewBodyState
                           hours:
                               widget.oneService.service?.time ?? const Time(),
                           days: widget.oneService.service?.days,
+                          dayPrice: widget.oneService.service?.dailyPrice ?? 0,
+                          hourPrice:
+                              widget.oneService.service?.hourlyPrice ?? 0,
                         ),
                       );
                     },
