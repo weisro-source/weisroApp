@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weisro/feature/search/presentation/managers/cubit/search_cubit.dart';
+import 'package:weisro/feature/search/presentation/managers/search_cubit/search_cubit.dart';
 
 import 'search_result_page_view_body.dart';
 

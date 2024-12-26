@@ -39,6 +39,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Book_Service": MessageLookupByLibrary.simpleMessage("Dienst buchen"),
         "Book_Worker":
             MessageLookupByLibrary.simpleMessage("Mitarbeiter buchen"),
+        "Booking_Confirmed": MessageLookupByLibrary.simpleMessage(
+            "Ihre Buchung wurde bestätigt. Vielen Dank!"),
+        "Booking_Failed":
+            MessageLookupByLibrary.simpleMessage("Buchung fehlgeschlagen"),
+        "Booking_Successful":
+            MessageLookupByLibrary.simpleMessage("Buchung erfolgreich"),
         "Both": MessageLookupByLibrary.simpleMessage("Beides"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Abbrechen"),
         "ChangeEmail": MessageLookupByLibrary.simpleMessage("E-Mail ändern"),

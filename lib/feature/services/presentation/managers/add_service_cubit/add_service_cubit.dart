@@ -69,7 +69,8 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             description: descriptionController.text,
             days: formattedDays,
             name: serviceNameController.text,
-            location: const Location(latitude: 20, longitude: 30),
+            //first index latitude second index longitude
+            location: const Location(coordinates: [20, 30]),
             time: Time(start: formattedStartTime, end: formattedEndTime)));
   }
 
@@ -154,8 +155,8 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       },
       "category_id": categoryId,
       "location": {
-        "latitude": selectedLocation?.latitude ?? "52.517669999",
-        "longitude": selectedLocation?.longitude ?? "13.405537999",
+        "latitude": selectedLocation?.coordinates?[0] ?? "52.517669999",
+        "longitude": selectedLocation?.coordinates?[1] ?? "13.405537999",
       },
       "days": formattedDays,
       "daily_price": num.tryParse(pricePerDayController.text) ?? 0,

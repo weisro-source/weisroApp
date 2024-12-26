@@ -19,8 +19,13 @@ class SearchCubit extends Cubit<SearchState> {
 
   /// controller for the search filed
   TextEditingController searchController = TextEditingController();
+  int searchResult = 0;
   Future<void> search(BuildContext context, {int pageNumber = 1}) async {
-    emit(SearchLoading());
+    if (pageNumber == 1) {
+      emit(SearchLoading());
+    } else {
+      emit(SearchPaginationLoading());
+    }
 
     /// You can use this api to search
     Either<Failure, LastServicesModel> result = await getIt
@@ -28,9 +33,14 @@ class SearchCubit extends Cubit<SearchState> {
         .getLastServiceApi(context, searchController.text, pageNumber);
     result.fold(
       (errorInSearch) {
-        emit(SearchFailures(error: errorInSearch));
+        if (pageNumber == 1) {
+          emit(SearchPaginationFailures(error: errorInSearch));
+        } else {
+          emit(SearchFailures(error: errorInSearch));
+        }
       },
       (searchResultForOnePage) {
+        searchResult = searchResultForOnePage.totalDocs ?? 0;
         emit(SearchSuccess(searchResult: searchResultForOnePage));
       },
     );

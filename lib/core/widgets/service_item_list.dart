@@ -10,26 +10,41 @@ import 'service_item.dart';
 class ServiceItemList extends StatelessWidget {
   const ServiceItemList({
     super.key,
-    required this.allFavorite,
+    this.image,
+    this.name,
+    this.rate,
+    this.des,
+    this.location,
+    this.price,
+    required this.length,
+    this.id,
   });
-  final List<Docs> allFavorite;
+  final List<String>? image, name, rate, des, location, price, id;
+  final int length;
+
   @override
   Widget build(BuildContext context) {
     return SliverList.separated(
-      itemCount: allFavorite.length,
+      // itemCount: allFavorite.length,
+      itemCount: length,
       itemBuilder: (context, index) {
         ///handel one favorite service
-        var favoriteService = allFavorite[index];
+        // var favoriteService = allFavorite[index];
         return GestureDetector(
           onTap: () {
             HelperFunctions.navigateToScreen(
               context,
-              (context) => ServicesDetailsPageView(
-                  serviceId: favoriteService.service?.id ?? ""),
+              (context) => ServicesDetailsPageView(serviceId: id?[index] ?? ""),
             );
           },
           child: ServiceItem(
-            favoriteService: favoriteService.service ?? const Service(),
+            favoriteService: const Service(),
+            des: des?[index],
+            image: image?[index],
+            location: location?[index],
+            name: name?[index],
+            price: price?[index],
+            rate: "",
           ),
         );
       },

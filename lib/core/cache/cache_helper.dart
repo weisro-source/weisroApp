@@ -29,6 +29,8 @@ class CacheHelper {
     } else if (value is double) {
       await sharedPreferences.setDouble(key, value);
       return true;
+    } else if (value is List<String>) {
+      return await sharedPreferences.setStringList(key, value);
     }
     return false;
   }
