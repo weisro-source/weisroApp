@@ -5,8 +5,7 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
-import 'package:weisro/core/utils/constant.dart';
-import 'package:weisro/core/utils/helper_functions.dart';
+
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/favorite/data/models/favorite_model.dart';
 
@@ -16,8 +15,15 @@ class ServiceItem extends StatelessWidget {
   const ServiceItem({
     super.key,
     required this.favoriteService,
+    this.image,
+    this.name,
+    this.rate,
+    this.des,
+    this.location,
+    this.price,
   });
   final Service favoriteService;
+  final String? image, name, rate, des, location, price;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,8 +52,7 @@ class ServiceItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CachedNetworkImage(
-              imageUrl:
-                  "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(favoriteService.images ?? []) ?? ""}",
+              imageUrl: image ?? "",
               width: 105,
               height: 56,
               fit: BoxFit.scaleDown,
@@ -71,12 +76,12 @@ class ServiceItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        favoriteService.name ?? "",
+                        name ?? "",
                         style: AppStyles.style10w400Grey(context),
                       ),
                       const Spacer(),
                       RateWidget(
-                        rate: favoriteService.rate.toString(),
+                        rate: rate ?? "",
                       ),
                       9.kw,
                     ],
@@ -87,7 +92,7 @@ class ServiceItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "Lorem ipsum dolor sit abet connecter. Lorem ipsum sit.",
+                          des ?? "",
                           style: AppStyles.style8w400Grey2(context),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -100,12 +105,12 @@ class ServiceItem extends StatelessWidget {
                       SvgPicture.asset(IconsPath.iconsLocation),
                       2.kw,
                       Text(
-                        "Oberamen , 3216",
+                        location ?? "",
                         style: AppStyles.style10w400Grey(context),
                       ),
                       const Spacer(),
                       Text(
-                        "\$${favoriteService.price.toString()}",
+                        "\$$price",
                         style: AppStyles.style10w500Red(context)
                             .copyWith(color: AppColors.orangeColor),
                       ),

@@ -30,7 +30,7 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
   @override
   void initState() {
     super.initState();
-
+    BlocProvider.of<GetFavoriteCubit>(context).getAllFavorites(context);
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
   }
@@ -82,8 +82,43 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
                         subTitle: S.of(context).You_havent_marked_any_favorite),
                   );
                 } else {
+                  final descriptions = allFavorite
+                      .map((doc) =>
+                          doc.service?.name ??
+                          '') // If name is null, use an empty string
+                      .toList();
+                  final name = allFavorite
+                      .map((doc) =>
+                          doc.service?.name ??
+                          '') // If name is null, use an empty string
+                      .toList();
+                  final prices = allFavorite
+                      .map((doc) =>
+                          doc.service?.price?.toString() ??
+                          '') // If price is null, use an empty string
+                      .toList();
+                  final firstImages = allFavorite
+                      .map((doc) => (doc.service?.images?.isNotEmpty ?? false)
+                          ? doc.service?.images!.first
+                          : '')
+                      .toList();
+                  final locationList = allFavorite.map(
+                    (doc) {
+                      final city = doc.service?.location?.city ?? "";
+                      final country = doc.service?.location?.country ?? "";
+                      return "$city, $country"
+                          .trim()
+                          .replaceAll(RegExp(r'^, |, $'), '');
+                    },
+                  ).toList();
                   return ServiceItemList(
-                    allFavorite: allFavorite,
+                    length: allFavorite.length,
+                    des: descriptions,
+                    image: firstImages.whereType<String>().toList(),
+                    location: locationList,
+                    name: name,
+                    price: prices.whereType<String>().toList(),
+                    rate: const [],
                   );
                 }
               } else {

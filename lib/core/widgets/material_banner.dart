@@ -8,6 +8,7 @@ class CustomMaterialBanner {
       elevation: 0,
       backgroundColor: Colors.transparent,
       forceActionsBelow: true,
+      
       content: AwesomeSnackbarContent(
         title: title,
         message: message,

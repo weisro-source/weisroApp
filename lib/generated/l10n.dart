@@ -1871,6 +1871,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Booking Failed`
+  String get Booking_Failed {
+    return Intl.message(
+      'Booking Failed',
+      name: 'Booking_Failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Successful`
+  String get Booking_Successful {
+    return Intl.message(
+      'Booking Successful',
+      name: 'Booking_Successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your booking has been confirmed. Thank you!`
+  String get Booking_Confirmed {
+    return Intl.message(
+      'Your booking has been confirmed. Thank you!',
+      name: 'Booking_Confirmed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

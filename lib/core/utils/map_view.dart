@@ -134,9 +134,9 @@ class MapViewState extends State<MapView> {
       if (!mounted) return;
       AddServiceCubit.get(context).updateLocation(
         locationName,
+        //latitude
         service.Location(
-          latitude: position.latitude,
-          longitude: position.longitude,
+          coordinates: [position.latitude, position.longitude],
         ),
       );
 

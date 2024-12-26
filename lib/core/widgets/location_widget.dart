@@ -15,6 +15,7 @@ class LocationWidget extends StatelessWidget {
   final TextStyle? styleLocationText;
   final double? iconWidth, iconHeight;
   final Widget? space;
+  
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -106,7 +106,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
                   children: [
                     SvgPicture.asset(IconsPath.iconsLocation),
                     Text(
-                      "October ,3322",
+                      "${widget.lastService.location?.country ?? ""} ${widget.lastService.location?.city ?? ""}",
                       style: AppStyles.style8w400Grey2(context)
                           .copyWith(color: AppColors.greyColor),
                     ),

@@ -181,5 +181,8 @@
     "Delete_Confirmation_Message": "Are you sure you want to delete this ad?",
     "No_Services_Available": "There are no services available in this area",
     "Select_At_Least_One_Day": "Please select at least one day",
-    "Incomplete_Information": "Incomplete Information"
+    "Incomplete_Information": "Incomplete Information",
+    "Booking_Failed": "Booking Failed",
+    "Booking_Successful": "Booking Successful",
+    "Booking_Confirmed": "Your booking has been confirmed. Thank you!"
 }

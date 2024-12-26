@@ -179,5 +179,8 @@
     "Delete_Confirmation_Message": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
     "No_Services_Available": "Es sind keine Dienste in diesem Gebiet verfügbar",
     "Select_At_Least_One_Day": "Bitte wählen Sie mindestens einen Tag aus",
-    "Incomplete_Information": "Unvollständige Informationen"
+    "Incomplete_Information": "Unvollständige Informationen",
+    "Booking_Failed": "Buchung fehlgeschlagen",
+    "Booking_Successful": "Buchung erfolgreich",
+    "Booking_Confirmed": "Ihre Buchung wurde bestätigt. Vielen Dank!"
 }

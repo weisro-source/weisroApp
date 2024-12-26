@@ -38,6 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Book_Now": MessageLookupByLibrary.simpleMessage("Book Now"),
         "Book_Service": MessageLookupByLibrary.simpleMessage("Book service"),
         "Book_Worker": MessageLookupByLibrary.simpleMessage("Book Worker"),
+        "Booking_Confirmed": MessageLookupByLibrary.simpleMessage(
+            "Your booking has been confirmed. Thank you!"),
+        "Booking_Failed":
+            MessageLookupByLibrary.simpleMessage("Booking Failed"),
+        "Booking_Successful":
+            MessageLookupByLibrary.simpleMessage("Booking Successful"),
         "Both": MessageLookupByLibrary.simpleMessage("Both"),
         "Cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "ChangeEmail": MessageLookupByLibrary.simpleMessage("Change Email"),

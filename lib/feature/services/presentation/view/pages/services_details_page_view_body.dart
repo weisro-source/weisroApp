@@ -113,6 +113,7 @@ class _ServicesDetailsPageViewBodyState
               15.kh,
               LocationPriceRowWidget(
                 price: '\$${widget.oneService.service?.dailyPrice} ST',
+                
               ),
               Visibility(
                   visible: widget.oneService.service?.time?.start != null &&

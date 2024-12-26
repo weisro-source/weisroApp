@@ -234,44 +234,83 @@ class Docs {
 }
 
 class Location {
-  final num? latitude;
-  final num? longitude;
-  const Location({this.latitude, this.longitude});
-  Location copyWith({int? latitude, int? longitude}) {
+  final List<double>? coordinates;
+  final String? type;
+  final String? city;
+  final String? country;
+  final String? address;
+
+  const Location({
+    this.coordinates,
+    this.type,
+    this.city,
+    this.country,
+    this.address,
+  });
+
+  Location copyWith({
+    List<double>? coordinates,
+    String? type,
+    String? city,
+    String? country,
+    String? address,
+  }) {
     return Location(
-        latitude: latitude ?? this.latitude,
-        longitude: longitude ?? this.longitude);
+      coordinates: coordinates ?? this.coordinates,
+      type: type ?? this.type,
+      city: city ?? this.city,
+      country: country ?? this.country,
+      address: address ?? this.address,
+    );
   }
 
   Map<String, Object?> toJson() {
-    return {'latitude': latitude, 'longitude': longitude};
+    return {
+      'coordinates': coordinates,
+      'type': type,
+      'city': city,
+      'country': country,
+      'address': address,
+    };
   }
 
   static Location fromJson(Map<String, Object?> json) {
     return Location(
-        latitude: json['latitude'] == null ? null : json['latitude'] as num,
-        longitude: json['longitude'] == null ? null : json['longitude'] as num);
+      coordinates: (json['coordinates'] as List<dynamic>?)
+          ?.map((e) => e as double)
+          .toList(),
+      type: json['type'] as String?,
+      city: json['city'] as String?,
+      country: json['country'] as String?,
+      address: json['address'] as String?,
+    );
   }
 
   @override
   String toString() {
     return '''Location(
-                latitude:$latitude,
-longitude:$longitude
-    ) ''';
+      coordinates: $coordinates,
+      type: $type,
+      city: $city,
+      country: $country,
+      address: $address,
+    )''';
   }
 
   @override
   bool operator ==(Object other) {
     return other is Location &&
         other.runtimeType == runtimeType &&
-        other.latitude == latitude &&
-        other.longitude == longitude;
+        other.coordinates == coordinates &&
+        other.type == type &&
+        other.city == city &&
+        other.country == country &&
+        other.address == address;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, latitude, longitude);
+    return Object.hash(runtimeType, coordinates, type, city, country, address);
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -9,6 +10,8 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
+import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/booking/presentation/manager/book_service_cubit/book_service_cubit.dart';
@@ -219,22 +222,71 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
-            child: CancelAndButton(
-              secondButton: S.of(context).Book_Now,
-              onBookPressed: () async {
-                if (bookServiceCubit.validateInput(
-                    selectedDayModels, context)) {
-                  await bookServiceCubit.addServiceBooking(
-                      widget.serviceId, selectedDayModels, "");
-                } else {
-                  CustomDialog.showCustomDialog(
-                      context,
-                      S.of(context).Incomplete_Information,
-                      bookServiceCubit.errorValidateMessage);
+            child: BlocConsumer<BookServiceCubit, BookServiceState>(
+              listener: (context, bookState) {
+                final messenger = ScaffoldMessenger.of(context);
+                if (bookState is BookServiceFailures) {
+                  MaterialBanner materialBanner =
+                      CustomMaterialBanner.failureMaterialBanner(
+                          S.of(context).Booking_Failed,
+                          bookState.error.errMassage);
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentMaterialBanner()
+                    ..showMaterialBanner(materialBanner);
+
+                  messenger
+                    ..hideCurrentMaterialBanner()
+                    ..showMaterialBanner(materialBanner);
+
+                  Future.delayed(const Duration(seconds: 3), () {
+                    if (mounted) {
+                      messenger
+                          .hideCurrentMaterialBanner(); // Use the stored messenger
+                    }
+                  });
+                } else if (bookState is BookServiceSuccess) {
+                  MaterialBanner materialBanner =
+                      CustomMaterialBanner.successMaterialBanner(
+                    S.of(context).Booking_Successful,
+                    S.of(context).Booking_Confirmed,
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentMaterialBanner()
+                    ..showMaterialBanner(materialBanner);
+                  messenger
+                    ..hideCurrentMaterialBanner()
+                    ..showMaterialBanner(materialBanner);
+
+                  Future.delayed(const Duration(seconds: 3), () {
+                    if (mounted) {
+                      messenger.hideCurrentMaterialBanner();
+                    }
+                  });
                 }
               },
-              onCancelPressed: () {
-                HelperFunctions.navigateToBack(context);
+              builder: (context, bookState) {
+                if (bookState is BookServiceLoading) {
+                  return const Center(child: CustomLoading());
+                } else {
+                  return CancelAndButton(
+                    secondButton: S.of(context).Book_Now,
+                    onBookPressed: () async {
+                      if (bookServiceCubit.validateInput(
+                          selectedDayModels, context)) {
+                        await bookServiceCubit.addServiceBooking(
+                            widget.serviceId, selectedDayModels, "");
+                      } else {
+                        CustomDialog.showCustomDialog(
+                            context,
+                            S.of(context).Incomplete_Information,
+                            bookServiceCubit.errorValidateMessage);
+                      }
+                    },
+                    onCancelPressed: () {
+                      HelperFunctions.navigateToBack(context);
+                    },
+                  );
+                }
               },
             ),
           ),
