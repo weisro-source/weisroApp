@@ -12,6 +12,7 @@ import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/search_cubit/search_cubit.dart';
@@ -66,6 +67,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => ServiceDayCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetOrdersCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

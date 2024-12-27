@@ -13,6 +13,8 @@ import 'package:weisro/feature/favorite/data/favorite_repo/favorite_repo.dart';
 import 'package:weisro/feature/favorite/data/favorite_repo/favorite_repo_impl.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo.dart';
 import 'package:weisro/feature/home/data/home_repo/home_repo_impl.dart';
+import 'package:weisro/feature/orders/data/order_repo/order_repo.dart';
+import 'package:weisro/feature/orders/data/order_repo/order_repo_impl.dart';
 import 'package:weisro/feature/profile/data/account_repo/account_repo.dart';
 import 'package:weisro/feature/profile/data/account_repo/account_repo_impl.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo.dart';
@@ -44,4 +46,5 @@ void setupServiceLocator() {
       FavoriteRepositoryImplementation());
   getIt.registerSingleton<AdsRepository>(AdsRepositoryImplementation());
   getIt.registerSingleton<BookingRepository>(BookingRepositoryImplementation());
+  getIt.registerSingleton<OrderRepository>(OrderRepositoryImplementation());
 }
