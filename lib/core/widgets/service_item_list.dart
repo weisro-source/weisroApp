@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/service_item_shimmer.dart';
 import 'package:weisro/feature/favorite/data/models/favorite_model.dart';
 import 'package:weisro/feature/services/presentation/view/pages/services_details_page_view.dart';
 
@@ -19,51 +18,39 @@ class ServiceItemList extends StatelessWidget {
     required this.length,
     this.id,
   });
+
   final List<String>? image, name, rate, des, location, price, id;
   final int length;
 
   @override
   Widget build(BuildContext context) {
     return SliverList.separated(
-      // itemCount: allFavorite.length,
       itemCount: length,
       itemBuilder: (context, index) {
-        ///handel one favorite service
-        // var favoriteService = allFavorite[index];
+        // Safely access list elements with null and range checks
+        String getValueOrEmpty(List<String>? list, int idx) {
+          return (list != null && idx < list.length) ? list[idx] : '';
+        }
+
         return GestureDetector(
           onTap: () {
             HelperFunctions.navigateToScreen(
               context,
-              (context) => ServicesDetailsPageView(serviceId: id?[index] ?? ""),
+              (context) => ServicesDetailsPageView(
+                serviceId: getValueOrEmpty(id, index),
+              ),
             );
           },
           child: ServiceItem(
             favoriteService: const Service(),
-            des: des?[index],
-            image: image?[index],
-            location: location?[index],
-            name: name?[index],
-            price: price?[index],
-            rate: "",
+            des: getValueOrEmpty(des, index),
+            image: getValueOrEmpty(image, index),
+            location: getValueOrEmpty(location, index),
+            name: getValueOrEmpty(name, index),
+            price: getValueOrEmpty(price, index),
+            rate: "", 
           ),
         );
-      },
-      separatorBuilder: (context, index) {
-        return 16.kh;
-      },
-    );
-  }
-}
-
-class ServiceItemListShimmer extends StatelessWidget {
-  const ServiceItemListShimmer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList.separated(
-      itemCount: 30,
-      itemBuilder: (context, index) {
-        return const ServiceItemShimmer();
       },
       separatorBuilder: (context, index) {
         return 16.kh;

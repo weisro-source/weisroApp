@@ -17,10 +17,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   CancelToken? cancelToken = CancelToken();
   Future<void> fetchCategories(String type, BuildContext context,
       {int pageNumber = 1}) async {
-    if (state is CategoriesSuccess) {
-      return;
-    }
-    if (pageNumber == 1) {
+     if (pageNumber == 1) {
       emit(CategoriesLoading());
     } else {
       emit(CategoriesPaginationLoading());

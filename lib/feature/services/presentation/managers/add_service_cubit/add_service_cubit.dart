@@ -78,7 +78,6 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   bool validateInputs(BuildContext context) {
     // Reset the error message
     errorMessage = null;
-
     List<String> errors = [];
     if (serviceNameController.text.isEmpty) {
       errors.add(S.of(context).service_name_missing);
@@ -102,10 +101,13 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     if (descriptionController.text.isEmpty) {
       errors.add(S.of(context).description_missing);
     }
-
-    if (serviceDaysState.isEmpty) {
-      errors.add(S.of(context).days_missing);
+    if (selectedRentTime == Constants.dailyKey ||
+        selectedRentTime == Constants.bothKey) {
+      if (serviceDaysState.isEmpty) {
+        errors.add(S.of(context).days_missing);
+      }
     }
+
     if (imagePaths.isEmpty) {
       errors.add(S.of(context).images_missing);
     }

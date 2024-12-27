@@ -5,8 +5,10 @@ import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/home/data/models/all_services_model.dart';
 import 'package:weisro/feature/home/presentation/managers/services_by_category_id_cubit/services_by_category_id_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/advertisement_widget.dart';
+import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/service_for_one_category_grid_view.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/worker_and_service_grid_shimmer_view.dart';
+import 'package:weisro/generated/l10n.dart';
 import '../widgets/search_bar.dart' as search;
 
 class ServiceForOneCategoryPageViewBody extends StatefulWidget {
@@ -35,9 +37,11 @@ class _ServiceForOneCategoryPageViewBodyState
   }
 
   void _scrollListener() async {
+    debugPrint("Listener triggered");
     var currentPositions = _scrollController.position.pixels;
     var maxScrollLength = _scrollController.position.maxScrollExtent;
-    if (currentPositions >= 0.5 * maxScrollLength) {
+    debugPrint("Current: $currentPositions, Max: $maxScrollLength");
+    if (currentPositions >= 0.8 * maxScrollLength) {
       if (!isLoading && hasNext) {
         isLoading = true;
         await BlocProvider.of<ServicesByCategoryIdCubit>(context)
@@ -79,13 +83,20 @@ class _ServiceForOneCategoryPageViewBodyState
                 getServicesByCategoryIdState
                     is ServicesByCategoryIdPaginationFailures ||
                 getServicesByCategoryIdState is ServicesByCategoryIdSuccess) {
-              return SliverPadding(
-                padding: const EdgeInsetsDirectional.symmetric(
-                    horizontal: 24, vertical: 30),
-                sliver: ServicesForOneCategoryGridView(
-                  allServicesForOneCategory: allServicesForOneCategory,
-                ),
-              );
+              return allServicesForOneCategory.isNotEmpty
+                  ? SliverPadding(
+                      padding: const EdgeInsetsDirectional.symmetric(
+                          horizontal: 24, vertical: 30),
+                      sliver: ServicesForOneCategoryGridView(
+                        allServicesForOneCategory: allServicesForOneCategory,
+                      ),
+                    )
+                  : SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: NotFoundWidget(
+                        title: S.of(context).No_Services_Available_Cat,
+                      ),
+                    );
             } else if (getServicesByCategoryIdState
                 is ServicesByCategoryIdLoading) {
               return const SliverPadding(

@@ -7,8 +7,9 @@ import 'package:weisro/generated/l10n.dart';
 class NotFoundWidget extends StatelessWidget {
   const NotFoundWidget({
     super.key,
+    this.title,
   });
-
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +25,7 @@ class NotFoundWidget extends StatelessWidget {
         ),
         20.kh,
         Text(
-          S.of(context).No_Services_Available,
+          title ?? S.of(context).No_Services_Available,
           style: AppStyles.style16w400Grey(context),
         )
       ],

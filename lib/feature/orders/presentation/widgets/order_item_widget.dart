@@ -87,7 +87,7 @@ class OrderItemWidget extends StatelessWidget {
                 ),
                 10.kh,
                 Text(
-                  "Lorem ipsum dolor sit amet",
+                  "Lorem ipsum dolor sit",
                   style: AppStyles.style8w400Grey2(context),
                 ),
                 4.kh,
@@ -99,6 +99,7 @@ class OrderItemWidget extends StatelessWidget {
                       iconWidth: 8,
                       space: 4.kw,
                       styleLocationText: AppStyles.style10w400Grey(context),
+                      location: "",
                     ),
                     const Spacer(),
                     const RateWidget(

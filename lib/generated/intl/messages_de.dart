@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
         "No_Services_Available": MessageLookupByLibrary.simpleMessage(
             "Es sind keine Dienste in diesem Gebiet verfügbar"),
+        "No_Services_Available_Cat": MessageLookupByLibrary.simpleMessage(
+            "In dieser Kategorie sind keine Dienste verfügbar"),
         "No_location_found":
             MessageLookupByLibrary.simpleMessage("KEIN Standort gefunden"),
         "No_result_found":

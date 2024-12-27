@@ -13,6 +13,7 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/days_list.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
+import 'package:weisro/core/widgets/location_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/booking/presentation/view/pages/service_booking_page_view.dart';
@@ -113,8 +114,11 @@ class _ServicesDetailsPageViewBodyState
               15.kh,
               LocationPriceRowWidget(
                 price: '\$${widget.oneService.service?.dailyPrice} ST',
-                
+                location: widget.oneService.service?.location?.address ?? "",
               ),
+              15.kh,
+              LocationWidget(
+                  location: widget.oneService.service?.location?.address ?? ""),
               Visibility(
                   visible: widget.oneService.service?.time?.start != null &&
                       widget.oneService.service?.time?.end != null,

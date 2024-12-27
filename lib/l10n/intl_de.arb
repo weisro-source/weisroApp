@@ -178,6 +178,7 @@
     "Delete_Confirmation_Title": "Löschbestätigung",
     "Delete_Confirmation_Message": "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?",
     "No_Services_Available": "Es sind keine Dienste in diesem Gebiet verfügbar",
+    "No_Services_Available_Cat": "In dieser Kategorie sind keine Dienste verfügbar",
     "Select_At_Least_One_Day": "Bitte wählen Sie mindestens einen Tag aus",
     "Incomplete_Information": "Unvollständige Informationen",
     "Booking_Failed": "Buchung fehlgeschlagen",

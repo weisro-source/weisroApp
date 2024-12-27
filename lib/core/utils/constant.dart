@@ -8,7 +8,7 @@ abstract class Constants {
   static const int otpLength = 6;
   static const String messageFromResponse = 'message';
   static const String categoryTypeServices = 'services';
-  static const String categoryTypeWorker = 'worker';
+  static const String categoryTypeWorker = 'workers';
   static const String deutschLanguage = 'de';
   static const String englishLanguage = 'en';
   static const String dailyKey = 'daily';
