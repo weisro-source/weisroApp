@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
-import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/location_widget.dart';
 import 'package:weisro/core/widgets/rate_widget.dart';
+import 'package:weisro/feature/orders/data/models/order_model.dart';
 
 class OrderItemWidget extends StatelessWidget {
   /// A widget that represents a single order item in a list.
@@ -28,12 +29,13 @@ class OrderItemWidget extends StatelessWidget {
   /// ```
   const OrderItemWidget({
     super.key,
+    required this.order,
   });
-
+  final Order order;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 115,
+      height: HelperFunctions.getScreenHight(context) * 0.16,
       margin: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
@@ -43,17 +45,15 @@ class OrderItemWidget extends StatelessWidget {
         children: [
           Expanded(
               child: CachedNetworkImage(
-            imageUrl: Constants.imageUrl,
+            imageUrl: HelperFunctions.ensureIsFirstItemOrNull(
+                    order.service?.images ?? []) ??
+                "",
             width: 105,
             height: 82,
             fit: BoxFit.scaleDown,
             errorWidget: (context, url, error) {
-              return Image.asset(
-                ImagePath.imagesService,
-                width: 105,
-                height: 82,
-                fit: BoxFit.scaleDown,
-              );
+              return Image.asset(ImagePath.imagesService,
+                  width: 105, height: 82, fit: BoxFit.scaleDown);
             },
           )),
           8.kw,
@@ -67,20 +67,23 @@ class OrderItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Server Name",
+                      order.service?.name ?? "",
                       style: AppStyles.style10w400Grey(context),
                     ),
                     const Spacer(),
-                    Text("ID:#52596", style: AppStyles.style8w600Grey(context))
                   ],
                 ),
                 8.kh,
+                Text("ID:#${order.service?.id ?? ""}",
+                    style: AppStyles.style8w600Grey(context)),
+                8.kh,
                 Row(
                   children: [
-                    Text("7/12/2024", style: AppStyles.style8w600Grey(context)),
+                    Text(order.createdAt?.substring(0, 10) ?? "",
+                        style: AppStyles.style8w600Grey(context)),
                     const Spacer(),
                     Text(
-                      "\$200",
+                      "\$${order.totalPrice}",
                       style: AppStyles.style10w500Orange(context),
                     )
                   ],
@@ -90,22 +93,16 @@ class OrderItemWidget extends StatelessWidget {
                   "Lorem ipsum dolor sit",
                   style: AppStyles.style8w400Grey2(context),
                 ),
-                4.kh,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    LocationWidget(
-                      iconHeight: 11,
-                      iconWidth: 8,
-                      space: 4.kw,
-                      styleLocationText: AppStyles.style10w400Grey(context),
-                      location: "",
-                    ),
-                    const Spacer(),
-                    const RateWidget(
-                      rate: "",
-                    )
-                  ],
+                10.kh,
+                LocationWidget(
+                  iconHeight: 11,
+                  iconWidth: 8,
+                  space: 4.kw,
+                  styleLocationText: AppStyles.style10w400Grey(context),
+                  location: "TEST LOCATION",
+                ),
+                RateWidget(
+                  rate: order.service?.rate.toString() ?? "",
                 ),
               ],
             ),
