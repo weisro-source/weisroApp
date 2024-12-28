@@ -13,11 +13,14 @@ import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.d
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
+import 'package:weisro/feature/orders/presentation/view/orders_page_view_body.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/search_cubit/search_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/search_history_cubit/search_history_cubit.dart';
+import 'package:weisro/feature/search/presentation/view/pages/search_page_view_body.dart';
 import 'package:weisro/feature/services/presentation/managers/service_day_cubit.dart';
+import 'package:weisro/feature/services/presentation/view/pages/add_service_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class WeisroApp extends StatefulWidget {
