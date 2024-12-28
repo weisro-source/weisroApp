@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
@@ -15,6 +13,8 @@ import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
 import 'package:weisro/feature/booking/presentation/manager/book_service_cubit/book_service_cubit.dart';
+import 'package:weisro/feature/booking/presentation/view/widgets/day_list.dart';
+import 'package:weisro/feature/booking/presentation/view/widgets/hours_grid.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view_body.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
@@ -165,8 +165,28 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                   return FadeTransition(opacity: animation, child: child);
                 },
                 child: selected == bookServiceCubit.hourSelected
-                    ? _buildHoursGrid(timeSlots)
-                    : _buildDaysList(),
+                    ? HoursGridWidget(
+                        timeSlots: timeSlots,
+                        selectedHours: selectedHours,
+                        onHourSelected: (timeSlot) {
+                          setState(() {
+                            if (selectedHours.contains(timeSlot)) {
+                              selectedHours.remove(timeSlot);
+                            } else {
+                              selectedHours.add(timeSlot);
+                            }
+                          });
+                        },
+                      )
+                    : DaysListWidget(
+                        days: widget.days,
+                        dayPrice: widget.dayPrice,
+                        onPriceChanged: (newPrice) {
+                          setState(() {
+                            totalDayPrice = newPrice;
+                          });
+                        },
+                      ),
               ),
             ),
           ),
@@ -295,168 +315,6 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
           child: 36.kh,
         ),
       ],
-    );
-  }
-
-  Widget _buildHoursGrid(List<String> timeSlots) {
-    return GridView.builder(
-      key: const ValueKey("hours"),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 123 / 28,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-      ),
-      itemCount: timeSlots.length,
-      itemBuilder: (context, index) {
-        final timeSlot = timeSlots[index];
-        final isSelected = selectedHours.contains(timeSlot);
-
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              if (isSelected) {
-                selectedHours.remove(timeSlot);
-              } else {
-                selectedHours.add(timeSlot);
-              }
-            });
-          },
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: isSelected ? AppColors.orangeColor : AppColors.whiteColor,
-              border: Border.all(color: AppColors.orangeColor),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(IconsPath.iconsFavTime),
-                8.kw,
-                Text(
-                  timeSlot,
-                  style: TextStyle(
-                    color: isSelected
-                        ? AppColors.whiteColor
-                        : AppColors.orangeColor.withOpacity(0.7),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildDaysList() {
-    final daysKeys = WorkerTime.daysSelected(context)
-        .keys
-        .toList(); // Convert keys to a list such Saturday , Sunday
-    final daysValues = WorkerTime.daysSelected(context)
-        .values
-        .toList(); // Convert values to a list such sa , su
-    return ListView.separated(
-      key: const ValueKey("days"),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: daysKeys.length,
-      separatorBuilder: (context, index) => 10.kh,
-      itemBuilder: (context, index) {
-        String dayKey = daysKeys[index];
-        String dayValue = daysValues[index];
-        bool isContained =
-            widget.days?.any((day) => day.day == dayKey) ?? false;
-
-        String dayDate = HelperFunctions.getDateForDay(dayKey);
-        String dayId = widget.days
-                ?.firstWhere((day) => day.day == dayKey,
-                    orElse: () => const Day(
-                        day: "", start: "", end: "", id: "") // Fallback Day
-                    )
-                .id ??
-            "";
-
-        // Check if the day id is in the selectedDayModels list
-        bool isDaySelected = selectedDayModels.contains(dayId);
-        return Column(
-          children: [
-            GestureDetector(
-              onTap: isContained
-                  ? () {
-                      setState(() {
-                        String dayId = widget.days
-                                ?.firstWhere((day) => day.day == dayKey)
-                                .id ??
-                            "";
-                        if (selectedDayModels.contains(dayId)) {
-                          selectedDayModels.remove(dayId); // Unselect the day
-                        } else {
-                          selectedDayModels.add(dayId); // Select the day
-                        }
-                      });
-                      totalDayPrice = BookServiceCubit.get(context)
-                          .totalDayPrice(
-                              selectedDayModels.length, widget.dayPrice);
-                    }
-                  : null,
-              child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: isContained
-                      ? isDaySelected
-                          ? AppColors.orangeColor
-                          : AppColors.whiteColor
-                      : AppColors.redColor,
-                  border: Border.all(color: AppColors.orangeColor),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    20.kw,
-                    SvgPicture.asset(IconsPath.iconsFavTime),
-                    8.kw,
-                    Text(dayValue,
-                        style: AppStyles.style12w500Orange(context).copyWith(
-                            color: isContained
-                                ? isDaySelected
-                                    ? AppColors.whiteColor
-                                    : AppColors.orangeColor
-                                : AppColors.whiteColor)),
-                    8.kw,
-                    Text(dayDate,
-                        style: AppStyles.style12w500Orange(context).copyWith(
-                            color: isContained
-                                ? isDaySelected
-                                    ? AppColors.whiteColor
-                                    : AppColors.orangeColor
-                                : AppColors.whiteColor)),
-                    const Spacer(),
-                    Text(
-                      isContained
-                          ? "${widget.days?.firstWhere((day) => day.day == dayKey).start} - ${widget.days?.firstWhere((day) => day.day == dayKey).end}"
-                          : "",
-                      style: AppStyles.style10w400Second2(context).copyWith(
-                        color: isContained
-                            ? isDaySelected
-                                ? AppColors.whiteColor
-                                : AppColors.orangeColor
-                            : AppColors.whiteColor,
-                      ),
-                    ),
-                    const Spacer(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }

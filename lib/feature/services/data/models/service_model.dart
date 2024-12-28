@@ -1,7 +1,9 @@
 class ServiceModel {
   final Service? service;
   final bool? isFavorite;
+
   const ServiceModel({this.service, this.isFavorite});
+
   ServiceModel copyWith({Service? service, bool? isFavorite}) {
     return ServiceModel(
         service: service ?? this.service,
@@ -14,18 +16,17 @@ class ServiceModel {
 
   static ServiceModel fromJson(Map<String, Object?> json) {
     return ServiceModel(
-        service: json['service'] == null
-            ? null
-            : Service.fromJson(json['service'] as Map<String, Object?>),
-        isFavorite:
-            json['isFavorite'] == null ? null : json['isFavorite'] as bool);
+      service: json['name'] == null ? null : Service.fromJson(json),
+      isFavorite:
+          json['isFavorite'] == null ? null : json['isFavorite'] as bool,
+    );
   }
 
   @override
   String toString() {
     return '''ServiceModel(
                 service:${service.toString()},
-isFavorite:$isFavorite
+                isFavorite:$isFavorite
     ) ''';
   }
 
@@ -50,7 +51,7 @@ class Service {
   final String? description;
   final List<Day>? days;
   final num? dailyPrice;
-  final Time? time;
+  final List<Time>? time;
   final num? hourlyPrice;
   final List<String>? images;
   final Location? location;
@@ -77,7 +78,7 @@ class Service {
     String? description,
     List<Day>? days,
     num? dailyPrice,
-    Time? time,
+    List<Time>? time,
     num? hourlyPrice,
     List<String>? images,
     Location? location,
@@ -106,7 +107,7 @@ class Service {
       'description': description,
       'days': days?.map((day) => day.toJson()).toList(),
       'daily_price': dailyPrice,
-      'time': time?.toJson(),
+      'time': time?.map((t) => t.toJson()).toList(),
       'hourly_price': hourlyPrice,
       'images': images,
       'location': location?.toJson(),
@@ -136,7 +137,9 @@ class Service {
               : json['daily_price'] as double),
       time: json['time'] == null
           ? null
-          : Time.fromJson(json['time'] as Map<String, Object?>),
+          : (json['time'] as List<dynamic>)
+              .map((e) => Time.fromJson(e as Map<String, Object?>))
+              .toList(),
       hourlyPrice: json['hourly_price'] == null
           ? null
           : (json['hourly_price'] is int
@@ -165,20 +168,29 @@ class Day {
   final String? start;
   final String? end;
   final String? id;
+  final bool? available;
 
-  const Day({this.day, this.start, this.end, this.id});
+  const Day({this.day, this.start, this.end, this.id, this.available});
 
-  Day copyWith({String? day, String? start, String? end, String? id}) {
+  Day copyWith(
+      {String? day, String? start, String? end, String? id, bool? available}) {
     return Day(
       day: day ?? this.day,
       start: start ?? this.start,
       end: end ?? this.end,
       id: id ?? this.id,
+      available: available ?? this.available,
     );
   }
 
   Map<String, Object?> toJson() {
-    return {'day': day, 'start': start, 'end': end, '_id': id};
+    return {
+      'day': day,
+      'start': start,
+      'end': end,
+      '_id': id,
+      'available': available
+    };
   }
 
   static Day fromJson(Map<String, Object?> json) {
@@ -187,6 +199,7 @@ class Day {
       start: json['start'] as String?,
       end: json['end'] as String?,
       id: json['_id'] as String?,
+      available: json['available'] as bool?,
     );
   }
 }
@@ -282,26 +295,32 @@ class Location {
 class Time {
   final String? start;
   final String? end;
-  const Time({this.start, this.end});
-  Time copyWith({String? start, String? end}) {
-    return Time(start: start ?? this.start, end: end ?? this.end);
+  final String? id;
+
+  const Time({this.start, this.end, this.id});
+
+  Time copyWith({String? start, String? end, String? id}) {
+    return Time(
+        start: start ?? this.start, end: end ?? this.end, id: id ?? this.id);
   }
 
   Map<String, Object?> toJson() {
-    return {'start': start, 'end': end};
+    return {'start': start, 'end': end, '_id': id};
   }
 
   static Time fromJson(Map<String, Object?> json) {
     return Time(
         start: json['start'] == null ? null : json['start'] as String,
-        end: json['end'] == null ? null : json['end'] as String);
+        end: json['end'] == null ? null : json['end'] as String,
+        id: json['_id'] as String?);
   }
 
   @override
   String toString() {
     return '''Time(
                 start:$start,
-end:$end
+end:$end,
+id:$id
     ) ''';
   }
 
@@ -310,11 +329,12 @@ end:$end
     return other is Time &&
         other.runtimeType == runtimeType &&
         other.start == start &&
-        other.end == end;
+        other.end == end &&
+        other.id == id;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, start, end);
+    return Object.hash(runtimeType, start, end, id);
   }
 }

@@ -71,7 +71,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             name: serviceNameController.text,
             //first index latitude second index longitude
             location: const Location(coordinates: [20, 30]),
-            time: Time(start: formattedStartTime, end: formattedEndTime)));
+            time: [Time(start: formattedStartTime, end: formattedEndTime)]));
   }
 
   /// Validate all inputs and return a boolean

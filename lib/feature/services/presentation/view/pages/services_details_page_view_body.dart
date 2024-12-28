@@ -120,12 +120,10 @@ class _ServicesDetailsPageViewBodyState
               LocationWidget(
                   location: widget.oneService.service?.location?.address ?? ""),
               Visibility(
-                  visible: widget.oneService.service?.time?.start != null &&
-                      widget.oneService.service?.time?.end != null,
+                  visible: widget.oneService.service?.time?.isNotEmpty ?? false,
                   child: 14.kh),
               Visibility(
-                visible: widget.oneService.service?.time?.start != null &&
-                    widget.oneService.service?.time?.end != null,
+                visible: widget.oneService.service?.time?.isNotEmpty ?? false,
                 child: Padding(
                   padding: const EdgeInsetsDirectional.only(start: 24),
                   child: QuestionWidget(
@@ -134,25 +132,30 @@ class _ServicesDetailsPageViewBodyState
                 ),
               ),
               Visibility(
-                  visible: widget.oneService.service?.time?.start != null &&
-                      widget.oneService.service?.time?.end != null,
+                  visible: widget.oneService.service?.time?.isNotEmpty ?? false,
                   child: 14.kh),
               Visibility(
-                visible: widget.oneService.service?.time?.start != null &&
-                    widget.oneService.service?.time?.end != null,
+                visible: widget.oneService.service?.time?.isNotEmpty ?? false,
                 child: Row(
                   children: [
                     27.kw,
                     // this start time for service
                     TimeWidget(
-                        time: widget.oneService.service?.time?.start ?? ""),
+                        time: widget.oneService.service?.time?.isNotEmpty ??
+                                false
+                            ? widget.oneService.service?.time?.first.start ?? ""
+                            : ""),
                     35.kw,
                     Text(
                       S.of(context).To,
                       style: AppStyles.style14w400Grey(context),
                     ),
                     23.kw,
-                    TimeWidget(time: widget.oneService.service?.time?.end ?? "")
+                    TimeWidget(
+                        time: widget.oneService.service?.time?.isNotEmpty ??
+                                false
+                            ? widget.oneService.service?.time?.first.start ?? ""
+                            : "")
                   ],
                 ),
               ),
@@ -270,8 +273,7 @@ class _ServicesDetailsPageViewBodyState
                           isDays: widget.oneService.service?.days != null &&
                               widget.oneService.service!.days!.isNotEmpty,
                           isHours: widget.oneService.service?.time != null,
-                          hours:
-                              widget.oneService.service?.time ?? const Time(),
+                          hours: Time(),
                           days: widget.oneService.service?.days,
                           dayPrice: widget.oneService.service?.dailyPrice ?? 0,
                           hourPrice:

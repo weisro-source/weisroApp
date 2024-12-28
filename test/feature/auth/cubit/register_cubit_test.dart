@@ -26,7 +26,7 @@ void main() {
     email: "test@example.com",
     password: "password123",
     phone: "1234567890",
-    address: const Address(
+    address: Address(
       city: "Berlin",
       country: "Germany",
       postalCode: "10115",

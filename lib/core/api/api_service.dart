@@ -83,7 +83,6 @@ class ApiService {
     //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEzNzAwNjc0fQ.hNrOSLZmvRdYEw8oAiHuRBvW7I2i_N11pc0KKeKyWrc";
     // LoggerHelper.debug(token ?? "");
     // log(token ?? "");
-
     if (token != null && token.isNotEmpty) {
       dio.options.headers["Authorization"] = "Bearer $token";
       dio.options.headers['Content-Type'] = "application/json";
