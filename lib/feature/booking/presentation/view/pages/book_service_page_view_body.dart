@@ -50,7 +50,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   final List<String> selectedDays = [];
   final List<String> selectedDayModels = [];
 
-  num totalDayPrice = 0;
+  num totalPrice = 0;
   late String selected;
 
   late Map<String, String> daysKeysValues;
@@ -66,9 +66,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   @override
   void initState() {
     super.initState();
-    selected = widget.isDays
-        ? Constants.dailyKey
-        : Constants.hoursKey; // Set the value of selected in initState
+    selected = widget.isDays ? Constants.dailyKey : Constants.hoursKey;
   }
 
   @override
@@ -106,6 +104,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                     isSelected: selected == bookServiceCubit.dailySelected,
                     onPressed: () {
                       setState(() {
+                        totalPrice = 0;
                         selected = bookServiceCubit.dailySelected;
                         bookServiceCubit.selectedType(selected, context);
                       });
@@ -123,6 +122,8 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                     isSelected: selected == bookServiceCubit.hourSelected,
                     onPressed: () {
                       setState(() {
+                        totalPrice = 0;
+                        selectedHours.clear();
                         selected = bookServiceCubit.hourSelected;
                         bookServiceCubit.selectedType(selected, context);
                       });
@@ -175,6 +176,8 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                             } else {
                               selectedHours.add(timeSlot);
                             }
+                            totalPrice =
+                                selectedHours.length * (widget.hourPrice);
                           });
                         },
                       )
@@ -183,7 +186,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                         dayPrice: widget.dayPrice,
                         onPriceChanged: (newPrice) {
                           setState(() {
-                            totalDayPrice = newPrice;
+                            totalPrice = newPrice;
                           });
                         },
                       ),
@@ -209,22 +212,20 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                   icon: IconsPath.iconsWatch,
                   text: S.of(context).Rental_Period,
                   info: selected == bookServiceCubit.hourSelected
-                      ? "12Hours"
+                      ? "${selectedHours.length} ${S.of(context).Hours}"
                       : "${selectedDayModels.length} ${S.of(context).Days}",
                 ),
                 24.kh,
                 OneInformation(
                   icon: IconsPath.iconsMoneyBag,
                   text: S.of(context).Total_Cost,
-                  info: selected == bookServiceCubit.hourSelected
-                      ? "\$23.4"
-                      : "$totalDayPrice",
+                  info: "$totalPrice \$",
                 ),
                 24.kh,
                 OneInformation(
                   icon: IconsPath.iconsPaymentCards,
                   text: S.of(context).Payment_Method,
-                  info: "Cache",
+                  info: S.of(context).cash,
                 ),
               ],
             ),

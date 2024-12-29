@@ -67,13 +67,15 @@ class _ServicesDetailsPageViewBodyState
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                child: ImageListInDetailsPage(
-                  pageController: pageController,
-                  imageList: widget.oneService.service?.images ?? [],
-                  isReview: widget.isReview,
-                ),
-              ),
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
+                  child: widget.oneService.service?.images?.isNotEmpty ?? false
+                      ? ImageListInDetailsPage(
+                          pageController: pageController,
+                          imageList: widget.oneService.service?.images ?? [],
+                          isReview: widget.isReview,
+                        )
+                      : const SizedBox()),
               15.kh,
               PageIndicatorWidget(
                   controller: pageController,
@@ -272,8 +274,14 @@ class _ServicesDetailsPageViewBodyState
                         (context) => BookServicePageView(
                           isDays: widget.oneService.service?.days != null &&
                               widget.oneService.service!.days!.isNotEmpty,
-                          isHours: widget.oneService.service?.time != null,
-                          hours: Time(),
+                          isHours:
+                              widget.oneService.service?.time?.isNotEmpty ??
+                                  false,
+                          hours: widget.oneService.service?.time?.isNotEmpty ==
+                                  true
+                              ? widget.oneService.service?.time?.first ??
+                                  const Time()
+                              : const Time(),
                           days: widget.oneService.service?.days,
                           dayPrice: widget.oneService.service?.dailyPrice ?? 0,
                           hourPrice:

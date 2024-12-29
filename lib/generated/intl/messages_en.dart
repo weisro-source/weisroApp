@@ -270,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
         "add_text_here": MessageLookupByLibrary.simpleMessage("Add Text here"),
+        "cash": MessageLookupByLibrary.simpleMessage("cash"),
         "change_email_address":
             MessageLookupByLibrary.simpleMessage("Change your email address"),
         "change_password":

@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/booking/data/booking_repo/booking_repo.dart';
@@ -29,13 +32,15 @@ class BookServiceCubit extends Cubit<BookServiceState> {
 
   List<String> generateTimeSlots(String? startTime, String? endTime) {
     if (startTime == null || endTime == null) {
+      log("The start or end time is null");
       return [];
     }
+    log("The start or end time is NOT null");
 
     try {
-      DateFormat inputFormat = DateFormat.jm(); // Input format: "8:00 AM"
+      DateFormat inputFormat = DateFormat.Hm(); // Input format: "HH:mm"
       DateFormat outputFormat =
-          DateFormat.Hm(); // Output format: "08:00" To view this
+          DateFormat.Hm(); // Output format remains "HH:mm"
 
       DateTime start = inputFormat.parse(startTime);
       DateTime end = inputFormat.parse(endTime);
@@ -47,8 +52,17 @@ class BookServiceCubit extends Cubit<BookServiceState> {
             "${outputFormat.format(start)} - ${outputFormat.format(nextHour)}");
         start = nextHour;
       }
+      log("The Time length is ${slots.length}");
+
       return slots;
     } catch (e) {
+      log(
+        AnsiColor.colorize(
+          "Error in Time slots $e",
+          AnsiColor.red,
+        ),
+        name: "API REQUEST",
+      );
       return [];
     }
   }
