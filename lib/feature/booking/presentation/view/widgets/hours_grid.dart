@@ -34,7 +34,9 @@ class HoursGridWidget extends StatelessWidget {
         final isSelected = selectedHours.contains(timeSlot);
 
         return GestureDetector(
-          onTap: () => onHourSelected(timeSlot),
+          onTap: () {
+            onHourSelected(timeSlot);
+          },
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(

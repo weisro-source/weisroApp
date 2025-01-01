@@ -138,7 +138,7 @@ class WorkerForOneService extends StatelessWidget {
               children: [
                 SvgPicture.asset(IconsPath.iconsLocation),
                 Text(
-                  "Oberamen German , 3216",
+                  location,
                   style: AppStyles.style10w400Grey(context),
                 )
               ],
@@ -160,7 +160,7 @@ class WorkerForOneService extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(4))),
               child: Center(
                   child: Text(
-                "\$5572 in ST",
+                "\$$price",
                 style: AppStyles.style12w500Orange(context),
               )),
             ),

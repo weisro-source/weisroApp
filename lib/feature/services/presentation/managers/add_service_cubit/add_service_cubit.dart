@@ -27,12 +27,12 @@ class AddServiceCubit extends Cubit<AddServiceState> {
 
   /// Format the startDateTime to 'hh:mm'
   String get formattedStartTime {
-    return DateFormat('hh:mm').format(startDateTime);
+    return DateFormat('HH:mm').format(startDateTime);
   }
 
   /// Format the endDateTime to 'hh:mm'
   String get formattedEndTime {
-    return DateFormat('hh:mm').format(endDateTime);
+    return DateFormat('HH:mm').format(endDateTime);
   }
 
   final List<String> imagePaths = []; // Store image paths
@@ -133,6 +133,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       final localizations = MaterialLocalizations.of(context);
       final formattedTime =
           localizations.formatTimeOfDay(time, alwaysUse24HourFormat: true);
+
       return formattedTime;
     }
 
@@ -141,6 +142,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
         serviceDaysState.entries.map((entry) {
       final dayKey = entry.key;
       final timeMap = entry.value;
+
       return {
         "day": dayKey,
         "start": formatTimeWithoutAmPm(timeMap['start']),

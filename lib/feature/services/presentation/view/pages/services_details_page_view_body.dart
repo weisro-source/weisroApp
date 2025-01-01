@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -119,6 +120,34 @@ class _ServicesDetailsPageViewBodyState
                 location: widget.oneService.service?.location?.address ?? "",
               ),
               15.kh,
+              Padding(
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: AnimatedRatingStars(
+                    initialRating:
+                        widget.oneService.service?.rateCount?.toDouble() ?? 0,
+                    minRating: 0.0,
+                    maxRating: 5.0,
+                    filledColor: Colors.amber,
+                    emptyColor: AppColors.greyColor,
+                    filledIcon: Icons.star,
+                    halfFilledIcon: Icons.star_half,
+                    emptyIcon: Icons.star_border,
+                    onChanged: (double rating) {},
+                    displayRatingValue: true,
+                    interactiveTooltips: true,
+                    customFilledIcon: Icons.star,
+                    customHalfFilledIcon: Icons.star_half,
+                    customEmptyIcon: Icons.star_border,
+                    starSize: 20.0,
+                    animationDuration: const Duration(milliseconds: 300),
+                    animationCurve: Curves.easeInOut,
+                    readOnly: true,
+                  ),
+                ),
+              ),
+              18.kh,
               LocationWidget(
                   location: widget.oneService.service?.location?.address ?? ""),
               Visibility(
@@ -260,36 +289,42 @@ class _ServicesDetailsPageViewBodyState
                 :
                 //! if page not from add
 
-                AppButton(
-                    height: 32,
-                    width: 164,
-                    // buttonColor: AppColors.whiteColor,
-                    // borderColor: AppColors.orangeColor,
-                    text: S.of(context).Book_Now,
-                    // textStyle: AppStyles.style18w500Green(context)
-                    //     .copyWith(color: AppColors.orangeColor),
-                    onPressed: () {
-                      HelperFunctions.navigateToScreen(
-                        context,
-                        (context) => BookServicePageView(
-                          isDays: widget.oneService.service?.days != null &&
-                              widget.oneService.service!.days!.isNotEmpty,
-                          isHours:
-                              widget.oneService.service?.time?.isNotEmpty ??
-                                  false,
-                          hours: widget.oneService.service?.time?.isNotEmpty ==
-                                  true
-                              ? widget.oneService.service?.time?.first ??
-                                  const Time()
-                              : const Time(),
-                          days: widget.oneService.service?.days,
-                          dayPrice: widget.oneService.service?.dailyPrice ?? 0,
-                          hourPrice:
-                              widget.oneService.service?.hourlyPrice ?? 0,
-                          serviceId: widget.oneService.service?.id ?? "",
-                        ),
-                      );
-                    },
+                Visibility(
+                    visible: !HelperFunctions.isCurrentUser(
+                        widget.oneService.service?.user?.id ?? ""),
+                    child: AppButton(
+                      height: 32,
+                      width: 164,
+                      // buttonColor: AppColors.whiteColor,
+                      // borderColor: AppColors.orangeColor,
+                      text: S.of(context).Book_Now,
+                      // textStyle: AppStyles.style18w500Green(context)
+                      //     .copyWith(color: AppColors.orangeColor),
+                      onPressed: () {
+                        HelperFunctions.navigateToScreen(
+                          context,
+                          (context) => BookServicePageView(
+                            isDays: widget.oneService.service?.days != null &&
+                                widget.oneService.service!.days!.isNotEmpty,
+                            isHours:
+                                widget.oneService.service?.time?.isNotEmpty ??
+                                    false,
+                            hours:
+                                widget.oneService.service?.time?.isNotEmpty ==
+                                        true
+                                    ? widget.oneService.service?.time?.first ??
+                                        const Time()
+                                    : const Time(),
+                            days: widget.oneService.service?.days,
+                            dayPrice:
+                                widget.oneService.service?.dailyPrice ?? 0,
+                            hourPrice:
+                                widget.oneService.service?.hourlyPrice ?? 0,
+                            serviceId: widget.oneService.service?.id ?? "",
+                          ),
+                        );
+                      },
+                    ),
                   ),
           ),
         ),

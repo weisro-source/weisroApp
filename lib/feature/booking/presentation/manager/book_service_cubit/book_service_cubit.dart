@@ -35,7 +35,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
       log("The start or end time is null");
       return [];
     }
-    log("The start or end time is NOT null");
+    log("The start and end time is NOT null");
 
     try {
       DateFormat inputFormat = DateFormat.Hm(); // Input format: "HH:mm"
@@ -44,7 +44,6 @@ class BookServiceCubit extends Cubit<BookServiceState> {
 
       DateTime start = inputFormat.parse(startTime);
       DateTime end = inputFormat.parse(endTime);
-
       List<String> slots = [];
       while (start.isBefore(end)) {
         DateTime nextHour = start.add(const Duration(hours: 1));
@@ -61,7 +60,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
           "Error in Time slots $e",
           AnsiColor.red,
         ),
-        name: "API REQUEST",
+        name: "Booking Time",
       );
       return [];
     }
@@ -80,11 +79,16 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     }
   }
 
-  Future<void> addServiceBooking(
-      String serviceId, List<String> daysIds, String? note) async {
+  Future<void> addServiceBooking(String serviceId, List<String> daysIds,
+      String? note, bool isHour, String date, String start, String end) async {
     Map<String, dynamic> bookingServiceBody = {
       "serviceId": serviceId,
       "days": daysIds,
+    };
+    Map<String, dynamic> bookingServiceHourBody = {
+      "serviceId": serviceId,
+      "time": {"date": date, "start": start, "end": end},
+      "notes": "this is notes"
     };
 
     // Add the note only if it is not null
@@ -92,9 +96,8 @@ class BookServiceCubit extends Cubit<BookServiceState> {
       bookingServiceBody["notes"] = note;
     }
     emit(BookServiceLoading());
-    var result = await getIt
-        .get<BookingRepository>()
-        .addBookingServiceApi(bookingServiceBody);
+    var result = await getIt.get<BookingRepository>().addBookingServiceApi(
+        isHour ? bookingServiceHourBody : bookingServiceBody);
     result.fold(
       (errorInAddServiceBooking) {
         emit(BookServiceFailures(error: errorInAddServiceBooking));

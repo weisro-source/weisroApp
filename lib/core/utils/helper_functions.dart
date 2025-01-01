@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:image/image.dart' as img;
@@ -214,6 +215,7 @@ class HelperFunctions {
         sunrise: const TimeOfDay(hour: 6, minute: 0),
         sunset: const TimeOfDay(hour: 18, minute: 0),
         duskSpanInMinutes: 120,
+        is24HrFormat: true,
         onChange: (p0) {},
         okText: S.of(context).Ok,
         okStyle: AppStyles.style18w500Green(context),
@@ -232,11 +234,13 @@ class HelperFunctions {
     }
   }
 
-  static String getFormattedDate(DateTime date) {
-    /// formatting date dd/mm/yyyy
-    return DateFormat('dd/MM/yyyy').format(date);
+  static String getFormattedDate(DateTime date,
+      {String format = 'dd/MM/yyyy'}) {
+    /// formatting date based on the provided format
+    return DateFormat(format).format(date);
   }
-   /// Get the date for a specific day of the week (e.g., "Sunday", "Monday")
+
+  /// Get the date for a specific day of the week (e.g., "Sunday", "Monday")
   static String getDateForDay(String dayKey) {
     // Define a mapping of day names to integers (Sunday = 0, Monday = 1, ..., Saturday = 6)
     Map<String, int> dayToIndex = {
@@ -272,6 +276,21 @@ class HelperFunctions {
     String formattedDate = DateFormat('MMM dd').format(targetDate);
 
     return formattedDate;
+  }
+
+  static String truncateToHour(String time) {
+    // Split the time string (e.g., "11:45" -> ["11", "45"])
+    List<String> parts = time.split(':');
+    // Return the hour part only
+    return parts[0];
+  }
+
+  static bool isCurrentUser(String userId) {
+    if (userId == CacheHelper.getData(key: CacheKeys.kUserId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

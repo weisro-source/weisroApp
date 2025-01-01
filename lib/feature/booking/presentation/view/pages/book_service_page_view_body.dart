@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
@@ -48,11 +52,11 @@ class BookServicePageViewBody extends StatefulWidget {
 class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   final List<String> selectedHours = [];
   final List<String> selectedDays = [];
-  final List<String> selectedDayModels = [];
+  List<String> selectedDayModels = [];
 
   num totalPrice = 0;
   late String selected;
-
+  late DateTime selectedDate;
   late Map<String, String> daysKeysValues;
 
   @override
@@ -67,6 +71,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
   void initState() {
     super.initState();
     selected = widget.isDays ? Constants.dailyKey : Constants.hoursKey;
+    selectedDate = DateTime.now();
   }
 
   @override
@@ -178,15 +183,23 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                             }
                             totalPrice =
                                 selectedHours.length * (widget.hourPrice);
+                            log(
+                              AnsiColor.colorize(
+                                "This Hours sleeted $selectedHours",
+                                AnsiColor.magenta,
+                              ),
+                              name: "SLEETED HOURS",
+                            );
                           });
                         },
                       )
                     : DaysListWidget(
                         days: widget.days,
                         dayPrice: widget.dayPrice,
-                        onPriceChanged: (newPrice) {
+                        onPriceChanged: (newPrice, dayList) {
                           setState(() {
                             totalPrice = newPrice;
+                            selectedDayModels = dayList;
                           });
                         },
                       ),
@@ -202,10 +215,38 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
           sliver: SliverToBoxAdapter(
             child: Column(
               children: [
-                OneInformation(
-                  icon: IconsPath.iconsCalender,
-                  text: S.of(context).Rental_History,
-                  info: HelperFunctions.getFormattedDate(DateTime.now()),
+                GestureDetector(
+                  onTap: () async {
+                    if (selected == bookServiceCubit.hourSelected) {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2100),
+                        currentDate: DateTime.now(),
+                        initialDate: selectedDate,
+                        keyboardType: TextInputType.datetime,
+                        cancelText: S.of(context).Cancel,
+                        confirmText: S.of(context).Ok,
+                        locale: Locale(
+                          BlocProvider.of<LanguageCubit>(context).localLang ??
+                              'en',
+                        ),
+                      );
+
+                      if (pickedDate != null && pickedDate != selectedDate) {
+                        setState(() {
+                          selectedDate = pickedDate;
+                        });
+                      }
+                    } else {
+                      log(selected);
+                    }
+                  },
+                  child: OneInformation(
+                    icon: IconsPath.iconsCalender,
+                    text: S.of(context).Rental_History,
+                    info: HelperFunctions.getFormattedDate(selectedDate),
+                  ),
                 ),
                 24.kh,
                 OneInformation(
@@ -261,8 +302,7 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
 
                   Future.delayed(const Duration(seconds: 3), () {
                     if (mounted) {
-                      messenger
-                          .hideCurrentMaterialBanner(); // Use the stored messenger
+                      messenger.hideCurrentMaterialBanner();
                     }
                   });
                 } else if (bookState is BookServiceSuccess) {
@@ -292,15 +332,58 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
                   return CancelAndButton(
                     secondButton: S.of(context).Book_Now,
                     onBookPressed: () async {
-                      if (bookServiceCubit.validateInput(
-                          selectedDayModels, context)) {
+                      //! if user want to book as hours
+                      if (selected == bookServiceCubit.hourSelected) {
+                        // Sort the selected hours to get the earliest and latest times
+                        selectedHours.sort();
+
+                        // Extract the start and end times
+                        String startTime =
+                            selectedHours.first.split(' - ').first;
+                        String endTime = selectedHours.last.split(' - ').last;
+
+                        // Prepare the date as a string
+                        String date = HelperFunctions.getFormattedDate(
+                            selectedDate,
+                            format: "yyyy-MM-dd ");
+                        // String date = HelperFunctions.getFormattedDate(
+                        //     selectedDate,
+                        //     format: "dd-MM-yyyy");
+                        log(
+                          AnsiColor.colorize(
+                            "$startTime - $endTime - $date",
+                            AnsiColor.white,
+                          ),
+                          name: "Start time and end time and date",
+                        );
                         await bookServiceCubit.addServiceBooking(
-                            widget.serviceId, selectedDayModels, "");
-                      } else {
-                        CustomDialog.showCustomDialog(
-                            context,
-                            S.of(context).Incomplete_Information,
-                            bookServiceCubit.errorValidateMessage);
+                            widget.serviceId,
+                            [],
+                            "",
+                            true,
+                            date,
+                            startTime,
+                            endTime);
+                      }
+                      // if user want to book as days
+
+                      else {
+                        if (bookServiceCubit.validateInput(
+                            selectedDayModels, context)) {
+                          await bookServiceCubit.addServiceBooking(
+                              widget.serviceId,
+                              selectedDayModels,
+                              "",
+                              false,
+                              "",
+                              "",
+                              "");
+                        } else {
+                          CustomDialog.showCustomDialog(
+                              context,
+                              S.of(context).Incomplete_Information,
+                              bookServiceCubit.errorValidateMessage);
+                        }
                       }
                     },
                     onCancelPressed: () {

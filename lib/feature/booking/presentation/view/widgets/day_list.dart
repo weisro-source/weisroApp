@@ -11,7 +11,7 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 class DaysListWidget extends StatefulWidget {
   final List<Day>? days;
   final num dayPrice;
-  final Function(num) onPriceChanged;
+  final Function(num, List<String>) onPriceChanged;
 
   const DaysListWidget({
     Key? key,
@@ -79,7 +79,7 @@ class DaysListWidgetState extends State<DaysListWidget> {
                     }
                   });
                   totalDayPrice = selectedDayModels.length * widget.dayPrice;
-                  widget.onPriceChanged(totalDayPrice);
+                  widget.onPriceChanged(totalDayPrice, selectedDayModels);
                 }
               : null,
           child: Container(

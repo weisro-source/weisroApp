@@ -25,7 +25,9 @@ final getIt = GetIt.instance;
 void setupServiceLocator() {
   getIt.registerSingleton<Dio>(
     Dio(
+    
       BaseOptions(
+      
         baseUrl: HelperFunctions.isDebugMode()
             ? Constants.debugUrl
             : Constants.releaseUrl,
