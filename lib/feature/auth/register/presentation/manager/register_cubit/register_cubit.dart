@@ -226,18 +226,33 @@ class RegisterCubit extends Cubit<RegisterState> {
 //           : null,
   Future<void> registerClient() async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {
+      dev.log("Validation failed", name: "Register");
       return;
     }
+
+    // Emit RegisterLoading state before making the API call
     emit(RegisterLoading());
-    var registerResult = await getIt
-        .get<AuthenticationRepository>()
-        .clientRegisterApi(createClient(), registerClientCancelToken);
-    registerResult.fold((errorInRegisterClient) {
-      emit(RegisterFailures(errMessage: errorInRegisterClient.errMassage));
-    }, (successRegisterClient) {
-      dev.log("Register Client Success ${successRegisterClient.toString()}");
-      emit(RegisterSuccess(successRegister: successRegisterClient));
-    });
+
+    try {
+      // Perform the registration API call
+      var result = await getIt
+          .get<AuthenticationRepository>()
+          .clientRegisterApi(createClient(), registerClientCancelToken);
+
+      result.fold(
+        (error) {
+          // On error, emit RegisterFailures
+          emit(RegisterFailures(errMessage: error.errMassage));
+        },
+        (success) {
+          // On success, emit RegisterSuccess
+          emit(RegisterSuccess(successRegister: success));
+        },
+      );
+    } catch (e) {
+      // Handle any unexpected exceptions and emit a failure state
+      emit(RegisterFailures(errMessage: "Registration failed"));
+    }
   }
 
   Future<void> registerWorker() async {

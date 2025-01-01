@@ -12,10 +12,15 @@ class BottomNavCubit extends Cubit<int> {
   void changeIndex(int index) => emit(index);
 
   List<Widget> appScreens = [
+    //0
     const FavoritePageViewBody(),
+    // 1
     const OrdersPageViewBody(),
+    // 2
     const HomePageViewBody(),
+    // 3
     const SearchPageBody(),
+    // 4
     const ProfilePageViewBody()
   ];
 }

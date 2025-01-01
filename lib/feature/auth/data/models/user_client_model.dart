@@ -1,6 +1,8 @@
 import 'address_model.dart';
 
 class UserClientModel {
+  final String? userId;
+
   final String? firstName;
   final String? lastName;
   final String? email;
@@ -8,7 +10,8 @@ class UserClientModel {
   final String? password;
   final Address? address;
   const UserClientModel(
-      {this.firstName,
+      {this.userId,
+      this.firstName,
       this.lastName,
       this.email,
       this.phone,
@@ -50,6 +53,7 @@ class UserClientModel {
 
   static UserClientModel fromJson(Map<String, Object?> json) {
     return UserClientModel(
+        userId: json['_id'] == null ? null : json['_id'] as String,
         firstName:
             json['first_name'] == null ? null : json['first_name'] as String,
         lastName:

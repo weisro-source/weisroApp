@@ -43,10 +43,15 @@ dependencies:
   geolocator: ^13.0.2
   geocoding: ^3.0.0
   awesome_snackbar_content: ^0.1.4
+  quick_actions: ^1.1.0
+  home_widget: ^0.7.0
+  animated_rating_stars: ^1.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mocktail: ^0.3.0
+  bloc_test: ^9.1.0
 
   flutter_lints: ^2.0.0
 

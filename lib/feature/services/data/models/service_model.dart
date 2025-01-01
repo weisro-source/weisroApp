@@ -1,7 +1,9 @@
 class ServiceModel {
   final Service? service;
   final bool? isFavorite;
+
   const ServiceModel({this.service, this.isFavorite});
+
   ServiceModel copyWith({Service? service, bool? isFavorite}) {
     return ServiceModel(
         service: service ?? this.service,
@@ -14,18 +16,17 @@ class ServiceModel {
 
   static ServiceModel fromJson(Map<String, Object?> json) {
     return ServiceModel(
-        service: json['service'] == null
-            ? null
-            : Service.fromJson(json['service'] as Map<String, Object?>),
-        isFavorite:
-            json['isFavorite'] == null ? null : json['isFavorite'] as bool);
+      service: json['name'] == null ? null : Service.fromJson(json),
+      isFavorite:
+          json['isFavorite'] == null ? null : json['isFavorite'] as bool,
+    );
   }
 
   @override
   String toString() {
     return '''ServiceModel(
                 service:${service.toString()},
-isFavorite:$isFavorite
+                isFavorite:$isFavorite
     ) ''';
   }
 
@@ -50,52 +51,57 @@ class Service {
   final String? description;
   final List<Day>? days;
   final num? dailyPrice;
-  final Time? time;
+  final List<Time>? time;
   final num? hourlyPrice;
   final List<String>? images;
   final Location? location;
   final String? date;
+  final num? rateCount;
+  final User? user;
 
-  const Service({
-    this.rate,
-    this.id,
-    this.name,
-    this.description,
-    this.days,
-    this.dailyPrice,
-    this.time,
-    this.hourlyPrice,
-    this.images,
-    this.location,
-    this.date,
-  });
+  const Service(
+      {this.rate,
+      this.id,
+      this.name,
+      this.description,
+      this.days,
+      this.dailyPrice,
+      this.time,
+      this.hourlyPrice,
+      this.images,
+      this.location,
+      this.date,
+      this.rateCount,
+      this.user});
 
-  Service copyWith({
-    double? rate,
-    String? id,
-    String? name,
-    String? description,
-    List<Day>? days,
-    num? dailyPrice,
-    Time? time,
-    num? hourlyPrice,
-    List<String>? images,
-    Location? location,
-    String? date,
-  }) {
+  Service copyWith(
+      {double? rate,
+      String? id,
+      String? name,
+      String? description,
+      List<Day>? days,
+      num? dailyPrice,
+      List<Time>? time,
+      num? hourlyPrice,
+      List<String>? images,
+      Location? location,
+      String? date,
+      num? rateCount,
+      User? user}) {
     return Service(
-      rate: rate ?? this.rate,
-      id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      days: days ?? this.days,
-      dailyPrice: dailyPrice ?? this.dailyPrice,
-      time: time ?? this.time,
-      hourlyPrice: hourlyPrice ?? this.hourlyPrice,
-      images: images ?? this.images,
-      location: location ?? this.location,
-      date: date ?? this.date,
-    );
+        rate: rate ?? this.rate,
+        id: id ?? this.id,
+        name: name ?? this.name,
+        description: description ?? this.description,
+        days: days ?? this.days,
+        dailyPrice: dailyPrice ?? this.dailyPrice,
+        time: time ?? this.time,
+        hourlyPrice: hourlyPrice ?? this.hourlyPrice,
+        images: images ?? this.images,
+        location: location ?? this.location,
+        date: date ?? this.date,
+        rateCount: rateCount ?? this.rateCount,
+        user: user ?? this.user);
   }
 
   Map<String, Object?> toJson() {
@@ -106,7 +112,7 @@ class Service {
       'description': description,
       'days': days?.map((day) => day.toJson()).toList(),
       'daily_price': dailyPrice,
-      'time': time?.toJson(),
+      'time': time?.map((t) => t.toJson()).toList(),
       'hourly_price': hourlyPrice,
       'images': images,
       'location': location?.toJson(),
@@ -116,38 +122,43 @@ class Service {
 
   static Service fromJson(Map<String, Object?> json) {
     return Service(
-      rate: json['rate'] == null
-          ? null
-          : (json['rate'] is int
-              ? (json['rate'] as int).toDouble()
-              : json['rate'] as double),
-      id: json['_id'] as String?,
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      days: json['days'] == null
-          ? null
-          : (json['days'] as List<dynamic>)
-              .map((e) => Day.fromJson(e as Map<String, Object?>))
-              .toList(),
-      dailyPrice: json['daily_price'] == null
-          ? null
-          : (json['daily_price'] is int
-              ? (json['daily_price'] as int).toDouble()
-              : json['daily_price'] as double),
-      time: json['time'] == null
-          ? null
-          : Time.fromJson(json['time'] as Map<String, Object?>),
-      hourlyPrice: json['hourly_price'] == null
-          ? null
-          : (json['hourly_price'] is int
-              ? (json['hourly_price'] as int).toDouble()
-              : json['hourly_price'] as double),
-      images: _parseImages(json['images']),
-      location: json['location'] == null
-          ? null
-          : Location.fromJson(json['location'] as Map<String, Object?>),
-      date: json['date'] as String?,
-    );
+        rate: json['rate'] == null
+            ? null
+            : (json['rate'] is int
+                ? (json['rate'] as int).toDouble()
+                : json['rate'] as double),
+        id: json['_id'] as String?,
+        name: json['name'] as String?,
+        description: json['description'] as String?,
+        days: json['days'] == null
+            ? null
+            : (json['days'] as List<dynamic>)
+                .map((e) => Day.fromJson(e as Map<String, Object?>))
+                .toList(),
+        dailyPrice: json['daily_price'] == null
+            ? null
+            : (json['daily_price'] is int
+                ? (json['daily_price'] as int).toDouble()
+                : json['daily_price'] as double),
+        time: json['time'] == null
+            ? null
+            : (json['time'] as List<dynamic>)
+                .map((e) => Time.fromJson(e as Map<String, Object?>))
+                .toList(),
+        hourlyPrice: json['hourly_price'] == null
+            ? null
+            : (json['hourly_price'] is int
+                ? (json['hourly_price'] as int).toDouble()
+                : json['hourly_price'] as double),
+        images: _parseImages(json['images']),
+        location: json['location'] == null
+            ? null
+            : Location.fromJson(json['location'] as Map<String, Object?>),
+        date: json['date'] as String?,
+        rateCount: json['rate_count'] as num?,
+        user: json['user'] == null
+            ? null
+            : User.fromJson(json['user'] as Map<String, Object?>));
   }
 
   static List<String>? _parseImages(dynamic imagesJson) {
@@ -165,20 +176,29 @@ class Day {
   final String? start;
   final String? end;
   final String? id;
+  final bool? available;
 
-  const Day({this.day, this.start, this.end, this.id});
+  const Day({this.day, this.start, this.end, this.id, this.available});
 
-  Day copyWith({String? day, String? start, String? end, String? id}) {
+  Day copyWith(
+      {String? day, String? start, String? end, String? id, bool? available}) {
     return Day(
       day: day ?? this.day,
       start: start ?? this.start,
       end: end ?? this.end,
       id: id ?? this.id,
+      available: available ?? this.available,
     );
   }
 
   Map<String, Object?> toJson() {
-    return {'day': day, 'start': start, 'end': end, '_id': id};
+    return {
+      'day': day,
+      'start': start,
+      'end': end,
+      '_id': id,
+      'available': available
+    };
   }
 
   static Day fromJson(Map<String, Object?> json) {
@@ -187,6 +207,7 @@ class Day {
       start: json['start'] as String?,
       end: json['end'] as String?,
       id: json['_id'] as String?,
+      available: json['available'] as bool?,
     );
   }
 }
@@ -282,26 +303,32 @@ class Location {
 class Time {
   final String? start;
   final String? end;
-  const Time({this.start, this.end});
-  Time copyWith({String? start, String? end}) {
-    return Time(start: start ?? this.start, end: end ?? this.end);
+  final String? id;
+
+  const Time({this.start, this.end, this.id});
+
+  Time copyWith({String? start, String? end, String? id}) {
+    return Time(
+        start: start ?? this.start, end: end ?? this.end, id: id ?? this.id);
   }
 
   Map<String, Object?> toJson() {
-    return {'start': start, 'end': end};
+    return {'start': start, 'end': end, '_id': id};
   }
 
   static Time fromJson(Map<String, Object?> json) {
     return Time(
         start: json['start'] == null ? null : json['start'] as String,
-        end: json['end'] == null ? null : json['end'] as String);
+        end: json['end'] == null ? null : json['end'] as String,
+        id: json['_id'] as String?);
   }
 
   @override
   String toString() {
     return '''Time(
                 start:$start,
-end:$end
+end:$end,
+id:$id
     ) ''';
   }
 
@@ -310,11 +337,58 @@ end:$end
     return other is Time &&
         other.runtimeType == runtimeType &&
         other.start == start &&
-        other.end == end;
+        other.end == end &&
+        other.id == id;
   }
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, start, end);
+    return Object.hash(runtimeType, start, end, id);
+  }
+}
+
+class User {
+  final String? id;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+
+  const User({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+  });
+
+  User copyWith({
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+  }) {
+    return User(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+    );
+  }
+
+  Map<String, Object?> toJson() {
+    return {
+      '_id': id,
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
+    };
+  }
+
+  static User fromJson(Map<String, Object?> json) {
+    return User(
+      id: json['_id'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      email: json['email'] as String?,
+    );
   }
 }

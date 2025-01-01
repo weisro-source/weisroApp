@@ -27,12 +27,12 @@ class AddServiceCubit extends Cubit<AddServiceState> {
 
   /// Format the startDateTime to 'hh:mm'
   String get formattedStartTime {
-    return DateFormat('hh:mm').format(startDateTime);
+    return DateFormat('HH:mm').format(startDateTime);
   }
 
   /// Format the endDateTime to 'hh:mm'
   String get formattedEndTime {
-    return DateFormat('hh:mm').format(endDateTime);
+    return DateFormat('HH:mm').format(endDateTime);
   }
 
   final List<String> imagePaths = []; // Store image paths
@@ -71,14 +71,13 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             name: serviceNameController.text,
             //first index latitude second index longitude
             location: const Location(coordinates: [20, 30]),
-            time: Time(start: formattedStartTime, end: formattedEndTime)));
+            time: [Time(start: formattedStartTime, end: formattedEndTime)]));
   }
 
   /// Validate all inputs and return a boolean
   bool validateInputs(BuildContext context) {
     // Reset the error message
     errorMessage = null;
-
     List<String> errors = [];
     if (serviceNameController.text.isEmpty) {
       errors.add(S.of(context).service_name_missing);
@@ -102,10 +101,13 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     if (descriptionController.text.isEmpty) {
       errors.add(S.of(context).description_missing);
     }
-
-    if (serviceDaysState.isEmpty) {
-      errors.add(S.of(context).days_missing);
+    if (selectedRentTime == Constants.dailyKey ||
+        selectedRentTime == Constants.bothKey) {
+      if (serviceDaysState.isEmpty) {
+        errors.add(S.of(context).days_missing);
+      }
     }
+
     if (imagePaths.isEmpty) {
       errors.add(S.of(context).images_missing);
     }
@@ -131,6 +133,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
       final localizations = MaterialLocalizations.of(context);
       final formattedTime =
           localizations.formatTimeOfDay(time, alwaysUse24HourFormat: true);
+
       return formattedTime;
     }
 
@@ -139,6 +142,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
         serviceDaysState.entries.map((entry) {
       final dayKey = entry.key;
       final timeMap = entry.value;
+
       return {
         "day": dayKey,
         "start": formatTimeWithoutAmPm(timeMap['start']),

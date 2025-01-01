@@ -1852,6 +1852,16 @@ class S {
     );
   }
 
+  /// `There are no services available in Category`
+  String get No_Services_Available_Cat {
+    return Intl.message(
+      'There are no services available in Category',
+      name: 'No_Services_Available_Cat',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select at least one day`
   String get Select_At_Least_One_Day {
     return Intl.message(
@@ -1897,6 +1907,16 @@ class S {
     return Intl.message(
       'Your booking has been confirmed. Thank you!',
       name: 'Booking_Confirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cash`
+  String get cash {
+    return Intl.message(
+      'cash',
+      name: 'cash',
       desc: '',
       args: [],
     );

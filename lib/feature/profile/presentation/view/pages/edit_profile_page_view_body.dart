@@ -32,7 +32,7 @@ class EditProfilePageViewBody extends StatefulWidget {
 }
 
 class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
-  String  newCity = "";
+  String newCity = "";
   @override
   void initState() {
     BlocProvider.of<EditUserInfoCubit>(context).initControllers();
@@ -141,6 +141,7 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                             orElse: () => cityNameList.isNotEmpty
                                 ? cityNameList.first
                                 : '');
+                        firstCity = newCity;
                         return LocationFlitterDropDown(
                           fillColor: AppColors.whiteColor,
                           borderColor: AppColors.greyColor,
@@ -221,12 +222,10 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   ),
                   30.kh,
                   BlocConsumer<EditUserInfoCubit, EditUserInfoState>(
-                    listener: (context, editUserState) {
+                    listener: (context, editUserState) async {
                       if (editUserState is EditUserInfoSuccess) {
-                        CacheHelper.setData(
-                            key: CacheKeys.kCityName, value: newCity);
-                        GetAllCountriesCubit.get(context)
-                            .selectCountry(newCountrySelected);
+                        await editUserInfoCubit.updateCacheData(
+                            newCity, newCountrySelected);
                       }
                     },
                     builder: (context, editUserState) {
@@ -245,22 +244,22 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                                 editUserInfoCubit.editAccountFormKey)) {
                               return;
                             } else {
-                              await editUserInfoCubit.editUser({
-                                "first_name":
-                                    editUserInfoCubit.firstNameController.text,
-                                "last_name":
-                                    editUserInfoCubit.lastNameController.text,
-                                "address": {
-                                  "city": newCity,
-                                  "country": newCountrySelected.name,
-                                  "postal_code": editUserInfoCubit
+                              await editUserInfoCubit.editUser(
+                                editUserInfoCubit.prepareUserData(
+                                  firstName: editUserInfoCubit
+                                      .firstNameController.text,
+                                  lastName:
+                                      editUserInfoCubit.lastNameController.text,
+                                  city: newCity,
+                                  country: newCountrySelected.name,
+                                  postalCode: editUserInfoCubit
                                       .postalCodeController.text,
-                                  "house_number": editUserInfoCubit
+                                  houseNumber: editUserInfoCubit
                                       .houseNumberController.text,
-                                  "street":
+                                  street:
                                       editUserInfoCubit.streetController.text,
-                                }
-                              });
+                                ),
+                              );
                             }
                           },
                           onCancelPressed: () {

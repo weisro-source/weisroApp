@@ -11,15 +11,20 @@ class LocationWidget extends StatelessWidget {
     this.iconWidth,
     this.iconHeight,
     this.space,
+    required this.location,
   });
+
   final TextStyle? styleLocationText;
   final double? iconWidth, iconHeight;
   final Widget? space;
-  
+  final String location;
+
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        24.kw,
         SvgPicture.asset(
           IconsPath.iconsLocation,
           height: iconHeight,
@@ -27,9 +32,15 @@ class LocationWidget extends StatelessWidget {
           fit: BoxFit.scaleDown,
         ),
         space ?? 8.kw,
-        Text('Oberamen,3216',
-            textAlign: TextAlign.center,
-            style: styleLocationText ?? AppStyles.style12w400Grey(context)),
+        Expanded(
+          child: Text(
+            location,
+            textAlign: TextAlign.start,
+            style: styleLocationText ?? AppStyles.style12w400Grey(context),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }

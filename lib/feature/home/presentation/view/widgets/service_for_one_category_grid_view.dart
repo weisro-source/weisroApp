@@ -22,17 +22,16 @@ class ServicesForOneCategoryGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         Docs oneService = allServicesForOneCategory[index];
         return WorkerForOneService(
-          isAgeVisibility: false,
-          isRateVisibility: false,
-          id: oneService.id ?? "",
-          type: Constants.categoryTypeServices,
-          image: HelperFunctions.ensureIsFirstItemOrNull(
-                  oneService.images ?? []) ??
-              "",
-          location: "",
-          name: oneService.name ?? "",
-          price: "",
-        );
+            isAgeVisibility: false,
+            isRateVisibility: false,
+            id: oneService.id ?? "",
+            type: Constants.categoryTypeServices,
+            image: HelperFunctions.ensureIsFirstItemOrNull(
+                    oneService.images ?? []) ??
+                "",
+            location: oneService.location?.city ?? "",
+            name: oneService.name ?? "",
+            price: oneService.price.toString());
       },
     );
   }

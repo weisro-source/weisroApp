@@ -35,6 +35,8 @@ class IAgreeCheckbox extends StatelessWidget {
             Checkbox.adaptive(
               value: isChecked,
               side: const BorderSide(color: AppColors.orangeColor),
+              checkColor: AppColors.whiteColor,
+              activeColor: AppColors.orangeColor,
               onChanged: onChanged,
               focusNode: focusNode,
             ),

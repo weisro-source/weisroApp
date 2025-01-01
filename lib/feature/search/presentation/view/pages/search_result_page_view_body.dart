@@ -9,6 +9,8 @@ import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.d
 import 'package:weisro/feature/search/presentation/managers/search_cubit/search_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
+import '../../../../../core/widgets/service_item_list_shimmer.dart';
+
 class SearchResultPageViewBody extends StatefulWidget {
   const SearchResultPageViewBody({super.key, required this.cityName});
   final String cityName;
@@ -93,13 +95,12 @@ class _SearchResultPageViewBodyState extends State<SearchResultPageViewBody> {
                 );
               } else {
                 final descriptions =
-                    searchResult.map((doc) => doc.name as String).toList();
-                final name =
-                    searchResult.map((doc) => doc.name as String).toList();
-                final ids =
-                    searchResult.map((doc) => doc.id as String).toList();
-                final prices =
-                    searchResult.map((doc) => doc.price.toString()).toList();
+                    searchResult.map((doc) => doc.name ?? '').toList();
+                final name = searchResult.map((doc) => doc.name ?? '').toList();
+                final ids = searchResult.map((doc) => doc.id ?? '').toList();
+                final prices = searchResult
+                    .map((doc) => doc.price?.toString() ?? '0')
+                    .toList();
                 final firstImages = searchResult
                     .map((doc) => (doc.images?.isNotEmpty ?? false)
                         ? doc.images!.first

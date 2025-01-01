@@ -11,7 +11,6 @@ import 'package:weisro/wisro_app.dart';
 void main() async {
   // for ensure doing all lines before "runApp function"
   WidgetsFlutterBinding.ensureInitialized();
-
   // --------------------------------------------------
   // for make device can not rotate
   SystemChrome.setPreferredOrientations([

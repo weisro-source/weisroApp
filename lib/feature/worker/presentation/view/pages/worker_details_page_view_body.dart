@@ -45,7 +45,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               PageIndicatorWidget(controller: pageController, count: 4),
               22.kh,
               ServiceNameRowWidget(
-              isFav: false,
+                isFav: false,
                 isFavLoading: false,
                 serviceName: "Name Worker",
                 onFavPressed: () {
@@ -56,7 +56,10 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                 },
               ),
               15.kh,
-              const LocationPriceRowWidget(price: "38 Years"),
+              const LocationPriceRowWidget(
+                price: "38 Years",
+                location: "",
+              ),
               15.kh,
               Padding(
                 padding: HelperFunctions.symmetricHorizontalPadding24,

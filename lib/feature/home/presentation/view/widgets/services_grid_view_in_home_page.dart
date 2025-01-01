@@ -26,6 +26,7 @@ class ServicesGridViewInHomePage extends StatelessWidget {
               HelperFunctions.navigateToScreen(
                   context,
                   (context) => ServicesDetailsPageView(
+                  
                         serviceId: lastService.id ?? "",
                       ));
             },

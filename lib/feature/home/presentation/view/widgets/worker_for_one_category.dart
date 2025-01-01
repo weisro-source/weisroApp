@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -54,7 +55,16 @@ class WorkerForOneService extends StatelessWidget {
                   imageUrl: HelperFunctions.addImageNameForUrl(image),
                   width: 136,
                   height: 99,
-                  fit: BoxFit.scaleDown,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) {
+                    return Shimmer.fromColors(
+                        baseColor: AppColors.shimmerBaseColor,
+                        highlightColor: AppColors.shimmerHighlightColor,
+                        child: const SizedBox(
+                          width: 136,
+                          height: 99,
+                        ));
+                  },
                   errorWidget: (context, url, error) {
                     return Image.asset(
                       ImagePath.imagesService3,
@@ -128,7 +138,7 @@ class WorkerForOneService extends StatelessWidget {
               children: [
                 SvgPicture.asset(IconsPath.iconsLocation),
                 Text(
-                  "Oberamen German , 3216",
+                  location,
                   style: AppStyles.style10w400Grey(context),
                 )
               ],
@@ -150,7 +160,7 @@ class WorkerForOneService extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(4))),
               child: Center(
                   child: Text(
-                "\$5572 in ST",
+                "\$$price",
                 style: AppStyles.style12w500Orange(context),
               )),
             ),

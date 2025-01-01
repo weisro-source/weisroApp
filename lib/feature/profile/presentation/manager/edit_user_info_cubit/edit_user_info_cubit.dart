@@ -4,6 +4,7 @@ import 'package:weisro/core/api/api_error_handler.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/service_locator.dart';
+import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/profile/data/account_repo/account_repo.dart';
 
 part 'edit_user_info_state.dart';
@@ -48,6 +49,34 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
     streetController.text = CacheHelper.getData(key: CacheKeys.kUserStreet);
     houseNumberController.text =
         CacheHelper.getData(key: CacheKeys.kHouseNumber);
+  }
+
+  Future<void> updateCacheData(String cityName, Country country) async {
+    await CacheHelper.setData(key: CacheKeys.kCityName, value: cityName);
+    await CacheHelper.setData(key: CacheKeys.kCountryName, value: country.name);
+    await CacheHelper.setData(key: CacheKeys.kCountryId, value: country.id);
+  }
+
+  Map<String, dynamic> prepareUserData({
+    required String firstName,
+    required String lastName,
+    required String city,
+    required String country,
+    required String postalCode,
+    required String houseNumber,
+    required String street,
+  }) {
+    return {
+      "first_name": firstName,
+      "last_name": lastName,
+      "address": {
+        "city": city,
+        "country": country,
+        "postal_code": postalCode,
+        "house_number": houseNumber,
+        "street": street,
+      }
+    };
   }
 
   Future<void> editUser(Map<String, dynamic> data) async {

@@ -11,6 +11,7 @@ import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/service_item_list_shimmer.dart';
 
 class FavoritePageViewBody extends StatefulWidget {
   const FavoritePageViewBody({super.key});

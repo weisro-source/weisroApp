@@ -155,6 +155,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "* It is forbidden to publish any addresses or contact information"),
         "No_Services_Available": MessageLookupByLibrary.simpleMessage(
             "There are no services available in this area"),
+        "No_Services_Available_Cat": MessageLookupByLibrary.simpleMessage(
+            "There are no services available in Category"),
         "No_location_found":
             MessageLookupByLibrary.simpleMessage("NO Location Found"),
         "No_result_found":
@@ -268,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
         "add_text_here": MessageLookupByLibrary.simpleMessage("Add Text here"),
+        "cash": MessageLookupByLibrary.simpleMessage("cash"),
         "change_email_address":
             MessageLookupByLibrary.simpleMessage("Change your email address"),
         "change_password":

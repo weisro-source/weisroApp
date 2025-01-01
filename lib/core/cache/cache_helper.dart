@@ -63,5 +63,6 @@ class CacheHelper {
         key: CacheKeys.kCityName, value: user.address?.city ?? "");
     await CacheHelper.setData(
         key: CacheKeys.kCountryName, value: user.address?.country ?? "");
+    await CacheHelper.setData(key: CacheKeys.kUserId, value: user.userId);
   }
 }

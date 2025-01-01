@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/booking/data/booking_repo/booking_repo.dart';
@@ -29,17 +32,18 @@ class BookServiceCubit extends Cubit<BookServiceState> {
 
   List<String> generateTimeSlots(String? startTime, String? endTime) {
     if (startTime == null || endTime == null) {
+      log("The start or end time is null");
       return [];
     }
+    log("The start and end time is NOT null");
 
     try {
-      DateFormat inputFormat = DateFormat.jm(); // Input format: "8:00 AM"
+      DateFormat inputFormat = DateFormat.Hm(); // Input format: "HH:mm"
       DateFormat outputFormat =
-          DateFormat.Hm(); // Output format: "08:00" To view this
+          DateFormat.Hm(); // Output format remains "HH:mm"
 
       DateTime start = inputFormat.parse(startTime);
       DateTime end = inputFormat.parse(endTime);
-
       List<String> slots = [];
       while (start.isBefore(end)) {
         DateTime nextHour = start.add(const Duration(hours: 1));
@@ -47,8 +51,17 @@ class BookServiceCubit extends Cubit<BookServiceState> {
             "${outputFormat.format(start)} - ${outputFormat.format(nextHour)}");
         start = nextHour;
       }
+      log("The Time length is ${slots.length}");
+
       return slots;
     } catch (e) {
+      log(
+        AnsiColor.colorize(
+          "Error in Time slots $e",
+          AnsiColor.red,
+        ),
+        name: "Booking Time",
+      );
       return [];
     }
   }
@@ -66,11 +79,16 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     }
   }
 
-  Future<void> addServiceBooking(
-      String serviceId, List<String> daysIds, String? note) async {
+  Future<void> addServiceBooking(String serviceId, List<String> daysIds,
+      String? note, bool isHour, String date, String start, String end) async {
     Map<String, dynamic> bookingServiceBody = {
       "serviceId": serviceId,
       "days": daysIds,
+    };
+    Map<String, dynamic> bookingServiceHourBody = {
+      "serviceId": serviceId,
+      "time": {"date": date, "start": start, "end": end},
+      "notes": "this is notes"
     };
 
     // Add the note only if it is not null
@@ -78,9 +96,8 @@ class BookServiceCubit extends Cubit<BookServiceState> {
       bookingServiceBody["notes"] = note;
     }
     emit(BookServiceLoading());
-    var result = await getIt
-        .get<BookingRepository>()
-        .addBookingServiceApi(bookingServiceBody);
+    var result = await getIt.get<BookingRepository>().addBookingServiceApi(
+        isHour ? bookingServiceHourBody : bookingServiceBody);
     result.fold(
       (errorInAddServiceBooking) {
         emit(BookServiceFailures(error: errorInAddServiceBooking));
