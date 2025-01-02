@@ -1931,6 +1931,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Update Successful`
+  String get Update_Successful {
+    return Intl.message(
+      'Update Successful',
+      name: 'Update_Successful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your information has been updated successfully.`
+  String get Information_Updated_Successfully {
+    return Intl.message(
+      'Your information has been updated successfully.',
+      name: 'Information_Updated_Successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Failed`
+  String get Update_Failed {
+    return Intl.message(
+      'Update Failed',
+      name: 'Update_Failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while updating your information. Please try again.`
+  String get Error_Updating_Information {
+    return Intl.message(
+      'An error occurred while updating your information. Please try again.',
+      name: 'Error_Updating_Information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Old Password`
+  String get Old_Password {
+    return Intl.message(
+      'Old Password',
+      name: 'Old_Password',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

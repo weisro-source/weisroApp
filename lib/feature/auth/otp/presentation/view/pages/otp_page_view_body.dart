@@ -8,6 +8,7 @@ import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/core/widgets/shimmer_app_button.dart';
+import 'package:weisro/feature/auth/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:weisro/feature/auth/forget_password/presentation/view/pages/new_password_view_page.dart';
 import 'package:weisro/feature/auth/otp/presentation/manager/verify_otp_cubit/verify_otp_cubit.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/success_code_page_view.dart';
@@ -31,6 +32,7 @@ class OtpPageViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VerifyOtpCubit verifyOtpCubit = VerifyOtpCubit.get(context);
+
     return Form(
       key: verifyOtpCubit.otpFormKey,
       child: CustomScrollView(
@@ -93,11 +95,12 @@ class OtpPageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 16.kh,
           ),
-          SliverToBoxAdapter(
-            child: ResendCode(
-              onTapResend: () {},
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: ResendCode(
+          //     onTapResend: () async {
+          //     },
+          //   ),
+          // ),
           SliverToBoxAdapter(
             child: 16.kh,
           ),

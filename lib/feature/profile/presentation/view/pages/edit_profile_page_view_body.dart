@@ -12,6 +12,7 @@ import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_all_countries_cubit/get_all_countries_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
@@ -223,6 +224,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   30.kh,
                   BlocConsumer<EditUserInfoCubit, EditUserInfoState>(
                     listener: (context, editUserState) async {
+                      final messenger = ScaffoldMessenger.of(context);
+
                       if (editUserState is EditUserInfoSuccess) {
                         await editUserInfoCubit.updateCacheData(
                           newCity,
@@ -231,8 +234,37 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                           editUserInfoCubit.lastNameController.text,
                           editUserInfoCubit.postalCodeController.text,
                           editUserInfoCubit.streetController.text,
-                          editUserInfoCubit.houseNumberController .text,
+                          editUserInfoCubit.houseNumberController.text,
                         );
+                        if (context.mounted) {
+                          MaterialBanner materialBanner =
+                              CustomMaterialBanner.successMaterialBanner(
+                                  S.of(context).Update_Successful,
+                                  S
+                                      .of(context)
+                                      .Information_Updated_Successfully);
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentMaterialBanner()
+                            ..showMaterialBanner(materialBanner);
+                          Future.delayed(const Duration(seconds: 3), () {
+                            if (mounted) {
+                              messenger.hideCurrentMaterialBanner();
+                            }
+                          });
+                        }
+                      } else if (editUserState is EditUserInfoFailures) {
+                        MaterialBanner materialBanner =
+                            CustomMaterialBanner.failureMaterialBanner(
+                                S.of(context).Update_Failed,
+                                S.of(context).Error_Updating_Information);
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentMaterialBanner()
+                          ..showMaterialBanner(materialBanner);
+                        Future.delayed(const Duration(seconds: 3), () {
+                          if (mounted) {
+                            messenger.hideCurrentMaterialBanner();
+                          }
+                        });
                       }
                     },
                     builder: (context, editUserState) {

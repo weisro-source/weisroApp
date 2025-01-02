@@ -68,30 +68,44 @@ class _UserPostsListViewState extends State<UserPostsListView> {
                 S.of(context).Delete_Confirmation_Message);
           },
           onDismissed: (direction) {
+            final messenger = ScaffoldMessenger.of(context);
+
             debugPrint('onDismissed called with index: $index');
             context.read<DeleteAdCubit>().deleteAd(ad.id ?? "");
             context.read<DeleteAdCubit>().stream.listen((state) {
               if (state is DeleteAdSuccess) {
-                _deleteAd(index);
                 if (context.mounted) {
-                  var materialBanner =
-                      CustomMaterialBanner.successMaterialBanner(
-                          S.of(context).Ad_Deleted,
-                          S.of(context).Ad_Deleted_Success);
+                  _deleteAd(index);
+                  if (context.mounted) {
+                    var materialBanner =
+                        CustomMaterialBanner.successMaterialBanner(
+                            S.of(context).Ad_Deleted,
+                            S.of(context).Ad_Deleted_Success);
 
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentMaterialBanner()
-                    ..showMaterialBanner(materialBanner);
-                }
-              } else if (state is DeleteAdFailures) {
-                if (context.mounted) {
-                  final materialBanner =
-                      CustomMaterialBanner.failureMaterialBanner(
-                          S.of(context).Ad_Deletion_Failed,
-                          S.of(context).Ad_Deletion_Error);
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentMaterialBanner()
-                    ..showMaterialBanner(materialBanner);
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentMaterialBanner()
+                      ..showMaterialBanner(materialBanner);
+                    Future.delayed(const Duration(seconds: 3), () {
+                      if (mounted) {
+                        messenger.hideCurrentMaterialBanner();
+                      }
+                    });
+                  }
+                } else if (state is DeleteAdFailures) {
+                  if (context.mounted) {
+                    final materialBanner =
+                        CustomMaterialBanner.failureMaterialBanner(
+                            S.of(context).Ad_Deletion_Failed,
+                            S.of(context).Ad_Deletion_Error);
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentMaterialBanner()
+                      ..showMaterialBanner(materialBanner);
+                    Future.delayed(const Duration(seconds: 3), () {
+                      if (mounted) {
+                        messenger.hideCurrentMaterialBanner();
+                      }
+                    });
+                  }
                 }
               }
             });

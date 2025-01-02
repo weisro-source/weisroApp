@@ -9,6 +9,7 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_phone_input_field.dart';
@@ -50,9 +51,15 @@ class ProfileOption {
             });
           },
           () {},
+          () {},
         );
       }, title: S.of(context).ChangeMobileNumber, icon: IconsPath.iconsPhone),
       ProfileOption(() {
+        editUserInfoCubit.oldPasswordController.clear();
+        editUserInfoCubit.passwordController.clear();
+        editUserInfoCubit.confirmPasswordController.clear();
+        final messengerChangePassword = ScaffoldMessenger.of(context);
+
         CustomDialog.showEditDialog(
           context,
           S.of(context).change_password,
@@ -60,6 +67,19 @@ class ProfileOption {
             key: editUserInfoCubit.changePasswordFormKey,
             child: Column(
               children: [
+                CustomTextFormFiled(
+                  hintText: S.of(context).Old_Password,
+                  controller: editUserInfoCubit.oldPasswordController,
+                  prefixIcon: SvgPicture.asset(
+                    width: 20,
+                    height: 20,
+                    IconsPath.iconsLock,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  validator: (value) =>
+                      Validate.validatePassword(value, context),
+                ),
+                10.kh,
                 CustomTextFormFiled(
                   hintText: S.of(context).Password,
                   controller: editUserInfoCubit.passwordController,
@@ -92,11 +112,37 @@ class ProfileOption {
           () async {
             if (HelperFunctions.validateForm(
                 editUserInfoCubit.changePasswordFormKey)) {
-              await editUserInfoCubit.editUser(
-                  {"password": editUserInfoCubit.passwordController.text});
+              await editUserInfoCubit.editUser({
+                "old_password": editUserInfoCubit.oldPasswordController.text,
+                "password": editUserInfoCubit.passwordController.text
+              });
             }
           },
-          () {},
+          () {
+            MaterialBanner materialBanner =
+                CustomMaterialBanner.successMaterialBanner(
+                    S.of(context).Update_Successful,
+                    S.of(context).Information_Updated_Successfully);
+            ScaffoldMessenger.of(context)
+              ..hideCurrentMaterialBanner()
+              ..showMaterialBanner(materialBanner);
+
+            Future.delayed(const Duration(seconds: 3), () {
+              messengerChangePassword.hideCurrentMaterialBanner();
+            });
+          },
+          () {
+            MaterialBanner materialBanner =
+                CustomMaterialBanner.failureMaterialBanner(
+                    S.of(context).Update_Failed, "");
+            ScaffoldMessenger.of(context)
+              ..hideCurrentMaterialBanner()
+              ..showMaterialBanner(materialBanner);
+
+            Future.delayed(const Duration(seconds: 3), () {
+              messengerChangePassword.hideCurrentMaterialBanner();
+            });
+          },
         );
       }, title: S.of(context).ChangePassword, icon: IconsPath.iconsLock),
       ProfileOption(() {
@@ -138,6 +184,7 @@ class ProfileOption {
               ),
             );
           },
+          () {},
         );
       }, title: S.of(context).ChangeEmail, icon: IconsPath.iconsMail),
       ProfileOption(() {

@@ -182,7 +182,9 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    HelperFunctions.navigateToBack(context);
+                  },
                   buttonColor: AppColors.redColor,
                   borderColor: AppColors.redColor,
                   height: 32,

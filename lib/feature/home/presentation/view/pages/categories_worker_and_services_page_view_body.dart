@@ -97,7 +97,10 @@ class _CategoriesWorkerAndServicesPageViewBodyState
               );
             }
           },
-        )
+        ),
+        SliverToBoxAdapter(
+          child: 30.kh,
+        ),
       ],
     );
   }

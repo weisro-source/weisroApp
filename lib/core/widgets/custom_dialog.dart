@@ -192,6 +192,7 @@ class CustomDialog {
     String iconPath,
     void Function()? onPressed,
     void Function()? onSuccess,
+    void Function()? onFailure,
   ) {
     showDialog(
       context: context,
@@ -205,7 +206,7 @@ class CustomDialog {
           shadowColor: AppColors.shadow2Color,
           child: Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.35,
+            height: MediaQuery.of(context).size.height * 0.45,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(15),
@@ -245,6 +246,9 @@ class CustomDialog {
                   listener: (context, editUserState) {
                     if (editUserState is EditUserInfoSuccess) {
                       onSuccess?.call();
+                    }
+                    if (editUserState is EditUserInfoFailures) {
+                      onFailure?.call();
                     }
                   },
                   builder: (context, editUserState) {
