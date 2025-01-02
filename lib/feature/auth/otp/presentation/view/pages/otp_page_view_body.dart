@@ -21,8 +21,12 @@ import '../widgets/resend_code.dart';
 
 class OtpPageViewBody extends StatelessWidget {
   const OtpPageViewBody(
-      {super.key, required this.isForgetPassword, this.email});
+      {super.key,
+      required this.isForgetPassword,
+      this.email,
+      required this.isChangeEmail});
   final bool isForgetPassword;
+  final bool isChangeEmail;
   final String? email;
   @override
   Widget build(BuildContext context) {
@@ -51,16 +55,18 @@ class OtpPageViewBody extends StatelessWidget {
               sliver: LabeledBorderBox(
                   label: isForgetPassword
                       ? S.of(context).Forget_Password
-                      : S.of(context).Get_the_Code)),
+                      : isChangeEmail
+                          ? S.of(context).Change_Email
+                          : S.of(context).Get_the_Code)),
           SliverToBoxAdapter(
             child: 37.kh,
           ),
           SliverToBoxAdapter(
             child: Visibility(
-              visible: !isForgetPassword,
+              visible: !isForgetPassword && !isChangeEmail,
               child: CodeSendToEmailTextWidget(
                 //? I write Here the  !isForgetPassword for dont user RegisterCubit
-                email: !isForgetPassword
+                email: !isForgetPassword && !isChangeEmail
                     ? HelperFunctions.maskEmail(
                         RegisterCubit.get(context).getEmail())
                     : "",

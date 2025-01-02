@@ -35,6 +35,7 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
   FocusNode postalCodeFocusNode = FocusNode();
   FocusNode streetFocusNode = FocusNode();
@@ -51,10 +52,22 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
         CacheHelper.getData(key: CacheKeys.kHouseNumber);
   }
 
-  Future<void> updateCacheData(String cityName, Country country) async {
+  Future<void> updateCacheData(
+      String cityName,
+      Country country,
+      String firstName,
+      String lastName,
+      String street,
+      String zip,
+      String houseNumber) async {
     await CacheHelper.setData(key: CacheKeys.kCityName, value: cityName);
     await CacheHelper.setData(key: CacheKeys.kCountryName, value: country.name);
     await CacheHelper.setData(key: CacheKeys.kCountryId, value: country.id);
+    await CacheHelper.setData(key: CacheKeys.kUserFirstName, value: firstName);
+    await CacheHelper.setData(key: CacheKeys.kUserLastName, value: lastName);
+    await CacheHelper.setData(key: CacheKeys.kUserStreet, value: street);
+    await CacheHelper.setData(key: CacheKeys.kUserZipCode, value: zip);
+    await CacheHelper.setData(key: CacheKeys.kHouseNumber, value: houseNumber);
   }
 
   Map<String, dynamic> prepareUserData({

@@ -5,9 +5,14 @@ import 'package:weisro/feature/auth/otp/presentation/manager/verify_otp_cubit/ve
 import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view_body.dart';
 
 class OtpPageView extends StatelessWidget {
-  const OtpPageView({Key? key, required this.isForgetPassword, this.email})
+  const OtpPageView(
+      {Key? key,
+      required this.isForgetPassword,
+      this.email,
+      this.isChangeEmail = false})
       : super(key: key);
   final bool isForgetPassword;
+  final bool isChangeEmail;
   final String? email;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class OtpPageView extends StatelessWidget {
       child: Scaffold(
           body: OtpPageViewBody(
         isForgetPassword: isForgetPassword,
-        email: email,
+        isChangeEmail: isChangeEmail,
       )),
     );
   }

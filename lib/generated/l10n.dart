@@ -1921,6 +1921,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Email`
+  String get Change_Email {
+    return Intl.message(
+      'Change Email',
+      name: 'Change_Email',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
