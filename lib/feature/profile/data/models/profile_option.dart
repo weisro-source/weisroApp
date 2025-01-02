@@ -9,6 +9,8 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_phone_input_field.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
@@ -101,21 +103,41 @@ class ProfileOption {
         CustomDialog.showEditDialog(
           context,
           S.of(context).change_email_address,
-          CustomTextFormFiled(
-            hintText: S.of(context).Email,
-            controller: editUserInfoCubit.emailController,
-            keyboardType: TextInputType.emailAddress,
-            validator: (value) => Validate.validateEmail(value, context),
-            prefixIcon: SvgPicture.asset(
-              width: 20,
-              height: 20,
-              IconsPath.iconsMail,
-              fit: BoxFit.scaleDown,
+          Form(
+            key: editUserInfoCubit.emailFormKey,
+            child: CustomTextFormFiled(
+              hintText: S.of(context).Email,
+              controller: editUserInfoCubit.emailController,
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) => Validate.validateEmail(value, context),
+              prefixIcon: SvgPicture.asset(
+                width: 20,
+                height: 20,
+                IconsPath.iconsMail,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
           IconsPath.iconsMail,
-          () async {},
-          () {},
+          () async {
+            if (HelperFunctions.validateForm(editUserInfoCubit.emailFormKey)) {
+              await editUserInfoCubit
+                  .editUser({"email": editUserInfoCubit.emailController.text});
+            }
+          },
+          () {
+            HelperFunctions.navigateToScreen(
+              context,
+              (context) => BlocProvider(
+                create: (context) => RegisterCubit(),
+                child: OtpPageView(
+                  isForgetPassword: false,
+                  email: editUserInfoCubit.emailController.text,
+                  isChangeEmail: true,
+                ),
+              ),
+            );
+          },
         );
       }, title: S.of(context).ChangeEmail, icon: IconsPath.iconsMail),
       ProfileOption(() {

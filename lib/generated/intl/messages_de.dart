@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Handynummer ändern"),
         "ChangePassword":
             MessageLookupByLibrary.simpleMessage("Passwort ändern"),
+        "Change_Email": MessageLookupByLibrary.simpleMessage("E-Mail ändern"),
         "Check_location_permission": MessageLookupByLibrary.simpleMessage(
             "Bitte überprüfen Sie die Standortberechtigung"),
         "Check_search_again": MessageLookupByLibrary.simpleMessage(

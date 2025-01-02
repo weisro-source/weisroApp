@@ -184,5 +184,6 @@
     "Booking_Failed": "Buchung fehlgeschlagen",
     "Booking_Successful": "Buchung erfolgreich",
     "Booking_Confirmed": "Ihre Buchung wurde bestätigt. Vielen Dank!",
-    "cash": "Kasse"
+    "cash": "Kasse",
+    "Change_Email": "E-Mail ändern"
 }

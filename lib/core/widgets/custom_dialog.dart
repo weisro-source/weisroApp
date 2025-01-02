@@ -244,7 +244,7 @@ class CustomDialog {
                 BlocConsumer<EditUserInfoCubit, EditUserInfoState>(
                   listener: (context, editUserState) {
                     if (editUserState is EditUserInfoSuccess) {
-                      onSuccess;
+                      onSuccess?.call();
                     }
                   },
                   builder: (context, editUserState) {

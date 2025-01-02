@@ -125,6 +125,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   Future<FormData> prepareFormDataForWorkerRegister() async {
     List<String> formattedStartTimes = [];
     List<String> formattedEndTimes = [];
+    String startTime = favoriteHours.first.split(' - ').first;
+    String endTime = favoriteHours.last.split(' - ').last;
 
     // Loop through each time and split it into start and end times
     for (String time in favoriteHours) {
@@ -174,21 +176,25 @@ class RegisterCubit extends Cubit<RegisterState> {
       'address[house_number]': houseNumberController.text,
       'address[street]': streetController.text,
       // Dynamically handle selected days
-      for (int i = 0; i < selectedDay.length; i++) 'days[$i]': selectedDay[i],
+      for (int i = 0; i < selectedDay.length; i++) 
+      {
+      }
+      'days[$i][day]': selectedDay[i],
+      
       'services_description': descriptionController.text,
       'services[0]': serviceController.text,
       // Adding profile image if available
       'profile_image': imagePathForProfile.isNotEmpty
           ? await MultipartFile.fromFile(imagePathForProfile)
           : null,
-      'validate_document': imagesPathsForId.isNotEmpty
-          ? await MultipartFile.fromFile(imagesPathsForId.first)
-          : null,
+      for (int i = 0; i < imagesPathsForId.length; i++)
+        'validate_document[$i]':
+            await MultipartFile.fromFile(imagesPathsForId[i]),
       // Dynamically handle formatted start and end times
-      for (int i = 0; i < formattedStartTimes.length; i++)
-        'time[$i]': formattedStartTimes[i],
-      for (int i = 0; i < formattedEndTimes.length; i++)
-        'time[$i]': formattedEndTimes[i],
+      // for (int i = 0; i < formattedStartTimes.length; i++)
+      //   'time[$i]': formattedStartTimes[i],
+      // for (int i = 0; i < formattedEndTimes.length; i++)
+      //   'time[$i]': formattedEndTimes[i],
       'fare_per_hour': costPerHourController.text,
       'age': '30', // Adjust this logic as needed
     });

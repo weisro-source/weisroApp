@@ -186,5 +186,6 @@
     "Booking_Failed": "Booking Failed",
     "Booking_Successful": "Booking Successful",
     "Booking_Confirmed": "Your booking has been confirmed. Thank you!",
-    "cash":"cash"
+    "cash":"cash",
+    "Change_Email": "Change Email"
 }

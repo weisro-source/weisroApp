@@ -225,7 +225,14 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                     listener: (context, editUserState) async {
                       if (editUserState is EditUserInfoSuccess) {
                         await editUserInfoCubit.updateCacheData(
-                            newCity, newCountrySelected);
+                          newCity,
+                          newCountrySelected,
+                          editUserInfoCubit.firstNameController.text,
+                          editUserInfoCubit.lastNameController.text,
+                          editUserInfoCubit.postalCodeController.text,
+                          editUserInfoCubit.streetController.text,
+                          editUserInfoCubit.houseNumberController .text,
+                        );
                       }
                     },
                     builder: (context, editUserState) {
