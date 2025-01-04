@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
@@ -31,6 +33,7 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RegisterCubit registerCubit = RegisterCubit.get(context);
+    registerCubit.countryCodeController.text = "49";
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -124,6 +127,17 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                           registerCubit.passwordFocusNode,
                           context);
                     },
+                    onCountryChanged: (value) async {
+                      registerCubit.countryCodeController.text =
+                          value.dialCode.toString();
+                      await CacheHelper.setData(
+                          key: CacheKeys.kCountryCode, value: value.dialCode);
+                    }
+                    //               (value) async {
+                    //   await CacheHelper.setData(
+                    //       key: CacheKeys.kCountryCode, value: value.dialCode);
+                    // },,
+                    ,
                   ),
                 )),
 

@@ -7,6 +7,7 @@ import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_all_countries_cubit/get_all_countries_cubit.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker_tags_cubit/get_all_worker_tags_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit/get_favorite_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
@@ -70,6 +71,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => GetOrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetAllWorkerTagsCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

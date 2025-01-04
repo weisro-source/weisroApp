@@ -3,4 +3,5 @@ import 'package:weisro/core/api/api_error_handler.dart';
 
 abstract class BookingRepository {
   Future<Either<Failure, String>> addBookingServiceApi(Map<String, dynamic> data);
+  Future<Either<Failure, String>> addBookingWorkerApi(Map<String, dynamic> data);
 }

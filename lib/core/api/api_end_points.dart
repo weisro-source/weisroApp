@@ -29,5 +29,8 @@ class ApiEndPoints {
   static const String addAds = '/advers';
   // booking Route
   static const String addServiceBooking = '/booking/service';
+  static const String addWorkerBooking = '/worker-booking';
   static const String getUserBooking = '/booking/?type=user';
+  // worker tags
+  static const String getWorkerTags = '/tag';
 }

@@ -18,4 +18,16 @@ class BookingRepositoryImplementation implements BookingRepository {
       return left(ErrorHandler.handleError(errorInBookingServiceApi));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> addBookingWorkerApi(
+      Map<String, dynamic> data) async {
+    try {
+      await _apiService.post(
+          endPoint: ApiEndPoints.addWorkerBooking, data: data);
+      return right("");
+    } catch (errorInBookWorkerApi) {
+      return left(ErrorHandler.handleError(errorInBookWorkerApi));
+    }
+  }
 }

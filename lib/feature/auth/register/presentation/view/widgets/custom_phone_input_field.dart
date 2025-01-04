@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:weisro/core/cache/cache_helper.dart';
-import 'package:weisro/core/cache/cache_keys.dart';
+
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/validate.dart';
@@ -18,12 +18,14 @@ class CustomPhoneInput extends StatelessWidget {
     this.countryCode = 'DE',
     this.onChanged,
     this.onSubmitted,
+    this.onCountryChanged,
   });
   final TextEditingController phoneController;
   final FocusNode? phoneNumberFocusNode;
   final String countryCode;
   final void Function(PhoneNumber)? onChanged;
   final void Function(String)? onSubmitted;
+  final void Function(Country)? onCountryChanged;
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
@@ -34,6 +36,7 @@ class CustomPhoneInput extends StatelessWidget {
       disableLengthCheck: false,
       // auto validateMode: Auto validateMode.always,
       autovalidateMode: AutovalidateMode.always,
+
       validator: (value) =>
           Validate.validatePhoneNumber(value?.number ?? "", context),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -127,10 +130,7 @@ class CustomPhoneInput extends StatelessWidget {
         ),
       ),
       initialCountryCode: countryCode,
-      onCountryChanged: (value) async {
-        await CacheHelper.setData(
-            key: CacheKeys.kCountryCode, value: value.code);
-      },
+      onCountryChanged: onCountryChanged,
       onChanged: onChanged,
     );
   }
