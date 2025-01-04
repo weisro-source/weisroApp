@@ -186,11 +186,14 @@
     "Booking_Failed": "Booking Failed",
     "Booking_Successful": "Booking Successful",
     "Booking_Confirmed": "Your booking has been confirmed. Thank you!",
-    "cash":"cash",
+    "cash": "cash",
     "Change_Email": "Change Email",
     "Update_Successful": "Update Successful",
     "Information_Updated_Successfully": "Your information has been updated successfully.",
     "Update_Failed": "Update Failed",
     "Error_Updating_Information": "An error occurred while updating your information. Please try again.",
-    "Old_Password": "Old Password"
+    "Old_Password": "Old Password",
+    "Your_Booking": "Your Booking",
+    "ID": "ID",
+    "Total_Price": "Total Price"
 }

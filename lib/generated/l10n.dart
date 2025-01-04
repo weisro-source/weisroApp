@@ -1981,6 +1981,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Your Booking`
+  String get Your_Booking {
+    return Intl.message(
+      'Your Booking',
+      name: 'Your_Booking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID`
+  String get ID {
+    return Intl.message(
+      'ID',
+      name: 'ID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Price`
+  String get Total_Price {
+    return Intl.message(
+      'Total Price',
+      name: 'Total_Price',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

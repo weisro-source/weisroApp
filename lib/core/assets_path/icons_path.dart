@@ -210,6 +210,10 @@ class IconsPath {
   /// assets/icons/time_selected.svg
   static const String iconsTimeSelected = "assets/icons/time_selected.svg";
 
+  /// Assets for iconsUserBooking
+  /// assets/icons/user_booking.svg
+  static const String iconsUserBooking = "assets/icons/user_booking.svg";
+
   /// Assets for iconsUserIcon
   /// assets/icons/user_icon.svg
   static const String iconsUserIcon = "assets/icons/user_icon.svg";

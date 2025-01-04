@@ -13,6 +13,7 @@ import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/otp_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_phone_input_field.dart';
+import 'package:weisro/feature/booking/presentation/view/pages/your_booking_page_view.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/edit_profile_page_view.dart';
@@ -197,6 +198,10 @@ class ProfileOption {
         HelperFunctions.navigateToScreen(
             context, (context) => const UserAdsPageView());
       }, title: S.of(context).YourPosts, icon: IconsPath.iconsPost),
+      ProfileOption(() {
+        HelperFunctions.navigateToScreen(
+            context, (context) => const YourBookingPageView());
+      }, title: S.of(context).Your_Booking, icon: IconsPath.iconsUserBooking),
       ProfileOption(() {
         HelperFunctions.navigateToScreen(
           context,

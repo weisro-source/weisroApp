@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "How do you want to rent your services ? "),
         "How_Many_Days": MessageLookupByLibrary.simpleMessage(
             "How many days do you want to work during the week?"),
+        "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("I agree to the"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
@@ -256,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The code has been"),
         "To": MessageLookupByLibrary.simpleMessage("To"),
         "Total_Cost": MessageLookupByLibrary.simpleMessage("The total cost"),
+        "Total_Price": MessageLookupByLibrary.simpleMessage("Total Price"),
         "Tu": MessageLookupByLibrary.simpleMessage("Tu"),
         "Type_Services": MessageLookupByLibrary.simpleMessage("Type Services"),
         "Update_Failed": MessageLookupByLibrary.simpleMessage("Update Failed"),
@@ -279,6 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
+        "Your_Booking": MessageLookupByLibrary.simpleMessage("Your Booking"),
         "add_text_here": MessageLookupByLibrary.simpleMessage("Add Text here"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
         "change_email_address":
