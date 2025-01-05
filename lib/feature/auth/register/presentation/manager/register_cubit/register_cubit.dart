@@ -99,6 +99,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         email: emailController.text,
         password: passwordController.text,
         phone: phoneController.text,
+        countryCode: "+${countryCodeController.text}",
         address: createAddress());
   }
 

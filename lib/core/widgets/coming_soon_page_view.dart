@@ -16,7 +16,7 @@ class ComingSoonPageView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColors.orangeColor,
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         child: Center(
           child: Image.asset(

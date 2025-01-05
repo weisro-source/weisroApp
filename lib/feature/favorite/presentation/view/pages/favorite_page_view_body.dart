@@ -88,6 +88,11 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
                           doc.service?.name ??
                           '') // If name is null, use an empty string
                       .toList();
+                  final ids = allFavorite
+                      .map((doc) =>
+                          doc.service?.id ??
+                          '') // If name is null, use an empty string
+                      .toList();
                   final name = allFavorite
                       .map((doc) =>
                           doc.service?.name ??
@@ -120,6 +125,7 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
                     name: name,
                     price: prices.whereType<String>().toList(),
                     rate: const [],
+                    id: ids,
                   );
                 }
               } else {

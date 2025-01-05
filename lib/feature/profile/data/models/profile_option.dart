@@ -207,7 +207,6 @@ class ProfileOption {
           context,
           (context) => PrivacyPolicyPageView(
             appTitle: S.of(context).TermsCondition,
-            body: "",
           ),
         );
       }, title: S.of(context).TermsCondition, icon: IconsPath.iconsPost),
@@ -216,19 +215,17 @@ class ProfileOption {
           context,
           (context) => PrivacyPolicyPageView(
             appTitle: S.of(context).Privacy_Policy,
-            body: "",
           ),
         );
       }, title: S.of(context).PrivacyPolicy, icon: IconsPath.iconsAlert),
-      ProfileOption(() {
-        HelperFunctions.navigateToScreen(
-          context,
-          (context) => PrivacyPolicyPageView(
-            appTitle: S.of(context).PrivacyPolicy,
-            body: "",
-          ),
-        );
-      }, title: S.of(context).PrivacyPolicy, icon: IconsPath.iconsAlert),
+      // ProfileOption(() {
+      //   HelperFunctions.navigateToScreen(
+      //     context,
+      //     (context) => PrivacyPolicyPageView(
+      //       appTitle: S.of(context).PrivacyPolicy,
+      //     ),
+      //   );
+      // }, title: S.of(context).PrivacyPolicy, icon: IconsPath.iconsAlert),
     ];
   }
 }

@@ -61,7 +61,7 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
           20.kh,
           Padding(
             padding: HelperFunctions.symmetricHorizontalPadding24,
-            child: YourBookingList(
+            child: const YourBookingList(
               allBooking: [],
             ),
           )
