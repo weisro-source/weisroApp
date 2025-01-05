@@ -9,6 +9,7 @@ class UserClientModel {
   final String? phone;
   final String? password;
   final Address? address;
+  final String? countryCode;
   const UserClientModel(
       {this.userId,
       this.firstName,
@@ -16,6 +17,7 @@ class UserClientModel {
       this.email,
       this.phone,
       this.password,
+      this.countryCode,
       this.address});
   UserClientModel copyWith(
       {String? firstName,
@@ -40,7 +42,8 @@ class UserClientModel {
       'email': email,
       'phone': phone,
       'password': password,
-      'address': address?.toJson()
+      'address': address?.toJson(),
+      "countryCode":countryCode
     };
   }
 

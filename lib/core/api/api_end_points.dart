@@ -33,5 +33,5 @@ class ApiEndPoints {
   static const String getUserBooking = '/booking/?type=user';
   static const String getYourBooking = '/booking/?type=user';
   // worker tags
-  static const String getWorkerTags = '/tag';
+  static const String getWorkerTags = '/category?type=workers&all=true';
 }

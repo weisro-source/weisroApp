@@ -8,7 +8,6 @@ import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/core/widgets/shimmer_app_button.dart';
-import 'package:weisro/feature/auth/forget_password/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:weisro/feature/auth/forget_password/presentation/view/pages/new_password_view_page.dart';
 import 'package:weisro/feature/auth/otp/presentation/manager/verify_otp_cubit/verify_otp_cubit.dart';
 import 'package:weisro/feature/auth/otp/presentation/view/pages/success_code_page_view.dart';
@@ -18,7 +17,6 @@ import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/code_send_to_email_text_widget.dart';
 import '../widgets/otp_text_input.dart';
-import '../widgets/resend_code.dart';
 
 class OtpPageViewBody extends StatelessWidget {
   const OtpPageViewBody(

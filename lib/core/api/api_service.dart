@@ -104,7 +104,14 @@ class ApiService {
     var response = await dio.get(endPoint, cancelToken: cancelToken);
     return response.data;
   }
-
+Future<Response> getHtml({
+    required String endPoint,
+    CancelToken? cancelToken,
+  }) async {
+    await _setHeaders();
+    var response = await dio.get(endPoint, cancelToken: cancelToken);
+    return response; // Return the full response
+  }
   Future<Map<String, dynamic>> getWithBody({
     required String endPoint,
     CancelToken? cancelToken,
