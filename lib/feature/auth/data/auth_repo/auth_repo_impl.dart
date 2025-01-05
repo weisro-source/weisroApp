@@ -14,6 +14,7 @@ import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/data/models/success_login_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
+import 'package:weisro/feature/auth/data/models/worker_tags_model.dart';
 
 /// Implementation of the Authentication Repository
 /// Handles API requests for user registration, login, OTP verification, password reset, and password resending
@@ -217,6 +218,17 @@ class AuthenticationRepositoryImplementation
       LoggerHelper.logError(
           errorInWorkerRegister, ApiEndPoints.workerRegisterEndPoint);
       return left(ErrorHandler.handleError(errorInWorkerRegister));
+    }
+  }
+
+  @override
+  Future<Either<Failure, WorkerTags>> getAllWorkerTagApi() async {
+    try {
+      var response =
+          await _apiService.get(endPoint: ApiEndPoints.getWorkerTags);
+      return right(WorkerTags.fromJson(response));
+    } catch (errorInGetWorkerTags) {
+      return left(ErrorHandler.handleError(errorInGetWorkerTags));
     }
   }
 }

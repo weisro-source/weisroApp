@@ -47,8 +47,7 @@ class _SplashViewState extends State<SplashView>
   }
 
   void _setupWidgetListener() {
-    HomeWidget.setAppGroupId(
-        'com.example.weisro'); // Replace with your app's ID
+    HomeWidget.setAppGroupId('com.weisro.weisro'); // Replace with your app's ID
     HomeWidget.registerInteractivityCallback(_backgroundCallback);
 
     HomeWidget.getWidgetData<String>('widget_click', defaultValue: '')

@@ -32,6 +32,7 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
   TextEditingController houseNumberController = TextEditingController(
       text: CacheHelper.getData(key: CacheKeys.kHouseNumber));
 
+  TextEditingController oldPasswordController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final GlobalKey<FormState> changePasswordFormKey = GlobalKey<FormState>();

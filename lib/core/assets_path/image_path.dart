@@ -1,14 +1,19 @@
 // ignore_for_file: prefer_single_quotes
 class ImagePath {
   ImagePath._();
-  
+
   /// Assets for imagesAd
   /// assets/images/ad.png
   static const String imagesAd = "assets/images/ad.png";
 
+  /// Assets for imagesComingSoon
+  /// assets/images/coming-soon.jpg
+  static const String imagesComingSoon = "assets/images/coming-soon.png";
+
   /// Assets for imagesForgetPassword
   /// assets/images/forget_password.svg
-  static const String imagesForgetPassword = "assets/images/forget_password.svg";
+  static const String imagesForgetPassword =
+      "assets/images/forget_password.svg";
 
   /// Assets for imagesGame
   /// assets/images/game.png
@@ -28,15 +33,18 @@ class ImagePath {
 
   /// Assets for imagesOnboardingImage1
   /// assets/images/onboardingImage1.png
-  static const String imagesOnboardingImage1 = "assets/images/onboardingImage1.png";
+  static const String imagesOnboardingImage1 =
+      "assets/images/onboardingImage1.png";
 
   /// Assets for imagesOnboardingImage2
   /// assets/images/onboardingImage2.png
-  static const String imagesOnboardingImage2 = "assets/images/onboardingImage2.png";
+  static const String imagesOnboardingImage2 =
+      "assets/images/onboardingImage2.png";
 
   /// Assets for imagesOnboardingImage3
   /// assets/images/onboardingImage3.png
-  static const String imagesOnboardingImage3 = "assets/images/onboardingImage3.png";
+  static const String imagesOnboardingImage3 =
+      "assets/images/onboardingImage3.png";
 
   /// Assets for imagesSendCodeImage
   /// assets/images/sendCodeImage.png
@@ -62,4 +70,3 @@ class ImagePath {
   /// assets/images/worker2.png
   static const String imagesWorker2 = "assets/images/worker2.png";
 }
-

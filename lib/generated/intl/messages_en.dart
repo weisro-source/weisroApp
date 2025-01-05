@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Personal Information"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "End": MessageLookupByLibrary.simpleMessage("End"),
+        "Error_Updating_Information": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while updating your information. Please try again."),
         "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
         "Favorite_Time": MessageLookupByLibrary.simpleMessage(
             "What\'s your favorite time to work?"),
@@ -132,11 +134,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "How do you want to rent your services ? "),
         "How_Many_Days": MessageLookupByLibrary.simpleMessage(
             "How many days do you want to work during the week?"),
+        "ID": MessageLookupByLibrary.simpleMessage("ID"),
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("I agree to the"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
         "Incomplete_Information":
             MessageLookupByLibrary.simpleMessage("Incomplete Information"),
+        "Information_Updated_Successfully":
+            MessageLookupByLibrary.simpleMessage(
+                "Your information has been updated successfully."),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Last_Name": MessageLookupByLibrary.simpleMessage("Last Name"),
         "Latest_rental_services":
@@ -164,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NO Result Found"),
         "OR": MessageLookupByLibrary.simpleMessage("OR"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "Old_Password": MessageLookupByLibrary.simpleMessage("Old Password"),
         "Orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "Our_Categories":
             MessageLookupByLibrary.simpleMessage("Our Categories"),
@@ -250,8 +257,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The code has been"),
         "To": MessageLookupByLibrary.simpleMessage("To"),
         "Total_Cost": MessageLookupByLibrary.simpleMessage("The total cost"),
+        "Total_Price": MessageLookupByLibrary.simpleMessage("Total Price"),
         "Tu": MessageLookupByLibrary.simpleMessage("Tu"),
         "Type_Services": MessageLookupByLibrary.simpleMessage("Type Services"),
+        "Update_Failed": MessageLookupByLibrary.simpleMessage("Update Failed"),
+        "Update_Successful":
+            MessageLookupByLibrary.simpleMessage("Update Successful"),
         "Upload_Profile_Picture": MessageLookupByLibrary.simpleMessage(
             "Upload your real profile picture to your profile"),
         "Verified": MessageLookupByLibrary.simpleMessage("verified"),
@@ -270,6 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),
         "YourOrder": MessageLookupByLibrary.simpleMessage("Your Order"),
         "YourPosts": MessageLookupByLibrary.simpleMessage("Your Posts"),
+        "Your_Booking": MessageLookupByLibrary.simpleMessage("Your Booking"),
         "add_text_here": MessageLookupByLibrary.simpleMessage("Add Text here"),
         "cash": MessageLookupByLibrary.simpleMessage("cash"),
         "change_email_address":

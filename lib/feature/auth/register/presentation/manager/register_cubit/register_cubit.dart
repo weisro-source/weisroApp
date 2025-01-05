@@ -13,6 +13,8 @@ import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/models/address_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
+import 'package:weisro/feature/auth/data/models/worker_tags_model.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker_tags_cubit/get_all_worker_tags_cubit.dart';
 
 part 'register_state.dart';
 
@@ -63,6 +65,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController serviceController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController costPerHourController = TextEditingController();
+  TextEditingController countryCodeController = TextEditingController();
 
   CancelToken registerClientCancelToken = CancelToken();
   CancelToken registerWorkerCancelToken = CancelToken();
@@ -122,7 +125,8 @@ class RegisterCubit extends Cubit<RegisterState> {
     dev.log("Selected Favorite *Hours* updated: $favoriteHours");
   }
 
-  Future<FormData> prepareFormDataForWorkerRegister() async {
+  Future<FormData> prepareFormDataForWorkerRegister(
+      BuildContext context) async {
     List<String> formattedStartTimes = [];
     List<String> formattedEndTimes = [];
     String startTime = favoriteHours.first.split(' - ').first;
@@ -159,10 +163,19 @@ class RegisterCubit extends Cubit<RegisterState> {
         dev.log("Invalid time range format: $time");
       }
     }
-
+    Map<String, dynamic> daysMap = {};
+    for (int i = 0; i < selectedDay.length; i++) {
+      daysMap.addAll({
+        'days[$i][day]': selectedDay[i],
+        'days[$i][start]': startTime,
+        'days[$i][end]': endTime,
+      });
+    }
+    List<Docs> selectedTags =
+        BlocProvider.of<GetAllWorkerTagsCubit>(context).selectedTags;
     // Debug the formatted times lists before returning
-    dev.log("Formatted start times: $formattedStartTimes");
-    dev.log("Formatted end times: $formattedEndTimes");
+    // dev.log("Formatted start times: $formattedStartTimes");
+    // dev.log("Formatted end times: $formattedEndTimes");
 
     FormData formData = FormData.fromMap({
       'first_name': firstNameController.text,
@@ -175,28 +188,24 @@ class RegisterCubit extends Cubit<RegisterState> {
       'address[postal_code]': postalCodeController.text,
       'address[house_number]': houseNumberController.text,
       'address[street]': streetController.text,
-      // Dynamically handle selected days
-      for (int i = 0; i < selectedDay.length; i++) 
-      {
-      }
-      'days[$i][day]': selectedDay[i],
-      
+      for (int i = 0; i < selectedTags.length; i++)
+        'tags[$i]': selectedTags[i].id,
+      ...daysMap,
       'services_description': descriptionController.text,
-      'services[0]': serviceController.text,
+      // 'services[0]': serviceController.text,
       // Adding profile image if available
       'profile_image': imagePathForProfile.isNotEmpty
           ? await MultipartFile.fromFile(imagePathForProfile)
           : null,
-      for (int i = 0; i < imagesPathsForId.length; i++)
-        'validate_document[$i]':
-            await MultipartFile.fromFile(imagesPathsForId[i]),
-      // Dynamically handle formatted start and end times
-      // for (int i = 0; i < formattedStartTimes.length; i++)
-      //   'time[$i]': formattedStartTimes[i],
-      // for (int i = 0; i < formattedEndTimes.length; i++)
-      //   'time[$i]': formattedEndTimes[i],
+      if (imagesPathsForId.isNotEmpty)
+        'validate_documents': [
+          for (String path in imagesPathsForId)
+            await MultipartFile.fromFile(path)
+        ],
+
       'fare_per_hour': costPerHourController.text,
-      'age': '30', // Adjust this logic as needed
+      'age': '30', // Adjust this logic as needed,
+      "countryCode": "+${countryCodeController.text}"
     });
 
     return formData;
@@ -230,6 +239,11 @@ class RegisterCubit extends Cubit<RegisterState> {
 // 'validate_document': imagesPathsForId.isNotEmpty
 //           ? await MultipartFile.fromFile(imagesPathsForId.first)
 //           : null,
+  // Dynamically handle formatted start and end times
+  // for (int i = 0; i < formattedStartTimes.length; i++)
+  //   'time[$i]': formattedStartTimes[i],
+  // for (int i = 0; i < formattedEndTimes.length; i++)
+  //   'time[$i]': formattedEndTimes[i],
   Future<void> registerClient() async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {
       dev.log("Validation failed", name: "Register");
@@ -261,14 +275,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
-  Future<void> registerWorker() async {
+  Future<void> registerWorker(BuildContext context) async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {
       return;
     }
-    FormData data = await prepareFormDataForWorkerRegister();
+    FormData data = await prepareFormDataForWorkerRegister(context);
     dev.log(
         AnsiColor.colorize(
-          " Data: ${data.fields}",
+          " Data : ${data.fields}  ,  ${data.files}",
           AnsiColor.yellow,
         ),
         name: "register Worker");

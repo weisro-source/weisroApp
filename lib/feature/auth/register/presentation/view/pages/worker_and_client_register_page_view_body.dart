@@ -154,9 +154,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                 builder: (context, getAllCountriesState) {
                   if (getAllCountriesState is GetAllCountriesSuccess) {
                     final countries = getAllCountriesState.countries;
-                    registerCubit.cityName = context
-                        .read<GetCitiesOfASpecifiedCountryCubit>()
-                        .cityName;
+
                     return CountryDropdown(
                       countries: countries,
                       selectedCountry:
@@ -204,6 +202,9 @@ class _WorkerAndClientRegisterPageViewBodyState
                 builder: (context, getAllCitiesState) {
                   if (getAllCitiesState
                       is GetCitiesOfASpecifiedCountrySuccess) {
+                    registerCubit.cityName = context
+                        .read<GetCitiesOfASpecifiedCountryCubit>()
+                        .cityName;
                     return CityDropdown(
                       cityList: getAllCitiesState.cities,
                       onChanged: (value) {

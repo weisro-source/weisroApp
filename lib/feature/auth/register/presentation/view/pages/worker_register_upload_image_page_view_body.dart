@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -8,9 +9,12 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker_tags_cubit/get_all_worker_tags_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/loading_filed.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/tags_drop_down.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/note_widget.dart';
@@ -56,19 +60,36 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 10.kh,
           ),
+          // SliverToBoxAdapter(
+          //   child: Padding(
+          //     padding: const EdgeInsetsDirectional.only(start: 28),
+          //     child: CustomTextFormFiled(
+          //       hintText: "",
+          //       controller: registerCubit.serviceController,
+          //       focusNode: registerCubit.serviceFocusNode,
+          //       borderColor: AppColors.orangeColor,
+          //       onFieldSubmitted: (p0) => HelperFunctions.requestNextFocus(
+          //           registerCubit.serviceFocusNode,
+          //           registerCubit.descriptionFocusNode,
+          //           context),
+          //     ),
+          //   ),
+          // ),
           SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 28),
-              child: CustomTextFormFiled(
-                hintText: "",
-                controller: registerCubit.serviceController,
-                focusNode: registerCubit.serviceFocusNode,
-                borderColor: AppColors.orangeColor,
-                onFieldSubmitted: (p0) => HelperFunctions.requestNextFocus(
-                    registerCubit.serviceFocusNode,
-                    registerCubit.descriptionFocusNode,
-                    context),
-              ),
+            child: BlocBuilder<GetAllWorkerTagsCubit, GetAllWorkerTagsState>(
+              builder: (context, getAllWorkerTagsState) {
+                if (getAllWorkerTagsState is GetAllWorkerTagsLoading) {
+                  return const LoadingFiled();
+                } else if (getAllWorkerTagsState is GetAllWorkerTagsSuccess) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: WorkerTagsDropDown(
+                        allTags: getAllWorkerTagsState.allTags.docs ?? []),
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
             ),
           ),
           SliverToBoxAdapter(
@@ -182,7 +203,9 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    HelperFunctions.navigateToBack(context);
+                  },
                   buttonColor: AppColors.redColor,
                   borderColor: AppColors.redColor,
                   height: 32,
@@ -194,7 +217,7 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
                   data: ThemeData(primaryColor: AppColors.whiteColor),
                   child: AppButton(
                     onPressed: () async {
-                      await registerCubit.registerWorker();
+                      await registerCubit.registerWorker(context);
                     },
                     buttonColor: Colors.white,
                     borderColor: AppColors.orangeColor,

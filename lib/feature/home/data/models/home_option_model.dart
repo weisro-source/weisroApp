@@ -1,6 +1,7 @@
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/core/widgets/coming_soon_page_view.dart';
 import 'package:weisro/feature/home/presentation/view/pages/categories_worker_services_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -33,8 +34,10 @@ class HomeOptionModel {
           title: S.of(context).Rental_Workers,
           icon: ImagePath.imagesWorker,
           workerShow: false),
-      HomeOptionModel(() {},
-          title: "Game", icon: ImagePath.imagesGame, workerShow: true)
+      HomeOptionModel(() {
+        HelperFunctions.navigateToScreen(
+            context, (context) => const ComingSoonPageView());
+      }, title: "Game", icon: ImagePath.imagesGame, workerShow: true)
     ];
   }
 }

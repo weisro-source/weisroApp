@@ -6,6 +6,7 @@ import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/data/models/success_login_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
+import 'package:weisro/feature/auth/data/models/worker_tags_model.dart';
 
 abstract class AuthenticationRepository {
   Future<Either<Failure, SuccessRegisterModel>> clientRegisterApi(
@@ -23,4 +24,6 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, CountryList>> getAllCountries();
   Future<Either<Failure, CityList>> getCitiesOfASpecifiedCountry(
       String countryName);
+  Future<Either<Failure, WorkerTags>> getAllWorkerTagApi(
+     );
 }

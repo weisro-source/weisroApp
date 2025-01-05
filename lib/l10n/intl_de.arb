@@ -185,5 +185,13 @@
     "Booking_Successful": "Buchung erfolgreich",
     "Booking_Confirmed": "Ihre Buchung wurde bestätigt. Vielen Dank!",
     "cash": "Kasse",
-    "Change_Email": "E-Mail ändern"
+    "Change_Email": "E-Mail ändern",
+    "Update_Successful": "Aktualisierung erfolgreich",
+    "Information_Updated_Successfully": "Ihre Informationen wurden erfolgreich aktualisiert.",
+    "Update_Failed": "Aktualisierung fehlgeschlagen",
+    "Error_Updating_Information": "Beim Aktualisieren Ihrer Informationen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "Old_Password": "Altes Passwort",
+    "Your_Booking": "Ihre Buchung",
+    "ID": "ID",
+    "Total_Price": "Gesamtpreis"
 }
