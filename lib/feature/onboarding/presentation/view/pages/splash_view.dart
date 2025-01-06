@@ -34,7 +34,7 @@ class _SplashViewState extends State<SplashView>
         if (!mounted) {
           return;
         }
-        HelperFunctions.navigateToScreen(
+        HelperFunctions.navigateToScreenAndRemove(
           context,
           (context) =>
               token != null ? const HomePageView() : const OnBoardingPageView(),

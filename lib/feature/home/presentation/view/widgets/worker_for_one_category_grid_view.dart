@@ -34,6 +34,7 @@ class WorkerForOneCategoryGridView extends StatelessWidget {
           price: worker.user?.lastName ?? "0",
           age: "",
           rate: worker.rate.toString(),
+          tags: worker.tags,
         );
       },
     );
