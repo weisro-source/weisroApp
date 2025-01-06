@@ -120,7 +120,6 @@ nextPage:$nextPage
         pagingCounter, hasPrevPage, hasNextPage, prevPage, nextPage);
   }
 }
-
 class Docs {
   final String? id;
   final List<Days>? days;
@@ -131,50 +130,55 @@ class Docs {
   final int? rate;
   final String? servicesDescription;
   final int? farePerHour;
-  final List<String>? tags;
+  final List<Tag>? tags; // Updated type from List<String> to List<Tag>
   final User? user;
-  const Docs(
-      {this.id,
-      this.days,
-      this.validateDocuments,
-      this.images,
-      this.profileImage,
-      this.age,
-      this.rate,
-      this.servicesDescription,
-      this.farePerHour,
-      this.tags,
-      this.user});
-  Docs copyWith(
-      {String? id,
-      List<Days>? days,
-      List<String>? validateDocuments,
-      List<String>? images,
-      String? profileImage,
-      int? age,
-      int? rate,
-      String? servicesDescription,
-      int? farePerHour,
-      List<String>? tags,
-      User? user}) {
+
+  const Docs({
+    this.id,
+    this.days,
+    this.validateDocuments,
+    this.images,
+    this.profileImage,
+    this.age,
+    this.rate,
+    this.servicesDescription,
+    this.farePerHour,
+    this.tags,
+    this.user,
+  });
+
+  Docs copyWith({
+    String? id,
+    List<Days>? days,
+    List<String>? validateDocuments,
+    List<String>? images,
+    String? profileImage,
+    int? age,
+    int? rate,
+    String? servicesDescription,
+    int? farePerHour,
+    List<Tag>? tags,
+    User? user,
+  }) {
     return Docs(
-        id: id ?? this.id,
-        days: days ?? this.days,
-        validateDocuments: validateDocuments ?? this.validateDocuments,
-        images: images ?? this.images,
-        profileImage: profileImage ?? this.profileImage,
-        age: age ?? this.age,
-        rate: rate ?? this.rate,
-        servicesDescription: servicesDescription ?? this.servicesDescription,
-        farePerHour: farePerHour ?? this.farePerHour,
-        tags: tags ?? this.tags,
-        user: user ?? this.user);
+      id: id ?? this.id,
+      days: days ?? this.days,
+      validateDocuments: validateDocuments ?? this.validateDocuments,
+      images: images ?? this.images,
+      profileImage: profileImage ?? this.profileImage,
+      age: age ?? this.age,
+      rate: rate ?? this.rate,
+      servicesDescription: servicesDescription ?? this.servicesDescription,
+      farePerHour: farePerHour ?? this.farePerHour,
+      tags: tags ?? this.tags,
+      user: user ?? this.user,
+    );
   }
 
   Map<String, Object?> toJson() {
     return {
       '_id': id,
-      'days': days?.map<Map<String, dynamic>>((data) => data.toJson()).toList(),
+      'days': days?.map((data) => data.toJson()).toList(),
       'validate_documents': validateDocuments,
       'images': images,
       'profile_image': profileImage,
@@ -182,54 +186,49 @@ class Docs {
       'rate': rate,
       'services_description': servicesDescription,
       'fare_per_hour': farePerHour,
-      'tags': tags,
-      'user': user?.toJson()
+      'tags': tags?.map((tag) => tag.toJson()).toList(), // Serialize tags
+      'user': user?.toJson(),
     };
   }
 
   static Docs fromJson(Map<String, Object?> json) {
     return Docs(
       id: json['_id'] as String?,
-      days: json['days'] == null
-          ? null
-          : (json['days'] as List)
-              .map<Days>((data) => Days.fromJson(data as Map<String, Object?>))
-              .toList(),
-      validateDocuments: json['validate_documents'] == null
-          ? null
-          : (json['validate_documents'] as List<dynamic>).cast<String>(),
-      images: json['images'] == null
-          ? null
-          : (json['images'] as List<dynamic>).cast<String>(),
+      days: (json['days'] as List<dynamic>?)
+          ?.map((data) => Days.fromJson(data as Map<String, Object?>))
+          .toList(),
+      validateDocuments: (json['validate_documents'] as List<dynamic>?)
+          ?.cast<String>(),
+      images: (json['images'] as List<dynamic>?)?.cast<String>(),
       profileImage: json['profile_image'] as String?,
       age: json['age'] as int?,
       rate: json['rate'] as int?,
       servicesDescription: json['services_description'] as String?,
       farePerHour: json['fare_per_hour'] as int?,
-      tags: json['tags'] == null
-          ? null
-          : (json['tags'] as List<dynamic>).cast<String>(),
-      user: json['user'] == null
-          ? null
-          : User.fromJson(json['user'] as Map<String, Object?>),
+      tags: (json['tags'] as List<dynamic>?)
+          ?.map((data) => Tag.fromJson(data as Map<String, Object?>))
+          .toList(),
+      user: json['user'] != null
+          ? User.fromJson(json['user'] as Map<String, Object?>)
+          : null,
     );
   }
 
   @override
   String toString() {
     return '''Docs(
-                id:$id,
-days:${days.toString()},
-validateDocuments:$validateDocuments,
-images:$images,
-profileImage:$profileImage,
-age:$age,
-rate:$rate,
-servicesDescription:$servicesDescription,
-farePerHour:$farePerHour,
-tags:$tags,
-user:${user.toString()}
-    ) ''';
+      id: $id,
+      days: $days,
+      validateDocuments: $validateDocuments,
+      images: $images,
+      profileImage: $profileImage,
+      age: $age,
+      rate: $rate,
+      servicesDescription: $servicesDescription,
+      farePerHour: $farePerHour,
+      tags: $tags,
+      user: $user,
+    )''';
   }
 
   @override
@@ -251,10 +250,69 @@ user:${user.toString()}
 
   @override
   int get hashCode {
-    return Object.hash(runtimeType, id, days, validateDocuments, images,
-        profileImage, age, rate, servicesDescription, farePerHour, tags, user);
+    return Object.hash(
+      runtimeType,
+      id,
+      days,
+      validateDocuments,
+      images,
+      profileImage,
+      age,
+      rate,
+      servicesDescription,
+      farePerHour,
+      tags,
+      user,
+    );
   }
 }
+
+class Tag {
+  final String? id;
+  final String? name;
+
+  const Tag({this.id, this.name});
+
+  Tag copyWith({String? id, String? name}) {
+    return Tag(
+      id: id ?? this.id,
+      name: name ?? this.name,
+    );
+  }
+
+  Map<String, Object?> toJson() {
+    return {
+      '_id': id,
+      'name': name,
+    };
+  }
+
+  static Tag fromJson(Map<String, Object?> json) {
+    return Tag(
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Tag(id: $id, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is Tag &&
+        other.runtimeType == runtimeType &&
+        other.id == id &&
+        other.name == name;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(runtimeType, id, name);
+  }
+}
+
 
 class User {
   final String? id;

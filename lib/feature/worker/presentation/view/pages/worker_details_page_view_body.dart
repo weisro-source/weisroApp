@@ -11,7 +11,7 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
-import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view.dart';
+import 'package:weisro/feature/worker/data/models/workers_for_category_model.dart';
 import 'package:weisro/generated/l10n.dart';
 import '../../../../../core/widgets/image_list_in_details_page.dart';
 
@@ -25,8 +25,10 @@ class WorkerDetailsPageViewBody extends StatefulWidget {
       required this.id,
       required this.type,
       required this.age,
-      required this.rate});
+      required this.rate,
+      this.tags});
   final String image, name, location, price, id, type, age, rate;
+  final List<Tag>? tags;
 
   @override
   State<WorkerDetailsPageViewBody> createState() =>
@@ -111,13 +113,14 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverGrid.builder(
-            itemCount: 4,
+            itemCount: widget.tags?.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 166 / 31,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10),
             itemBuilder: (context, index) {
+              String tag = widget.tags?[index].name ?? "";
               return Container(
                 decoration: StyleFunctions.decorationRadius8Orange(),
                 child: Row(
@@ -134,7 +137,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                     ),
                     8.kw,
                     Text(
-                      "indoor cleaning ",
+                      tag,
                       style: AppStyles.style12w400Grey(context),
                     ),
                   ],

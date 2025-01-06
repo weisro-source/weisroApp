@@ -10,6 +10,7 @@ import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/services/presentation/view/pages/services_details_page_view.dart';
+import 'package:weisro/feature/worker/data/models/workers_for_category_model.dart';
 import 'package:weisro/feature/worker/presentation/view/pages/worker_details_page_view.dart';
 
 class WorkerForOneService extends StatelessWidget {
@@ -25,10 +26,12 @@ class WorkerForOneService extends StatelessWidget {
     this.rate,
     required this.id,
     required this.type,
+    this.tags,
   });
   final bool isRateVisibility, isAgeVisibility;
   final String image, name, location, price, id, type;
   final String? age, rate;
+  final List<Tag>? tags;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,6 +51,7 @@ class WorkerForOneService extends StatelessWidget {
                     image: image,
                     age: age ?? "",
                     rate: rate ?? "",
+                    tags: tags,
                   ));
       },
       child: Container(

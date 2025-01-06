@@ -62,7 +62,7 @@ class CountryDropdown extends StatelessWidget {
             imageUrl: selectedItem?.flag ?? "",
             width: 24,
             height: 16,
-            placeholder: (context, url) => const CircularProgressIndicator(),
+            placeholder: (context, url) => const ShimmerAppButton.rectangular(),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
           title: Text(selectedItem?.name ?? ""),
