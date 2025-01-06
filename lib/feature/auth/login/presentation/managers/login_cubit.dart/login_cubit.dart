@@ -57,7 +57,6 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold((errorInLogin) {
       emit(LoginFailures(errMessage: errorInLogin.errMassage));
     }, (loginSuccess) async {
-    print(loginSuccess);
       await _handelSuccessLogin(
           loginSuccess.token, loginSuccess.user ?? const UserClientModel());
       emit(LoginSuccess(successLoginModel: loginSuccess));

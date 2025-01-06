@@ -31,10 +31,11 @@ class WorkerForOneCategoryGridView extends StatelessWidget {
               "",
           location: worker.user?.address?.city ?? "",
           name: worker.user?.firstName ?? "",
-          price: worker.user?.lastName ?? "0",
+          price: worker.farePerHour.toString(),
           age: "",
           rate: worker.rate.toString(),
           tags: worker.tags,
+          images: worker.images,
         );
       },
     );

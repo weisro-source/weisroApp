@@ -27,11 +27,13 @@ class WorkerForOneService extends StatelessWidget {
     required this.id,
     required this.type,
     this.tags,
+     this.images,
   });
   final bool isRateVisibility, isAgeVisibility;
   final String image, name, location, price, id, type;
   final String? age, rate;
   final List<Tag>? tags;
+  final List<String>? images;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -52,6 +54,7 @@ class WorkerForOneService extends StatelessWidget {
                     age: age ?? "",
                     rate: rate ?? "",
                     tags: tags,
+                    images: images,
                   ));
       },
       child: Container(

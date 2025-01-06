@@ -43,7 +43,7 @@ class UserClientModel {
       'phone': phone,
       'password': password,
       'address': address?.toJson(),
-      "countryCode":countryCode
+      "countryCode": countryCode
     };
   }
 
@@ -64,6 +64,8 @@ class UserClientModel {
         email: json['email'] == null ? null : json['email'] as String,
         phone: json['phone'] == null ? null : json['phone'] as String,
         password: json['password'] == null ? null : json['password'] as String,
+        countryCode:
+            json['countryCode'] == null ? null : json['countryCode'] as String,
         address: json['address'] == null
             ? null
             : Address.fromJson(json['address'] as Map<String, Object?>));

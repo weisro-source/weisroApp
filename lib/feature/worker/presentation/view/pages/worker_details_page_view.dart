@@ -13,10 +13,11 @@ class WorkerDetailsPageView extends StatelessWidget {
       required this.type,
       required this.age,
       required this.rate,
-      this.tags})
+      this.tags, this.images})
       : super(key: key);
   final String image, name, location, price, id, type, age, rate;
   final List<Tag>? tags;
+  final List<String>? images;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class WorkerDetailsPageView extends StatelessWidget {
       age: age,
       rate: rate,
       tags: tags,
+      images: images,
     ));
   }
 }

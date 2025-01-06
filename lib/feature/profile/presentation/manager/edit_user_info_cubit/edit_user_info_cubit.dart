@@ -51,6 +51,7 @@ class EditUserInfoCubit extends Cubit<EditUserInfoState> {
     streetController.text = CacheHelper.getData(key: CacheKeys.kUserStreet);
     houseNumberController.text =
         CacheHelper.getData(key: CacheKeys.kHouseNumber);
+    phoneController.text = CacheHelper.getData(key: CacheKeys.kUserPhone);
   }
 
   Future<void> updateCacheData(
