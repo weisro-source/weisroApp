@@ -7,7 +7,6 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
-import 'package:weisro/core/widgets/remove_image_icon.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -49,7 +48,6 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
         } else {
           context.read<RegisterCubit>().imagesPathsForWork =
               _selectedImages.map((e) => e.path).toList();
-          print(context.read<RegisterCubit>().imagesPathsForWork.length);
         }
       });
     } else {

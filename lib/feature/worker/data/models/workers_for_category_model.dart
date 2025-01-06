@@ -29,8 +29,8 @@ class WorkersForCategory {
       int? pagingCounter,
       bool? hasPrevPage,
       bool? hasNextPage,
-      dynamic? prevPage,
-      dynamic? nextPage}) {
+      dynamic prevPage,
+      dynamic nextPage}) {
     return WorkersForCategory(
         docs: docs ?? this.docs,
         totalDocs: totalDocs ?? this.totalDocs,

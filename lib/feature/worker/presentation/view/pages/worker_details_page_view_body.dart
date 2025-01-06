@@ -26,9 +26,11 @@ class WorkerDetailsPageViewBody extends StatefulWidget {
       required this.type,
       required this.age,
       required this.rate,
-      this.tags});
+      this.tags,
+      this.images});
   final String image, name, location, price, id, type, age, rate;
   final List<Tag>? tags;
+  final List<String>? images;
 
   @override
   State<WorkerDetailsPageViewBody> createState() =>
@@ -46,16 +48,24 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
         SliverToBoxAdapter(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                child: ImageListInDetailsPage(
-                  pageController: pageController,
-                  imageList: const [],
-                  isReview: false,
+              Visibility(
+                visible: widget.images?.isNotEmpty ?? false,
+                child: Padding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
+                  child: ImageListInDetailsPage(
+                    pageController: pageController,
+                    imageList: widget.images ?? [],
+                    isReview: false,
+                  ),
                 ),
               ),
               15.kh,
-              PageIndicatorWidget(controller: pageController, count: 4),
+              Visibility(
+                  visible: widget.images?.isNotEmpty ?? false,
+                  child: PageIndicatorWidget(
+                      controller: pageController,
+                      count: widget.images?.length ?? 0)),
               22.kh,
               ServiceNameRowWidget(
                 isFav: false,

@@ -130,6 +130,7 @@ class CustomPhoneInput extends StatelessWidget {
         ),
       ),
       initialCountryCode: countryCode,
+
       onCountryChanged: onCountryChanged,
       onChanged: onChanged,
     );

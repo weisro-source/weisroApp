@@ -48,12 +48,14 @@ class CacheHelper {
   }
 
   static cacheUserData(UserClientModel user) async {
-    print(user.toString());
     await CacheHelper.setData(
         key: CacheKeys.kUserFirstName, value: user.firstName);
     await CacheHelper.setData(
         key: CacheKeys.kUserLastName, value: user.lastName);
     await CacheHelper.setData(key: CacheKeys.kUserEmail, value: user.email);
+    await CacheHelper.setData(key: CacheKeys.kUserPhone, value: user.phone);
+    await CacheHelper.setData(
+        key: CacheKeys.kCountryCode, value: user.countryCode);
     await CacheHelper.setData(
         key: CacheKeys.kUserStreet, value: user.address?.street);
     await CacheHelper.setData(
