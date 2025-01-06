@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
+import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/custom_search_text_field.dart';
 
 class SearchBar extends StatelessWidget {
@@ -25,11 +28,20 @@ class SearchBar extends StatelessWidget {
                 },
                 icon: SvgPicture.asset(IconsPath.iconsArrowRight))),
         Visibility(visible: !isNotificationShow, child: 23.kw),
-        const Expanded(
+        Expanded(
           flex: 3,
-          child: SizedBox(
-            height: 33,
-            child: CustomSearchTextField(),
+          child: GestureDetector(
+            onTap: () {
+              HelperFunctions.navigateToScreenAndRemove(
+                context,
+                (context) => const HomePageView(),
+              );
+              context.read<BottomNavCubit>().changeIndex(3);
+            },
+            child: const SizedBox(
+              height: 33,
+              child: CustomSearchTextField(),
+            ),
           ),
         ),
         Visibility(visible: isNotificationShow, child: 33.kw),

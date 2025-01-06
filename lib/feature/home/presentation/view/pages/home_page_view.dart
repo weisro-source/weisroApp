@@ -21,7 +21,7 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<GetUserInfoCubit>(context).saveUserInfo();
+    // BlocProvider.of<GetUserInfoCubit>(context).saveUserInfo();
 
     // Initialize Quick Actions
     quickActions.initialize((String shortcutType) {

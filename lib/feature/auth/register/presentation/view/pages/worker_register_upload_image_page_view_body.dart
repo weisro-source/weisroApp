@@ -167,6 +167,7 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 28),
               child: UploaderContainerWidget(
                 isMultiPick: true,
+                isForId: true,
                 hintText:
                     "${S.of(context).Passport} , ${S.of(context).Identity} , ${S.of(context).Accommodation} , ${S.of(context).Drivers_License}",
               ),
@@ -192,7 +193,28 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
               padding: const EdgeInsetsDirectional.only(start: 28),
               child: UploaderContainerWidget(
                   isMultiPick: false,
+                  isForId: false,
                   hintText: S.of(context).Profile_Image_Shaping),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: 32.kh,
+          ),
+          SliverToBoxAdapter(
+            child: QuestionWidget(
+                icon: IconsPath.iconsProfile,
+                questionText: S.of(context).Upload_Images_For_Your_Work),
+          ),
+          SliverToBoxAdapter(
+            child: 10.kh,
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(start: 28),
+              child: UploaderContainerWidget(
+                  isMultiPick: true,
+                  isForId: false,
+                  hintText: S.of(context).Upload_Images_For_Your_Work),
             ),
           ),
           SliverToBoxAdapter(

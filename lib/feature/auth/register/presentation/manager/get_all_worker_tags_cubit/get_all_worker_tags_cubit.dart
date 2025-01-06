@@ -10,7 +10,7 @@ part 'get_all_worker_tags_state.dart';
 class GetAllWorkerTagsCubit extends Cubit<GetAllWorkerTagsState> {
   GetAllWorkerTagsCubit() : super(GetAllWorkerTagsInitial());
   static GetAllWorkerTagsCubit get(context) => BlocProvider.of(context);
-  List<Docs> selectedTags = [];
+  List<Doc> selectedTags = [];
   Future<void> getAllWorkerTags() async {
     emit(GetAllWorkerTagsLoading());
     var result =

@@ -19,15 +19,15 @@ import 'package:weisro/feature/profile/data/account_repo/account_repo.dart';
 import 'package:weisro/feature/profile/data/account_repo/account_repo_impl.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo.dart';
 import 'package:weisro/feature/services/data/service_repo/service_repo_impl.dart';
+import 'package:weisro/feature/worker/data/repo/worker_repo.dart';
+import 'package:weisro/feature/worker/data/repo/worker_repo_imple.dart';
 
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
   getIt.registerSingleton<Dio>(
     Dio(
-    
       BaseOptions(
-      
         baseUrl: HelperFunctions.isDebugMode()
             ? Constants.debugUrl
             : Constants.releaseUrl,
@@ -49,4 +49,5 @@ void setupServiceLocator() {
   getIt.registerSingleton<AdsRepository>(AdsRepositoryImplementation());
   getIt.registerSingleton<BookingRepository>(BookingRepositoryImplementation());
   getIt.registerSingleton<OrderRepository>(OrderRepositoryImplementation());
+  getIt.registerSingleton<WorkerRepository>(WorkerRepositoryImplementation());
 }

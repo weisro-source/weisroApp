@@ -9,6 +9,7 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: false,
       decoration: const InputDecoration(
           fillColor: AppColors.second1Color,
           filled: true,
@@ -17,6 +18,8 @@ class CustomSearchTextField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 0.5, color: AppColors.orangeColor)),
           enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 0.5, color: AppColors.orangeColor)),
+          disabledBorder: OutlineInputBorder(
               borderSide:
                   BorderSide(width: 0.5, color: AppColors.orangeColor))),
     );

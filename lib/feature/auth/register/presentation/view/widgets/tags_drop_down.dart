@@ -6,21 +6,21 @@ import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker
 
 class WorkerTagsDropDown extends StatelessWidget {
   const WorkerTagsDropDown({super.key, required this.allTags});
-  final List<Docs> allTags;
+  final List<Doc> allTags;
 
   @override
   Widget build(BuildContext context) {
     GetAllWorkerTagsCubit tagsCubit = GetAllWorkerTagsCubit.get(context);
-    return DropdownSearch<Docs>.multiSelection(
+    return DropdownSearch<Doc>.multiSelection(
       items: (filter, loadProps) => allTags,
-      itemAsString: (Docs u) => u.name ?? "Unnamed tags",
-      onChanged: (List<Docs> tags) {
+      itemAsString: (Doc u) => u.name ?? "Unnamed tags",
+      onChanged: (List<Doc> tags) {
         tagsCubit.selectedTags = tags;
       },
       compareFn: (item1, item2) {
         return (item1.name == item2.name);
       },
-      filterFn: (Docs tag, String filter) {
+      filterFn: (Doc tag, String filter) {
         return tag.name!.toLowerCase().contains(filter.toLowerCase());
       },
       dropdownBuilder: (context, selectedItems) {
@@ -53,7 +53,7 @@ class WorkerTagsDropDown extends StatelessWidget {
           physics: BouncingScrollPhysics(), // For smoother scrolling
         ),
       ),
-      validator: (List<Docs>? tags) {
+      validator: (List<Doc>? tags) {
         if (tags == null || tags.isEmpty) {
           return "Please select at least one user";
         }

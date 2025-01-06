@@ -7,6 +7,7 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/core/widgets/remove_image_icon.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -15,11 +16,12 @@ class UploaderContainerWidget extends StatefulWidget {
     Key? key,
     this.hintText,
     this.isMultiPick = true,
+    required this.isForId,
   }) : super(key: key);
 
   final String? hintText;
   final bool isMultiPick;
-
+  final bool isForId;
   @override
   UploaderContainerWidgetState createState() => UploaderContainerWidgetState();
 }
@@ -41,8 +43,14 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
       );
       setState(() {
         _selectedImages.addAll(resizedImages);
-        context.read<RegisterCubit>().imagesPathsForId =
-            _selectedImages.map((e) => e.path).toList();
+        if (widget.isForId) {
+          context.read<RegisterCubit>().imagesPathsForId =
+              _selectedImages.map((e) => e.path).toList();
+        } else {
+          context.read<RegisterCubit>().imagesPathsForWork =
+              _selectedImages.map((e) => e.path).toList();
+          print(context.read<RegisterCubit>().imagesPathsForWork.length);
+        }
       });
     } else {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -74,6 +82,26 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
         }
       });
     }
+  }
+
+  void _removeImage(int index) {
+    setState(() {
+      // Remove the image from the list
+      _selectedImages.removeAt(index);
+      if (widget.isMultiPick) {
+        if (widget.isForId) {
+          context.read<RegisterCubit>().imagesPathsForId.removeAt(index);
+        } else {
+          context.read<RegisterCubit>().imagesPathsForWork.removeAt(index);
+        }
+      } else {
+        context.read<RegisterCubit>().imagePathForProfile = '';
+      }
+      // Optionally, remove the image path from the cubit
+    });
+    // print(context.read<RegisterCubit>().imagesPathsForId.length);
+    // print(context.read<RegisterCubit>().imagePathForProfile);
+    // print(context.read<RegisterCubit>().imagesPathsForWork.length);
   }
 
   // Dialog for choosing gallery or camera
@@ -137,23 +165,64 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
                       scrollDirection: Axis.horizontal,
                       itemCount: _selectedImages.length,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Image.file(
-                            _selectedImages[index],
-                            width: 80,
-                            height: 80,
-                            fit: BoxFit.cover,
-                          ),
+                        return Stack(
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4.0),
+                              child: Image.file(
+                                _selectedImages[index],
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => _removeImage(index),
+                              child: Container(
+                                width: 21,
+                                height: 21,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.redColor),
+                                child: Center(
+                                  child: Text(
+                                    'X',
+                                    style: AppStyles.style14w500White(context),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         );
                       },
                     )
                   : _selectedImages.isNotEmpty
-                      ? Image.file(
-                          _selectedImages[0],
-                          width: 80,
-                          height: 80,
-                          fit: BoxFit.cover,
+                      ? Stack(
+                          children: [
+                            Image.file(
+                              _selectedImages[0],
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                            GestureDetector(
+                              onTap: () => _removeImage(0),
+                              child: Container(
+                                width: 21,
+                                height: 21,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.redColor),
+                                child: Center(
+                                  child: Text(
+                                    'X',
+                                    style: AppStyles.style14w500White(context),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
                         )
                       : Center(child: SvgPicture.asset(IconsPath.iconsPhoto)),
             ),

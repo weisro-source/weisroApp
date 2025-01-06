@@ -34,4 +34,6 @@ class ApiEndPoints {
   static const String getYourBooking = '/booking/?type=user';
   // worker tags
   static const String getWorkerTags = '/category?type=workers&all=true';
+  // worker routes
+  static const String getWorkForCategory = "/worker?";
 }
