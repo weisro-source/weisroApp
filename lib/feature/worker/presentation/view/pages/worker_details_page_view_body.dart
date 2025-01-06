@@ -6,6 +6,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/ad_widget_in_details.dart';
 import 'package:weisro/core/widgets/app_button.dart';
+import 'package:weisro/core/widgets/coming_soon_page_view.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
@@ -15,7 +16,17 @@ import 'package:weisro/generated/l10n.dart';
 import '../../../../../core/widgets/image_list_in_details_page.dart';
 
 class WorkerDetailsPageViewBody extends StatefulWidget {
-  const WorkerDetailsPageViewBody({super.key});
+  const WorkerDetailsPageViewBody(
+      {super.key,
+      required this.image,
+      required this.name,
+      required this.location,
+      required this.price,
+      required this.id,
+      required this.type,
+      required this.age,
+      required this.rate});
+  final String image, name, location, price, id, type, age, rate;
 
   @override
   State<WorkerDetailsPageViewBody> createState() =>
@@ -47,7 +58,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               ServiceNameRowWidget(
                 isFav: false,
                 isFavLoading: false,
-                serviceName: "Name Worker",
+                serviceName: widget.name,
                 onFavPressed: () {
                   // Add your logic for favorite button
                 },
@@ -56,9 +67,9 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                 },
               ),
               15.kh,
-              const LocationPriceRowWidget(
-                price: "38 Years",
-                location: "",
+              LocationPriceRowWidget(
+                price: widget.price,
+                location: widget.location,
               ),
               15.kh,
               Padding(
@@ -157,7 +168,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                 ),
                 child: Center(
                   child: Text(
-                    "5000",
+                    widget.price,
                     style: AppStyles.style14w500Orange(context),
                   ),
                 ),
@@ -168,7 +179,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                   onPressed: () {
                     HelperFunctions.navigateToScreen(
                       context,
-                      (context) => const BookWorkerPageView(),
+                      (context) => const ComingSoonPageView(),
                     );
                   },
                   text: S.of(context).Book_Now,

@@ -80,6 +80,8 @@ class RegisterCubit extends Cubit<RegisterState> {
   List<String> favoriteHours = []; // store the hours
   List<String> imagesPathsForId =
       []; // Store image paths for id and passport etc ....
+  List<String> imagesPathsForWork =
+      []; // Store image paths for id and passport etc ....
   String imagePathForProfile = ''; // Store image paths for profile
 
   Address createAddress() {
@@ -172,7 +174,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         'days[$i][end]': endTime,
       });
     }
-    List<Docs> selectedTags =
+    List<Doc> selectedTags =
         BlocProvider.of<GetAllWorkerTagsCubit>(context).selectedTags;
     // Debug the formatted times lists before returning
     // dev.log("Formatted start times: $formattedStartTimes");
@@ -201,6 +203,11 @@ class RegisterCubit extends Cubit<RegisterState> {
       if (imagesPathsForId.isNotEmpty)
         'validate_documents': [
           for (String path in imagesPathsForId)
+            await MultipartFile.fromFile(path)
+        ],
+      if (imagesPathsForWork.isNotEmpty)
+        'images': [
+          for (String path in imagesPathsForWork)
             await MultipartFile.fromFile(path)
         ],
 

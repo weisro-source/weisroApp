@@ -48,6 +48,7 @@ class CacheHelper {
   }
 
   static cacheUserData(UserClientModel user) async {
+    print(user.toString());
     await CacheHelper.setData(
         key: CacheKeys.kUserFirstName, value: user.firstName);
     await CacheHelper.setData(

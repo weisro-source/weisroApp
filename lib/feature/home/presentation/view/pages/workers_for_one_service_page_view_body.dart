@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_error_widget.dart';
-import 'package:weisro/feature/home/presentation/managers/services_by_category_id_cubit/services_by_category_id_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/advertisement_widget.dart';
+import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/worker_and_service_grid_shimmer_view.dart';
+import 'package:weisro/feature/worker/data/models/workers_for_category_model.dart';
+import 'package:weisro/feature/worker/presentation/manager/get_worker_for_one_category_cubit/get_worker_for_one_category_cubit.dart';
 import '../widgets/search_bar.dart' as search;
 import '../widgets/worker_for_one_category_grid_view.dart';
 
@@ -37,14 +39,15 @@ class _WorkersForOneServicePageViewBodyState
     if (currentPositions >= 0.5 * maxScrollLength) {
       if (!isLoading && hasNext) {
         isLoading = true;
-        await BlocProvider.of<ServicesByCategoryIdCubit>(context)
-            .fetchServicesByCategoryId(widget.categoryId, context,
+        await BlocProvider.of<GetWorkerForOneCategoryCubit>(context)
+            .getAllWorkersForOneCategory(widget.categoryId, context,
                 pageNumber: nextPage++);
         isLoading = false;
       }
     }
   }
 
+  List<Docs> allWorkers = [];
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -62,20 +65,37 @@ class _WorkersForOneServicePageViewBodyState
         SliverToBoxAdapter(
           child: 30.kh,
         ),
-        BlocConsumer<ServicesByCategoryIdCubit, ServicesByCategoryIdState>(
-          listener: (context, state) {},
+        BlocConsumer<GetWorkerForOneCategoryCubit,
+            GetWorkerForOneCategoryState>(
+          listener: (context, getServicesByCategoryIdState) {
+            if (getServicesByCategoryIdState
+                is GetWorkerForOneCategorySuccess) {
+              allWorkers
+                  .addAll(getServicesByCategoryIdState.workers.docs ?? []);
+              hasNext =
+                  getServicesByCategoryIdState.workers.hasNextPage ?? false;
+            }
+          },
           builder: (context, getServicesByCategoryIdState) {
             if (getServicesByCategoryIdState
-                    is ServicesByCategoryIdPaginationLoading ||
+                    is GetWorkerForOneCategoryLoadingPagination ||
                 getServicesByCategoryIdState
-                    is ServicesByCategoryIdPaginationFailures ||
-                getServicesByCategoryIdState is ServicesByCategoryIdSuccess) {
-              return const SliverPadding(
-                padding: EdgeInsetsDirectional.symmetric(horizontal: 24),
-                sliver: WorkerForOneCategoryGridView(),
-              );
+                    is GetWorkerForOneCategoryFailuresPagination ||
+                getServicesByCategoryIdState
+                    is GetWorkerForOneCategorySuccess) {
+              if (allWorkers.isEmpty) {
+                return const SliverToBoxAdapter(child: NotFoundWidget());
+              } else {
+                return SliverPadding(
+                  padding:
+                      const EdgeInsetsDirectional.symmetric(horizontal: 24),
+                  sliver: WorkerForOneCategoryGridView(
+                    workers: allWorkers,
+                  ),
+                );
+              }
             } else if (getServicesByCategoryIdState
-                is ServicesByCategoryIdLoading) {
+                is GetWorkerForOneCategoryLoading) {
               return const WorkerAndServiceGridShimmerView();
             } else {
               return const SliverToBoxAdapter(

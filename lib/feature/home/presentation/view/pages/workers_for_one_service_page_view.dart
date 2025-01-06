@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/feature/home/presentation/managers/services_by_category_id_cubit/services_by_category_id_cubit.dart';
+import 'package:weisro/feature/worker/presentation/manager/get_worker_for_one_category_cubit/get_worker_for_one_category_cubit.dart';
 
 import 'workers_for_one_service_page_view_body.dart';
 
@@ -25,8 +26,8 @@ class _WorkersForOneServicePageViewState
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ServicesByCategoryIdCubit()
-        ..fetchServicesByCategoryId(widget.categoryId, context),
+      create: (context) => GetWorkerForOneCategoryCubit()
+        ..getAllWorkersForOneCategory(widget.categoryId, context),
       child: Scaffold(
           body: WorkersForOneServicePageViewBody(
         categoryId: widget.categoryId,

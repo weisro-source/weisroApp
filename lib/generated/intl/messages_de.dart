@@ -267,6 +267,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aktualisierung fehlgeschlagen"),
         "Update_Successful":
             MessageLookupByLibrary.simpleMessage("Aktualisierung erfolgreich"),
+        "Upload_Images_For_Your_Work": MessageLookupByLibrary.simpleMessage(
+            "Laden Sie Bilder Ihrer Arbeit hoch"),
         "Upload_Profile_Picture": MessageLookupByLibrary.simpleMessage(
             "Laden Sie Ihr echtes Profilbild hoch"),
         "Verified": MessageLookupByLibrary.simpleMessage("verifiziert"),

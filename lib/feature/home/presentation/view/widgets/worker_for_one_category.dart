@@ -39,7 +39,16 @@ class WorkerForOneService extends StatelessWidget {
                 ? ServicesDetailsPageView(
                     serviceId: id,
                   )
-                : const WorkerDetailsPageView());
+                : WorkerDetailsPageView(
+                    id: id,
+                    location: location,
+                    name: name,
+                    price: price,
+                    type: type,
+                    image: image,
+                    age: age ?? "",
+                    rate: rate ?? "",
+                  ));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -99,7 +108,7 @@ class WorkerForOneService extends StatelessWidget {
                           ),
                           3.kw,
                           Text(
-                            "4.5",
+                            rate ?? "",
                             style: AppStyles.style10w500Red(context)
                                 .copyWith(color: AppColors.orangeColor),
                           )
@@ -166,7 +175,7 @@ class WorkerForOneService extends StatelessWidget {
             ),
           ],
         ),
-      ),  
+      ),
     );
   }
 }

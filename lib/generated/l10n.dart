@@ -2011,6 +2011,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Upload images for your work`
+  String get Upload_Images_For_Your_Work {
+    return Intl.message(
+      'Upload images for your work',
+      name: 'Upload_Images_For_Your_Work',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
