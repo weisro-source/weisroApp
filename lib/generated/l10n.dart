@@ -2021,6 +2021,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Note`
+  String get Note {
+    return Intl.message(
+      'Note',
+      name: 'Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a day`
+  String get Please_select_a_day {
+    return Intl.message(
+      'Please select a day',
+      name: 'Please_select_a_day',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

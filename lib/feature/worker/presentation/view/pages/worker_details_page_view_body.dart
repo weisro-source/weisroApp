@@ -6,12 +6,13 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/ad_widget_in_details.dart';
 import 'package:weisro/core/widgets/app_button.dart';
-import 'package:weisro/core/widgets/coming_soon_page_view.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/location_price_row_widget.dart';
 import 'package:weisro/core/widgets/service_name_row_widget.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
+import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/data/models/workers_for_category_model.dart';
+import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 import '../../../../../core/widgets/image_list_in_details_page.dart';
 
@@ -27,10 +28,12 @@ class WorkerDetailsPageViewBody extends StatefulWidget {
       required this.age,
       required this.rate,
       this.tags,
-      this.images});
+      this.images,
+      this.days});
   final String image, name, location, price, id, type, age, rate;
   final List<Tag>? tags;
   final List<String>? images;
+  final List<Day>? days;
 
   @override
   State<WorkerDetailsPageViewBody> createState() =>
@@ -39,6 +42,18 @@ class WorkerDetailsPageViewBody extends StatefulWidget {
 
 class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
   final PageController pageController = PageController();
+  late num parsedPrice;
+
+  @override
+  void initState() {
+    super.initState();
+    // Parse widget.price to num during initialization
+    try {
+      parsedPrice = num.parse(widget.price);
+    } catch (e) {
+      parsedPrice = 0; // Handle the case where parsing fails
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +196,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
                 ),
                 child: Center(
                   child: Text(
-                    widget.price,
+                    "\$${widget.price}",
                     style: AppStyles.style14w500Orange(context),
                   ),
                 ),
@@ -190,10 +205,18 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               Expanded(
                 child: AppButton(
                   onPressed: () {
+                    print(widget.id);
                     HelperFunctions.navigateToScreen(
                       context,
-                      (context) => const ComingSoonPageView(),
+                      (context) => BookWorkerPageView(
+                        workerId: widget.id,
+                        days: widget.days ?? [],
+                      ),
                     );
+                    // HelperFunctions.navigateToScreen(
+                    //   context,
+                    //   (context) => const ComingSoonPageView(),
+                    // );
                   },
                   text: S.of(context).Book_Now,
                 ),

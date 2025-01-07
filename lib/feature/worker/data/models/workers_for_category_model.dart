@@ -1,3 +1,5 @@
+import 'package:weisro/feature/services/data/models/service_model.dart';
+
 class WorkersForCategory {
   final List<Docs>? docs;
   final int? totalDocs;
@@ -120,9 +122,10 @@ nextPage:$nextPage
         pagingCounter, hasPrevPage, hasNextPage, prevPage, nextPage);
   }
 }
+
 class Docs {
   final String? id;
-  final List<Days>? days;
+  final List<Day>? days;
   final List<String>? validateDocuments;
   final List<String>? images;
   final String? profileImage;
@@ -149,7 +152,7 @@ class Docs {
 
   Docs copyWith({
     String? id,
-    List<Days>? days,
+    List<Day>? days,
     List<String>? validateDocuments,
     List<String>? images,
     String? profileImage,
@@ -195,10 +198,10 @@ class Docs {
     return Docs(
       id: json['_id'] as String?,
       days: (json['days'] as List<dynamic>?)
-          ?.map((data) => Days.fromJson(data as Map<String, Object?>))
+          ?.map((data) => Day.fromJson(data as Map<String, Object?>))
           .toList(),
-      validateDocuments: (json['validate_documents'] as List<dynamic>?)
-          ?.cast<String>(),
+      validateDocuments:
+          (json['validate_documents'] as List<dynamic>?)?.cast<String>(),
       images: (json['images'] as List<dynamic>?)?.cast<String>(),
       profileImage: json['profile_image'] as String?,
       age: json['age'] as int?,
@@ -312,7 +315,6 @@ class Tag {
     return Object.hash(runtimeType, id, name);
   }
 }
-
 
 class User {
   final String? id;
@@ -483,57 +485,5 @@ houseNumber:$houseNumber
   int get hashCode {
     return Object.hash(
         runtimeType, city, country, postalCode, street, houseNumber);
-  }
-}
-
-class Days {
-  final String? day;
-  final String? start;
-  final String? end;
-  final String? id;
-  const Days({this.day, this.start, this.end, this.id});
-  Days copyWith({String? day, String? start, String? end, String? id}) {
-    return Days(
-        day: day ?? this.day,
-        start: start ?? this.start,
-        end: end ?? this.end,
-        id: id ?? this.id);
-  }
-
-  Map<String, Object?> toJson() {
-    return {'day': day, 'start': start, 'end': end, '_id': id};
-  }
-
-  static Days fromJson(Map<String, Object?> json) {
-    return Days(
-        day: json['day'] == null ? null : json['day'] as String,
-        start: json['start'] == null ? null : json['start'] as String,
-        end: json['end'] == null ? null : json['end'] as String,
-        id: json['_id'] == null ? null : json['_id'] as String);
-  }
-
-  @override
-  String toString() {
-    return '''Days(
-                day:$day,
-start:$start,
-end:$end,
-id:$id
-    ) ''';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is Days &&
-        other.runtimeType == runtimeType &&
-        other.day == day &&
-        other.start == start &&
-        other.end == end &&
-        other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(runtimeType, day, start, end, id);
   }
 }

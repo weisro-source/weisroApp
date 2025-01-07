@@ -168,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NO Location Found"),
         "No_result_found":
             MessageLookupByLibrary.simpleMessage("NO Result Found"),
+        "Note": MessageLookupByLibrary.simpleMessage("Note"),
         "OR": MessageLookupByLibrary.simpleMessage("OR"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "Old_Password": MessageLookupByLibrary.simpleMessage("Old Password"),
@@ -183,6 +184,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Personal Information"),
         "Pick_From_Gallery":
             MessageLookupByLibrary.simpleMessage("Pick from Gallery"),
+        "Please_select_a_day":
+            MessageLookupByLibrary.simpleMessage("Please select a day"),
         "Postal_Code": MessageLookupByLibrary.simpleMessage("Postal code"),
         "Price": MessageLookupByLibrary.simpleMessage("price"),
         "PrivacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),

@@ -23,6 +23,7 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view_body.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
 import 'package:weisro/generated/l10n.dart';
+import '../../../../worker/presentation/view/widget/one_information.dart';
 import '../widgets/cancel_and_button.dart';
 import '../widgets/selected_type.dart';
 
