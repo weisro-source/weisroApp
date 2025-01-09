@@ -11,10 +11,14 @@ part 'your_booking_state.dart';
 class YourBookingCubit extends Cubit<YourBookingState> {
   YourBookingCubit() : super(YourBookingInitial());
 
-  Future<void> getAllYourBooking() async {
-    emit(YourBookingLoading());
+  Future<void> getAllYourBooking({int pageNumber = 1}) async {
+    if (pageNumber == 1) {
+      emit(YourBookingLoading());
+    } else {
+      emit(YourBookingPaginationLoading());
+    }
     Either<Failure, YourBookingModel> result =
-        await getIt.get<BookingRepository>().yourBookingApi();
+        await getIt.get<BookingRepository>().yourBookingApi(pageNumber);
     result.fold(
       (errorInGetAllBooking) {
         emit(YourBookingPaginationFailures(error: errorInGetAllBooking));
