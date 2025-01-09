@@ -169,6 +169,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "No_result_found":
             MessageLookupByLibrary.simpleMessage("KEIN Ergebnis gefunden"),
         "Note": MessageLookupByLibrary.simpleMessage("Hinweis"),
+        "Notifications":
+            MessageLookupByLibrary.simpleMessage("Benachrichtigungen"),
         "OR": MessageLookupByLibrary.simpleMessage("ODER"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "Old_Password": MessageLookupByLibrary.simpleMessage("Altes Passwort"),
@@ -219,6 +221,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
         "Save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "Search": MessageLookupByLibrary.simpleMessage("Suche"),
+        "Search_Here": MessageLookupByLibrary.simpleMessage("Hier suchen"),
         "Search_In": MessageLookupByLibrary.simpleMessage("Suchen in"),
         "Search_Page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_empty": MessageLookupByLibrary.simpleMessage("Suche ist leer"),
