@@ -34,7 +34,7 @@ void main() async {
     DevicePreview(
       availableLocales: const [Locale('en'), Locale('de')],
       enabled: HelperFunctions.isDebugMode() && !HelperFunctions.isAndroid(),
-      builder: (context) => const WeisroApp(),
+      builder: (context) => const WeisroApp(),  
     ),
   );
 }

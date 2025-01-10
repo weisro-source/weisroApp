@@ -9,7 +9,7 @@ class YourBookingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => YourBookingCubit()..getAllYourBooking(),
+      create: (context) => YourBookingCubit()..getAllYourBooking(pageNumber: 1),
       child: const Scaffold(
         appBar: CustomAppBarInProfileView(),
         body: YourBookingPageViewBody(),

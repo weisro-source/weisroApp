@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
@@ -47,14 +49,20 @@ class _SplashViewState extends State<SplashView>
   }
 
   void _setupWidgetListener() {
-    HomeWidget.setAppGroupId('com.weisro.weisro'); // Replace with your app's ID
+    HomeWidget.setAppGroupId('com.weisro.weisro');
     HomeWidget.registerInteractivityCallback(_backgroundCallback);
 
     HomeWidget.getWidgetData<String>('widget_click', defaultValue: '')
         .then((value) {
       if (value == 'action_add_service') {
+      
         _handleHomeWidgetTap();
+      } else {
+        // Log or handle unexpected data
+        log('Unexpected widget data: $value');
       }
+    }).catchError((error) {
+      log('Error fetching widget data: $error');
     });
   }
 

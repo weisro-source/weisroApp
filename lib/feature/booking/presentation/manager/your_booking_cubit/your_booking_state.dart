@@ -20,3 +20,9 @@ final class YourBookingPaginationFailures extends YourBookingState {
 
   YourBookingPaginationFailures({required this.error});
 }
+
+final class YourBookingFailures extends YourBookingState {
+  final Failure error;
+
+  YourBookingFailures({required this.error});
+}

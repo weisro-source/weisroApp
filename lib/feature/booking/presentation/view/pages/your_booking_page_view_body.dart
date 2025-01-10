@@ -8,6 +8,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
 import 'package:weisro/feature/booking/presentation/manager/your_booking_cubit/your_booking_cubit.dart';
+import 'package:weisro/feature/booking/presentation/view/pages/receive_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/widgets/user_posts_list_view_shimmer.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -85,7 +86,53 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
                   ),
                 );
               } else {
-                return const SizedBox();
+                return GestureDetector(
+                  onTap: () => HelperFunctions.navigateToScreen(
+                    context,
+                    (context) => const ReceivePageView(),
+                  ),
+                  child: Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
+                      border:
+                          Border.all(color: AppColors.orangeColor, width: 1),
+                    ),
+                    child: Row(
+                      children: [
+                        20.kw,
+                        CachedNetworkImage(
+                          imageUrl: "",
+                          errorWidget: (context, url, error) {
+                            return Image.asset(ImagePath.imagesService);
+                          },
+                        ),
+                        20.kw,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            20.kh,
+                            Text(
+                              S.of(context).ID,
+                              style: AppStyles.style12w400Second2(context),
+                            ),
+                            10.kh,
+                            Text(
+                              S.of(context).Total_Price,
+                              style: AppStyles.style12w400Second2(context),
+                            ),
+                            10.kh,
+                            Text(
+                              S.of(context).Payment_Method,
+                              style: AppStyles.style12w400Second2(context),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
               }
             },
           )

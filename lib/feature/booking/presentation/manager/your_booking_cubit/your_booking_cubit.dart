@@ -21,7 +21,11 @@ class YourBookingCubit extends Cubit<YourBookingState> {
         await getIt.get<BookingRepository>().yourBookingApi(pageNumber);
     result.fold(
       (errorInGetAllBooking) {
-        emit(YourBookingPaginationFailures(error: errorInGetAllBooking));
+        if (pageNumber == 1) {
+          emit(YourBookingFailures(error: errorInGetAllBooking));
+        } else {
+          emit(YourBookingPaginationFailures(error: errorInGetAllBooking));
+        }
       },
       (allBooking) {
         emit(YourBookingSuccess(bookingModel: allBooking));
