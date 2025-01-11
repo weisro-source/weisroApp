@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 
-import 'custom_action_widget.dart';
 import 'custom_leading_icon.dart';
 
 class CustomAppBar extends StatelessWidget {

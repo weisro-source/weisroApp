@@ -11,7 +11,7 @@ class NotificationsRepositoryImplementation implements NotificationsRepository {
   Future<Either<Failure, NotificationModel>> getAllUserNotificationApi(
       [int pageNumber = 1]) async {
     try {
-      var response = await _apiService.get(endPoint: "");
+       await _apiService.get(endPoint: "");
       return right(NotificationModel());
     } catch (errorInGetAllUserNotification) {
       return left(ErrorHandler.handleError(errorInGetAllUserNotification));

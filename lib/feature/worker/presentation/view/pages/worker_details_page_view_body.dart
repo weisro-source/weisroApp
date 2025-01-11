@@ -205,7 +205,6 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               Expanded(
                 child: AppButton(
                   onPressed: () {
-                    print(widget.id);
                     HelperFunctions.navigateToScreen(
                       context,
                       (context) => BookWorkerPageView(

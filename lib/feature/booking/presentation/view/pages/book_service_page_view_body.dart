@@ -20,7 +20,6 @@ import 'package:weisro/feature/booking/presentation/manager/book_service_cubit/b
 import 'package:weisro/feature/booking/presentation/view/widgets/day_list.dart';
 import 'package:weisro/feature/booking/presentation/view/widgets/hours_grid.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
-import 'package:weisro/feature/worker/presentation/view/pages/book_worker_page_view_body.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
 import 'package:weisro/generated/l10n.dart';
 import '../../../../worker/presentation/view/widget/one_information.dart';

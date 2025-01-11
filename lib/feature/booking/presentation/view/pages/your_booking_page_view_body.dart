@@ -8,9 +8,10 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
 import 'package:weisro/feature/booking/presentation/manager/your_booking_cubit/your_booking_cubit.dart';
-import 'package:weisro/feature/booking/presentation/view/pages/receive_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/widgets/user_posts_list_view_shimmer.dart';
 import 'package:weisro/generated/l10n.dart';
+
+import '../widgets/your_booking_list.dart';
 
 class YourBookingPageViewBody extends StatefulWidget {
   const YourBookingPageViewBody({super.key});
@@ -87,10 +88,10 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
                 );
               } else {
                 return GestureDetector(
-                  onTap: () => HelperFunctions.navigateToScreen(
-                    context,
-                    (context) => const ReceivePageView(),
-                  ),
+                  // onTap: () => HelperFunctions.navigateToScreen(
+                  //   context,
+                  //   (context) =>  ReceivePageView(booking: b,),
+                  // ),
                   child: Container(
                     height: 100,
                     decoration: BoxDecoration(
@@ -138,72 +139,6 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
           )
         ],
       ),
-    );
-  }
-}
-
-class YourBookingList extends StatelessWidget {
-  const YourBookingList({
-    super.key,
-    required this.allBooking,
-  });
-  final List<Docs> allBooking;
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => 20.kh,
-      itemCount: allBooking.length,
-      // itemCount: 100,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        Docs booking = allBooking[index];
-        // Docs booking = const Docs(
-        //     id: "675f01f86f7087f93f0670e4",
-        //     paymentMethod: "Cache",
-        //     totalPrice: 200);
-
-        return Container(
-          height: 100,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            border: Border.all(color: AppColors.orangeColor, width: 1),
-          ),
-          child: Row(
-            children: [
-              20.kw,
-              CachedNetworkImage(
-                imageUrl: "",
-                errorWidget: (context, url, error) {
-                  return Image.asset(ImagePath.imagesService);
-                },
-              ),
-              20.kw,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  20.kh,
-                  Text(
-                    "${S.of(context).ID} ${booking.id ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                  10.kh,
-                  Text(
-                    "${S.of(context).Total_Price} ${booking.totalPrice ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                  10.kh,
-                  Text(
-                    "${S.of(context).Payment_Method} ${booking.paymentMethod ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                ],
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

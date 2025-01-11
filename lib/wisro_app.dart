@@ -13,6 +13,8 @@ import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
@@ -70,10 +72,16 @@ class _WeisroAppState extends State<WeisroApp> {
           create: (context) => ServiceDayCubit(),
         ),
         BlocProvider(
+          create: (context) => GetAllWorkerTagsCubit(),
+        ),
+        BlocProvider(
           create: (context) => GetOrdersCubit(),
         ),
         BlocProvider(
-          create: (context) => GetAllWorkerTagsCubit(),
+          create: (context) => GetCompletedOrderCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetAllRejectOrdersCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

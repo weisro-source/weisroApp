@@ -29,7 +29,7 @@ class YourBookingModel {
       int? pagingCounter,
       bool? hasPrevPage,
       bool? hasNextPage,
-      dynamic? prevPage,
+      dynamic prevPage,
       int? nextPage}) {
     return YourBookingModel(
         docs: docs ?? this.docs,
@@ -126,7 +126,7 @@ class Docs {
   final Service? service;
   final List<Dates>? dates;
   final String? status;
-  final int? totalPrice;
+  final num? totalPrice;
   final String? notes;
   final String? paymentMethod;
   final Address? address;
@@ -146,7 +146,7 @@ class Docs {
       Service? service,
       List<Dates>? dates,
       String? status,
-      int? totalPrice,
+      num? totalPrice,
       String? notes,
       String? paymentMethod,
       Address? address,
@@ -192,7 +192,7 @@ class Docs {
                 .toList(),
         status: json['status'] == null ? null : json['status'] as String,
         totalPrice:
-            json['total_price'] == null ? null : json['total_price'] as int,
+            json['total_price'] == null ? null : json['total_price'] as num,
         notes: json['notes'] == null ? null : json['notes'] as String,
         paymentMethod: json['payment_method'] == null
             ? null
@@ -361,7 +361,7 @@ class Service {
       int? rate,
       List<String>? images,
       String? categoryId,
-      dynamic? user,
+      dynamic user,
       String? date,
       List<dynamic>? time}) {
     return Service(
