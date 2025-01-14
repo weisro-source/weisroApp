@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ihre Buchung wurde bestätigt. Vielen Dank!"),
         "Booking_Failed":
             MessageLookupByLibrary.simpleMessage("Buchung fehlgeschlagen"),
+        "Booking_Information":
+            MessageLookupByLibrary.simpleMessage("Buchungsinformationen"),
         "Booking_Successful":
             MessageLookupByLibrary.simpleMessage("Buchung erfolgreich"),
         "Both": MessageLookupByLibrary.simpleMessage("Beides"),
@@ -82,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Create_Worker_Account":
             MessageLookupByLibrary.simpleMessage("Arbeiterkonto erstellen"),
         "Daily": MessageLookupByLibrary.simpleMessage("Täglich"),
+        "Dates_Booked":
+            MessageLookupByLibrary.simpleMessage("Gebuchte Termine"),
         "Days": MessageLookupByLibrary.simpleMessage("Tage"),
         "Delete_Confirmation_Message": MessageLookupByLibrary.simpleMessage(
             "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?"),
@@ -160,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Night": MessageLookupByLibrary.simpleMessage("Nacht"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
+        "No_Orders_Found":
+            MessageLookupByLibrary.simpleMessage("Keine Bestellungen gefunden"),
         "No_Services_Available": MessageLookupByLibrary.simpleMessage(
             "Es sind keine Dienste in diesem Gebiet verfügbar"),
         "No_Services_Available_Cat": MessageLookupByLibrary.simpleMessage(
@@ -168,6 +174,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("KEIN Standort gefunden"),
         "No_result_found":
             MessageLookupByLibrary.simpleMessage("KEIN Ergebnis gefunden"),
+        "Note": MessageLookupByLibrary.simpleMessage("Hinweis"),
+        "Notifications":
+            MessageLookupByLibrary.simpleMessage("Benachrichtigungen"),
         "OR": MessageLookupByLibrary.simpleMessage("ODER"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "Old_Password": MessageLookupByLibrary.simpleMessage("Altes Passwort"),
@@ -183,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Persönliche Informationen"),
         "Pick_From_Gallery":
             MessageLookupByLibrary.simpleMessage("Aus der Galerie auswählen"),
+        "Please_select_a_day": MessageLookupByLibrary.simpleMessage(
+            "Bitte wählen Sie einen Tag aus"),
         "Postal_Code": MessageLookupByLibrary.simpleMessage("Postleitzahl"),
         "Price": MessageLookupByLibrary.simpleMessage("Preis"),
         "PrivacyPolicy":
@@ -216,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Sa": MessageLookupByLibrary.simpleMessage("Sa"),
         "Save": MessageLookupByLibrary.simpleMessage("Speichern"),
         "Search": MessageLookupByLibrary.simpleMessage("Suche"),
+        "Search_Here": MessageLookupByLibrary.simpleMessage("Hier suchen"),
         "Search_In": MessageLookupByLibrary.simpleMessage("Suchen in"),
         "Search_Page": MessageLookupByLibrary.simpleMessage("Suchseite"),
         "Search_empty": MessageLookupByLibrary.simpleMessage("Suche ist leer"),
@@ -237,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
+        "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
+            "Jemand hat eine Anfrage gestellt, um einen Service zu mieten, den Sie angeboten haben"),
         "Service_Name": MessageLookupByLibrary.simpleMessage("Dienstname"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),

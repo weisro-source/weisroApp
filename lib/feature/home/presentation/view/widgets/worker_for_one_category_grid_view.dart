@@ -36,6 +36,8 @@ class WorkerForOneCategoryGridView extends StatelessWidget {
           rate: worker.rate.toString(),
           tags: worker.tags,
           images: worker.images,
+          days: worker.days,
+          description: worker.servicesDescription,
         );
       },
     );

@@ -97,6 +97,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                     builder: (context, getAllCountriesState) {
                       if (getAllCountriesState is GetAllCountriesSuccess) {
                         final countries = getAllCountriesState.countries;
+                        newCountrySelected =
+                            GetAllCountriesCubit.get(context).selectedCountry;
                         return CountryDropdown(
                           countries: countries,
                           selectedCountry:

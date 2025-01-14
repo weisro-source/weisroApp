@@ -29,6 +29,7 @@ class OtpPageView extends StatelessWidget {
           body: OtpPageViewBody(
         isForgetPassword: isForgetPassword,
         isChangeEmail: isChangeEmail,
+        email: email,
       )),
     );
   }

@@ -4,6 +4,7 @@ import 'package:weisro/core/api/api_service.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/service_locator.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
 
 class PrivacyPolicyPageView extends StatefulWidget {
   const PrivacyPolicyPageView({
@@ -69,7 +70,7 @@ class _PrivacyPolicyPageViewState extends State<PrivacyPolicyPageView> {
         centerTitle: true,
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CustomLoading())
           : SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: _htmlContent.isEmpty

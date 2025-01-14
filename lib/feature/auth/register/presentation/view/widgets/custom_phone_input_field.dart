@@ -8,9 +8,10 @@ import 'package:intl_phone_field/phone_number.dart';
 
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/validate.dart';
 
-class CustomPhoneInput extends StatelessWidget {
+class CustomPhoneInput extends StatefulWidget {
   const CustomPhoneInput({
     super.key,
     required this.phoneController,
@@ -26,11 +27,26 @@ class CustomPhoneInput extends StatelessWidget {
   final void Function(PhoneNumber)? onChanged;
   final void Function(String)? onSubmitted;
   final void Function(Country)? onCountryChanged;
+
+  @override
+  State<CustomPhoneInput> createState() => _CustomPhoneInputState();
+}
+
+class _CustomPhoneInputState extends State<CustomPhoneInput> {
+  String countryCodeIso = "DE";
+  @override
+  void initState() {
+    super.initState();
+    if (widget.countryCode != "DE") {
+      countryCodeIso = Constants.countryCodeMap[widget.countryCode] ?? "DE";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
-      controller: phoneController,
-      focusNode: phoneNumberFocusNode,
+      controller: widget.phoneController,
+      focusNode: widget.phoneNumberFocusNode,
       // invalidNumberMessage: S.of(context).invalid_mobile_number,
 
       disableLengthCheck: false,
@@ -41,7 +57,7 @@ class CustomPhoneInput extends StatelessWidget {
           Validate.validatePhoneNumber(value?.number ?? "", context),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       dropdownIcon: const Icon(Icons.keyboard_arrow_down_outlined),
-      onSubmitted: onSubmitted,
+      onSubmitted: widget.onSubmitted,
       pickerDialogStyle: PickerDialogStyle(
           countryNameStyle:
               AppStyles.style10w400Second2(context).copyWith(fontSize: 16),
@@ -129,10 +145,10 @@ class CustomPhoneInput extends StatelessWidget {
           ),
         ),
       ),
-      initialCountryCode: countryCode,
+      initialCountryCode: countryCodeIso,
 
-      onCountryChanged: onCountryChanged,
-      onChanged: onChanged,
+      onCountryChanged: widget.onCountryChanged,
+      onChanged: widget.onChanged,
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/custom_search_text_field.dart';
+import 'package:weisro/feature/notifications/presentation/view/pages/notifications_page_view.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({
@@ -47,10 +48,18 @@ class SearchBar extends StatelessWidget {
         Visibility(visible: isNotificationShow, child: 33.kw),
         Visibility(
           visible: isNotificationShow,
-          child: SvgPicture.asset(
-            IconsPath.iconsNotification,
-            colorFilter:
-                const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
+          child: IconButton(
+            onPressed: () {
+              HelperFunctions.navigateToScreen(
+                context,
+                (context) => const NotificationsPageView(),
+              );
+            },
+            icon: SvgPicture.asset(
+              IconsPath.iconsNotification,
+              colorFilter:
+                  const ColorFilter.mode(AppColors.greyColor, BlendMode.srcIn),
+            ),
           ),
         ),
         25.kw,

@@ -2021,6 +2021,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Note`
+  String get Note {
+    return Intl.message(
+      'Note',
+      name: 'Note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a day`
+  String get Please_select_a_day {
+    return Intl.message(
+      'Please select a day',
+      name: 'Please_select_a_day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get Notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'Notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search here`
+  String get Search_Here {
+    return Intl.message(
+      'Search here',
+      name: 'Search_Here',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Orders Found`
+  String get No_Orders_Found {
+    return Intl.message(
+      'No Orders Found',
+      name: 'No_Orders_Found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dates Booked`
+  String get Dates_Booked {
+    return Intl.message(
+      'Dates Booked',
+      name: 'Dates_Booked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Someone has made a request to hire a service that you have put forward`
+  String get Service_Hire_Request {
+    return Intl.message(
+      'Someone has made a request to hire a service that you have put forward',
+      name: 'Service_Hire_Request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Information`
+  String get Booking_Information {
+    return Intl.message(
+      'Booking Information',
+      name: 'Booking_Information',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

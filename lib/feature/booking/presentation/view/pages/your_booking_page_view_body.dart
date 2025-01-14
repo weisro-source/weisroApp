@@ -1,12 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:weisro/core/assets_path/image_path.dart';
-import 'package:weisro/core/styles/app_color.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
+import 'package:weisro/feature/booking/presentation/manager/your_booking_cubit/your_booking_cubit.dart';
+import 'package:weisro/feature/profile/presentation/view/widgets/user_posts_list_view_shimmer.dart';
 import 'package:weisro/generated/l10n.dart';
+
+import '../widgets/your_booking_list.dart';
 
 class YourBookingPageViewBody extends StatefulWidget {
   const YourBookingPageViewBody({super.key});
@@ -36,13 +40,14 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
     if (currentPositions >= 0.5 * maxScrollLength) {
       if (!isLoading && hasNext) {
         isLoading = true;
-        // await BlocProvider.of<GetUserAdsCubit>(context)
-        //     .getUserAds(pageNumber: nextPage++);
+        await BlocProvider.of<YourBookingCubit>(context)
+            .getAllYourBooking(pageNumber: nextPage++);
         isLoading = false;
       }
     }
   }
-  // List<Docs> allAds = []; allBookings
+
+  List<Docs> allBooking = [];
 
   @override
   Widget build(BuildContext context) {
@@ -59,79 +64,34 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
             ),
           ),
           20.kh,
-          Padding(
-            padding: HelperFunctions.symmetricHorizontalPadding24,
-            child: const YourBookingList(
-              allBooking: [],
-            ),
+          BlocConsumer<YourBookingCubit, YourBookingState>(
+            listener: (context, yourBookingState) {
+              if (yourBookingState is YourBookingSuccess) {
+                allBooking.addAll(yourBookingState.bookingModel.docs ?? []);
+              }
+            },
+            builder: (context, yourBookingState) {
+              if (yourBookingState is YourBookingLoading) {
+                return Padding(
+                  padding: HelperFunctions.symmetricHorizontalPadding24,
+                  child: const UserPostsListViewShimmer(),
+                );
+              } else if (yourBookingState is YourBookingPaginationFailures ||
+                  yourBookingState is YourBookingSuccess ||
+                  yourBookingState is YourBookingPaginationLoading) {
+                return Padding(
+                  padding: HelperFunctions.symmetricHorizontalPadding24,
+                  child: YourBookingList(
+                    allBooking: allBooking,
+                  ),
+                );
+              } else {
+                return const CustomErrorWidgets();
+              }
+            },
           )
         ],
       ),
-    );
-  }
-}
-
-class YourBookingList extends StatelessWidget {
-  const YourBookingList({
-    super.key,
-    required this.allBooking,
-  });
-  final List<Docs> allBooking;
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => 20.kh,
-      itemCount: 5,
-      // itemCount: 100,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        Docs booking = const Docs(
-            id: "675f01f86f7087f93f0670e4",
-            paymentMethod: "Cache",
-            totalPrice: 200);
-
-        return Container(
-          height: 100,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8)),
-            border: Border.all(color: AppColors.orangeColor, width: 1),
-          ),
-          child: Row(
-            children: [
-              20.kw,
-              CachedNetworkImage(
-                imageUrl: "",
-                errorWidget: (context, url, error) {
-                  return Image.asset(ImagePath.imagesService);
-                },
-              ),
-              20.kw,
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  20.kh,
-                  Text(
-                    "${S.of(context).ID} ${booking.id ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                  10.kh,
-                  Text(
-                    "${S.of(context).Total_Price} ${booking.totalPrice ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                  10.kh,
-                  Text(
-                    "${S.of(context).Payment_Method} ${booking.paymentMethod ?? ""}",
-                    style: AppStyles.style12w400Second2(context),
-                  ),
-                ],
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

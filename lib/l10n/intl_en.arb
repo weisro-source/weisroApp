@@ -196,5 +196,13 @@
     "Your_Booking": "Your Booking",
     "ID": "ID",
     "Total_Price": "Total Price",
-    "Upload_Images_For_Your_Work": "Upload images for your work"
+    "Upload_Images_For_Your_Work": "Upload images for your work",
+    "Note": "Note",
+    "Please_select_a_day": "Please select a day",
+    "Notifications": "Notifications",
+    "Search_Here": "Search here",
+    "No_Orders_Found": "No Orders Found",
+    "Dates_Booked": "Dates Booked",
+    "Service_Hire_Request": "Someone has made a request to hire a service that you have put forward",
+    "Booking_Information": "Booking Information"
 }
