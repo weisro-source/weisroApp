@@ -17,8 +17,10 @@ class CategoriesWorkerAndServicesPageView extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        body: CategoriesWorkerAndServicesPageViewBody(
-          type: type,
+        body: SafeArea(
+          child: CategoriesWorkerAndServicesPageViewBody(
+            type: type,
+          ),
         ),
       ),
     );

@@ -278,6 +278,19 @@ class HelperFunctions {
     return formattedDate;
   }
 
+  /// Converts a date string (e.g., "2025-01-19") to the day of the week (e.g., "Sunday").
+  static String dateToDay(String dateString) {
+    try {
+      // Parse the date string with the format "yyyy-MM-dd"
+      final date = DateFormat('yyyy-MM-dd').parse(dateString);
+      // Format to get the day name
+      return DateFormat('EEEE').format(date); // e.g., "Sunday"
+    } catch (e) {
+      // Return a default value in case of an error
+      return 'Invalid date';
+    }
+  }
+
   static String truncateToHour(String time) {
     // Split the time string (e.g., "11:45" -> ["11", "45"])
     List<String> parts = time.split(':');

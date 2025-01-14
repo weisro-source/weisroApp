@@ -4,8 +4,6 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
-import '../widgets/custom_flitter_button.dart';
-import '../widgets/custom_search_filed_in_order_view.dart';
 import '../widgets/custom_tab_bar.dart';
 import '../widgets/custom_tab_bar_view.dart';
 

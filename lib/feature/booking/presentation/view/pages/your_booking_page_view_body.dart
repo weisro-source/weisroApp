@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weisro/core/assets_path/image_path.dart';
-import 'package:weisro/core/styles/app_color.dart';
+
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
 import 'package:weisro/feature/booking/presentation/manager/your_booking_cubit/your_booking_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/widgets/user_posts_list_view_shimmer.dart';
@@ -87,53 +86,7 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
                   ),
                 );
               } else {
-                return GestureDetector(
-                  // onTap: () => HelperFunctions.navigateToScreen(
-                  //   context,
-                  //   (context) =>  ReceivePageView(booking: b,),
-                  // ),
-                  child: Container(
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      border:
-                          Border.all(color: AppColors.orangeColor, width: 1),
-                    ),
-                    child: Row(
-                      children: [
-                        20.kw,
-                        CachedNetworkImage(
-                          imageUrl: "",
-                          errorWidget: (context, url, error) {
-                            return Image.asset(ImagePath.imagesService);
-                          },
-                        ),
-                        20.kw,
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            20.kh,
-                            Text(
-                              S.of(context).ID,
-                              style: AppStyles.style12w400Second2(context),
-                            ),
-                            10.kh,
-                            Text(
-                              S.of(context).Total_Price,
-                              style: AppStyles.style12w400Second2(context),
-                            ),
-                            10.kh,
-                            Text(
-                              S.of(context).Payment_Method,
-                              style: AppStyles.style12w400Second2(context),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                );
+                return const CustomErrorWidgets();
               }
             },
           )

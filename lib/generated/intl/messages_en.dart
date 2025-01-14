@@ -42,6 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your booking has been confirmed. Thank you!"),
         "Booking_Failed":
             MessageLookupByLibrary.simpleMessage("Booking Failed"),
+        "Booking_Information":
+            MessageLookupByLibrary.simpleMessage("Booking Information"),
         "Booking_Successful":
             MessageLookupByLibrary.simpleMessage("Booking Successful"),
         "Both": MessageLookupByLibrary.simpleMessage("Both"),
@@ -81,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Create_Worker_Account":
             MessageLookupByLibrary.simpleMessage("Create Worker account"),
         "Daily": MessageLookupByLibrary.simpleMessage("Daily"),
+        "Dates_Booked": MessageLookupByLibrary.simpleMessage("Dates Booked"),
         "Days": MessageLookupByLibrary.simpleMessage("Days"),
         "Delete_Confirmation_Message": MessageLookupByLibrary.simpleMessage(
             "Are you sure you want to delete this ad?"),
@@ -160,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Night": MessageLookupByLibrary.simpleMessage("Night"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* It is forbidden to publish any addresses or contact information"),
+        "No_Orders_Found":
+            MessageLookupByLibrary.simpleMessage("No Orders Found"),
         "No_Services_Available": MessageLookupByLibrary.simpleMessage(
             "There are no services available in this area"),
         "No_Services_Available_Cat": MessageLookupByLibrary.simpleMessage(
@@ -241,6 +246,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "What details of the service do you want from the worker?"),
+        "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
+            "Someone has made a request to hire a service that you have put forward"),
         "Service_Name": MessageLookupByLibrary.simpleMessage("Service Name"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("services Details"),

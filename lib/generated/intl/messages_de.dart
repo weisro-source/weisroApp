@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ihre Buchung wurde bestätigt. Vielen Dank!"),
         "Booking_Failed":
             MessageLookupByLibrary.simpleMessage("Buchung fehlgeschlagen"),
+        "Booking_Information":
+            MessageLookupByLibrary.simpleMessage("Buchungsinformationen"),
         "Booking_Successful":
             MessageLookupByLibrary.simpleMessage("Buchung erfolgreich"),
         "Both": MessageLookupByLibrary.simpleMessage("Beides"),
@@ -82,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Create_Worker_Account":
             MessageLookupByLibrary.simpleMessage("Arbeiterkonto erstellen"),
         "Daily": MessageLookupByLibrary.simpleMessage("Täglich"),
+        "Dates_Booked":
+            MessageLookupByLibrary.simpleMessage("Gebuchte Termine"),
         "Days": MessageLookupByLibrary.simpleMessage("Tage"),
         "Delete_Confirmation_Message": MessageLookupByLibrary.simpleMessage(
             "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?"),
@@ -160,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Night": MessageLookupByLibrary.simpleMessage("Nacht"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
+        "No_Orders_Found":
+            MessageLookupByLibrary.simpleMessage("Keine Bestellungen gefunden"),
         "No_Services_Available": MessageLookupByLibrary.simpleMessage(
             "Es sind keine Dienste in diesem Gebiet verfügbar"),
         "No_Services_Available_Cat": MessageLookupByLibrary.simpleMessage(
@@ -243,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
+        "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
+            "Jemand hat eine Anfrage gestellt, um einen Service zu mieten, den Sie angeboten haben"),
         "Service_Name": MessageLookupByLibrary.simpleMessage("Dienstname"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("Dienstleistungsdetails"),

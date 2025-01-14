@@ -29,8 +29,10 @@ class WorkerDetailsPageViewBody extends StatefulWidget {
       required this.rate,
       this.tags,
       this.images,
-      this.days});
+      this.days,
+      this.description});
   final String image, name, location, price, id, type, age, rate;
+  final String? description;
   final List<Tag>? tags;
   final List<String>? images;
   final List<Day>? days;
@@ -95,7 +97,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               ),
               15.kh,
               LocationPriceRowWidget(
-                price: widget.price,
+                price: "${widget.price}\$",
                 location: widget.location,
               ),
               15.kh,
@@ -112,8 +114,7 @@ class _WorkerDetailsPageViewBodyState extends State<WorkerDetailsPageViewBody> {
               5.kh,
               Padding(
                 padding: HelperFunctions.symmetricHorizontalPadding24,
-                child: Text(
-                    "This worker has over 15 years of experience in their field, providing high-quality service with a focus on customer satisfaction. Known for their professionalism and dedication, they are highly sought after in their industry. Whether you need specialized expertise or general assistance, they are ready to exceed expectations.",
+                child: Text(widget.description ?? "",
                     style: AppStyles.style14w400Grey(context)),
               ),
               20.kh,

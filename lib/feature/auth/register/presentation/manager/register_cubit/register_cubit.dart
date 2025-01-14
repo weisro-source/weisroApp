@@ -316,10 +316,10 @@ class RegisterCubit extends Cubit<RegisterState> {
           '+1${(random.nextInt(900) + 100)}${(random.nextInt(9000000) + 1000000)}';
 
       // Generate a random email address
-      String randomEmail = 'user${random.nextInt(1000)}@example.com';
+      // String randomEmail = 'user${random.nextInt(1000)}@example.com';
 
       // Populate fields with random values in debug mode
-      emailController.text = randomEmail;
+      // emailController.text = randomEmail;
       passwordController.text = "TestPassword123";
       confirmationPasswordController.text = "TestPassword123";
       firstNameController.text = "John";

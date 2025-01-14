@@ -29,7 +29,7 @@ class ReceivePageViewBody extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      "Someone has made a request to hire a service that you have put forward",
+                      S.of(context).Service_Hire_Request,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: AppStyles.style14w400Grey(context)
@@ -60,6 +60,53 @@ class ReceivePageViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(child: 38.kh),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: HelperFunctions.symmetricHorizontalPadding24,
+            child: Text(
+              S.of(context).Dates_Booked,
+              style: AppStyles.style16w400Grey(context),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(child: 15.kh),
+        SliverList.separated(
+          itemCount: booking.dates?.length ?? 0,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 40,
+              margin: HelperFunctions.symmetricHorizontalPadding24,
+              decoration: BoxDecoration(
+                color: AppColors.orangeColor,
+                border: Border.all(color: AppColors.orangeColor),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                children: [
+                  20.kw,
+                  Text(
+                    HelperFunctions.dateToDay(
+                      booking.dates?[index].date ?? "",
+                    ),
+                    style: AppStyles.style14w400White(context),
+                  )
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => 10.kh,
+        ),
+        SliverToBoxAdapter(child: 38.kh),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 35),
+            child: Text(
+              S.of(context).Booking_Information,
+              style: AppStyles.style16w400Grey(context),
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(child: 20.kh),
         SliverToBoxAdapter(
             child: Center(
           child: Container(
@@ -116,7 +163,8 @@ class ReceivePageViewBody extends StatelessWidget {
               onBookPressed: () {},
             ),
           ),
-        )
+        ),
+        SliverToBoxAdapter(child: 38.kh),
       ],
     );
   }

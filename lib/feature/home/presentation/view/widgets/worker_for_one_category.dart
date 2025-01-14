@@ -30,10 +30,11 @@ class WorkerForOneService extends StatelessWidget {
     this.tags,
     this.images,
     this.days,
+    this.description,
   });
   final bool isRateVisibility, isAgeVisibility;
   final String image, name, location, price, id, type;
-  final String? age, rate;
+  final String? age, rate, description;
   final List<Tag>? tags;
   final List<String>? images;
   final List<Day>? days;
@@ -59,6 +60,7 @@ class WorkerForOneService extends StatelessWidget {
                     rate: rate ?? "",
                     tags: tags,
                     images: images,
+                    description: description,
                   ));
       },
       child: Container(

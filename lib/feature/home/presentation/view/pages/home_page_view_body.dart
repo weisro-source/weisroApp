@@ -91,46 +91,93 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                         iconPath: IconsPath.iconsNew,
                       ),
                     ),
-                    BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
-                        GetCitiesOfASpecifiedCountryState>(
-                      builder: (context, state) {
-                        if (state is GetCitiesOfASpecifiedCountrySuccess) {
-                          List<String> cityNameList =
-                              state.cities.cities.map((e) => e.name).toList();
-                          String firstCity = cityNameList.firstWhere(
-                              (cityName) =>
-                                  cityName ==
-                                  CacheHelper.getData(
-                                      key: CacheKeys.kCityName));
-                          return Expanded(
-                            flex: 1,
-                            child: LocationFlitterDropDown(
-                              fillColor: AppColors.whiteColor,
-                              borderColor: AppColors.orangeColor,
-                              iconColor: AppColors.greyColor,
-                              height: 50,
-                              iconHeight: 24,
-                              iconWidth: 10,
-                              borderWidth: 1,
-                              borderRadius: 8,
-                              selectedLocation: firstCity,
-                              locations: cityNameList,
-                              prefixIcon: IconsPath.iconsLocation,
-                              onChanged: (selectedCategory) async {
-                                await context
-                                    .read<GetLastServicesCubit>()
-                                    .getLastService(
-                                        context, selectedCategory ?? "");
-                              },
-                            ),
-                          );
-                        } else {
-                          return const SizedBox();
-                        }
-                      },
-                    ),
+                    // BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                    //     GetCitiesOfASpecifiedCountryState>(
+                    //   builder: (context, state) {
+                    //     if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                    //       List<String> cityNameList =
+                    //           state.cities.cities.map((e) => e.name).toList();
+                    //       String firstCity = cityNameList.firstWhere(
+                    //           (cityName) =>
+                    //               cityName ==
+                    //               CacheHelper.getData(
+                    //                   key: CacheKeys.kCityName));
+                    //       return Expanded(
+                    //         flex:1,
+                    //         child: LocationFlitterDropDown(
+                    //           fillColor: AppColors.whiteColor,
+                    //           borderColor: AppColors.orangeColor,
+                    //           iconColor: AppColors.greyColor,
+                    //           height: 50,
+                    //           iconHeight: 24,
+                    //           iconWidth: 10,
+                    //           borderWidth: 1,
+                    //           borderRadius: 8,
+                    //           selectedLocation: firstCity,
+                    //           locations: cityNameList,
+                    //           prefixIcon: IconsPath.iconsLocation,
+                    //           onChanged: (selectedCategory) async {
+                    //             await context
+                    //                 .read<GetLastServicesCubit>()
+                    //                 .getLastService(
+                    //                     context, selectedCategory ?? "");
+                    //           },
+                    //         ),
+                    //       );
+                    //     } else {
+                    //       return const SizedBox();
+                    //     }
+                    //   },
+                    // ),
                   ],
                 ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: 20.kh,
+            ),
+            SliverToBoxAdapter(
+              child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                  GetCitiesOfASpecifiedCountryState>(
+                builder: (context, state) {
+                  if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                    List<String> cityNameList =
+                        state.cities.cities.map((e) => e.name).toList();
+                    String firstCity = cityNameList.firstWhere((cityName) =>
+                        cityName ==
+                        CacheHelper.getData(key: CacheKeys.kCityName));
+                    return Row(
+                      children: [
+                        24.kw,
+                        Expanded(
+                          flex: 1,
+                          child: LocationFlitterDropDown(
+                            fillColor: AppColors.whiteColor,
+                            borderColor: AppColors.orangeColor,
+                            iconColor: AppColors.greyColor,
+                            height: 50,
+                            iconHeight: 24,
+                            iconWidth: 10,
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            selectedLocation: firstCity,
+                            locations: cityNameList,
+                            prefixIcon: IconsPath.iconsLocation,
+                            onChanged: (selectedCategory) async {
+                              await context
+                                  .read<GetLastServicesCubit>()
+                                  .getLastService(
+                                      context, selectedCategory ?? "");
+                            },
+                          ),
+                        ),
+                        24.kw
+                      ],
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                },
               ),
             ),
             SliverToBoxAdapter(

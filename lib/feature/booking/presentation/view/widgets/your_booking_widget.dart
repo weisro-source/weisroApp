@@ -42,17 +42,17 @@ class YourBookingWidget extends StatelessWidget {
             children: [
               20.kh,
               Text(
-                "${S.of(context).ID} ${booking.id ?? ""}",
+                "${S.of(context).ID} : ${booking.id ?? ""}",
                 style: AppStyles.style12w400Second2(context),
               ),
               10.kh,
               Text(
-                "${S.of(context).Total_Price} ${booking.totalPrice ?? ""}",
+                "${S.of(context).Total_Price} : ${booking.totalPrice ?? ""}",
                 style: AppStyles.style12w400Second2(context),
               ),
               10.kh,
               Text(
-                "${S.of(context).Payment_Method} ${booking.paymentMethod ?? ""}",
+                "${S.of(context).Payment_Method} : ${booking.paymentMethod ?? ""}",
                 style: AppStyles.style12w400Second2(context),
               ),
             ],

@@ -30,7 +30,6 @@ class OtpPageViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VerifyOtpCubit verifyOtpCubit = VerifyOtpCubit.get(context);
-
     return Form(
       key: verifyOtpCubit.otpFormKey,
       child: CustomScrollView(
@@ -126,7 +125,7 @@ class OtpPageViewBody extends StatelessWidget {
                   } else {
                     return AppButton(
                         onPressed: () async {
-                          !isForgetPassword
+                          !isForgetPassword && !isChangeEmail
                               ? await verifyOtpCubit.verifyOtp(context)
                               : await verifyOtpCubit.verifyOtp(context, email);
                         },

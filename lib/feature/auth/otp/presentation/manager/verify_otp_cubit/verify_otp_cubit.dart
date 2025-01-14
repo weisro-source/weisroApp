@@ -23,6 +23,7 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
   }
 
   Future<void> verifyOtp(BuildContext context, [String? email]) async {
+  
     if (!HelperFunctions.validateForm(otpFormKey)) {
       return;
     }

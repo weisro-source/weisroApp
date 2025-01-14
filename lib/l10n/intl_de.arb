@@ -198,5 +198,9 @@
     "Note": "Hinweis",
     "Please_select_a_day": "Bitte wählen Sie einen Tag aus",
     "Notifications": "Benachrichtigungen",
-    "Search_Here": "Hier suchen"
+    "Search_Here": "Hier suchen",
+    "No_Orders_Found": "Keine Bestellungen gefunden",
+    "Dates_Booked": "Gebuchte Termine",
+    "Service_Hire_Request": "Jemand hat eine Anfrage gestellt, um einen Service zu mieten, den Sie angeboten haben",
+    "Booking_Information": "Buchungsinformationen"
 }

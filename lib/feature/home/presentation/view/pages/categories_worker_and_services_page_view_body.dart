@@ -5,6 +5,7 @@ import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/home/data/models/category_model.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/advertisement_widget.dart';
+import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/worker_and_service_grid_shimmer_view.dart';
 import '../widgets/search_bar.dart' as search;
 import '../widgets/category_for_worker_grid_view.dart';
@@ -86,10 +87,14 @@ class _CategoriesWorkerAndServicesPageViewBodyState
                 getCategoriesState is CategoriesPaginationFailures) {
               return SliverPadding(
                 padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-                sliver: CategoryForWorkerAndServiceGridView(
-                  allCategories: allCategories,
-                  type: widget.type,
-                ),
+                sliver: allCategories.isEmpty
+                    ? const SliverToBoxAdapter(
+                        child:  NotFoundWidget(),
+                      )
+                    : CategoryForWorkerAndServiceGridView(
+                        allCategories: allCategories,
+                        type: widget.type,
+                      ),
               );
             } else {
               return const SliverToBoxAdapter(

@@ -556,20 +556,29 @@ class Location {
   final String? city;
   final String? country;
   final String? address;
-  const Location(
-      {this.type, this.coordinates, this.city, this.country, this.address});
-  Location copyWith(
-      {String? type,
-      List<double>? coordinates,
-      String? city,
-      String? country,
-      String? address}) {
+
+  const Location({
+    this.type,
+    this.coordinates,
+    this.city,
+    this.country,
+    this.address,
+  });
+
+  Location copyWith({
+    String? type,
+    List<double>? coordinates,
+    String? city,
+    String? country,
+    String? address,
+  }) {
     return Location(
-        type: type ?? this.type,
-        coordinates: coordinates ?? this.coordinates,
-        city: city ?? this.city,
-        country: country ?? this.country,
-        address: address ?? this.address);
+      type: type ?? this.type,
+      coordinates: coordinates ?? this.coordinates,
+      city: city ?? this.city,
+      country: country ?? this.country,
+      address: address ?? this.address,
+    );
   }
 
   Map<String, Object?> toJson() {
@@ -578,30 +587,33 @@ class Location {
       'coordinates': coordinates,
       'city': city,
       'country': country,
-      'address': address
+      'address': address,
     };
   }
 
   static Location fromJson(Map<String, Object?> json) {
     return Location(
-        type: json['type'] == null ? null : json['type'] as String,
-        coordinates: json['coordinates'] == null
-            ? null
-            : json['coordinates'] as List<double>,
-        city: json['city'] == null ? null : json['city'] as String,
-        country: json['country'] == null ? null : json['country'] as String,
-        address: json['address'] == null ? null : json['address'] as String);
+      type: json['type'] == null ? null : json['type'] as String,
+      coordinates: json['coordinates'] == null
+          ? null
+          : (json['coordinates'] as List<dynamic>)
+              .map((e) => e as double)
+              .toList(),
+      city: json['city'] == null ? null : json['city'] as String,
+      country: json['country'] == null ? null : json['country'] as String,
+      address: json['address'] == null ? null : json['address'] as String,
+    );
   }
 
   @override
   String toString() {
     return '''Location(
-                type:$type,
-coordinates:$coordinates,
-city:$city,
-country:$country,
-address:$address
-    ) ''';
+      type: $type,
+      coordinates: $coordinates,
+      city: $city,
+      country: $country,
+      address: $address,
+    )''';
   }
 
   @override

@@ -2061,6 +2061,46 @@ class S {
       args: [],
     );
   }
+
+  /// `No Orders Found`
+  String get No_Orders_Found {
+    return Intl.message(
+      'No Orders Found',
+      name: 'No_Orders_Found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dates Booked`
+  String get Dates_Booked {
+    return Intl.message(
+      'Dates Booked',
+      name: 'Dates_Booked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Someone has made a request to hire a service that you have put forward`
+  String get Service_Hire_Request {
+    return Intl.message(
+      'Someone has made a request to hire a service that you have put forward',
+      name: 'Service_Hire_Request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking Information`
+  String get Booking_Information {
+    return Intl.message(
+      'Booking Information',
+      name: 'Booking_Information',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
