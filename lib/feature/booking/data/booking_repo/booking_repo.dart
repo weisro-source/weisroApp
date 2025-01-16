@@ -7,6 +7,8 @@ abstract class BookingRepository {
       Map<String, dynamic> data);
   Future<Either<Failure, String>> addBookingWorkerApi(
       Map<String, dynamic> data);
+  Future<Either<Failure, String>> updateBookingStatue(
+      String bookingId, String newState);
   Future<Either<Failure, YourBookingModel>> yourBookingApi(
       [int pageNumber = 1]);
 }

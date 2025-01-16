@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/styles/style_functions.dart';
+import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
+import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
+import 'package:weisro/feature/booking/presentation/manager/update_booking_statue_cubit/update_booking_statue_cubit.dart';
 import 'package:weisro/feature/booking/presentation/view/widgets/cancel_and_button.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/one_information.dart';
 import 'package:weisro/generated/l10n.dart';
+
+import '../widgets/information_text.dart';
 
 class ReceivePageViewBody extends StatelessWidget {
   const ReceivePageViewBody({super.key, required this.booking});
@@ -156,45 +163,64 @@ class ReceivePageViewBody extends StatelessWidget {
         SliverToBoxAdapter(child: 36.kh),
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
-          sliver: SliverToBoxAdapter(
-            child: CancelAndButton(
-              secondButton: S.of(context).Book_Now,
-              onCancelPressed: () => HelperFunctions.navigateToBack(context),
-              onBookPressed: () {},
-            ),
+          sliver:
+              BlocConsumer<UpdateBookingStatueCubit, UpdateBookingStatueState>(
+            listener: (context, updateBookingState) {
+              final messenger = ScaffoldMessenger.of(context);
+
+              if (updateBookingState is UpdateBookingStatueSuccess) {
+                MaterialBanner materialBanner =
+                    CustomMaterialBanner.successMaterialBanner(
+                  S.of(context).Booking_Successful,
+                  S.of(context).Booking_Confirmed,
+                );
+
+                messenger
+                  ..hideCurrentMaterialBanner()
+                  ..showMaterialBanner(materialBanner);
+
+                Future.delayed(const Duration(seconds: 3), () {
+                  messenger.hideCurrentMaterialBanner();
+                });
+              } else if (updateBookingState is UpdateBookingStatueFailures) {
+                MaterialBanner materialBanner =
+                    CustomMaterialBanner.failureMaterialBanner(
+                        S.of(context).Booking_Failed,
+                        updateBookingState.error.errMassage);
+                messenger
+                  ..hideCurrentMaterialBanner()
+                  ..showMaterialBanner(materialBanner);
+
+                Future.delayed(const Duration(seconds: 3), () {
+                  messenger.hideCurrentMaterialBanner();
+                });
+              }
+            },
+            builder: (context, updateBookingState) {
+              if (updateBookingState is UpdateBookingStatueLoading) {
+                return const SliverToBoxAdapter(
+                  child: CustomLoading(),
+                );
+              } else {
+                return SliverToBoxAdapter(
+                  child: CancelAndButton(
+                    secondButton: S.of(context).Book_Now,
+                    onCancelPressed: () =>
+                        HelperFunctions.navigateToBack(context),
+                    onBookPressed: () async {
+                      await context
+                          .read<UpdateBookingStatueCubit>()
+                          .updateBookingState(
+                              booking.id ?? "", Constants.acceptBookingState);
+                    },
+                  ),
+                );
+              }
+            },
           ),
         ),
         SliverToBoxAdapter(child: 38.kh),
       ],
-    );
-  }
-}
-
-class InformationText extends StatelessWidget {
-  const InformationText({
-    super.key,
-    required this.children,
-  });
-  final List<Widget> children;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      decoration: const BoxDecoration(
-          color: AppColors.whiteColor,
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.shadow3Color,
-              blurRadius: 4,
-              offset: Offset(0, -1),
-              spreadRadius: 0,
-            )
-          ],
-          borderRadius: BorderRadius.all(Radius.circular(8))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
-      ),
     );
   }
 }

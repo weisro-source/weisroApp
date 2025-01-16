@@ -50,7 +50,7 @@ class _WeisroAppState extends State<WeisroApp> {
                 context, CacheHelper.getData(key: CacheKeys.kCityName)),
         ),
         BlocProvider(
-          create: (context) => GetFavoriteCubit()..getAllFavorites(context),
+          create: (context) => GetFavoriteCubit(),
         ),
         BlocProvider(
           create: (context) => LanguageCubit()..initLanguage(),

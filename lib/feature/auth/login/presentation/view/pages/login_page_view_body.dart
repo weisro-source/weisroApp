@@ -122,10 +122,10 @@ class LoginPageViewBody extends StatelessWidget {
                     //! and dont forget this
                     //todo: remove this line ...
 
-                    if (HelperFunctions.isDebugMode()) {
-                      HelperFunctions.navigateToScreenAndRemove(
-                          context, (context) => const HomePageView());
-                    }
+                    // if (HelperFunctions.isDebugMode()) {
+                    //   HelperFunctions.navigateToScreenAndRemove(
+                    //       context, (context) => const HomePageView());
+                    // }
                   }
                 },
                 builder: (context, loginState) {

@@ -3,6 +3,7 @@ import 'package:weisro/core/api/api_end_points.dart';
 import 'package:weisro/core/api/api_error_handler.dart';
 import 'package:weisro/core/api/api_service.dart';
 import 'package:weisro/core/utils/constant.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/service_locator.dart';
 import 'package:weisro/feature/booking/data/booking_repo/booking_repo.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
@@ -44,6 +45,25 @@ class BookingRepositoryImplementation implements BookingRepository {
       return right(YourBookingModel.fromJson(response));
     } catch (errorInGetYourBookingApi) {
       return left(ErrorHandler.handleError(errorInGetYourBookingApi));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> updateBookingStatue(
+      String bookingId, String newState) async {
+    try {
+      dynamic response = await _apiService.post(
+          endPoint: "${ApiEndPoints.updateStatus}/$bookingId?status=$bookingId",
+          data: {});
+      var message = response[Constants.messageFromResponse];
+      String? validMessage = HelperFunctions.ensureStringOrNull(message);
+      if (validMessage != null) {
+        return right(validMessage);
+      } else {
+        return left(ErrorHandler.handleError(Constants.responseIsNull));
+      }
+    } catch (errorInUpdateBookingApi) {
+      return left(ErrorHandler.handleError(errorInUpdateBookingApi));
     }
   }
 }
