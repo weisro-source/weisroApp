@@ -30,7 +30,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Could not delete the ad."),
         "Ad_Deletion_Failed":
             MessageLookupByLibrary.simpleMessage("Deletion Failed!"),
+        "Ad_Text": MessageLookupByLibrary.simpleMessage("Ad Text"),
         "All": MessageLookupByLibrary.simpleMessage("All"),
+        "AreYouSureLogout": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to log out? Any unsaved progress will be lost."),
         "Available_Rental_Days":
             MessageLookupByLibrary.simpleMessage("Available rental days"),
         "Available_Rental_Hours":
@@ -104,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Driver\'s license"),
         "EditPersonalInformation":
             MessageLookupByLibrary.simpleMessage("Edit Personal Information"),
+        "Edit_Ad": MessageLookupByLibrary.simpleMessage("Edit Ad"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "End": MessageLookupByLibrary.simpleMessage("End"),
         "Error_Updating_Information": MessageLookupByLibrary.simpleMessage(
@@ -161,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NO Favorite Yet"),
         "Next_Step": MessageLookupByLibrary.simpleMessage("Next Step"),
         "Night": MessageLookupByLibrary.simpleMessage("Night"),
+        "NoStayLoggedIn":
+            MessageLookupByLibrary.simpleMessage("No, Stay Logged In"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* It is forbidden to publish any addresses or contact information"),
         "No_Orders_Found":
@@ -236,6 +242,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The search page is empty, go and explore what\'s new"),
         "Select_At_Least_One_Day": MessageLookupByLibrary.simpleMessage(
             "Please select at least one day"),
+        "Select_Image": MessageLookupByLibrary.simpleMessage("Select Image"),
         "Select_Location":
             MessageLookupByLibrary.simpleMessage("Select location"),
         "Select_Services": MessageLookupByLibrary.simpleMessage(
@@ -290,6 +297,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Worker Details"),
         "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
             "Write a description of the service and the terms of renting your services ?"),
+        "YesLogout": MessageLookupByLibrary.simpleMessage("Yes, Log Out"),
         "You_havent_marked_any_favorite": MessageLookupByLibrary.simpleMessage(
             "You haven\'t marked any favorite"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Your Favorite"),

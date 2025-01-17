@@ -204,5 +204,11 @@
     "No_Orders_Found": "No Orders Found",
     "Dates_Booked": "Dates Booked",
     "Service_Hire_Request": "Someone has made a request to hire a service that you have put forward",
-    "Booking_Information": "Booking Information"
+    "Booking_Information": "Booking Information",
+    "AreYouSureLogout": "Are you sure you want to log out? Any unsaved progress will be lost.",
+    "YesLogout": "Yes, Log Out",
+    "NoStayLoggedIn": "No, Stay Logged In",
+    "Select_Image": "Select Image",
+    "Edit_Ad": "Edit Ad",
+    "Ad_Text": "Ad Text"
 }

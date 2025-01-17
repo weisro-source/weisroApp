@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ad_Deletion_Failed":
             MessageLookupByLibrary.simpleMessage("Löschen fehlgeschlagen!"),
         "All": MessageLookupByLibrary.simpleMessage("Alle"),
+        "AreYouSureLogout": MessageLookupByLibrary.simpleMessage(
+            "Möchten Sie sich wirklich abmelden? Nicht gespeicherte Fortschritte gehen verloren."),
         "Available_Rental_Days":
             MessageLookupByLibrary.simpleMessage("Verfügbare Miettage"),
         "Available_Rental_Hours":
@@ -162,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Noch keine Favoriten"),
         "Next_Step": MessageLookupByLibrary.simpleMessage("Nächster Schritt"),
         "Night": MessageLookupByLibrary.simpleMessage("Nacht"),
+        "NoStayLoggedIn":
+            MessageLookupByLibrary.simpleMessage("Nein, angemeldet bleiben"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
         "No_Orders_Found":
@@ -296,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mitarbeiterdetails"),
         "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie eine Beschreibung des Dienstes und die Bedingungen für die Vermietung Ihrer Dienstleistungen ?"),
+        "YesLogout": MessageLookupByLibrary.simpleMessage("Ja, abmelden"),
         "You_havent_marked_any_favorite": MessageLookupByLibrary.simpleMessage(
             "Sie haben noch keine Favoriten markiert"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),
