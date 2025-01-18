@@ -32,7 +32,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(4)),
         image: DecorationImage(
-          fit: BoxFit.scaleDown,
+          fit: BoxFit.cover,
           image: CachedNetworkImageProvider(
             "${Constants.imageUrl}${HelperFunctions.ensureIsFirstItemOrNull(widget.lastService.images ?? []) ?? ""}",
           ),

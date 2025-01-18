@@ -210,5 +210,6 @@
     "NoStayLoggedIn": "No, Stay Logged In",
     "Select_Image": "Select Image",
     "Edit_Ad": "Edit Ad",
-    "Ad_Text": "Ad Text"
+    "Ad_Text": "Ad Text",
+    "Skip": "Skip"
 }

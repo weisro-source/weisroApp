@@ -263,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Sign Up with Google"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "Start": MessageLookupByLibrary.simpleMessage("Start"),
         "Street": MessageLookupByLibrary.simpleMessage("The street"),
         "Su": MessageLookupByLibrary.simpleMessage("Su"),

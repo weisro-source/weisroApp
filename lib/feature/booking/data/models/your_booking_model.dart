@@ -404,34 +404,36 @@ class Service {
 
   static Service fromJson(Map<String, Object?> json) {
     return Service(
-        location: json['location'] == null
-            ? null
-            : Location.fromJson(json['location'] as Map<String, Object?>),
-        rateCount:
-            json['rate_count'] == null ? null : json['rate_count'] as int,
-        ratedBy:
-            json['ratedBy'] == null ? null : json['ratedBy'] as List<dynamic>,
-        id: json['_id'] == null ? null : json['_id'] as String,
-        name: json['name'] == null ? null : json['name'] as String,
-        description:
-            json['description'] == null ? null : json['description'] as String,
-        days: json['days'] == null
-            ? null
-            : (json['days'] as List)
-                .map<Days>(
-                    (data) => Days.fromJson(data as Map<String, Object?>))
-                .toList(),
-        dailyPrice:
-            json['daily_price'] == null ? null : json['daily_price'] as int,
-        hourlyPrice:
-            json['hourly_price'] == null ? null : json['hourly_price'] as int,
-        rate: json['rate'] == null ? null : json['rate'] as int,
-        images: json['images'] == null ? null : json['images'] as List<String>,
-        categoryId:
-            json['category_id'] == null ? null : json['category_id'] as String,
-        user: json['user'] as dynamic,
-        date: json['date'] == null ? null : json['date'] as String,
-        time: json['time'] == null ? null : json['time'] as List<dynamic>);
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, Object?>),
+      rateCount: json['rate_count'] == null ? null : json['rate_count'] as int,
+      ratedBy:
+          json['ratedBy'] == null ? null : json['ratedBy'] as List<dynamic>,
+      id: json['_id'] == null ? null : json['_id'] as String,
+      name: json['name'] == null ? null : json['name'] as String,
+      description:
+          json['description'] == null ? null : json['description'] as String,
+      days: json['days'] == null
+          ? null
+          : (json['days'] as List)
+              .map<Days>((data) => Days.fromJson(data as Map<String, Object?>))
+              .toList(),
+      dailyPrice:
+          json['daily_price'] == null ? null : json['daily_price'] as int,
+      hourlyPrice:
+          json['hourly_price'] == null ? null : json['hourly_price'] as int,
+      rate: json['rate'] == null ? null : json['rate'] as int,
+      // Correcting the parsing of images
+      images: json['images'] == null
+          ? null
+          : List<String>.from(json['images'] as List<dynamic>),
+      categoryId:
+          json['category_id'] == null ? null : json['category_id'] as String,
+      user: json['user'] as dynamic,
+      date: json['date'] == null ? null : json['date'] as String,
+      time: json['time'] == null ? null : json['time'] as List<dynamic>,
+    );
   }
 
   @override

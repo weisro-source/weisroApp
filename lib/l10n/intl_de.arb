@@ -205,5 +205,6 @@
     "Booking_Information": "Buchungsinformationen",
     "AreYouSureLogout": "Möchten Sie sich wirklich abmelden? Nicht gespeicherte Fortschritte gehen verloren.",
     "YesLogout": "Ja, abmelden",
-    "NoStayLoggedIn": "Nein, angemeldet bleiben"
+    "NoStayLoggedIn": "Nein, angemeldet bleiben",
+    "Skip": "Überspringen"
 }

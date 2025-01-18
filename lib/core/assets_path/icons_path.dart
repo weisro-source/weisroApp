@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class IconsPath {
   IconsPath._();
-  
+
   /// Assets for iconsAlert
   /// assets/icons/alert.svg
   static const String iconsAlert = "assets/icons/alert.svg";
@@ -54,6 +54,10 @@ class IconsPath {
   /// assets/icons/filter.svg
   static const String iconsFilter = "assets/icons/filter.svg";
 
+  /// Assets for iconsFlagGermany
+  /// assets/icons/flag-germany.png
+  static const String iconsFlagGermany = "assets/icons/flag-germany.svg";
+
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
   static const String iconsGoogle = "assets/icons/google.svg";
@@ -84,7 +88,8 @@ class IconsPath {
 
   /// Assets for iconsLoadingAnmation
   /// assets/icons/loading_anmation.json
-  static const String iconsLoadingAnmation = "assets/icons/loading_anmation.json";
+  static const String iconsLoadingAnmation =
+      "assets/icons/loading_anmation.json";
 
   /// Assets for iconsLocation
   /// assets/icons/location.svg
@@ -180,7 +185,8 @@ class IconsPath {
 
   /// Assets for iconsStarSecondColor
   /// assets/icons/star_second_color.svg
-  static const String iconsStarSecondColor = "assets/icons/star_second_color.svg";
+  static const String iconsStarSecondColor =
+      "assets/icons/star_second_color.svg";
 
   /// Assets for iconsSuccess
   /// assets/icons/success.svg
@@ -204,11 +210,16 @@ class IconsPath {
 
   /// Assets for iconsTimeIsMoneyClock
   /// assets/icons/time_is_money_clock.svg
-  static const String iconsTimeIsMoneyClock = "assets/icons/time_is_money_clock.svg";
+  static const String iconsTimeIsMoneyClock =
+      "assets/icons/time_is_money_clock.svg";
 
   /// Assets for iconsTimeSelected
   /// assets/icons/time_selected.svg
   static const String iconsTimeSelected = "assets/icons/time_selected.svg";
+
+  /// Assets for iconsUnitedKingdom
+  /// assets/icons/united-kingdom.svg
+  static const String iconsUnitedKingdom = "assets/icons/united-kingdom.svg";
 
   /// Assets for iconsUserBooking
   /// assets/icons/user_booking.svg
@@ -236,6 +247,6 @@ class IconsPath {
 
   /// Assets for iconsWorkerRegisterImageUploader
   /// assets/icons/worker_register_image_uploader.svg
-  static const String iconsWorkerRegisterImageUploader = "assets/icons/worker_register_image_uploader.svg";
+  static const String iconsWorkerRegisterImageUploader =
+      "assets/icons/worker_register_image_uploader.svg";
 }
-

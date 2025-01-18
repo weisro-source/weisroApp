@@ -53,7 +53,7 @@ class BookingRepositoryImplementation implements BookingRepository {
       String bookingId, String newState) async {
     try {
       dynamic response = await _apiService.post(
-          endPoint: "${ApiEndPoints.updateStatus}/$bookingId?status=$bookingId",
+          endPoint: "${ApiEndPoints.updateStatus}/$bookingId?status=$newState",
           data: {});
       var message = response[Constants.messageFromResponse];
       String? validMessage = HelperFunctions.ensureStringOrNull(message);
