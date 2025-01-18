@@ -160,6 +160,15 @@ class CustomDialog {
                               selectedLang: Constants.deutschLanguage);
                         },
                       ),
+                      15.kh,
+                      LanguageButton(
+                        language: "Español",
+                        isSelected: state is EspanolLanguage,
+                        onTap: () {
+                          languageCubit.changeLocalLang(context,
+                              selectedLang: Constants.espanolLanguage);
+                        },
+                      ),
                       const SizedBox(height: 25),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

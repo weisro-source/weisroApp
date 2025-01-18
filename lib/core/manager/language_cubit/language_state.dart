@@ -8,3 +8,5 @@ final class LanguageInitial extends LanguageState {}
 final class EnglishLanguage extends LanguageState {}
 
 final class DeutschLanguage extends LanguageState {}
+
+final class EspanolLanguage extends LanguageState {}

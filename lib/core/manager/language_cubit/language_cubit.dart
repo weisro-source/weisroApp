@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
+import 'package:weisro/core/utils/constant.dart';
 
 part 'language_state.dart';
 
@@ -19,6 +20,8 @@ class LanguageCubit extends Cubit<LanguageState> {
     if (selectedLang != localLang) {
       if (selectedLang == "en") {
         emit(EnglishLanguage());
+      } else if (selectedLang == Constants.espanolLanguage) {
+        emit(EspanolLanguage());
       } else {
         emit(DeutschLanguage());
       }

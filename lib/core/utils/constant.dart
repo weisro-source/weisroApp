@@ -11,6 +11,7 @@ abstract class Constants {
   static const String categoryTypeWorker = 'workers';
   static const String deutschLanguage = 'de';
   static const String englishLanguage = 'en';
+  static const String espanolLanguage = 'es';
   static const String dailyKey = 'daily';
   static const String bothKey = 'both';
   static const String hoursKey = 'hours';
