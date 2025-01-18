@@ -60,6 +60,7 @@ class _CreateServicePageViewBodyState extends State<CreateServicePageViewBody> {
   @override
   Widget build(BuildContext context) {
     AddServiceCubit addServiceCubit = AddServiceCubit.get(context);
+
     return CustomScrollView(
       slivers: [
         CustomAppBar(title: S.of(context).Create_A_Product),

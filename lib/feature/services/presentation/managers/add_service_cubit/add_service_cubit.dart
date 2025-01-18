@@ -176,7 +176,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
     apiData.forEach((key, value) {
       if (value is String || value is num) {
         formData.fields.add(MapEntry(key, value.toString()));
-      } else if (key == "time") {
+      } else if (key == "time" && isHourly()) {
         formData.fields.add(MapEntry("time[start]", value["start"]));
         formData.fields.add(MapEntry("time[end]", value["end"]));
       } else if (key == "location") {
@@ -184,7 +184,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             .add(MapEntry("location[latitude]", value["latitude"].toString()));
         formData.fields.add(
             MapEntry("location[longitude]", value["longitude"].toString()));
-      } else if (key == "days") {
+      } else if (key == "days" && isDaily()) {
         List<Map<String, String?>> days =
             List<Map<String, String?>>.from(value);
         for (int i = 0; i < days.length; i++) {
@@ -225,6 +225,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   Future<void> addServiceCallApi(BuildContext context) async {
     emit(AddServiceStateLoading());
     FormData formData = await prepareFormData(prepareApiData(context) ?? {});
+    print(formData.fields);
     if (context.mounted) {
       var result =
           await getIt.get<ServiceRepository>().addService(context, formData);
