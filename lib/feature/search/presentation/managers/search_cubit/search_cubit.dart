@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> {
     /// You can use this api to search
     Either<Failure, LastServicesModel> result = await getIt
         .get<HomeRepository>()
-        .getLastServiceApi(context, searchController.text, pageNumber);
+        .getLastServiceApi(context, searchController.text, null, pageNumber);
     result.fold(
       (errorInSearch) {
         if (pageNumber == 1) {

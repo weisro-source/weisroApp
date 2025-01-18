@@ -4,11 +4,13 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/utils/constant.dart';
 
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
+import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
@@ -31,13 +33,17 @@ class HomePageViewBody extends StatefulWidget {
 class _HomePageViewBodyState extends State<HomePageViewBody> {
   @override
   void initState() {
-    BlocProvider.of<GetLastServicesCubit>(context)
-        .getLastService(context, CacheHelper.getData(key: CacheKeys.kCityName));
+    // BlocProvider.of<GetLastServicesCubit>(context)
+    //     .getLastService(context, CacheHelper.getData(key: CacheKeys.kCityName));
+    BlocProvider.of<CategoriesCubit>(context)
+        .fetchCategories(Constants.categoryTypeServices, context);
     BlocProvider.of<GetCitiesOfASpecifiedCountryCubit>(context)
         .checkIfCountrySelected();
     super.initState();
   }
 
+  String? categoryId = "";
+  String? cityName = CacheHelper.getData(key: CacheKeys.kCityName);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -91,44 +97,6 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                         iconPath: IconsPath.iconsNew,
                       ),
                     ),
-                    // BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
-                    //     GetCitiesOfASpecifiedCountryState>(
-                    //   builder: (context, state) {
-                    //     if (state is GetCitiesOfASpecifiedCountrySuccess) {
-                    //       List<String> cityNameList =
-                    //           state.cities.cities.map((e) => e.name).toList();
-                    //       String firstCity = cityNameList.firstWhere(
-                    //           (cityName) =>
-                    //               cityName ==
-                    //               CacheHelper.getData(
-                    //                   key: CacheKeys.kCityName));
-                    //       return Expanded(
-                    //         flex:1,
-                    //         child: LocationFlitterDropDown(
-                    //           fillColor: AppColors.whiteColor,
-                    //           borderColor: AppColors.orangeColor,
-                    //           iconColor: AppColors.greyColor,
-                    //           height: 50,
-                    //           iconHeight: 24,
-                    //           iconWidth: 10,
-                    //           borderWidth: 1,
-                    //           borderRadius: 8,
-                    //           selectedLocation: firstCity,
-                    //           locations: cityNameList,
-                    //           prefixIcon: IconsPath.iconsLocation,
-                    //           onChanged: (selectedCategory) async {
-                    //             await context
-                    //                 .read<GetLastServicesCubit>()
-                    //                 .getLastService(
-                    //                     context, selectedCategory ?? "");
-                    //           },
-                    //         ),
-                    //       );
-                    //     } else {
-                    //       return const SizedBox();
-                    //     }
-                    //   },
-                    // ),
                   ],
                 ),
               ),
@@ -163,11 +131,12 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                             selectedLocation: firstCity,
                             locations: cityNameList,
                             prefixIcon: IconsPath.iconsLocation,
-                            onChanged: (selectedCategory) async {
+                            onChanged: (selectedCity) async {
+                              cityName = selectedCity;
                               await context
                                   .read<GetLastServicesCubit>()
-                                  .getLastService(
-                                      context, selectedCategory ?? "");
+                                  .getLastService(context, selectedCity ?? "",
+                                      categoryId ?? "");
                             },
                           ),
                         ),
@@ -182,6 +151,76 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
             ),
             SliverToBoxAdapter(
               child: 10.kh,
+            ),
+            BlocConsumer<CategoriesCubit, CategoriesState>(
+              listener: (context, getServiceCategoriesState) async {
+                if (getServiceCategoriesState is CategoriesSuccess) {
+                  final categoryIds = getServiceCategoriesState
+                          .categoryModel.docs
+                          ?.map((doc) => doc.id ?? '')
+                          .toList() ??
+                      [];
+                  categoryId =
+                      categoryIds.isNotEmpty ? categoryIds.first : null;
+                  await BlocProvider.of<GetLastServicesCubit>(context)
+                      .getLastService(
+                          context,
+                          CacheHelper.getData(key: CacheKeys.kCityName),
+                          categoryId ?? "");
+                }
+              },
+              builder: (context, getServiceCategoriesState) {
+                if (getServiceCategoriesState is CategoriesSuccess) {
+                  final categories = getServiceCategoriesState
+                          .categoryModel.docs
+                          ?.map((doc) => doc.name ?? '')
+                          .toList() ??
+                      [];
+                  final categoryIds = getServiceCategoriesState
+                          .categoryModel.docs
+                          ?.map((doc) => doc.id ?? '')
+                          .toList() ??
+                      [];
+                  categoryId =
+                      categoryIds.isNotEmpty ? categoryIds.first : null;
+                  return SliverPadding(
+                    padding: HelperFunctions.symmetricHorizontalPadding24,
+                    sliver: SliverToBoxAdapter(
+                      child: LocationFlitterDropDown(
+                        fillColor: AppColors.whiteColor,
+                        borderColor: AppColors.orangeColor,
+                        iconColor: AppColors.greyColor,
+                        height: 38,
+                        iconHeight: 24,
+                        iconWidth: 24,
+                        borderWidth: 1,
+                        borderRadius: 8,
+                        selectedLocation: categories.first,
+                        locations: categories,
+                        prefixIcon: IconsPath.iconsCategory,
+                        onChanged: (selectedCategory) async {
+                          final index =
+                              categories.indexOf(selectedCategory ?? "");
+                          if (index != -1) {
+                            await context
+                                .read<GetLastServicesCubit>()
+                                .getLastService(
+                                    context, cityName ?? "", categoryId ?? "");
+                            // addServiceCubit.categoryId = categoryIds[index];
+                          }
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return const SliverToBoxAdapter(
+                    child: SizedBox.shrink(),
+                  );
+                }
+              },
+            ),
+            SliverToBoxAdapter(
+              child: 20.kh,
             ),
             SliverPadding(
               padding: HelperFunctions.symmetricHorizontalPadding24,
@@ -225,3 +264,41 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
     );
   }
 }
+    // BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
+                    //     GetCitiesOfASpecifiedCountryState>(
+                    //   builder: (context, state) {
+                    //     if (state is GetCitiesOfASpecifiedCountrySuccess) {
+                    //       List<String> cityNameList =
+                    //           state.cities.cities.map((e) => e.name).toList();
+                    //       String firstCity = cityNameList.firstWhere(
+                    //           (cityName) =>
+                    //               cityName ==
+                    //               CacheHelper.getData(
+                    //                   key: CacheKeys.kCityName));
+                    //       return Expanded(
+                    //         flex:1,
+                    //         child: LocationFlitterDropDown(
+                    //           fillColor: AppColors.whiteColor,
+                    //           borderColor: AppColors.orangeColor,
+                    //           iconColor: AppColors.greyColor,
+                    //           height: 50,
+                    //           iconHeight: 24,
+                    //           iconWidth: 10,
+                    //           borderWidth: 1,
+                    //           borderRadius: 8,
+                    //           selectedLocation: firstCity,
+                    //           locations: cityNameList,
+                    //           prefixIcon: IconsPath.iconsLocation,
+                    //           onChanged: (selectedCategory) async {
+                    //             await context
+                    //                 .read<GetLastServicesCubit>()
+                    //                 .getLastService(
+                    //                     context, selectedCategory ?? "");
+                    //           },
+                    //         ),
+                    //       );
+                    //     } else {
+                    //       return const SizedBox();
+                    //     }
+                    //   },
+                    // ),

@@ -12,10 +12,12 @@ class GetLastServicesCubit extends Cubit<GetLastServicesState> {
   static GetLastServicesCubit get(context) => BlocProvider.of(context);
 
   /// to Get last Services in home page according to city name ....
-  Future<void> getLastService(BuildContext context, String cityName) async {
+  Future<void> getLastService(
+      BuildContext context, String cityName, String categoryId) async {
     emit(GetLastServicesLoading());
-    var result =
-        await getIt.get<HomeRepository>().getLastServiceApi(context, cityName);
+    var result = await getIt
+        .get<HomeRepository>()
+        .getLastServiceApi(context, cityName, categoryId);
     result.fold(
       (errorInGetLastService) {
         emit(GetLastServicesFailures(error: errorInGetLastService));
@@ -47,5 +49,4 @@ class GetLastServicesCubit extends Cubit<GetLastServicesState> {
       }
     }
   }
-
 }

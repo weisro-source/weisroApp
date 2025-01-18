@@ -9,18 +9,10 @@ class CategoriesWorkerAndServicesPageView extends StatelessWidget {
   final String type;
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              CategoriesCubit()..fetchCategories(type, context, pageNumber: 1),
-        ),
-      ],
-      child: Scaffold(
-        body: SafeArea(
-          child: CategoriesWorkerAndServicesPageViewBody(
-            type: type,
-          ),
+    return Scaffold(
+      body: SafeArea(
+        child: CategoriesWorkerAndServicesPageViewBody(
+          type: type,
         ),
       ),
     );

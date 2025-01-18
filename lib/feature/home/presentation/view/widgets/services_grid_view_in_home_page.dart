@@ -15,7 +15,7 @@ class ServicesGridViewInHomePage extends StatelessWidget {
     return SliverGrid.builder(
       itemCount: lastServices.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 172 / 162,
+          childAspectRatio: 172 / 184,
           crossAxisSpacing: 10,
           mainAxisSpacing: 20,
           crossAxisCount: 2),
@@ -26,7 +26,6 @@ class ServicesGridViewInHomePage extends StatelessWidget {
               HelperFunctions.navigateToScreen(
                   context,
                   (context) => ServicesDetailsPageView(
-                  
                         serviceId: lastService.id ?? "",
                       ));
             },

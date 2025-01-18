@@ -19,6 +19,7 @@ abstract class Constants {
   /// this global Var for all page limit in pagination Apis
 
   static const String limitInPage = '20';
+  static const String limitInHomePage = '40';
   static Map<String, String> countryCodeMap = {
     "+1": "US", //"US/CA", // USA/Canada
     "+7": "RU/KZ", // Russia/Kazakhstan

@@ -18,10 +18,10 @@ class CreateServicePageView extends StatelessWidget {
         BlocProvider(
           create: (context) => AddServiceCubit(),
         ),
-        BlocProvider(
-          create: (context) => CategoriesCubit()
-            ..fetchCategories(Constants.categoryTypeServices, context),
-        ),
+        // BlocProvider(
+        //   create: (context) => CategoriesCubit()
+        //     ..fetchCategories(Constants.categoryTypeServices, context),
+        // ),
       ],
       child: const Scaffold(
         body: SafeArea(child: CreateServicePageViewBody()),
