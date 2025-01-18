@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ad_Deletion_Failed":
             MessageLookupByLibrary.simpleMessage("Löschen fehlgeschlagen!"),
         "All": MessageLookupByLibrary.simpleMessage("Alle"),
+        "AreYouSureLogout": MessageLookupByLibrary.simpleMessage(
+            "Möchten Sie sich wirklich abmelden? Nicht gespeicherte Fortschritte gehen verloren."),
         "Available_Rental_Days":
             MessageLookupByLibrary.simpleMessage("Verfügbare Miettage"),
         "Available_Rental_Hours":
@@ -162,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Noch keine Favoriten"),
         "Next_Step": MessageLookupByLibrary.simpleMessage("Nächster Schritt"),
         "Night": MessageLookupByLibrary.simpleMessage("Nacht"),
+        "NoStayLoggedIn":
+            MessageLookupByLibrary.simpleMessage("Nein, angemeldet bleiben"),
         "No_Addresses": MessageLookupByLibrary.simpleMessage(
             "* Es ist verboten, Adressen oder Kontaktinformationen zu veröffentlichen"),
         "No_Orders_Found":
@@ -188,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Payment_Method":
             MessageLookupByLibrary.simpleMessage("Zahlungsmethode"),
         "Pending": MessageLookupByLibrary.simpleMessage("Ausstehend"),
+        "Per_Day": MessageLookupByLibrary.simpleMessage("Pro Tag"),
+        "Per_Hour": MessageLookupByLibrary.simpleMessage("Pro Stunde"),
         "Personal_Information":
             MessageLookupByLibrary.simpleMessage("Persönliche Informationen"),
         "Pick_From_Gallery":
@@ -259,6 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrieren"),
         "Sign_Up_with_Google":
             MessageLookupByLibrary.simpleMessage("Mit Google anmelden"),
+        "Skip": MessageLookupByLibrary.simpleMessage("Überspringen"),
         "Start": MessageLookupByLibrary.simpleMessage("Starten"),
         "Street": MessageLookupByLibrary.simpleMessage("Straße"),
         "Su": MessageLookupByLibrary.simpleMessage("So"),
@@ -296,6 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mitarbeiterdetails"),
         "Write_Description_Service": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie eine Beschreibung des Dienstes und die Bedingungen für die Vermietung Ihrer Dienstleistungen ?"),
+        "YesLogout": MessageLookupByLibrary.simpleMessage("Ja, abmelden"),
         "You_havent_marked_any_favorite": MessageLookupByLibrary.simpleMessage(
             "Sie haben noch keine Favoriten markiert"),
         "YourFavorite": MessageLookupByLibrary.simpleMessage("Ihr Favorit"),

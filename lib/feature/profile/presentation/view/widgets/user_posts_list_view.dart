@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
-import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/ads/data/models/ads_model.dart';
 import 'package:weisro/feature/ads/presentation/managers/delete_ad_cubit/delete_ad_cubit.dart';
 import 'package:weisro/feature/profile/presentation/view/widgets/ads_widget_for_user.dart';
+import 'package:weisro/feature/profile/presentation/view/widgets/edit_ads_dialog.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class UserPostsListView extends StatefulWidget {
@@ -50,8 +51,17 @@ class _UserPostsListViewState extends State<UserPostsListView> {
         Docs ad = userAds[index];
         return Dismissible(
           key: ValueKey(ad.id),
-          direction: DismissDirection.endToStart,
           background: Container(
+            color: AppColors.greenColor,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Icon(
+              Icons.edit,
+              color: Colors.white,
+              size: 50,
+            ),
+          ),
+          secondaryBackground: Container(
             color: Colors.red,
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -62,56 +72,44 @@ class _UserPostsListViewState extends State<UserPostsListView> {
             ),
           ),
           confirmDismiss: (direction) async {
-            return await CustomDialog.showDeleteConfirmationDialog(
-                context,
-                S.of(context).Delete_Confirmation_Title,
-                S.of(context).Delete_Confirmation_Message);
+            if (direction == DismissDirection.startToEnd) {
+              await showDialog(
+                context: context,
+                builder: (_) => EditAdDialog(
+                  ad: ad,
+                  onSave: (newText, newImage) {
+                    setState(() {
+                      userAds[index] = userAds[index].copyWith(
+                        text: newText,
+                        image: newImage,
+                      );
+                    });
+                  },
+                ),
+              );
+              return false;
+            } else if (direction == DismissDirection.endToStart) {
+              return await CustomDialog.showDeleteConfirmationDialog(
+                  context,
+                  S.of(context).Delete_Confirmation_Title,
+                  S.of(context).Delete_Confirmation_Message);
+            }
+            return false;
           },
           onDismissed: (direction) {
-            final messenger = ScaffoldMessenger.of(context);
-
-            debugPrint('onDismissed called with index: $index');
-            context.read<DeleteAdCubit>().deleteAd(ad.id ?? "");
-            context.read<DeleteAdCubit>().stream.listen((state) {
-              if (state is DeleteAdSuccess) {
-                if (context.mounted) {
-                  _deleteAd(index);
-                  if (context.mounted) {
-                    var materialBanner =
-                        CustomMaterialBanner.successMaterialBanner(
-                            S.of(context).Ad_Deleted,
-                            S.of(context).Ad_Deleted_Success);
-
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentMaterialBanner()
-                      ..showMaterialBanner(materialBanner);
-                    Future.delayed(const Duration(seconds: 3), () {
-                      if (mounted) {
-                        messenger.hideCurrentMaterialBanner();
-                      }
-                    });
-                  }
-                } else if (state is DeleteAdFailures) {
-                  if (context.mounted) {
-                    final materialBanner =
-                        CustomMaterialBanner.failureMaterialBanner(
-                            S.of(context).Ad_Deletion_Failed,
-                            S.of(context).Ad_Deletion_Error);
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentMaterialBanner()
-                      ..showMaterialBanner(materialBanner);
-                    Future.delayed(const Duration(seconds: 3), () {
-                      if (mounted) {
-                        messenger.hideCurrentMaterialBanner();
-                      }
-                    });
-                  }
-                }
-              }
-            });
+            if (direction == DismissDirection.endToStart) {
+              context.read<DeleteAdCubit>().deleteAd(ad.id ?? "");
+              _deleteAd(index);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(S.of(context).Ad_Deleted_Success),
+                duration: const Duration(seconds: 3),
+              ));
+            }
           },
-          child:
-              SizedBox(width: double.infinity, child: AdsWidgetForUser(ad: ad)),
+          child: SizedBox(
+            width: double.infinity,
+            child: AdsWidgetForUser(ad: ad),
+          ),
         );
       },
     );

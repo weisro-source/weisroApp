@@ -115,8 +115,19 @@ class _ServicesDetailsPageViewBodyState
                 ),
               ),
               15.kh,
+              // this daily price
               LocationPriceRowWidget(
-                price: '\$${widget.oneService.service?.dailyPrice} ST',
+                price:
+                    '\$${widget.oneService.service?.dailyPrice} ${S.of(context).Per_Day}',
+                location: widget.oneService.service?.location?.address ?? "",
+              ),
+              Visibility(
+                  visible: widget.oneService.service?.hourlyPrice != 0,
+                  child: 15.kh),
+              // this hourly price
+              LocationPriceRowWidget(
+                price:
+                    '\$${widget.oneService.service?.hourlyPrice} ${S.of(context).Per_Hour}',
                 location: widget.oneService.service?.location?.address ?? "",
               ),
               15.kh,

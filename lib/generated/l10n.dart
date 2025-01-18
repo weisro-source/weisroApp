@@ -2101,6 +2101,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you sure you want to log out? Any unsaved progress will be lost.`
+  String get AreYouSureLogout {
+    return Intl.message(
+      'Are you sure you want to log out? Any unsaved progress will be lost.',
+      name: 'AreYouSureLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes, Log Out`
+  String get YesLogout {
+    return Intl.message(
+      'Yes, Log Out',
+      name: 'YesLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No, Stay Logged In`
+  String get NoStayLoggedIn {
+    return Intl.message(
+      'No, Stay Logged In',
+      name: 'NoStayLoggedIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Image`
+  String get Select_Image {
+    return Intl.message(
+      'Select Image',
+      name: 'Select_Image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Ad`
+  String get Edit_Ad {
+    return Intl.message(
+      'Edit Ad',
+      name: 'Edit_Ad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ad Text`
+  String get Ad_Text {
+    return Intl.message(
+      'Ad Text',
+      name: 'Ad_Text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get Skip {
+    return Intl.message(
+      'Skip',
+      name: 'Skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Per day`
+  String get Per_Day {
+    return Intl.message(
+      'Per day',
+      name: 'Per_Day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Per hour`
+  String get Per_Hour {
+    return Intl.message(
+      'Per hour',
+      name: 'Per_Hour',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/generated/l10n.dart';
 
 class SkipButton extends StatelessWidget {
   const SkipButton({super.key, this.onPressedOnSkip});
@@ -9,7 +10,7 @@ class SkipButton extends StatelessWidget {
     return TextButton(
       onPressed: onPressedOnSkip,
       child: Text(
-        "Skip",
+        S.of(context).Skip,
         style: AppStyles.style18w400Grey(context),
       ),
     );

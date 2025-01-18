@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_color.dart';
-import 'package:weisro/core/widgets/custom_action_widget.dart';
 import 'package:weisro/core/widgets/custom_leading_icon.dart';
 
 class CustomAppBarInProfileView extends StatelessWidget
@@ -24,11 +23,11 @@ class CustomAppBarInProfileView extends StatelessWidget
           leading: const CustomLeadingIcon(
             iconColor: AppColors.whiteColor,
           ),
-          actions: const [
-            CustomActionWidget(
-              iconColor: AppColors.whiteColor,
-            )
-          ],
+          // actions: const [
+          //   CustomActionWidget(
+          //     iconColor: AppColors.whiteColor,
+          //   )
+          // ],
         ),
         const PositionedDirectional(
           top: 160,

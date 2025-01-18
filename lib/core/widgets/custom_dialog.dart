@@ -373,8 +373,8 @@ class CustomDialog {
           backgroundColor: Colors.transparent,
           shadowColor: AppColors.shadow2Color,
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width * 0.92,
+            height: MediaQuery.of(context).size.height * 0.25,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(15),
@@ -388,12 +388,20 @@ class CustomDialog {
             ),
             child: Column(
               children: [
-                31.kh,
+                20.kh,
                 Center(
                   child: Text(
                     S.of(context).Logout,
-                    style: AppStyles.style18w400Grey(context)
-                        .copyWith(color: AppColors.blackColor),
+                    style: AppStyles.style20w500Grey(context),
+                  ),
+                ),
+                10.kh,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    S.of(context).AreYouSureLogout,
+                    textAlign: TextAlign.center,
+                    style: AppStyles.style16w400Grey(context),
                   ),
                 ),
                 30.kh,
@@ -403,8 +411,8 @@ class CustomDialog {
                     Expanded(
                       child: AppButton(
                         width: 174,
-                        height: 32,
-                        text: S.of(context).Ok,
+                        height: 40,
+                        text: S.of(context).YesLogout,
                         borderColor: AppColors.redColor,
                         buttonColor: AppColors.redColor,
                         onPressed: () async {
@@ -414,10 +422,11 @@ class CustomDialog {
                     ),
                     10.kw,
                     Expanded(
+                      flex: 2,
                       child: AppButton(
                         width: 174,
-                        height: 32,
-                        text: S.of(context).Cancel,
+                        height: 40,
+                        text: S.of(context).NoStayLoggedIn,
                         borderColor: AppColors.lightgrey2Color,
                         buttonColor: AppColors.lightgrey2Color,
                         onPressed: () {

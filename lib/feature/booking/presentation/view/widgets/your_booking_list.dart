@@ -11,28 +11,27 @@ class YourBookingList extends StatelessWidget {
     required this.allBooking,
   });
   final List<Docs> allBooking;
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       separatorBuilder: (context, index) => 20.kh,
       itemCount: allBooking.length,
-      // itemCount: 100,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         Docs booking = allBooking[index];
-        // Docs booking = const Docs(
-        //     id: "675f01f86f7087f93f0670e4",
-        //     paymentMethod: "Cache",
-        //     totalPrice: 200);
         return GestureDetector(
-            onTap: () => HelperFunctions.navigateToScreen(
-                  context,
-                  (context) => ReceivePageView(
-                    booking: booking,
-                  ),
-                ),
-            child: YourBookingWidget(booking: booking));
+          onTap: () {
+            HelperFunctions.navigateToScreen(
+              context,
+              (context) => ReceivePageView(
+                booking: booking,
+              ),
+            );
+          },
+          child: YourBookingWidget(booking: booking),
+        );
       },
     );
   }

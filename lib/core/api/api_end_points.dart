@@ -32,6 +32,8 @@ class ApiEndPoints {
   static const String addWorkerBooking = '/worker-booking';
   static const String getUserBooking = '/booking/?type=user';
   static const String getYourBooking = '/booking/?type=worker';
+  // /booking/update-status/6786a623052efb2931d93435?status=accepted
+  static const String updateStatus = "/booking/update-status";
   // worker tags
   static const String getWorkerTags = '/category?type=workers&all=true';
   // worker routes

@@ -202,5 +202,11 @@
     "No_Orders_Found": "Keine Bestellungen gefunden",
     "Dates_Booked": "Gebuchte Termine",
     "Service_Hire_Request": "Jemand hat eine Anfrage gestellt, um einen Service zu mieten, den Sie angeboten haben",
-    "Booking_Information": "Buchungsinformationen"
+    "Booking_Information": "Buchungsinformationen",
+    "AreYouSureLogout": "Möchten Sie sich wirklich abmelden? Nicht gespeicherte Fortschritte gehen verloren.",
+    "YesLogout": "Ja, abmelden",
+    "NoStayLoggedIn": "Nein, angemeldet bleiben",
+    "Skip": "Überspringen",
+    "Per_Day": "Pro Tag",
+    "Per_Hour": "Pro Stunde"
 }
