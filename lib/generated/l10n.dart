@@ -2171,6 +2171,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Per day`
+  String get Per_Day {
+    return Intl.message(
+      'Per day',
+      name: 'Per_Day',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Per hour`
+  String get Per_Hour {
+    return Intl.message(
+      'Per hour',
+      name: 'Per_Hour',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

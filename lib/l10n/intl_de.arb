@@ -206,5 +206,7 @@
     "AreYouSureLogout": "Möchten Sie sich wirklich abmelden? Nicht gespeicherte Fortschritte gehen verloren.",
     "YesLogout": "Ja, abmelden",
     "NoStayLoggedIn": "Nein, angemeldet bleiben",
-    "Skip": "Überspringen"
+    "Skip": "Überspringen",
+    "Per_Day": "Pro Tag",
+    "Per_Hour": "Pro Stunde"
 }

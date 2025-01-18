@@ -192,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Payment_Method":
             MessageLookupByLibrary.simpleMessage("Payment method"),
         "Pending": MessageLookupByLibrary.simpleMessage("Pending"),
+        "Per_Day": MessageLookupByLibrary.simpleMessage("Per day"),
+        "Per_Hour": MessageLookupByLibrary.simpleMessage("Per hour"),
         "Personal_Information":
             MessageLookupByLibrary.simpleMessage("Personal Information"),
         "Pick_From_Gallery":

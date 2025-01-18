@@ -211,5 +211,7 @@
     "Select_Image": "Select Image",
     "Edit_Ad": "Edit Ad",
     "Ad_Text": "Ad Text",
-    "Skip": "Skip"
+    "Skip": "Skip",
+    "Per_Day": "Per day",
+    "Per_Hour": "Per hour"
 }
