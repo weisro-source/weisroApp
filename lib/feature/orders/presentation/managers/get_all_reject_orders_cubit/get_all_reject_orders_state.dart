@@ -9,4 +9,8 @@ final class GetAllRejectOrdersLoading extends GetAllRejectOrdersState {}
 
 final class GetAllRejectOrdersFailures extends GetAllRejectOrdersState {}
 
-final class GetAllRejectOrdersSuccess extends GetAllRejectOrdersState {}
+final class GetAllRejectOrdersSuccess extends GetAllRejectOrdersState {
+  final Orders orders;
+
+  GetAllRejectOrdersSuccess({required this.orders});
+}

@@ -7,6 +7,8 @@ final class GetOrdersInitial extends GetOrdersState {}
 
 final class GetOrdersLoading extends GetOrdersState {}
 
+final class GetOrdersLoadingPagination extends GetOrdersState {}
+
 final class GetOrdersSuccess extends GetOrdersState {
   final Orders orders;
 
@@ -17,4 +19,10 @@ final class GetOrdersFailures extends GetOrdersState {
   final Failure error;
 
   GetOrdersFailures({required this.error});
+}
+
+final class GetOrdersFailuresPagination extends GetOrdersState {
+  final Failure error;
+
+  GetOrdersFailuresPagination({required this.error});
 }

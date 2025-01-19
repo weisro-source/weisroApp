@@ -9,10 +9,10 @@ import 'package:weisro/feature/orders/data/order_repo/order_repo.dart';
 class OrderRepositoryImplementation implements OrderRepository {
   final ApiService _apiService = getIt.get<ApiService>();
   @override
-  Future<Either<Failure, Orders>> getAllOrderApi() async {
+  Future<Either<Failure, Orders>> getAllOrderApi(String status) async {
     try {
-      var response =
-          await _apiService.get(endPoint: ApiEndPoints.getUserBooking);
+      var response = await _apiService.get(
+          endPoint: "${ApiEndPoints.getUserBooking}$status");
       return right(Orders.fromJson(response));
     } catch (errorInGetOrderApi) {
       return left(ErrorHandler.handleError(errorInGetOrderApi));

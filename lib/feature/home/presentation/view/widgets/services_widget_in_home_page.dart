@@ -27,7 +27,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 162,
+      height: 184,
       width: 172,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(4)),
@@ -81,7 +81,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
           ),
           const Spacer(),
           Container(
-            height: 22,
+            height: 36,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(4),
@@ -94,28 +94,36 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
                 ),
               ],
             ),
-            child: Row(
-              children: [
-                10.kw,
-                Text(
-                  "\$${widget.lastService.price}",
-                  style: AppStyles.style10w500Red(context),
-                ),
-                const Spacer(),
-                Row(
-                  children: [
-                    SvgPicture.asset(IconsPath.iconsLocation),
-                    Text(
-                      "${widget.lastService.location?.country ?? ""} ${widget.lastService.location?.city ?? ""}",
-                      style: AppStyles.style8w400Grey2(context)
-                          .copyWith(color: AppColors.greyColor),
-                    ),
-                    7.kw,
-                  ],
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  4.kh,
+                  Text(
+                    "\$${widget.lastService.price}",
+                    style: AppStyles.style10w500Red(context),
+                  ),
+                  4.kh,
+                  Row(
+                    children: [
+                      SvgPicture.asset(IconsPath.iconsLocation),
+                      Expanded(
+                        child: Text(
+                          "${widget.lastService.location?.country ?? ""} ${widget.lastService.location?.city ?? ""}",
+                          overflow: TextOverflow.ellipsis,
+                          style: AppStyles.style8w400Grey2(context)
+                              .copyWith(color: AppColors.greyColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  2.kh
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

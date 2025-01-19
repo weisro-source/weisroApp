@@ -15,6 +15,6 @@ abstract class HomeRepository {
       String categoryId, BuildContext context,
       [int pageNumber]);
   Future<Either<Failure, LastServicesModel>> getLastServiceApi(
-      BuildContext context, String cityName,
+      BuildContext context, String cityName, String? categoryId,
       [int pageNumber]);
 }

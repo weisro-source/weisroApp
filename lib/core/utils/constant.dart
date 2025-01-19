@@ -11,6 +11,7 @@ abstract class Constants {
   static const String categoryTypeWorker = 'workers';
   static const String deutschLanguage = 'de';
   static const String englishLanguage = 'en';
+  static const String espanolLanguage = 'es';
   static const String dailyKey = 'daily';
   static const String bothKey = 'both';
   static const String hoursKey = 'hours';
@@ -19,6 +20,7 @@ abstract class Constants {
   /// this global Var for all page limit in pagination Apis
 
   static const String limitInPage = '20';
+  static const String limitInHomePage = '40';
   static Map<String, String> countryCodeMap = {
     "+1": "US", //"US/CA", // USA/Canada
     "+7": "RU/KZ", // Russia/Kazakhstan

@@ -11,10 +11,11 @@ import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit/get_favorite_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
+import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/language_screen.dart';
-import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
@@ -54,12 +55,13 @@ class _WeisroAppState extends State<WeisroApp> {
           create: (context) => EditUserInfoCubit(),
         ),
         BlocProvider(
-          create: (context) => GetLastServicesCubit()
-            ..getLastService(
-                context, CacheHelper.getData(key: CacheKeys.kCityName)),
+          create: (context) => GetLastServicesCubit(),
         ),
         BlocProvider(
           create: (context) => GetFavoriteCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesCubit(),
         ),
         BlocProvider(
           create: (context) => LanguageCubit()..initLanguage(),
@@ -91,6 +93,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => GetAllRejectOrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetAllPendingOrdersCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(
