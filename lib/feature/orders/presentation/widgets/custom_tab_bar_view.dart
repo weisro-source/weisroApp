@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.dart';
-import 'package:weisro/feature/orders/data/models/order_model.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
@@ -46,9 +45,13 @@ class CustomTabBarView extends StatelessWidget {
             if (completedOrdersState is GetCompletedOrderLoading) {
               return const OrderListShimmer();
             } else if (completedOrdersState is GetCompletedOrderSuccess) {
-              return OrdersList(
-                orders: Orders(),
-              );
+              return completedOrdersState.orders.orders?.isEmpty ?? false
+                  ? NotFoundWidget(
+                      title: S.of(context).No_Orders_Found,
+                    )
+                  : OrdersList(
+                      orders: completedOrdersState.orders,
+                    );
             } else {
               return const SizedBox();
             }
@@ -59,7 +62,13 @@ class CustomTabBarView extends StatelessWidget {
             if (rejectOrderState is GetAllRejectOrdersLoading) {
               return const OrderListShimmer();
             } else if (rejectOrderState is GetAllRejectOrdersSuccess) {
-              return OrdersList(orders: Orders());
+              return rejectOrderState.orders.orders?.isEmpty ?? false
+                  ? NotFoundWidget(
+                      title: S.of(context).No_Orders_Found,
+                    )
+                  : OrdersList(
+                      orders: rejectOrderState.orders,
+                    );
             } else {
               return const SizedBox();
             }
@@ -70,7 +79,13 @@ class CustomTabBarView extends StatelessWidget {
             if (pendingOrdersState is GetAllPendingOrdersLoading) {
               return const OrderListShimmer();
             } else if (pendingOrdersState is GetAllPendingOrdersSuccess) {
-              return OrdersList(orders: Orders());
+              return pendingOrdersState.orders.orders?.isEmpty ?? false
+                  ? NotFoundWidget(
+                      title: S.of(context).No_Orders_Found,
+                    )
+                  : OrdersList(
+                      orders: pendingOrdersState.orders,
+                    );
             } else {
               return const SizedBox();
             }

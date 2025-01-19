@@ -8,6 +8,7 @@ class Order {
   final String? paymentMethod;
   final String? createdAt;
   final Address? address;
+  final String? status; // New field
 
   Order({
     this.id,
@@ -19,6 +20,7 @@ class Order {
     this.paymentMethod,
     this.createdAt,
     this.address,
+    this.status, // Initialize the new field
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,7 @@ class Order {
       createdAt: json['createdAt'] as String?,
       address:
           json['address'] != null ? Address.fromJson(json['address']) : null,
+      status: json['status'] as String?, // Parse the new field
     );
   }
 
@@ -50,6 +53,7 @@ class Order {
       'payment_method': paymentMethod,
       'createdAt': createdAt,
       'address': address?.toJson(),
+      'status': status, // Add the new field
     };
   }
 }
@@ -63,6 +67,7 @@ class Service {
   final int? dailyPrice;
   final int? hourlyPrice;
   final int? rate;
+  final int? rateCount; // New field
   final List<String>? images;
   final String? categoryId;
   final String? date;
@@ -76,6 +81,7 @@ class Service {
     this.dailyPrice,
     this.hourlyPrice,
     this.rate,
+    this.rateCount, // Initialize the new field
     this.images,
     this.categoryId,
     this.date,
@@ -94,6 +100,7 @@ class Service {
       dailyPrice: json['daily_price'] as int?,
       hourlyPrice: json['hourly_price'] as int?,
       rate: json['rate'] as int?,
+      rateCount: json['rate_count'] as int?, // Parse the new field
       images: (json['images'] as List?)?.cast<String>(),
       categoryId: json['category_id'] as String?,
       date: json['date'] as String?,
@@ -110,6 +117,7 @@ class Service {
       'daily_price': dailyPrice,
       'hourly_price': hourlyPrice,
       'rate': rate,
+      'rate_count': rateCount, // Add the new field
       'images': images,
       'category_id': categoryId,
       'date': date,
@@ -232,21 +240,33 @@ class Address {
 
 class Orders {
   List<Order>? orders;
+  int? totalDocs; // New field
+  int? page; // New field
+  int? totalPages; // New field
 
   Orders({
     this.orders,
+    this.totalDocs, // Initialize the new field
+    this.page, // Initialize the new field
+    this.totalPages, // Initialize the new field
   });
 
   factory Orders.fromJson(Map<String, dynamic> json) {
     return Orders(
       orders:
           (json['docs'] as List?)?.map((item) => Order.fromJson(item)).toList(),
+      totalDocs: json['totalDocs'] as int?, // Parse the new field
+      page: json['page'] as int?, // Parse the new field
+      totalPages: json['totalPages'] as int?, // Parse the new field
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'docs': orders?.map((order) => order.toJson()).toList(),
+      'totalDocs': totalDocs, // Add the new field
+      'page': page, // Add the new field
+      'totalPages': totalPages, // Add the new field
     };
   }
 }

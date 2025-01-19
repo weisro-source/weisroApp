@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -225,7 +227,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
   Future<void> addServiceCallApi(BuildContext context) async {
     emit(AddServiceStateLoading());
     FormData formData = await prepareFormData(prepareApiData(context) ?? {});
-    print(formData.fields);
+    log(formData.fields.toString());
     if (context.mounted) {
       var result =
           await getIt.get<ServiceRepository>().addService(context, formData);

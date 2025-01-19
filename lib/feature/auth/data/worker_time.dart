@@ -6,12 +6,18 @@ class FavoriteTimeModel {
   final String icon;
   final String hours;
   final String? time;
+  final int? startHour; // Start of the time range
+  final int? endHour; // End of the time range
   bool isSelected;
-  FavoriteTimeModel(
-      {required this.icon,
-      required this.hours,
-      this.time,
-      this.isSelected = false});
+
+  FavoriteTimeModel({
+    required this.icon,
+    required this.hours,
+    this.time,
+    this.startHour,
+    this.endHour,
+    this.isSelected = false,
+  });
 }
 
 abstract class WorkerTime {
@@ -30,13 +36,26 @@ abstract class WorkerTime {
   static List<FavoriteTimeModel> favoriteTimesList(BuildContext context) {
     return [
       FavoriteTimeModel(
-          icon: IconsPath.iconsSun, hours: "6-14", time: S.of(context).Morning),
+        icon: IconsPath.iconsSun,
+        hours: "6-14",
+        time: S.of(context).Morning,
+        startHour: 6,
+        endHour: 14,
+      ),
       FavoriteTimeModel(
-          icon: IconsPath.iconsMoon,
-          hours: "14-22",
-          time: S.of(context).Evening),
+        icon: IconsPath.iconsMoon,
+        hours: "14-22",
+        time: S.of(context).Evening,
+        startHour: 14,
+        endHour: 22,
+      ),
       FavoriteTimeModel(
-          icon: IconsPath.iconsMoon, hours: "22-6", time: S.of(context).Night),
+        icon: IconsPath.iconsMoon,
+        hours: "22-6",
+        time: S.of(context).Night,
+        startHour: 22,
+        endHour: 6,
+      ),
     ];
   }
 

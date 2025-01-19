@@ -15,7 +15,7 @@ import 'package:weisro/feature/home/presentation/managers/categories_cubit/categ
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/language_screen.dart';
-import 'package:weisro/feature/onboarding/presentation/view/pages/splash_view.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
@@ -93,6 +93,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => GetAllRejectOrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetAllPendingOrdersCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

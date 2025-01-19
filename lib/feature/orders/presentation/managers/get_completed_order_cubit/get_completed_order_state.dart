@@ -7,6 +7,10 @@ final class GetCompletedOrderInitial extends GetCompletedOrderState {}
 
 final class GetCompletedOrderLoading extends GetCompletedOrderState {}
 
-final class GetCompletedOrderSuccess extends GetCompletedOrderState {}
+final class GetCompletedOrderSuccess extends GetCompletedOrderState {
+  final Orders orders;
+
+  GetCompletedOrderSuccess({required this.orders});
+}
 
 final class GetCompletedOrderFailure extends GetCompletedOrderState {}

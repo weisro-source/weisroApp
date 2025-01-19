@@ -30,7 +30,7 @@ class ApiEndPoints {
   // booking Route
   static const String addServiceBooking = '/booking/service';
   static const String addWorkerBooking = '/worker-booking';
-  static const String getUserBooking = '/booking/?type=user';
+  static const String getUserBooking = '/booking/?type=user&limit=1000&status=';
   static const String getYourBooking = '/booking/?type=worker';
   // /booking/update-status/6786a623052efb2931d93435?status=accepted
   static const String updateStatus = "/booking/update-status";
