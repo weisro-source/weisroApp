@@ -2,12 +2,12 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:weisro/feature/auth/data/models/cities_model.dart';
 
-class CityDropdown extends StatelessWidget {
-  final CityList cityList; // The list of cities
-  final CityState? selectedCity; // The currently selected city
-  final ValueChanged<CityState?> onChanged; // Callback when a city is selected
+class CityInStateDropdown extends StatelessWidget {
+  final List<City> cityList; // The list of cities
+  final City? selectedCity; // The currently selected city
+  final ValueChanged<City?> onChanged; // Callback when a city is selected
 
-  const CityDropdown({
+  const CityInStateDropdown({
     Key? key,
     required this.cityList,
     required this.selectedCity,
@@ -16,7 +16,7 @@ class CityDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<CityState>(
+    return DropdownSearch<City>(
       popupProps: PopupProps.menu(
         showSearchBox: true, // Enable search box
         searchFieldProps: const TextFieldProps(
@@ -26,7 +26,7 @@ class CityDropdown extends StatelessWidget {
             border: OutlineInputBorder(),
           ),
         ),
-        itemBuilder: (BuildContext context, CityState city, bool isSelected,
+        itemBuilder: (BuildContext context, City city, bool isSelected,
             bool isHighlighted) {
           return Container(
             decoration: BoxDecoration(
@@ -43,8 +43,8 @@ class CityDropdown extends StatelessWidget {
           );
         },
       ),
-      items: (filter, loadProps) => cityList.states, // List of cities
-      itemAsString: (CityState? city) =>
+      items: (filter, loadProps) => cityList, // List of cities
+      itemAsString: (City? city) =>
           city?.name ?? 'Unknown', // Display city name in the dropdown
       selectedItem: selectedCity, // Initially selected city
       onChanged: onChanged, // Callback to update selected city

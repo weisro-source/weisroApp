@@ -23,7 +23,7 @@ class GetCitiesOfASpecifiedCountryCubit
       await getAllCitiesOfASpecifiedCountry(
           CacheHelper.getData(key: CacheKeys.kCountryId));
     } else {
-      await getAllCitiesOfASpecifiedCountry('674c554a3d1db3be1320b721');
+      await getAllCitiesOfASpecifiedCountry('678c1805937ae70e6cc0d335');
     }
   }
 
@@ -37,7 +37,7 @@ class GetCitiesOfASpecifiedCountryCubit
         emit(GetCitiesOfASpecifiedCountryFailures(error: errorGetAllCities));
       },
       (getAllCities) {
-        cityName = getAllCities.cities.first.name;
+        cityName = getAllCities.states.first.name;
         emit(GetCitiesOfASpecifiedCountrySuccess(cities: getAllCities));
       },
     );

@@ -13,6 +13,7 @@ import 'package:weisro/feature/auth/register/presentation/manager/register_cubit
 import 'package:weisro/feature/auth/register/presentation/view/pages/second_worker_and_client_register_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/city_drop_down.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/city_in_state_drop_down.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_country_dropdown.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -202,17 +203,41 @@ class _WorkerAndClientRegisterPageViewBodyState
                 builder: (context, getAllCitiesState) {
                   if (getAllCitiesState
                       is GetCitiesOfASpecifiedCountrySuccess) {
-                    registerCubit.cityName = context
-                        .read<GetCitiesOfASpecifiedCountryCubit>()
-                        .cityName;
-                    return CityDropdown(
-                      cityList: getAllCitiesState.cities,
-                      onChanged: (value) {
-                        GetCitiesOfASpecifiedCountryCubit.get(context)
-                            .cityName = value?.name ?? "";
-                        registerCubit.cityName = value?.name ?? "";
-                      },
-                      selectedCity: getAllCitiesState.cities.cities.first,
+                    // Access the current cubit and states
+                    final cubit =
+                        GetCitiesOfASpecifiedCountryCubit.get(context);
+                    final states = getAllCitiesState.cities.states;
+                    final selectedState = states.firstWhere(
+                      (state) => state.name == cubit.cityName,
+                      orElse: () => states.first,
+                    );
+
+                    return Column(
+                      children: [
+                        CityDropdown(
+                          cityList: getAllCitiesState.cities,
+                          onChanged: (value) {
+                            cubit.cityName = value?.name ?? "";
+                            registerCubit.cityName = value?.name ?? "";
+                            cubit.emit(
+                              GetCitiesOfASpecifiedCountrySuccess(
+                                cities: getAllCitiesState.cities,
+                              ),
+                            );
+                          },
+                          selectedCity: selectedState,
+                        ),
+                        20.kh,
+                        TitleForTextFromFiled(
+                          title: S.of(context).City,
+                        ),
+                        5.kh,
+                        CityInStateDropdown(
+                          cityList: selectedState.cities,
+                          selectedCity: selectedState.cities.first,
+                          onChanged: (value) {},
+                        ),
+                      ],
                     );
                   } else if (getAllCitiesState
                       is GetCitiesOfASpecifiedCountryLoading) {

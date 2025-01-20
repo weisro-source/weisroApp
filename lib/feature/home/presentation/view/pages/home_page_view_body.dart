@@ -110,7 +110,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                 builder: (context, state) {
                   if (state is GetCitiesOfASpecifiedCountrySuccess) {
                     List<String> cityNameList =
-                        state.cities.cities.map((e) => e.name).toList();
+                        state.cities.states.map((e) => e.name).toList();
                     String firstCity = cityNameList.firstWhere((cityName) =>
                         cityName ==
                         CacheHelper.getData(key: CacheKeys.kCityName));
