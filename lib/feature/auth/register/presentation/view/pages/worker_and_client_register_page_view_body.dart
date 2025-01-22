@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
@@ -155,7 +154,8 @@ class _WorkerAndClientRegisterPageViewBodyState
                 builder: (context, getAllCountriesState) {
                   if (getAllCountriesState is GetAllCountriesSuccess) {
                     final countries = getAllCountriesState.countries;
-
+                    registerCubit.cityName =
+                        GetAllCountriesCubit.get(context).selectedCountry.name;
                     return CountryDropdown(
                       countries: countries,
                       selectedCountry:
@@ -211,7 +211,8 @@ class _WorkerAndClientRegisterPageViewBodyState
                       (state) => state.name == cubit.cityName,
                       orElse: () => states.first,
                     );
-
+                    registerCubit.cityOfStateName =
+                        selectedState.cities.first.name;
                     return Column(
                       children: [
                         CityDropdown(
@@ -235,7 +236,9 @@ class _WorkerAndClientRegisterPageViewBodyState
                         CityInStateDropdown(
                           cityList: selectedState.cities,
                           selectedCity: selectedState.cities.first,
-                          onChanged: (value) {},
+                          onChanged: (newCity) {
+                            registerCubit.cityOfStateName = newCity?.name ?? "";
+                          },
                         ),
                       ],
                     );

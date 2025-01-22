@@ -4,4 +4,5 @@ import 'package:weisro/feature/orders/data/models/order_model.dart';
 
 abstract class OrderRepository {
   Future<Either<Failure, Orders>> getAllOrderApi(String status);
+  Future<Either<Failure, String>> bookingPayApi(String orderId);
 }

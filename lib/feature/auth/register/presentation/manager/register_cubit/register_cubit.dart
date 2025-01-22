@@ -73,6 +73,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   String hintTextPassword = "********";
   String countryName = "Germany";
   String cityName = "";
+  String cityOfStateName = "";
   bool isTermsOk = false;
   bool isPrivacyOk = false;
   List<String> selectedDay = [];
@@ -86,12 +87,12 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Address createAddress() {
     return Address(
-      city: cityName,
-      country: countryName,
-      houseNumber: houseNumberController.text,
-      postalCode: postalCodeController.text,
-      street: streetController.text,
-    );
+        city: cityName,
+        country: countryName,
+        houseNumber: houseNumberController.text,
+        postalCode: postalCodeController.text,
+        street: streetController.text,
+        state: cityOfStateName);
   }
 
   UserClientModel createClient() {

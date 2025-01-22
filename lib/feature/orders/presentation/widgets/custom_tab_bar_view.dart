@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/enums/order_status.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
@@ -34,6 +35,7 @@ class CustomTabBarView extends StatelessWidget {
                     )
                   : OrdersList(
                       orders: orderState.orders,
+                      state: OrderStatus.accepted.name,
                     );
             } else {
               return const SizedBox();
@@ -51,7 +53,7 @@ class CustomTabBarView extends StatelessWidget {
                     )
                   : OrdersList(
                       orders: completedOrdersState.orders,
-                    );
+                      state: OrderStatus.completed.name);
             } else {
               return const SizedBox();
             }
@@ -68,6 +70,7 @@ class CustomTabBarView extends StatelessWidget {
                     )
                   : OrdersList(
                       orders: rejectOrderState.orders,
+                      state: OrderStatus.rejected.name,
                     );
             } else {
               return const SizedBox();
@@ -85,6 +88,7 @@ class CustomTabBarView extends StatelessWidget {
                     )
                   : OrdersList(
                       orders: pendingOrdersState.orders,
+                      state: OrderStatus.pending.name,
                     );
             } else {
               return const SizedBox();

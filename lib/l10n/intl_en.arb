@@ -213,5 +213,9 @@
     "Ad_Text": "Ad Text",
     "Skip": "Skip",
     "Per_Day": "Per day",
-    "Per_Hour": "Per hour"
+    "Per_Hour": "Per hour",
+    "Order_Status": "Order Status",
+    "Accepted": "Accepted",
+    "Pay_Order": "Pay Order",
+    "Confirm_Services_Date": "Confirmed the services date"
 }

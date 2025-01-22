@@ -4,11 +4,13 @@ class Address {
   final String? postalCode;
   final String? houseNumber;
   final String? street;
+  final String? state;
   const Address(
       {this.city,
       this.country,
       this.postalCode,
       this.houseNumber,
+      this.state,
       this.street});
   Address copyWith(
       {String? city,
@@ -30,7 +32,8 @@ class Address {
       'country': country,
       'postal_code': postalCode,
       'house_number': houseNumber,
-      'street': street
+      'street': street,
+      "state": state
     };
   }
 

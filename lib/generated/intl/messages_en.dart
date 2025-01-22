@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Accepted": MessageLookupByLibrary.simpleMessage("Accepted"),
         "Accommodation": MessageLookupByLibrary.simpleMessage("Accommodation"),
         "Ad_Deleted": MessageLookupByLibrary.simpleMessage("Ad Deleted!"),
         "Ad_Deleted_Success": MessageLookupByLibrary.simpleMessage(
@@ -72,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please complete the information"),
         "Confirm_Password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "Confirm_Services_Date":
+            MessageLookupByLibrary.simpleMessage("Confirmed the services date"),
         "Conformation": MessageLookupByLibrary.simpleMessage("Conformation"),
         "Congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations"),
@@ -184,11 +187,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "OR": MessageLookupByLibrary.simpleMessage("OR"),
         "Ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "Old_Password": MessageLookupByLibrary.simpleMessage("Old Password"),
+        "Order_Status": MessageLookupByLibrary.simpleMessage("Order Status"),
         "Orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "Our_Categories":
             MessageLookupByLibrary.simpleMessage("Our Categories"),
         "Passport": MessageLookupByLibrary.simpleMessage("Passport"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
+        "Pay_Order": MessageLookupByLibrary.simpleMessage("Pay Order"),
         "Payment_Method":
             MessageLookupByLibrary.simpleMessage("Payment method"),
         "Pending": MessageLookupByLibrary.simpleMessage("Pending"),
