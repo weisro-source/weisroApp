@@ -2191,6 +2191,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Order Status`
+  String get Order_Status {
+    return Intl.message(
+      'Order Status',
+      name: 'Order_Status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted`
+  String get Accepted {
+    return Intl.message(
+      'Accepted',
+      name: 'Accepted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay Order`
+  String get Pay_Order {
+    return Intl.message(
+      'Pay Order',
+      name: 'Pay_Order',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmed the services date`
+  String get Confirm_Services_Date {
+    return Intl.message(
+      'Confirmed the services date',
+      name: 'Confirm_Services_Date',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

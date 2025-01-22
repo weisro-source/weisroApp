@@ -32,6 +32,7 @@ class _CategoriesWorkerAndServicesPageViewBodyState
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
+    
   }
 
   void _scrollListener() async {

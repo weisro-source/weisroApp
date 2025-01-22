@@ -17,7 +17,7 @@ class CustomTabBar extends StatelessWidget {
       controller: _tabController,
       tabs: [
         Tab(
-          text: S.of(context).All,
+          text: S.of(context).Accepted,
         ),
         Tab(
           text: S.of(context).Complete,

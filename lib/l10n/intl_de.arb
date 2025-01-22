@@ -208,5 +208,10 @@
     "NoStayLoggedIn": "Nein, angemeldet bleiben",
     "Skip": "Überspringen",
     "Per_Day": "Pro Tag",
-    "Per_Hour": "Pro Stunde"
+    "Per_Hour": "Pro Stunde",
+    "Order_Status": "Bestellstatus",
+    "Accepted": "Akzeptiert",
+    "Pay_Order": "Bestellung bezahlen",
+    "Confirm_Services_Date": "Bestätigte das Leistungsdatum"
+
 }

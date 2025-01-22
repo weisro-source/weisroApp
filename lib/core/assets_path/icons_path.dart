@@ -134,6 +134,10 @@ class IconsPath {
   /// assets/icons/notification.svg
   static const String iconsNotification = "assets/icons/notification.svg";
 
+  /// Assets for iconsParty
+  /// assets/icons/party.svg
+  static const String iconsParty = "assets/icons/party.svg";
+
   /// Assets for iconsPaymentCards
   /// assets/icons/payment_cards.svg
   static const String iconsPaymentCards = "assets/icons/payment_cards.svg";

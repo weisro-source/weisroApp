@@ -19,7 +19,7 @@ class YourBookingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 100,
+        height: 120,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           border: Border.all(color: AppColors.orangeColor, width: 1),
@@ -28,7 +28,7 @@ class YourBookingWidget extends StatelessWidget {
           children: [
             30.kw,
             SizedBox(
-              width: 90.0, // Fixed size for the image
+              width: 90.0,
               child: CachedNetworkImage(
                 imageUrl: HelperFunctions.ensureIsFirstItemOrNull(
                         booking.service?.images ?? []) ??
@@ -58,6 +58,11 @@ class YourBookingWidget extends StatelessWidget {
                   10.kh,
                   Text(
                     "${S.of(context).Payment_Method} : ${booking.paymentMethod ?? ""}",
+                    style: AppStyles.style12w400Second2(context),
+                  ),
+                  10.kh,
+                  Text(
+                    "${S.of(context).Order_Status} : ${booking.status ?? ""}",
                     style: AppStyles.style12w400Second2(context),
                   ),
                 ],
