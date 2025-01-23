@@ -2231,6 +2231,16 @@ class S {
       args: [],
     );
   }
+
+  /// `in progress`
+  String get In_Progress {
+    return Intl.message(
+      'in progress',
+      name: 'In_Progress',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

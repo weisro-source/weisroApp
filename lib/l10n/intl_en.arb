@@ -217,5 +217,6 @@
     "Order_Status": "Order Status",
     "Accepted": "Accepted",
     "Pay_Order": "Pay Order",
-    "Confirm_Services_Date": "Confirmed the services date"
+    "Confirm_Services_Date": "Confirmed the services date",
+    "In_Progress":"in progress"
 }

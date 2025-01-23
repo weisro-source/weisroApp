@@ -148,6 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "I_agree_to_the":
             MessageLookupByLibrary.simpleMessage("I agree to the"),
         "Identity": MessageLookupByLibrary.simpleMessage("Identity"),
+        "In_Progress": MessageLookupByLibrary.simpleMessage("in progress"),
         "Incomplete_Information":
             MessageLookupByLibrary.simpleMessage("Incomplete Information"),
         "Information_Updated_Successfully":

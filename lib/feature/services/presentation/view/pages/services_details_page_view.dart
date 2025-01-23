@@ -34,10 +34,12 @@ class ServicesDetailsPageView extends StatelessWidget {
           if (getServiceByIdState is GetServiceByIdLoading) {
             return const CustomLoading();
           } else if (getServiceByIdState is GetServiceByIdSuccess) {
-            return ServicesDetailsPageViewBody(
-              serviceId: serviceId,
-              oneService: getServiceByIdState.oneService,
-              isReview: false,
+            return SafeArea(
+              child: ServicesDetailsPageViewBody(
+                serviceId: serviceId,
+                oneService: getServiceByIdState.oneService,
+                isReview: false,
+              ),
             );
           } else {
             return const CustomErrorWidgets();

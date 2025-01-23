@@ -18,6 +18,7 @@ import 'package:weisro/feature/onboarding/presentation/view/pages/language_scree
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_in_progress_orders_cubit/get_in_progress_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/feature/profile/presentation/manager/get_user_info_cubit/get_user_info_cubit.dart';
@@ -96,6 +97,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => GetAllPendingOrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GetInProgressOrdersCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(
