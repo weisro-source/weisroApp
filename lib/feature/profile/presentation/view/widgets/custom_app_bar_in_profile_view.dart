@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/widgets/custom_leading_icon.dart';
 
 class CustomAppBarInProfileView extends StatelessWidget
@@ -29,17 +30,20 @@ class CustomAppBarInProfileView extends StatelessWidget
           //   )
           // ],
         ),
-        const PositionedDirectional(
-          top: 160,
-          end: 0,
-          start: 0,
-          child: CircleAvatar(
-            minRadius: 50,
-            maxRadius: 50,
-            backgroundImage: CachedNetworkImageProvider(
-                "https://i.pravatar.cc/20",
-                maxHeight: 50,
-                maxWidth: 50),
+        Visibility(
+          visible: HelperFunctions.isWorker(),
+          child: const PositionedDirectional(
+            top: 160,
+            end: 0,
+            start: 0,
+            child: CircleAvatar(
+              minRadius: 50,
+              maxRadius: 50,
+              backgroundImage: CachedNetworkImageProvider(
+                  "https://i.pravatar.cc/10",
+                  maxHeight: 50,
+                  maxWidth: 50),
+            ),
           ),
         ),
       ],

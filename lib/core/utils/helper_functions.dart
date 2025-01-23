@@ -305,6 +305,15 @@ class HelperFunctions {
       return false;
     }
   }
+
+  static bool isWorker() {
+    String userRole = CacheHelper.getData(key: CacheKeys.kUserRole);
+    if (userRole == Constants.workerRole) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 // static void failureSnackBar(

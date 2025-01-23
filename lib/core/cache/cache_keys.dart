@@ -17,4 +17,5 @@ abstract class CacheKeys {
   static const String kHouseNumber = 'houseNumber';
   static const String kSearchHistory = 'search_history';
   static const String kCityOfState = 'cityOfStateList';
+  static const String kUserRole = 'role';
 }
