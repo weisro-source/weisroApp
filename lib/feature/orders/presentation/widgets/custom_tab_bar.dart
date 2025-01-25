@@ -24,6 +24,7 @@ class CustomTabBar extends StatelessWidget {
         ),
         Tab(text: S.of(context).Reject),
         Tab(text: S.of(context).Pending),
+        Tab(text: S.of(context).In_Progress),
       ],
       labelColor: AppColors.orangeColor,
       unselectedLabelColor: AppColors.greyColor,

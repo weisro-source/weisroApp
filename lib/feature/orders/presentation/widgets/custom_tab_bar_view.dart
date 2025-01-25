@@ -5,6 +5,7 @@ import 'package:weisro/feature/home/presentation/view/widgets/not_found_widget.d
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_in_progress_orders_cubit/get_in_progress_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/widgets/order_list_shimmer.dart';
 import 'package:weisro/feature/orders/presentation/widgets/orders_list.dart';
@@ -82,6 +83,24 @@ class CustomTabBarView extends StatelessWidget {
             if (pendingOrdersState is GetAllPendingOrdersLoading) {
               return const OrderListShimmer();
             } else if (pendingOrdersState is GetAllPendingOrdersSuccess) {
+              return pendingOrdersState.orders.orders?.isEmpty ?? false
+                  ? NotFoundWidget(
+                      title: S.of(context).No_Orders_Found,
+                    )
+                  : OrdersList(
+                      orders: pendingOrdersState.orders,
+                      state: OrderStatus.pending.name,
+                    );
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
+        BlocBuilder<GetInProgressOrdersCubit, GetInProgressOrdersState>(
+          builder: (context, pendingOrdersState) {
+            if (pendingOrdersState is GetInProgressOrdersLoading) {
+              return const OrderListShimmer();
+            } else if (pendingOrdersState is GetInProgressOrdersSuccess) {
               return pendingOrdersState.orders.orders?.isEmpty ?? false
                   ? NotFoundWidget(
                       title: S.of(context).No_Orders_Found,

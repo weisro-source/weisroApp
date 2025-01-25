@@ -10,4 +10,6 @@ abstract class ServiceRepository {
       BuildContext context, var service);
   Future<Either<Failure, String>> addServiceToFavorite(
       BuildContext context, String serviceId );
+  Future<Either<Failure, String>> deleteService(
+      BuildContext context, String serviceId );
 }

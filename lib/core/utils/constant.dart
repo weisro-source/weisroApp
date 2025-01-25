@@ -16,6 +16,7 @@ abstract class Constants {
   static const String bothKey = 'both';
   static const String hoursKey = 'hours';
   static const String acceptBookingState = 'accepted';
+  static const String workerRole = 'worker';
 
   /// this global Var for all page limit in pagination Apis
 

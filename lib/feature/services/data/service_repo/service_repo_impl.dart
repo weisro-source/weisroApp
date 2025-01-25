@@ -64,4 +64,22 @@ class ServiceRepositoryImplementation implements ServiceRepository {
       return left(ErrorHandler.handleError(errorInAddServiceToFavorite));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteService(
+      BuildContext context, String serviceId) async {
+    try {
+      var response = await _apiService.delete(
+          endPoint: ApiEndPoints.getServiceById, id: serviceId);
+      var message = response[Constants.messageFromResponse];
+      String? validMessage = HelperFunctions.ensureStringOrNull(message);
+      if (validMessage != null) {
+        return right(validMessage);
+      } else {
+        return left(ErrorHandler.handleError(Constants.responseIsNull));
+      }
+    } catch (errorInDeleteService) {
+      return left(ErrorHandler.handleError(errorInDeleteService));
+    }
+  }
 }

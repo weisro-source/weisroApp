@@ -27,6 +27,10 @@ class GetCitiesOfASpecifiedCountryCubit
     }
   }
 
+  void updateCitiesState(CityList updatedCities) {
+    emit(GetCitiesOfASpecifiedCountrySuccess(cities: updatedCities));
+  }
+
   Future<void> getAllCitiesOfASpecifiedCountry(String countryId) async {
     emit(GetCitiesOfASpecifiedCountryLoading());
     var result = await getIt

@@ -167,7 +167,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                   await BlocProvider.of<GetLastServicesCubit>(context)
                       .getLastService(
                           context,
-                          CacheHelper.getData(key: CacheKeys.kCityName),
+                          CacheHelper.getData(key: CacheKeys.kState),
                           categoryId ?? "");
                 }
               },

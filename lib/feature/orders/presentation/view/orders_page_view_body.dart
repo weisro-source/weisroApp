@@ -5,6 +5,7 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_reject_orders_cubit/get_all_reject_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_completed_order_cubit/get_completed_order_cubit.dart';
+import 'package:weisro/feature/orders/presentation/managers/get_in_progress_orders_cubit/get_in_progress_orders_cubit.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_orders_cubit/get_orders_cubit.dart';
 import '../widgets/custom_tab_bar.dart';
 import '../widgets/custom_tab_bar_view.dart';
@@ -23,11 +24,12 @@ class _OrdersPageViewBodyState extends State<OrdersPageViewBody>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     BlocProvider.of<GetOrdersCubit>(context).getAllOrders();
     BlocProvider.of<GetCompletedOrderCubit>(context).getAllCompletedOrders();
     BlocProvider.of<GetAllRejectOrdersCubit>(context).getAllRejectOrders();
     BlocProvider.of<GetAllPendingOrdersCubit>(context).getAllPendingOrders();
+    BlocProvider.of<GetInProgressOrdersCubit>(context).getInProgressOrders();
   }
 
   @override

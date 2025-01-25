@@ -1,6 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/api/api_error_handler.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
@@ -51,7 +53,7 @@ class LoginCubit extends Cubit<LoginState> {
       return;
     }
     emit(LoginLoading());
-    var result = await getIt
+    Either<Failure, SuccessLoginModel> result = await getIt
         .get<AuthenticationRepository>()
         .loginApi(userToLogin(), cancelToken);
     result.fold((errorInLogin) {

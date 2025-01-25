@@ -88,18 +88,18 @@ class OrderItemWidget extends StatelessWidget {
                     )
                   ],
                 ),
+                // 10.kh,
+                // Text(
+                //   "Lorem ipsum dolor sit",
+                //   style: AppStyles.style8w400Grey2(context),
+                // ),
                 10.kh,
                 Text(
-                  "Lorem ipsum dolor sit",
-                  style: AppStyles.style8w400Grey2(context),
-                ),
-                10.kh,
-                LocationWidget(
-                  iconHeight: 11,
-                  iconWidth: 8,
-                  space: 4.kw,
-                  styleLocationText: AppStyles.style10w400Grey(context),
-                  location: "TEST LOCATION",
+                  order.address?.id ?? "",
+                  textAlign: TextAlign.start,
+                  style: AppStyles.style12w400Grey(context),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 RateWidget(
                   rate: order.service?.rate.toString() ?? "",

@@ -132,12 +132,14 @@ class LoginPageViewBody extends StatelessWidget {
                   if (loginState is LoginLoading) {
                     return const ShimmerAppButton.rectangular();
                   } else {
-                    return AppButton(
-                      focusNode: loginCubit.loginButtonFocusNode,
-                      onPressed: () async {
-                        await loginCubit.login(context);
-                      },
-                      text: S.of(context).Log_in,
+                    return StatefulBuilder(
+                      builder: (context, setState) => AppButton(
+                        focusNode: loginCubit.loginButtonFocusNode,
+                        onPressed: () async {
+                          await loginCubit.login(context);
+                        },
+                        text: S.of(context).Log_in,
+                      ),
                     );
                   }
                 },

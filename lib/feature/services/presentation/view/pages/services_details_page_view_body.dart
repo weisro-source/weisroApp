@@ -23,6 +23,7 @@ import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/get_service_by_id_cubit/get_service_by_id_cubit.dart';
+import 'package:weisro/feature/services/presentation/view/widgets/delete_service_dialog.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/ad_widget_in_details.dart';
@@ -299,7 +300,6 @@ class _ServicesDetailsPageViewBodyState
                   )
                 :
                 //! if page not from add
-
                 Visibility(
                     visible: !HelperFunctions.isCurrentUser(
                         widget.oneService.service?.user?.id ?? ""),
@@ -339,6 +339,24 @@ class _ServicesDetailsPageViewBodyState
                   ),
           ),
         ),
+        SliverPadding(
+            padding: HelperFunctions.symmetricHorizontalPadding24,
+            sliver: SliverToBoxAdapter(
+              child: Visibility(
+                  visible: (HelperFunctions.isCurrentUser(
+                          widget.oneService.service?.user?.id ?? "") &&
+                      !widget.isReview),
+                  child: AppButton(
+                    height: 32,
+                    width: 164,
+                    onPressed: () {
+                      showDeleteConfirmationDialog(context,widget.oneService.service?.id??"");
+                    },
+                    buttonColor: AppColors.redColor,
+                    borderColor: AppColors.redColor,
+                    text: S.of(context).Delete_Service,
+                  )),
+            )),
         SliverToBoxAdapter(
           child: 60.kh,
         ),

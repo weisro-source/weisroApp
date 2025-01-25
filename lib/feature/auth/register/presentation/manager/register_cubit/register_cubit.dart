@@ -192,6 +192,7 @@ class RegisterCubit extends Cubit<RegisterState> {
       'address[postal_code]': postalCodeController.text,
       'address[house_number]': houseNumberController.text,
       'address[street]': streetController.text,
+      'address[state]': cityOfStateName,
       for (int i = 0; i < selectedTags.length; i++)
         'tags[$i]': selectedTags[i].id,
       ...daysMap,

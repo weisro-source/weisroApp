@@ -10,11 +10,13 @@ class CancelAndButton extends StatelessWidget {
     super.key,
     this.onCancelPressed,
     this.onBookPressed,
+    this.cancelButton,
     required this.secondButton,
   });
   final void Function()? onCancelPressed;
   final void Function()? onBookPressed;
   final String secondButton;
+  final String? cancelButton;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,7 +26,7 @@ class CancelAndButton extends StatelessWidget {
           child: AppButton(
             borderColor: AppColors.redColor,
             buttonColor: AppColors.redColor,
-            text: S.of(context).Cancel,
+            text:cancelButton?? S.of(context).Cancel,
             onPressed: onCancelPressed,
           ),
         ),

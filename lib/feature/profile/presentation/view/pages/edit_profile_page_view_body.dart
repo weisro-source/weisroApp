@@ -13,9 +13,11 @@ import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/material_banner.dart';
+import 'package:weisro/feature/auth/data/models/cities_model.dart';
 import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_all_countries_cubit/get_all_countries_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/city_in_state_drop_down.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_country_dropdown.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/loading_filed.dart';
 import 'package:weisro/feature/booking/presentation/view/widgets/cancel_and_button.dart';
@@ -34,6 +36,7 @@ class EditProfilePageViewBody extends StatefulWidget {
 
 class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
   String newCity = "";
+  String newCityInState = "";
   @override
   void initState() {
     BlocProvider.of<EditUserInfoCubit>(context).initControllers();
@@ -136,31 +139,63 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                       if (state is GetCitiesOfASpecifiedCountrySuccess) {
                         List<String> cityNameList =
                             state.cities.states.map((e) => e.name).toList();
-
+                        final cachedCityName =
+                            CacheHelper.getData(key: CacheKeys.kCityName);
+                        final cachedStateName =
+                            CacheHelper.getData(key: CacheKeys.kState);
                         String firstCity = cityNameList.firstWhere(
-                            (cityName) =>
-                                cityName ==
-                                CacheHelper.getData(key: CacheKeys.kCityName),
+                            (cityName) => cityName == cachedCityName,
                             orElse: () => cityNameList.isNotEmpty
                                 ? cityNameList.first
                                 : '');
                         firstCity = newCity;
-                        return LocationFlitterDropDown(
-                          fillColor: AppColors.whiteColor,
-                          borderColor: AppColors.greyColor,
-                          iconColor: AppColors.greyColor,
-                          height: 50,
-                          width: HelperFunctions.getScreenWidth(context),
-                          iconHeight: 24,
-                          iconWidth: 10,
-                          borderWidth: 1,
-                          borderRadius: 8,
-                          selectedLocation: firstCity,
-                          locations: cityNameList,
-                          prefixIcon: IconsPath.iconsLocation,
-                          onChanged: (selectedCategory) async {
-                            newCity = selectedCategory ?? "";
-                          },
+
+                        // for new city ;;
+                        CityState cityOfState = state.cities.states.firstWhere(
+                          (element) => element.name == firstCity,
+                          orElse: () => state.cities.states.first,
+                        );
+                        City firstCityForState = cityOfState.cities.firstWhere(
+                          (element) => element.name == cachedStateName,
+                          orElse: () => cityOfState.cities.first,
+                        );
+                        return Column(
+                          children: [
+                            LocationFlitterDropDown(
+                              fillColor: AppColors.whiteColor,
+                              borderColor: AppColors.greyColor,
+                              iconColor: AppColors.greyColor,
+                              height: 50,
+                              width: HelperFunctions.getScreenWidth(context),
+                              iconHeight: 24,
+                              iconWidth: 10,
+                              borderWidth: 1,
+                              borderRadius: 8,
+                              selectedLocation: firstCity,
+                              locations: cityNameList,
+                              prefixIcon: IconsPath.iconsLocation,
+                              onChanged: (selectedCategory) async {
+                                newCity = selectedCategory ?? "";
+                                GetCitiesOfASpecifiedCountryCubit.get(context)
+                                    .updateCitiesState(state.cities);
+                              },
+                            ),
+                            15.kh,
+                            const CustomDashedLine(),
+                            15.kh,
+                            TitleFiledEditAccount(
+                              title: S.of(context).City,
+                            ),
+                            20.kh,
+                            CityInStateDropdown(
+                              cityList: cityOfState.cities,
+                              selectedCity: firstCityForState,
+                              onChanged: (newCity) {
+                                // registerCubit.cityOfStateName =
+                                //     newCity?.name ?? "";
+                              },
+                            ),
+                          ],
                         );
                       } else if (state is GetCitiesOfASpecifiedCountryLoading) {
                         return const LoadingFiled();
