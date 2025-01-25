@@ -39,6 +39,7 @@ class Address {
 
   static Address fromJson(Map<String, Object?> json) {
     return Address(
+        state: json['state'] == null ? null : json['state'] as String,
         city: json['city'] == null ? null : json['city'] as String,
         country: json['country'] == null ? null : json['country'] as String,
         postalCode:

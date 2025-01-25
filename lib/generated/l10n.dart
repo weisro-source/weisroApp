@@ -2241,6 +2241,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Delete Service`
+  String get Delete_Service {
+    return Intl.message(
+      'Delete Service',
+      name: 'Delete_Service',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this service?`
+  String get Delete_Service_Confirmation {
+    return Intl.message(
+      'Are you sure you want to delete this service?',
+      name: 'Delete_Service_Confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Deleted`
+  String get Service_Deleted {
+    return Intl.message(
+      'Service Deleted',
+      name: 'Service_Deleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The service has been successfully deleted.`
+  String get Service_Deleted_Message {
+    return Intl.message(
+      'The service has been successfully deleted.',
+      name: 'Service_Deleted_Message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deletion Failed`
+  String get Deletion_Failed {
+    return Intl.message(
+      'Deletion Failed',
+      name: 'Deletion_Failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while trying to delete the service. Please try again.`
+  String get Deletion_Failed_Message {
+    return Intl.message(
+      'An error occurred while trying to delete the service. Please try again.',
+      name: 'Deletion_Failed_Message',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

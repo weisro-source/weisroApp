@@ -4,6 +4,7 @@ import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
+import 'package:weisro/feature/services/presentation/managers/deleted_service_cubit/deleted_service_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/get_service_by_id_cubit/get_service_by_id_cubit.dart';
 
 import 'services_details_page_view_body.dart';
@@ -21,6 +22,9 @@ class ServicesDetailsPageView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddServiceToFavoriteCubit(),
+        ),
+        BlocProvider(
+          create: (context) => DeletedServiceCubit(),
         ),
         BlocProvider(
           create: (context) =>

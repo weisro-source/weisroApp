@@ -212,6 +212,11 @@
     "Order_Status": "Bestellstatus",
     "Accepted": "Akzeptiert",
     "Pay_Order": "Bestellung bezahlen",
-    "Confirm_Services_Date": "Bestätigte das Leistungsdatum"
-
+    "Confirm_Services_Date": "Bestätigte das Leistungsdatum",
+    "Delete_Service": "Dienstleistung löschen",
+    "Delete_Service_Confirmation": "Sind Sie sicher, dass Sie diese Dienstleistung löschen möchten?",
+    "Service_Deleted": "Dienstleistung gelöscht",
+    "Service_Deleted_Message": "Die Dienstleistung wurde erfolgreich gelöscht.",
+    "Deletion_Failed": "Löschen fehlgeschlagen",
+    "Deletion_Failed_Message": "Beim Versuch, die Dienstleistung zu löschen, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 }

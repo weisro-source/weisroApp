@@ -95,6 +95,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you sure you want to delete this ad?"),
         "Delete_Confirmation_Title":
             MessageLookupByLibrary.simpleMessage("Delete Confirmation"),
+        "Delete_Service":
+            MessageLookupByLibrary.simpleMessage("Delete Service"),
+        "Delete_Service_Confirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete this service?"),
+        "Deletion_Failed":
+            MessageLookupByLibrary.simpleMessage("Deletion Failed"),
+        "Deletion_Failed_Message": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while trying to delete the service. Please try again."),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Write here what your services include?"),
         "Description": MessageLookupByLibrary.simpleMessage("Description :"),
@@ -259,6 +267,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Choose what you want to create an account:"),
         "Send_And_Wait": MessageLookupByLibrary.simpleMessage("Send and wait"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
+        "Service_Deleted":
+            MessageLookupByLibrary.simpleMessage("Service Deleted"),
+        "Service_Deleted_Message": MessageLookupByLibrary.simpleMessage(
+            "The service has been successfully deleted."),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "What details of the service do you want from the worker?"),
         "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(

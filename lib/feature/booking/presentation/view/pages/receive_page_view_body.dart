@@ -205,6 +205,7 @@ class ReceivePageViewBody extends StatelessWidget {
                 return SliverToBoxAdapter(
                   child: CancelAndButton(
                     secondButton: S.of(context).Book_Now,
+                    
                     onCancelPressed: () =>
                         HelperFunctions.navigateToBack(context),
                     onBookPressed: () async {

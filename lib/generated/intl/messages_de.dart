@@ -96,6 +96,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sind Sie sicher, dass Sie diese Anzeige löschen möchten?"),
         "Delete_Confirmation_Title":
             MessageLookupByLibrary.simpleMessage("Löschbestätigung"),
+        "Delete_Service":
+            MessageLookupByLibrary.simpleMessage("Dienstleistung löschen"),
+        "Delete_Service_Confirmation": MessageLookupByLibrary.simpleMessage(
+            "Sind Sie sicher, dass Sie diese Dienstleistung löschen möchten?"),
+        "Deletion_Failed":
+            MessageLookupByLibrary.simpleMessage("Löschen fehlgeschlagen"),
+        "Deletion_Failed_Message": MessageLookupByLibrary.simpleMessage(
+            "Beim Versuch, die Dienstleistung zu löschen, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."),
         "Describe_Services": MessageLookupByLibrary.simpleMessage(
             "Schreiben Sie hier, was Ihre Dienstleistungen umfassen?"),
         "Description": MessageLookupByLibrary.simpleMessage("Beschreibung :"),
@@ -259,6 +267,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Send_And_Wait":
             MessageLookupByLibrary.simpleMessage("Senden und warten"),
         "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
+        "Service_Deleted":
+            MessageLookupByLibrary.simpleMessage("Dienstleistung gelöscht"),
+        "Service_Deleted_Message": MessageLookupByLibrary.simpleMessage(
+            "Die Dienstleistung wurde erfolgreich gelöscht."),
         "Service_Details_Request": MessageLookupByLibrary.simpleMessage(
             "Welche Details des Dienstes möchten Sie vom Mitarbeiter erhalten?"),
         "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
