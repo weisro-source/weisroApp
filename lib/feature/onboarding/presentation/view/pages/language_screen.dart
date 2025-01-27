@@ -74,6 +74,63 @@ class LanguageScreen extends StatelessWidget {
                       label: 'Espanol',
                     ),
                   ),
+                  10.kw,
+
+                  Expanded(
+                    child: _LanguageOption(
+                      onTap: () => _changeLanguage(
+                        context,
+                        languageCubit,
+                        Constants.francaisLanguage,
+                      ),
+                      assetPath: IconsPath.iconsFrance,
+                      label: 'français',
+                    ),
+                  ),
+                  // 10.kw,
+                  // Expanded(
+                  //   child: _LanguageOption(
+                  //     onTap: () => _changeLanguage(
+                  //       context,
+                  //       languageCubit,
+                  //       Constants.deutschLanguage,
+                  //     ),
+                  //     assetPath: IconsPath.iconsFlagGermany,
+                  //     label: 'Deutsch',
+                  //   ),
+                  // ),
+                  10.kw,
+                ],
+              ),
+              10.kh,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  10.kw,
+                  Expanded(
+                    child: _LanguageOption(
+                      onTap: () => _changeLanguage(
+                        context,
+                        languageCubit,
+                        Constants.espanolLanguage,
+                      ),
+                      assetPath: IconsPath.iconsFlagRu,
+                      label: 'русский язык',
+                    ),
+                  ),
+                  10.kw,
+
+                  Expanded(
+                    child: _LanguageOption(
+                      onTap: () => _changeLanguage(
+                        context,
+                        languageCubit,
+                        Constants.francaisLanguage,
+                      ),
+                      assetPath: IconsPath.iconsFlagForFlagPortugal,
+                      label: 'Português',
+                    ),
+                  ),
                   // 10.kw,
                   // Expanded(
                   //   child: _LanguageOption(

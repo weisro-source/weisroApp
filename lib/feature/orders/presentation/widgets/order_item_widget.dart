@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
+import 'package:weisro/core/enums/order_status.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/location_widget.dart';
 import 'package:weisro/core/widgets/rate_widget.dart';
 import 'package:weisro/feature/orders/data/models/order_model.dart';
 
@@ -30,12 +31,15 @@ class OrderItemWidget extends StatelessWidget {
   const OrderItemWidget({
     super.key,
     required this.order,
+    required this.state,
   });
   final Order order;
+  final String state;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: HelperFunctions.getScreenHight(context) * 0.16,
+      height: HelperFunctions.getScreenHight(context) * 0.2,
       margin: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
@@ -44,20 +48,25 @@ class OrderItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-              child: CachedNetworkImage(
-            imageUrl: HelperFunctions.ensureIsFirstItemOrNull(
-                    order.service?.images ?? []) ??
-                "",
-            width: 105,
-            height: 82,
-            fit: BoxFit.scaleDown,
-            errorWidget: (context, url, error) {
-              return Image.asset(ImagePath.imagesService,
-                  width: 105, height: 82, fit: BoxFit.scaleDown);
-            },
-          )),
-          8.kw,
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.only(start: 10),
+                child: CachedNetworkImage(
+                  imageUrl: HelperFunctions.ensureIsFirstItemOrNull(
+                          order.service?.images ?? []) ??
+                      "",
+                  width: 105,
+                  height: 82,
+                  fit: BoxFit.cover,
+                  errorWidget: (context, url, error) {
+                    return Image.asset(ImagePath.imagesService,
+                        width: 105, height: 82, fit: BoxFit.scaleDown);
+                  },
+                ),
+              )),
+          10.kw,
           Expanded(
+            flex: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -68,47 +77,146 @@ class OrderItemWidget extends StatelessWidget {
                   children: [
                     Text(
                       order.service?.name ?? "",
-                      style: AppStyles.style10w400Grey(context),
+                      style: AppStyles.style14w400Grey(context),
                     ),
                     const Spacer(),
                   ],
                 ),
                 8.kh,
                 Text("ID:#${order.service?.id ?? ""}",
-                    style: AppStyles.style8w600Grey(context)),
+                    style: AppStyles.style14w400Grey(context)),
                 8.kh,
-                Row(
-                  children: [
-                    Text(order.createdAt?.substring(0, 10) ?? "",
-                        style: AppStyles.style8w600Grey(context)),
-                    const Spacer(),
-                    Text(
-                      "\$${order.totalPrice}",
-                      style: AppStyles.style10w500Orange(context),
-                    )
-                  ],
+                Text(order.createdAt?.substring(0, 10) ?? "",
+                    style: AppStyles.style14w400Grey(context)),
+                // const Spacer(),
+                10.kh,
+
+                Text(
+                  "\$${order.totalPrice}",
+                  style: AppStyles.style10w500Orange(context),
                 ),
-                // 10.kh,
+                10.kh,
                 // Text(
                 //   "Lorem ipsum dolor sit",
                 //   style: AppStyles.style8w400Grey2(context),
                 // ),
-                10.kh,
-                Text(
-                  order.address?.id ?? "",
-                  textAlign: TextAlign.start,
-                  style: AppStyles.style12w400Grey(context),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                // 10.kh,
+                // Text(
+                //   order.address?.id ?? "",
+                //   textAlign: TextAlign.start,
+                //   style: AppStyles.style12w400Grey(context),
+                //   maxLines: 2,
+                //   overflow: TextOverflow.ellipsis,
+                // ),
                 RateWidget(
                   rate: order.service?.rate.toString() ?? "",
                 ),
               ],
             ),
           ),
+          Visibility(
+            visible: state == OrderStatus.inProgress.name,
+            child: Expanded(
+              flex: 2,
+              child: Center(
+                child: GestureDetector(
+                  onTap: () {
+                    if (order.id != null) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return QrDialog(orderId: order.id ?? "");
+                        },
+                      );
+                    }
+                  },
+                  child: Visibility(
+                    visible: order.id != null,
+                    child: QrImageView(
+                      data: order.id ?? "Unknown ID",
+                      version: QrVersions.auto,
+                      size: 75.0,
+                      eyeStyle: const QrEyeStyle(
+                        eyeShape: QrEyeShape.square,
+                        color: AppColors.orangeColor,
+                      ),
+                      errorStateBuilder: (cxt, err) {
+                        return const Center(
+                          child: Text(
+                            "Unable to generate QR code",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.red, fontSize: 10),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           18.kw,
         ],
+      ),
+    );
+  }
+}
+
+class QrDialog extends StatelessWidget {
+  const QrDialog({
+    super.key,
+    required this.orderId,
+  });
+
+  final String orderId;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "QR Code",
+              style: AppStyles.style16w500Black(context),
+            ),
+            20.kh,
+            QrImageView(
+              data: orderId,
+              version: QrVersions.auto,
+              size: 200.0,
+              eyeStyle: const QrEyeStyle(
+                eyeShape: QrEyeShape.square,
+                color: AppColors.orangeColor,
+              ),
+              errorStateBuilder: (cxt, err) {
+                return const Center(
+                  child: Text(
+                    "Unable to generate QR code",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.red, fontSize: 10),
+                  ),
+                );
+              },
+            ),
+            20.kh,
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: AppColors.orangeColor,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text("Close"),
+            ),
+          ],
+        ),
       ),
     );
   }

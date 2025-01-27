@@ -107,7 +107,7 @@ class CustomTabBarView extends StatelessWidget {
                     )
                   : OrdersList(
                       orders: pendingOrdersState.orders,
-                      state: OrderStatus.pending.name,
+                      state: OrderStatus.inProgress.name,
                     );
             } else {
               return const SizedBox();
