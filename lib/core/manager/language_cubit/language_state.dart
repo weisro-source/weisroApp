@@ -10,3 +10,5 @@ final class EnglishLanguage extends LanguageState {}
 final class DeutschLanguage extends LanguageState {}
 
 final class EspanolLanguage extends LanguageState {}
+
+final class FrancaisLanguage extends LanguageState {}

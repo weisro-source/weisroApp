@@ -32,6 +32,7 @@ class OrdersList extends StatelessWidget {
           },
           child: OrderItemWidget(
             order: order ?? Order(),
+            state: state,
           ),
         );
       },

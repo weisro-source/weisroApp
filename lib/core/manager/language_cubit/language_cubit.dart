@@ -22,6 +22,8 @@ class LanguageCubit extends Cubit<LanguageState> {
         emit(EnglishLanguage());
       } else if (selectedLang == Constants.espanolLanguage) {
         emit(EspanolLanguage());
+      } else if (selectedLang == Constants.francaisLanguage) {
+        emit(FrancaisLanguage());
       } else {
         emit(DeutschLanguage());
       }

@@ -29,10 +29,13 @@ class AdsUserWidgetShimmer extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),
-            Container(
-              height: 87,
-              width: double.infinity,
-              color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: Container(
+                height: 87,
+                width: double.infinity,
+                color: Colors.grey,
+              ),
             ),
             5.kh,
           ],

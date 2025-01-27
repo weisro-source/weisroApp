@@ -54,9 +54,21 @@ class IconsPath {
   /// assets/icons/filter.svg
   static const String iconsFilter = "assets/icons/filter.svg";
 
+  /// Assets for iconsFlagForFlagPortugal
+  /// assets/icons/flag-for-flag-portugal.svg
+  static const String iconsFlagForFlagPortugal = "assets/icons/flag-for-flag-portugal.svg";
+
   /// Assets for iconsFlagGermany
   /// assets/icons/flag-germany.svg
   static const String iconsFlagGermany = "assets/icons/flag-germany.svg";
+
+  /// Assets for iconsFlagRu
+  /// assets/icons/flag-ru.svg
+  static const String iconsFlagRu = "assets/icons/flag-ru.svg";
+
+  /// Assets for iconsFrance
+  /// assets/icons/france.svg
+  static const String iconsFrance = "assets/icons/france.svg";
 
   /// Assets for iconsGoogle
   /// assets/icons/google.svg
