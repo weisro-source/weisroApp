@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651481334947",
+    "project_id": "weisro",
+    "storage_bucket": "weisro.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651481334947:android:f171a6ffbbffe86974eb16",
+        "android_client_info": {
+          "package_name": "com.weisro.weisro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChxCHgnz-MLT9Emu272oVHoT8LDUw8nyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

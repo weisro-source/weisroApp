@@ -120,7 +120,9 @@ class _ServicesDetailsPageViewBodyState
               LocationPriceRowWidget(
                 price:
                     '\$${widget.oneService.service?.dailyPrice} ${S.of(context).Per_Day}',
-                location: widget.oneService.service?.location?.address ?? "",
+                location: widget.oneService.service?.location?.address ??
+                    AddServiceCubit.get(context).selectedLocation?.city ??
+                    "",
               ),
               Visibility(
                   visible: widget.oneService.service?.hourlyPrice != 0,
@@ -129,7 +131,9 @@ class _ServicesDetailsPageViewBodyState
               LocationPriceRowWidget(
                 price:
                     '\$${widget.oneService.service?.hourlyPrice} ${S.of(context).Per_Hour}',
-                location: widget.oneService.service?.location?.address ?? "",
+                location: widget.oneService.service?.location?.address ??
+                    AddServiceCubit.get(context).selectedLocation?.city ??
+                    "",
               ),
               15.kh,
               Padding(
@@ -161,7 +165,9 @@ class _ServicesDetailsPageViewBodyState
               ),
               18.kh,
               LocationWidget(
-                  location: widget.oneService.service?.location?.address ?? ""),
+                  location: widget.oneService.service?.location?.address ??
+                      AddServiceCubit.get(context).selectedLocationName ??
+                      ""),
               Visibility(
                   visible: widget.oneService.service?.time?.isNotEmpty ?? false,
                   child: 14.kh),
@@ -350,7 +356,8 @@ class _ServicesDetailsPageViewBodyState
                     height: 32,
                     width: 164,
                     onPressed: () {
-                      showDeleteConfirmationDialog(context,widget.oneService.service?.id??"");
+                      showDeleteConfirmationDialog(
+                          context, widget.oneService.service?.id ?? "");
                     },
                     buttonColor: AppColors.redColor,
                     borderColor: AppColors.redColor,

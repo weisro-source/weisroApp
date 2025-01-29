@@ -89,7 +89,8 @@ class _YourBookingPageViewBodyState extends State<YourBookingPageViewBody> {
                 return const CustomErrorWidgets();
               }
             },
-          )
+          ),
+          30.kh,
         ],
       ),
     );

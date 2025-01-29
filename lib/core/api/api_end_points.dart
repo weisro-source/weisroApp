@@ -4,6 +4,7 @@ class ApiEndPoints {
   static const String clientRegisterEndPoint = '/auth/register';
   static const String workerRegisterEndPoint = '/auth/register/worker';
   static const String loginEndPoint = '/auth/login';
+  static const String loginWithGoogleEndPoint = '/auth/login/google';
   static const String verifyAccountEndPoint = '/auth/verify-otp';
   static const String resendOtpEndPoint = '/auth/resend-otp';
   static const String resetPasswordEndPoint = '/auth/reset-password';
