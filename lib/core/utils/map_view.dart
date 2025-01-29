@@ -129,7 +129,7 @@ class MapViewState extends State<MapView> {
       String locationName = placemarks.isNotEmpty
           ? "${placemarks.first.locality}, ${placemarks.first.administrativeArea}"
           : "Unknown Location";
-
+      print(locationName);
       // Update the location in the cubit
       if (!mounted) return;
       AddServiceCubit.get(context).updateLocation(

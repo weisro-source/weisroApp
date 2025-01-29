@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/enums/order_status.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -8,7 +7,7 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/booking/data/models/your_booking_model.dart';
-import 'package:weisro/generated/l10n.dart';
+import 'package:weisro/feature/booking/presentation/view/widgets/qr_scanner_screen.dart';
 
 class YourBookingWidget extends StatelessWidget {
   const YourBookingWidget({
@@ -21,7 +20,7 @@ class YourBookingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: HelperFunctions.getScreenHight(context) * 0.22,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         border: Border.all(color: AppColors.orangeColor, width: 1),
@@ -80,76 +79,17 @@ class YourBookingWidget extends StatelessWidget {
               icon: const Icon(Icons.qr_code_scanner,
                   color: AppColors.orangeColor),
               onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => QRScannerScreen(booking: booking),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => QRScannerScreen(booking: booking),
+                  ),
+                );
               },
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-class QRScannerScreen extends StatefulWidget {
-  const QRScannerScreen({super.key, required this.booking});
-
-  final Docs booking;
-
-  @override
-  State<QRScannerScreen> createState() => _QRScannerScreenState();
-}
-
-class _QRScannerScreenState extends State<QRScannerScreen> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-  QRViewController? controller;
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    if (controller != null) {
-      controller!.resumeCamera();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Scan QR Code"),
-      ),
-      body: QRView(
-        key: qrKey,
-        onQRViewCreated: _onQRViewCreated,
-      ),
-    );
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      controller.pauseCamera();
-      if (context.mounted) {
-        Navigator.pop(context);
-      }
-
-      // Validate scanned data with booking information
-      if (scanData.code == widget.booking.id) {
-        // HelperFunctions.showToast(
-        //     "Valid QR Code for booking ID: ${widget.booking.id}");
-        print("Valid QR Code for booking ID: ${widget.booking.id}");
-      } else {
-        print("Invalid QR Code");
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

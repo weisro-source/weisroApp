@@ -39,7 +39,7 @@ class OrderItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: HelperFunctions.getScreenHight(context) * 0.2,
+      height: HelperFunctions.getScreenHight(context) * 0.25,
       margin: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),

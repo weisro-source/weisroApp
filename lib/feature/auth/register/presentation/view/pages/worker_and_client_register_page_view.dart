@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 
@@ -17,6 +18,9 @@ class WorkerAndClientRegisterPageView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => RegisterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => GoogleAuthCubit(),
         ),
         BlocProvider<WorkerDayCubit>(create: (context) => WorkerDayCubit()),
       ],
