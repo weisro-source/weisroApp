@@ -10,6 +10,7 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/feature/home/data/models/last_service_model.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
+import 'package:weisro/generated/l10n.dart';
 
 class ServicesWidgetInHomePage extends StatefulWidget {
   const ServicesWidgetInHomePage({
@@ -30,7 +31,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
       height: 184,
       width: 172,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         image: DecorationImage(
           fit: BoxFit.cover,
           image: CachedNetworkImageProvider(
@@ -40,6 +41,7 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
       ),
       child: Column(
         children: [
+          //* Fav icon
           Align(
             alignment: AlignmentDirectional.topEnd,
             child: Padding(
@@ -81,47 +83,52 @@ class _ServicesWidgetInHomePageState extends State<ServicesWidgetInHomePage> {
           ),
           const Spacer(),
           Container(
-            height: 36,
+            height: 22,
+            width: 132,
             decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: const [
-                BoxShadow(
-                  color: AppColors.orangeColor,
-                  offset: Offset(0, 2),
-                  blurRadius: 0,
-                  spreadRadius: 0,
-                ),
-              ],
+              color: AppColors.orangeColor,
+              borderRadius: BorderRadius.circular(24),
+              // boxShadow: const [
+              //   BoxShadow(
+              //     color: AppColors.orangeColor,
+              //     offset: Offset(0, 2),
+              //     blurRadius: 0,
+              //     spreadRadius: 0,
+              //   ),
+              // ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  4.kh,
-                  Text(
-                    "\$${widget.lastService.price}",
-                    style: AppStyles.style10w500Red(context),
-                  ),
-                  4.kh,
-                  Row(
-                    children: [
-                      SvgPicture.asset(IconsPath.iconsLocation),
-                      Expanded(
-                        child: Text(
-                          "${widget.lastService.location?.country ?? ""} ${widget.lastService.location?.city ?? ""}",
-                          overflow: TextOverflow.ellipsis,
-                          style: AppStyles.style8w400Grey2(context)
-                              .copyWith(color: AppColors.greyColor),
-                        ),
-                      ),
-                    ],
-                  ),
-                  2.kh
-                ],
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "\$${widget.lastService.price}",
+                  style: AppStyles.style10w500Red(context)
+                      .copyWith(color: AppColors.whiteColor),
+                ),
+                20.kw,
+
+                Text(
+                  S.of(context).Per_Day,
+                  style: AppStyles.style10w500Red(context)
+                      .copyWith(color: AppColors.whiteColor),
+                ),
+                // Row(
+                //   children: [
+                //     SvgPicture.asset(IconsPath.iconsLocation),
+                //     Expanded(
+                //       child: Text(
+                //         "${widget.lastService.location?.country ?? ""} ${widget.lastService.location?.city ?? ""}",
+                //         overflow: TextOverflow.ellipsis,
+                //         style: AppStyles.style8w400Grey2(context)
+                //             .copyWith(color: AppColors.greyColor),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                2.kh
+              ],
             ),
           ),
         ],

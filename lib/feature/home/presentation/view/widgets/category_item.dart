@@ -14,11 +14,11 @@ class CategoryItem extends StatelessWidget {
     return Container(
       width: width,
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
           image: DecorationImage(
               fit: BoxFit.cover, image: AssetImage(homeOptionModel.icon))),
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(bottom: 10),
+        padding: const EdgeInsetsDirectional.only(bottom: 0),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: WhiteBackGroundForText(text: homeOptionModel.title),

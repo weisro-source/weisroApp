@@ -13,9 +13,10 @@ class WhiteBackGroundForText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 80,
-      height: 17,
+      height: 23,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4), color: AppColors.whiteColor),
+          borderRadius: BorderRadius.circular(12),
+          color: AppColors.orangeWithOpacity),
       child: Center(
         child: Text(
           text,

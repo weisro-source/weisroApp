@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/google_auth/google_auth.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
 import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_all_countries_cubit/get_all_countries_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
@@ -363,18 +365,33 @@ class _WorkerAndClientRegisterPageViewBodyState
               child: 9.kh,
             ),
             SliverToBoxAdapter(
-              child: GoogleAuthButtonWidget(
-                onPressed: () async {
-                  // if result is true navigator
-                  // HelperFunctions.navigateToScreenAndRemove(
-                  //   context,
-                  //   (context) => WorkerAndClientRegisterPageView(
-                  //     isWorkerAuth: widget.isWorkerAuth,
-                  //     isGoogleAuth: true,
-                  //   ),
-                  // );
-                  await GoogleAuthCubit.get(context)
-                      .authenticateWithGoogleAndSendToApi();
+              child: BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
+                listener: (context, googleAuthState) {
+                  if (googleAuthState is GoogleAuthTransactionSuccess) {
+                    HelperFunctions.navigateToScreenAndRemove(
+                      context,
+                      (context) => WorkerAndClientRegisterPageView(
+                        isWorkerAuth: widget.isWorkerAuth,
+                        isGoogleAuth: true,
+                      ),
+                    );
+                  }
+                },
+                builder: (context, googleAuthState) {
+                  if (googleAuthState is GoogleAuthLoading) {
+                    return const CustomLoading(
+                      animationType: "staggeredDotsWave",
+                      size: 30,
+                    );
+                  } else {
+                    return GoogleAuthButtonWidget(
+                      onPressed: () async {
+                        await GoogleAuthCubit.get(context)
+                            .authenticateWithGoogleAndSendToApi(
+                                registerCubit.getRole(widget.isWorkerAuth));
+                      },
+                    );
+                  }
                 },
               ),
             ),

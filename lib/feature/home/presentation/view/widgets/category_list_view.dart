@@ -12,10 +12,10 @@ class CategoryListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double width = constraints.maxWidth;
-        double itemWidth = width * 0.5;
+        // double width = constraints.maxWidth;
+        double itemWidth = 106;
         return SizedBox(
-          height: 131,
+          height: 106,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 32),
