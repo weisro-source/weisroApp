@@ -12,7 +12,9 @@ class QuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(icon),
+        SvgPicture.asset(
+          icon,
+        ),
         3.kw,
         Expanded(
           child: Text(

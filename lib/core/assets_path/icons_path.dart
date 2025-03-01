@@ -30,6 +30,10 @@ class IconsPath {
   /// assets/icons/calender.svg
   static const String iconsCalender = "assets/icons/calender.svg";
 
+  /// Assets for iconsCalenderDay
+  /// assets/icons/calender-day.svg
+  static const String iconsCalenderDay = "assets/icons/calender-day.svg";
+
   /// Assets for iconsCamera
   /// assets/icons/camera.svg
   static const String iconsCamera = "assets/icons/camera.svg";

@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
@@ -13,6 +15,7 @@ import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_dash_line.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
+import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/material_banner.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
@@ -213,59 +216,63 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
         SliverPadding(
           padding: HelperFunctions.symmetricHorizontalPadding24,
           sliver: SliverToBoxAdapter(
+            child: QuestionWidget(
+              icon: IconsPath.iconsServices,
+              questionText: S.of(context).Service_Details_Request,
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: 10.kh,
+        ),
+        SliverPadding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
+          sliver: SliverToBoxAdapter(
+              child: CustomTextFormFiled(
+            readOnly: true,
+            hintText: "",
+            controller: bookServiceCubit.controller,
+            enabled: true,
+            borderColor: AppColors.orangeColor,
+            fillColor: AppColors.whiteColor,
+            filled: true,
+            minLines: 4,
+            maxLines: 10,
+            topPadding: 13,
+            borderRadius: 28,
+          )),
+        ),
+        SliverToBoxAdapter(
+          child: 32.kh,
+        ),
+        SliverPadding(
+          padding: HelperFunctions.symmetricHorizontalPadding24,
+          sliver: SliverToBoxAdapter(
             child: Column(
               children: [
-                GestureDetector(
-                  onTap: () async {
-                    if (selected == bookServiceCubit.hourSelected) {
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime(2100),
-                        currentDate: DateTime.now(),
-                        initialDate: selectedDate,
-                        keyboardType: TextInputType.datetime,
-                        cancelText: S.of(context).Cancel,
-                        confirmText: S.of(context).Ok,
-                        locale: Locale(
-                          BlocProvider.of<LanguageCubit>(context).localLang ??
-                              'en',
-                        ),
-                      );
-
-                      if (pickedDate != null && pickedDate != selectedDate) {
-                        setState(() {
-                          selectedDate = pickedDate;
-                        });
-                      }
-                    } else {
-                      log(selected);
-                    }
-                  },
-                  child: OneInformation(
-                    icon: IconsPath.iconsCalender,
-                    text: S.of(context).Rental_History,
-                    info: HelperFunctions.getFormattedDate(selectedDate),
-                  ),
+                NewBookingInfoWidget(
+                  icon: IconsPath.iconsCalenderDay,
+                  title: S.of(context).Rental_History,
+                  info: HelperFunctions.getFormattedDate(selectedDate),
                 ),
-                24.kh,
-                OneInformation(
+                16.kh,
+                NewBookingInfoWidget(
                   icon: IconsPath.iconsWatch,
-                  text: S.of(context).Rental_Period,
+                  title: S.of(context).Rental_Period,
                   info: selected == bookServiceCubit.hourSelected
                       ? "${selectedHours.length} ${S.of(context).Hours}"
                       : "${selectedDayModels.length} ${S.of(context).Days}",
                 ),
-                24.kh,
-                OneInformation(
+                16.kh,
+                NewBookingInfoWidget(
                   icon: IconsPath.iconsMoneyBag,
-                  text: S.of(context).Total_Cost,
+                  title: S.of(context).Total_Cost,
                   info: "$totalPrice \$",
                 ),
-                24.kh,
-                OneInformation(
+                16.kh,
+                NewBookingInfoWidget(
                   icon: IconsPath.iconsPaymentCards,
-                  text: S.of(context).Payment_Method,
+                  title: S.of(context).Payment_Method,
                   info: S.of(context).cash,
                 ),
               ],
@@ -402,3 +409,112 @@ class _BookServicePageViewBodyState extends State<BookServicePageViewBody> {
     );
   }
 }
+
+class NewBookingInfoWidget extends StatelessWidget {
+  const NewBookingInfoWidget({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.info,
+  });
+  final String icon, title, info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 45,
+      decoration: BoxDecoration(
+        color: AppColors.grey4Color,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Container(
+              width: 174,
+              height: 45,
+              decoration: BoxDecoration(
+                color: AppColors.orangeColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  10.kw,
+                  SvgPicture.asset(
+                    icon,
+                  ),
+                  3.kw,
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: AppStyles.style12w500Grey(context),
+                    ),
+                  )
+                ],
+              )),
+          38.kw,
+          Text(
+            info,
+            style: AppStyles.style14w500Grey(context)
+                .copyWith(color: AppColors.orangeColor),
+          ),
+          15.kw,
+        ],
+      ),
+    );
+  }
+}
+//^ old code info
+// GestureDetector(
+//                 onTap: () async {
+//                   if (selected == bookServiceCubit.hourSelected) {
+//                     DateTime? pickedDate = await showDatePicker(
+//                       context: context,
+//                       firstDate: DateTime.now(),
+//                       lastDate: DateTime(2100),
+//                       currentDate: DateTime.now(),
+//                       initialDate: selectedDate,
+//                       keyboardType: TextInputType.datetime,
+//                       cancelText: S.of(context).Cancel,
+//                       confirmText: S.of(context).Ok,
+//                       locale: Locale(
+//                         BlocProvider.of<LanguageCubit>(context).localLang ??
+//                             'en',
+//                       ),
+//                     );
+
+//                     if (pickedDate != null && pickedDate != selectedDate) {
+//                       setState(() {
+//                         selectedDate = pickedDate;
+//                       });
+//                     }
+//                   } else {
+//                     log(selected);
+//                   }
+//                 },
+//                 child: OneInformation(
+//                   icon: IconsPath.iconsCalender,
+//                   text: S.of(context).Rental_History,
+//                   info: HelperFunctions.getFormattedDate(selectedDate),
+//                 ),
+//               ),
+//               24.kh,
+//               OneInformation(
+//                 icon: IconsPath.iconsWatch,
+//                 text: S.of(context).Rental_Period,
+//                 info: selected == bookServiceCubit.hourSelected
+//                     ? "${selectedHours.length} ${S.of(context).Hours}"
+//                     : "${selectedDayModels.length} ${S.of(context).Days}",
+//               ),
+//               24.kh,
+//               OneInformation(
+//                 icon: IconsPath.iconsMoneyBag,
+//                 text: S.of(context).Total_Cost,
+//                 info: "$totalPrice \$",
+//               ),
+//               24.kh,
+//               OneInformation(
+//                 icon: IconsPath.iconsPaymentCards,
+//                 text: S.of(context).Payment_Method,
+//                 info: S.of(context).cash,
+//               ),
