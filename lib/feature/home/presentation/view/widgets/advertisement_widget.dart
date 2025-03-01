@@ -16,31 +16,35 @@ class AdvertisementWidget extends StatelessWidget {
     final screenWidth = HelperFunctions.getScreenWidth(context);
     final screenHeight = HelperFunctions.getScreenHight(context);
 
-    return CachedNetworkImage(
-      imageUrl: Constants.imageUrl,
-      height: screenHeight * 0.25,
-      width: screenWidth * 0.7,
-      fit: BoxFit.cover,
-      errorWidget: (context, url, error) {
-        return Image.asset(
-          ImagePath.imagesAd,
-          height: screenHeight * 0.25,
-          width: screenWidth * 0.9,
-          fit: BoxFit.cover,
-        );
-      },
-      placeholder: (context, url) {
-        return Shimmer.fromColors(
-          baseColor: AppColors.shimmerBaseColor,
-          highlightColor: AppColors.shimmerHighlightColor,
-          child: Container(
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(18), bottomRight: Radius.circular(18)),
+      child: CachedNetworkImage(
+        imageUrl: Constants.imageUrl,
+        height: screenHeight * 0.25,
+        width: screenWidth * 0.7,
+        fit: BoxFit.cover,
+        errorWidget: (context, url, error) {
+          return Image.asset(
+            ImagePath.imagesAd,
             height: screenHeight * 0.25,
             width: screenWidth * 0.9,
-            color: AppColors.shimmerBaseColor,
-          ),
-        );
-      },
-      placeholderFadeInDuration: const Duration(seconds: 2),
+            fit: BoxFit.cover,
+          );
+        },
+        placeholder: (context, url) {
+          return Shimmer.fromColors(
+            baseColor: AppColors.shimmerBaseColor,
+            highlightColor: AppColors.shimmerHighlightColor,
+            child: Container(
+              height: screenHeight * 0.25,
+              width: screenWidth * 0.9,
+              color: AppColors.shimmerBaseColor,
+            ),
+          );
+        },
+        placeholderFadeInDuration: const Duration(seconds: 2),
+      ),
     );
   }
 }

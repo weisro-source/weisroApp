@@ -27,7 +27,7 @@ class ChooseWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? AppColors.orangeColor : AppColors.whiteColor,
           border: Border.all(width: 1, color: AppColors.orangeColor),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
         ),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         child: Row(

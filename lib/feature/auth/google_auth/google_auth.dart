@@ -14,7 +14,7 @@ import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
 class GoogleAuthCubit extends Cubit<GoogleAuthState> {
   GoogleAuthCubit() : super(GoogleAuthInitial());
   static GoogleAuthCubit get(context) => BlocProvider.of(context);
-  Future<void> authenticateWithGoogleAndSendToApi() async {
+  Future<void> authenticateWithGoogleAndSendToApi(String role) async {
     emit(GoogleAuthLoading()); // Indicate loading at the start
     // First step: Sign in with Google
     final googleSignInResult = await GoogleAuth.signInWithGoogle();
@@ -42,7 +42,7 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
             key: CacheKeys.kUserEmail, value: googleSignResult.email);
 
         // Send the token to the API
-        await _sendGoogleTokenToApi(googleSignResult.accessToken);
+        await _sendGoogleTokenToApi(googleSignResult.accessToken, role);
       },
     );
   }
@@ -59,17 +59,16 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
     );
   }
 
-  Future<void> _sendGoogleTokenToApi(String accessToken) async {
+  Future<void> _sendGoogleTokenToApi(String accessToken, String role) async {
     try {
       var response = await getIt.get<ApiService>().post(
           endPoint: ApiEndPoints.loginWithGoogleEndPoint,
           needToken: false,
-          data: {"accessToken": accessToken});
+          data: {"access_token": accessToken, "role": role});
       if (response['token'] != null && response['token'] is String) {
         CacheHelper.setData(key: CacheKeys.kToken, value: response['token']);
       }
-
-      emit(GoogleAuthTransactionSuccess(response['data']));
+      emit(GoogleAuthTransactionSuccess(response['access_token']));
     } catch (e) {
       log("Error sending token to API: $e");
 

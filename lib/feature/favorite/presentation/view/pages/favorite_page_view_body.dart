@@ -77,10 +77,12 @@ class _FavoritePageViewBodyState extends State<FavoritePageViewBody> {
                   getFavoriteState is GetFavoritePaginationFailures) {
                 if (allFavorite.isEmpty) {
                   return SliverFillRemaining(
-                    child: NoDataScreen(
-                        imagePath: ImagePath.imagesNoFavorite,
-                        title: S.of(context).NO_Favorite_Yet,
-                        subTitle: S.of(context).You_havent_marked_any_favorite),
+                    child: Center(
+                        child: NoDataScreen(
+                            imagePath: ImagePath.imagesNoFavorite,
+                            title: S.of(context).NO_Favorite_Yet,
+                            subTitle:
+                                S.of(context).You_havent_marked_any_favorite)),
                   );
                 } else {
                   final descriptions = allFavorite

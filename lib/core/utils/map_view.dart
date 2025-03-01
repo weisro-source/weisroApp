@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart'
     as service;
 import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
@@ -129,7 +130,10 @@ class MapViewState extends State<MapView> {
       String locationName = placemarks.isNotEmpty
           ? "${placemarks.first.locality}, ${placemarks.first.administrativeArea}"
           : "Unknown Location";
-      print(locationName);
+      log(
+        AnsiColor.colorize("Location : $locationName", AnsiColor.bgMagenta),
+      );
+
       // Update the location in the cubit
       if (!mounted) return;
       AddServiceCubit.get(context).updateLocation(

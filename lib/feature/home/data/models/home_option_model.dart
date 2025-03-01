@@ -7,11 +7,15 @@ import 'package:weisro/generated/l10n.dart';
 
 class HomeOptionModel {
   final String title;
+  final String viewType;
   final String icon;
   final bool workerShow;
   final void Function()? onTap;
   HomeOptionModel(this.onTap,
-      {required this.title, required this.icon, required this.workerShow});
+      {required this.title,
+      required this.icon,
+      required this.workerShow,
+      required this.viewType});
   static List<HomeOptionModel> homeOptionList(context) {
     return [
       HomeOptionModel(() {
@@ -21,6 +25,7 @@ class HomeOptionModel {
                   type: Constants.categoryTypeServices,
                 ));
       },
+          viewType: Constants.categoryTypeServices,
           title: S.of(context).Rental_Services,
           icon: ImagePath.imagesService,
           workerShow: true),
@@ -33,11 +38,16 @@ class HomeOptionModel {
       },
           title: S.of(context).Rental_Workers,
           icon: ImagePath.imagesWorker,
+          viewType: Constants.categoryTypeWorker,
           workerShow: false),
       HomeOptionModel(() {
         HelperFunctions.navigateToScreen(
             context, (context) => const ComingSoonPageView());
-      }, title: "Game", icon: ImagePath.imagesGame, workerShow: true)
+      },
+          title: "Game",
+          icon: ImagePath.imagesGame,
+          workerShow: true,
+          viewType: "Game")
     ];
   }
 }

@@ -11,7 +11,7 @@ class AdWidgetInDetails extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 344 / 191,
       child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(0)),
+          borderRadius: const BorderRadius.all(Radius.circular(16)),
           child: Image.asset(
             ImagePath.imagesAd,
             fit: BoxFit.cover,

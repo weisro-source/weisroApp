@@ -13,6 +13,7 @@ import 'package:weisro/feature/favorite/presentation/managers/get_favorite_cubit
 import 'package:weisro/feature/home/presentation/managers/bottom_nav_bar_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
+import 'package:weisro/feature/home/presentation/managers/view_type_in_home_page_cubit/view_type_in_home_page_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/language_screen.dart';
 import 'package:weisro/feature/orders/presentation/managers/get_all_pending_orders_cubit/get_all_pending_orders_cubit.dart';
@@ -100,6 +101,9 @@ class _WeisroAppState extends State<WeisroApp> {
         ),
         BlocProvider(
           create: (context) => GetInProgressOrdersCubit(),
+        ),
+        BlocProvider(
+          create: (context) => ViewTypeInHomePageCubit(),
         ),
       ],
       child: BlocBuilder<LanguageCubit, LanguageState>(

@@ -18,6 +18,7 @@ class BookServiceCubit extends Cubit<BookServiceState> {
   String hourSelected = Constants.hoursKey;
   String dailySelected = Constants.dailyKey;
   String errorValidateMessage = '';
+  TextEditingController controller = TextEditingController();
   String selectedType(String select, BuildContext context) {
     switch (select) {
       case Constants.hoursKey:
@@ -84,11 +85,13 @@ class BookServiceCubit extends Cubit<BookServiceState> {
     Map<String, dynamic> bookingServiceBody = {
       "serviceId": serviceId,
       "days": daysIds,
+      "payment_method": "cash"
     };
     Map<String, dynamic> bookingServiceHourBody = {
       "serviceId": serviceId,
       "time": {"date": date, "start": start, "end": end},
-      "notes": "this is notes"
+      "notes": "this is notes",
+      "payment_method": "cash"
     };
 
     // Add the note only if it is not null

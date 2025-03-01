@@ -42,7 +42,7 @@ class HoursGridWidget extends StatelessWidget {
             decoration: BoxDecoration(
               color: isSelected ? AppColors.orangeColor : AppColors.whiteColor,
               border: Border.all(color: AppColors.orangeColor),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

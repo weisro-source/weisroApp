@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/utils/ansi_color.dart';
+import 'package:weisro/core/utils/constant.dart';
 
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/service_locator.dart';
@@ -331,6 +332,14 @@ class RegisterCubit extends Cubit<RegisterState> {
       postalCodeController.text = "10115";
       streetController.text = "Example Street";
       houseNumberController.text = "42";
+    }
+  }
+
+  String getRole(bool isWorkerAuth) {
+    if (isWorkerAuth) {
+      return Constants.workerRole;
+    } else {
+      return Constants.clientRole;
     }
   }
 
