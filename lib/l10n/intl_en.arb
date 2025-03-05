@@ -226,5 +226,7 @@
     "Deletion_Failed": "Deletion Failed",
     "Deletion_Failed_Message": "An error occurred while trying to delete the service. Please try again.",
     "Login_Information": "Log in information",
-    "Fill_Registration_Info": "Fill in the following information to complete the registration process successfully"
+    "Fill_Registration_Info": "Fill in the following information to complete the registration process successfully",
+    "Service_Provider": "Service Provider",
+    "Service_Seeker": "Service Seeker"
 }

@@ -280,6 +280,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
             "Someone has made a request to hire a service that you have put forward"),
         "Service_Name": MessageLookupByLibrary.simpleMessage("Service Name"),
+        "Service_Provider":
+            MessageLookupByLibrary.simpleMessage("Service Provider"),
+        "Service_Seeker":
+            MessageLookupByLibrary.simpleMessage("Service Seeker"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("services Details"),
         "Services_provided":

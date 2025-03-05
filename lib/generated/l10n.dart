@@ -2321,6 +2321,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Service Provider`
+  String get Service_Provider {
+    return Intl.message(
+      'Service Provider',
+      name: 'Service_Provider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Seeker`
+  String get Service_Seeker {
+    return Intl.message(
+      'Service Seeker',
+      name: 'Service_Seeker',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

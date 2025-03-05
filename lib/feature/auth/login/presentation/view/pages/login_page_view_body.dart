@@ -185,13 +185,13 @@ class LoginPageViewBody extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-              child: 22.kh,
+              child: 10.kh,
             ),
             const SliverToBoxAdapter(
               child: OrTextWidget(),
             ),
             SliverToBoxAdapter(
-              child: 21.kh,
+              child: 10.kh,
             ),
             SliverToBoxAdapter(
               child: BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
