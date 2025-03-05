@@ -5,6 +5,7 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/generated/l10n.dart';
 
 class GoogleAuthButtonWidget extends StatelessWidget {
@@ -15,9 +16,12 @@ class GoogleAuthButtonWidget extends StatelessWidget {
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return AppButton(
+    return NewAppButton(
       onPressed: onPressed,
-      buttonColor: AppColors.second1Color,
+      height: 41,
+      buttonColor: AppColors.orangeWithOpacity,
+      borderColor: AppColors.orangeColor,
+      title: '',
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +35,8 @@ class GoogleAuthButtonWidget extends StatelessWidget {
           Flexible(
             child: Text(
               S.of(context).Sign_Up_with_Google,
-              style: AppStyles.style14w500Grey(context),
+              style: AppStyles.style14w500Grey(context)
+                  .copyWith(fontWeight: FontWeight.w700),
             ),
           )
         ],

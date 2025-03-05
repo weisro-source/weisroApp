@@ -2301,6 +2301,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Log in information`
+  String get Login_Information {
+    return Intl.message(
+      'Log in information',
+      name: 'Login_Information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill in the following information to complete the registration process successfully`
+  String get Fill_Registration_Info {
+    return Intl.message(
+      'Fill in the following information to complete the registration process successfully',
+      name: 'Fill_Registration_Info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Provider`
+  String get Service_Provider {
+    return Intl.message(
+      'Service Provider',
+      name: 'Service_Provider',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Service Seeker`
+  String get Service_Seeker {
+    return Intl.message(
+      'Service Seeker',
+      name: 'Service_Seeker',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -128,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "What\'s your favorite time to work?"),
         "Favorite_page": MessageLookupByLibrary.simpleMessage("Favorite page"),
         "Favorites": MessageLookupByLibrary.simpleMessage("Favorite"),
+        "Fill_Registration_Info": MessageLookupByLibrary.simpleMessage(
+            "Fill in the following information to complete the registration process successfully"),
         "Filtering_By": MessageLookupByLibrary.simpleMessage("Filtering by"),
         "First_Name": MessageLookupByLibrary.simpleMessage("First Name"),
         "Forbidden_Write_Addresses": MessageLookupByLibrary.simpleMessage(
@@ -169,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Location": MessageLookupByLibrary.simpleMessage("Location"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Log in"),
+        "Login_Information":
+            MessageLookupByLibrary.simpleMessage("Log in information"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -276,6 +280,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Service_Hire_Request": MessageLookupByLibrary.simpleMessage(
             "Someone has made a request to hire a service that you have put forward"),
         "Service_Name": MessageLookupByLibrary.simpleMessage("Service Name"),
+        "Service_Provider":
+            MessageLookupByLibrary.simpleMessage("Service Provider"),
+        "Service_Seeker":
+            MessageLookupByLibrary.simpleMessage("Service Seeker"),
         "Services_Details":
             MessageLookupByLibrary.simpleMessage("services Details"),
         "Services_provided":

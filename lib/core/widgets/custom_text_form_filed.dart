@@ -27,10 +27,11 @@ class CustomTextFormFiled extends StatelessWidget {
     this.readOnly,
     this.borderRadius = 4,
     this.bottomPadding = 0,
+    this.prefix,
   });
 
   final TextEditingController? controller;
-  final Widget? prefixIcon;
+  final Widget? prefixIcon, prefix;
   final Widget? suffixIcon;
   final String? errorText;
   final String hintText;
@@ -57,7 +58,6 @@ class CustomTextFormFiled extends StatelessWidget {
       elevation: 0.0,
       shadowColor: AppColors.shadowColor,
       child: TextFormField(
-      
         readOnly: readOnly ?? false,
         textInputAction: textInputAction,
         maxLines: maxLines,
@@ -77,6 +77,7 @@ class CustomTextFormFiled extends StatelessWidget {
           filled: filled,
           hintText: hintText,
           prefixIcon: prefixIcon,
+          prefix: prefix,
           suffixIcon: suffixIcon,
           hintStyle: AppStyles.style12w400Second2(context),
           errorText: errorText,
