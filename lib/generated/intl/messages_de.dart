@@ -168,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Location": MessageLookupByLibrary.simpleMessage("Standort"),
         "LogOut": MessageLookupByLibrary.simpleMessage("Abmelden"),
         "Log_in": MessageLookupByLibrary.simpleMessage("Anmelden"),
+        "Login_Information":
+            MessageLookupByLibrary.simpleMessage("Anmeldeinformationen"),
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Handynummer"),
         "Morning": MessageLookupByLibrary.simpleMessage("Morgen"),

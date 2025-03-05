@@ -2301,6 +2301,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Log in information`
+  String get Login_Information {
+    return Intl.message(
+      'Log in information',
+      name: 'Login_Information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill in the following information to complete the registration process successfully`
+  String get Fill_Registration_Info {
+    return Intl.message(
+      'Fill in the following information to complete the registration process successfully',
+      name: 'Fill_Registration_Info',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

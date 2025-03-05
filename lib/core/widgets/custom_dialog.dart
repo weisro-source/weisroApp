@@ -10,6 +10,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -182,13 +183,18 @@ class CustomDialog {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          AppButton(
-                            height: 45,
-                            width: 130,
-                            borderColor: Colors.transparent,
-                            buttonColor: AppColors.redColor,
-                            text: S.of(context).Cancel,
-                            onPressed: () => Navigator.of(context).pop(),
+                          SizedBox(
+                            width:
+                                HelperFunctions.getScreenWidth(context) * 0.6,
+                            child: NewAppButton(
+                              height: 45,
+                              // width: 130,
+                              borderColor: Colors.transparent,
+                              buttonColor: AppColors.redColor,
+                              titleColor: AppColors.whiteColor,
+                              title: S.of(context).Cancel,
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
                           ),
                         ],
                       ),
@@ -392,7 +398,7 @@ class CustomDialog {
           shadowColor: AppColors.shadow2Color,
           child: Container(
             width: MediaQuery.of(context).size.width * 0.92,
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: MediaQuery.of(context).size.height * 0.3,
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.circular(15),
@@ -446,7 +452,7 @@ class CustomDialog {
                         height: 40,
                         text: S.of(context).NoStayLoggedIn,
                         borderColor: AppColors.lightgrey2Color,
-                        buttonColor: AppColors.lightgrey2Color,
+                        buttonColor: AppColors.greenColor,
                         onPressed: () {
                           HelperFunctions.navigateToBack(context);
                         },
@@ -482,7 +488,7 @@ class LanguageButton extends StatelessWidget {
         height: 60,
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(15),
           border: Border.all(
               color: isSelected ? AppColors.orangeColor : AppColors.greyColor,
               width: 1),

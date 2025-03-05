@@ -2,20 +2,30 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
+import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/core/widgets/shimmer_app_button.dart';
 import 'package:weisro/core/widgets/title_for_text_from_filed.dart';
 import 'package:weisro/feature/auth/forget_password/presentation/view/pages/forget_password_page_view.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
 import 'package:weisro/feature/auth/login/presentation/managers/login_cubit.dart/login_cubit.dart';
 import 'package:weisro/feature/auth/login/presentation/view/widgets/forget_password_button.dart';
+import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/google_auth_button_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/have_an_account.dart';
-import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
+import 'package:weisro/feature/auth/register/presentation/view/widgets/or_text_widget.dart';
 import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/pages/selected_account_type_view.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -41,13 +51,22 @@ class LoginPageViewBody extends StatelessWidget {
                 child: LogoImageWidget(),
               ),
             ),
+            24.sKh,
             SliverToBoxAdapter(
-              child: 23.kh,
+              child: Text(
+                S.of(context).Login_Information,
+                style: AppStyles.style18w500Grey(context).copyWith(
+                    color: AppColors.orangeColor, fontWeight: FontWeight.w700),
+              ),
             ),
-            LabeledBorderBox(label: S.of(context).Create_Client_account),
+            6.sKh,
             SliverToBoxAdapter(
-              child: 100.kh,
+              child: Text(
+                S.of(context).Fill_Registration_Info,
+                style: AppStyles.style10w400Grey(context),
+              ),
             ),
+            63.sKh,
             SliverToBoxAdapter(
               child: TitleForTextFromFiled(title: S.of(context).Email),
             ),
@@ -62,6 +81,14 @@ class LoginPageViewBody extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) => Validate.validateEmail(value, context),
+                borderColor: AppColors.orangeColor,
+                borderRadius: 20,
+                prefix: Padding(
+                  padding: const EdgeInsetsDirectional.only(top: 2, end: 10),
+                  child: SvgPicture.asset(
+                    IconsPath.iconsMail,
+                  ),
+                ),
                 onFieldSubmitted: (p0) {
                   HelperFunctions.requestNextFocus(loginCubit.emailFocusNode,
                       loginCubit.passwordFocusNode, context);
@@ -83,6 +110,14 @@ class LoginPageViewBody extends StatelessWidget {
                 controller: loginCubit.passwordController,
                 focusNode: loginCubit.passwordFocusNode,
                 maxLength: 15,
+                borderRadius: 20,
+                borderColor: AppColors.orangeColor,
+                prefix: Padding(
+                  padding: const EdgeInsetsDirectional.only(top: 2, end: 10),
+                  child: SvgPicture.asset(
+                    IconsPath.iconsLockSecurity,
+                  ),
+                ),
                 validator: (value) => Validate.validatePassword(value, context),
                 onFieldSubmitted: (_) {
                   HelperFunctions.requestNextFocus(loginCubit.passwordFocusNode,
@@ -90,9 +125,9 @@ class LoginPageViewBody extends StatelessWidget {
                 },
               ),
             ),
-            SliverToBoxAdapter(
-              child: 4.kh,
-            ),
+            // SliverToBoxAdapter(
+            //   child: 4.kh,
+            // ),
             SliverToBoxAdapter(
                 child: Align(
               alignment: AlignmentDirectional.bottomEnd,
@@ -104,7 +139,7 @@ class LoginPageViewBody extends StatelessWidget {
               ),
             )),
             SliverToBoxAdapter(
-              child: 23.kh,
+              child: 21.kh,
             ),
             SliverToBoxAdapter(
               child: BlocConsumer<LoginCubit, LoginState>(
@@ -133,13 +168,57 @@ class LoginPageViewBody extends StatelessWidget {
                     return const ShimmerAppButton.rectangular();
                   } else {
                     return StatefulBuilder(
-                      builder: (context, setState) => AppButton(
+                      builder: (context, setState) => NewAppButton(
+                        height: 43,
                         focusNode: loginCubit.loginButtonFocusNode,
                         onPressed: () async {
                           await loginCubit.login(context);
                         },
-                        text: S.of(context).Log_in,
+                        title: S.of(context).Log_in,
+                        titleColor: AppColors.whiteColor,
+                        borderColor: AppColors.orangeColor,
+                        buttonColor: AppColors.orangeColor,
                       ),
+                    );
+                  }
+                },
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: 22.kh,
+            ),
+            const SliverToBoxAdapter(
+              child: OrTextWidget(),
+            ),
+            SliverToBoxAdapter(
+              child: 21.kh,
+            ),
+            SliverToBoxAdapter(
+              child: BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
+                listener: (context, googleAuthState) {
+                  if (googleAuthState is GoogleAuthTransactionSuccess) {
+                    // HelperFunctions.navigateToScreenAndRemove(
+                    //   context,
+                    //   (context) => WorkerAndClientRegisterPageView(
+                    //     isWorkerAuth: widget.isWorkerAuth,
+                    //     isGoogleAuth: true,
+                    //   ),
+                    // );
+                  }
+                },
+                builder: (context, googleAuthState) {
+                  if (googleAuthState is GoogleAuthLoading) {
+                    return const CustomLoading(
+                      animationType: "staggeredDotsWave",
+                      size: 30,
+                    );
+                  } else {
+                    return GoogleAuthButtonWidget(
+                      onPressed: () async {
+                        // await GoogleAuthCubit.get(context)
+                        //     .authenticateWithGoogleAndSendToApi(
+                        //         registerCubit.getRole(widget.isWorkerAuth));
+                      },
                     );
                   }
                 },
@@ -164,3 +243,7 @@ class LoginPageViewBody extends StatelessWidget {
     );
   }
 }
+//  SliverToBoxAdapter(
+//               child: 23.kh,
+//             ),
+//             LabeledBorderBox(label: S.of(context).Create_Client_account),

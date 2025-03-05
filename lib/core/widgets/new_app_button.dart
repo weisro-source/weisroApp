@@ -11,6 +11,10 @@ class NewAppButton extends StatelessWidget {
     this.borderColor,
     this.textStyle,
     this.titleColor,
+    this.height,
+    this.width,
+    this.focusNode,
+    this.child,
   });
   final void Function()? onPressed;
   final String title;
@@ -18,14 +22,18 @@ class NewAppButton extends StatelessWidget {
   final Color? buttonColor;
   final Color? borderColor;
   final TextStyle? textStyle;
+  final double? height, width;
+  final FocusNode? focusNode;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+      focusNode: focusNode,
       style: ElevatedButton.styleFrom(
-        maximumSize: const Size.fromHeight(35),
-        minimumSize: const Size.fromHeight(35),
+        maximumSize: Size.fromHeight(height ?? 35),
+        minimumSize: Size.fromHeight(height ?? 35),
         backgroundColor: buttonColor ?? AppColors.second1Color.withOpacity(0.3),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -33,12 +41,13 @@ class NewAppButton extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      child: Text(
-        title,
-        style: textStyle ??
-            AppStyles.style18w500Grey(context)
-                .copyWith(color: titleColor ?? AppColors.orangeColor),
-      ),
+      child: child ??
+          Text(
+            title,
+            style: textStyle ??
+                AppStyles.style18w500Grey(context)
+                    .copyWith(color: titleColor ?? AppColors.orangeColor),
+          ),
     );
   }
 }

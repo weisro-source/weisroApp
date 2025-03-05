@@ -30,12 +30,13 @@ class WorkerAndServiceItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(30)),
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: CachedNetworkImageProvider(
                     "${Constants.imageUrl}${categoryDoc.image}"))),
         child: Padding(
-          padding: const EdgeInsetsDirectional.only(bottom: 10),
+          padding: const EdgeInsetsDirectional.only(bottom: 0),
           child: Align(
             alignment: Alignment.bottomCenter,
             child: WhiteBackGroundForText(text: categoryDoc.name ?? ""),

@@ -118,6 +118,10 @@ class IconsPath {
   /// assets/icons/lock.svg
   static const String iconsLock = "assets/icons/lock.svg";
 
+  /// Assets for iconsLockSecurity
+  /// assets/icons/lock-security.svg
+  static const String iconsLockSecurity = "assets/icons/lock-security.svg";
+
   /// Assets for iconsLogOut
   /// assets/icons/log-out.svg
   static const String iconsLogOut = "assets/icons/log-out.svg";
