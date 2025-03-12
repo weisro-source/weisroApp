@@ -255,6 +255,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   //   'time[$i]': formattedStartTimes[i],
   // for (int i = 0; i < formattedEndTimes.length; i++)
   //   'time[$i]': formattedEndTimes[i],
+  bool isSecondScreenValidate() {
+    return HelperFunctions.validateForm(registerSecondFormKey);
+  }
+
   Future<void> registerClient() async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {
       dev.log("Validation failed", name: "Register");
@@ -272,11 +276,17 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       result.fold(
         (error) {
-          // On error, emit RegisterFailures
-          emit(RegisterFailures(errMessage: error.errMassage));
+          String errMessage = error.errMassage;
+
+          if (errMessage.contains("email_1 dup key:")) {
+            String email = emailController.text;
+            errMessage =
+                "This email ($email) is already in use. Please use a different email or log in if you already have an account.";
+          }
+
+          emit(RegisterFailures(errMessage: errMessage));
         },
         (success) {
-          // On success, emit RegisterSuccess
           emit(RegisterSuccess(successRegister: success));
         },
       );

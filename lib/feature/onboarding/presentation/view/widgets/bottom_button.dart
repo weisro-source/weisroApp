@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:weisro/core/assets_path/icons_path.dart';
-import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/skip_button.dart';
-
-import 'circle_indicator_painter.dart';
+import 'circle_button.dart';
 
 class BottomButton extends StatefulWidget {
   const BottomButton({
@@ -87,24 +83,9 @@ class BottomButtonState extends State<BottomButton>
           child: AnimatedBuilder(
             animation: _animation,
             builder: (context, child) {
-              return CustomPaint(
-                painter: CircleIndicatorPainter(_animation.value),
-                child: GestureDetector(
-                  onTap: widget.onTapOnArrow,
-                  child: Center(
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: const ShapeDecoration(
-                        shape: OvalBorder(),
-                        color: AppColors.orangeColor,
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(IconsPath.iconsArrowLeft),
-                      ),
-                    ),
-                  ),
-                ),
+              return CircleButton(
+                value: _animation.value,
+                onTap: widget.onTapOnArrow,
               );
             },
           ),

@@ -75,16 +75,16 @@ class _CustomPhoneInputState extends State<CustomPhoneInput> {
               child: Icon(CupertinoIcons.search),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(20),
               borderSide: const BorderSide(
-                color: AppColors.greyColor,
+                color: AppColors.orangeColor,
                 width: 1,
               ),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(20),
               borderSide: const BorderSide(
-                color: AppColors.greyColor,
+                color: AppColors.orangeColor,
                 width: 1,
               ),
             ),
@@ -117,28 +117,28 @@ class _CustomPhoneInputState extends State<CustomPhoneInput> {
             fontSize: 16),
         contentPadding: const EdgeInsets.all(10),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(
-            color: AppColors.greyColor,
+            color: AppColors.orangeColor,
             width: 1,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(
-            color: AppColors.greyColor,
+            color: AppColors.orangeColor,
             width: 1,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(
             color: AppColors.redColor,
             width: 1,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(
             color: AppColors.redColor,
             width: 1,

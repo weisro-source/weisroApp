@@ -18,7 +18,7 @@ class LoadingFiled extends StatelessWidget {
           width: HelperFunctions.getScreenWidth(context) * 0.9,
           decoration: BoxDecoration(
               color: AppColors.shimmerBaseColor,
-              borderRadius: BorderRadius.circular(4)),
+              borderRadius: BorderRadius.circular(20)),
         ));
   }
 }

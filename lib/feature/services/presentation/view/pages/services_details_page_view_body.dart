@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 
@@ -16,7 +16,9 @@ import 'package:weisro/feature/auth/register/presentation/view/widgets/question_
 import 'package:weisro/feature/booking/presentation/view/pages/service_booking_page_view.dart';
 import 'package:weisro/feature/onboarding/presentation/view/widgets/page_indicator_widget.dart';
 import 'package:weisro/feature/services/data/models/service_model.dart';
+import 'package:weisro/feature/services/presentation/managers/add_service_cubit/add_service_cubit.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
+import 'package:weisro/feature/services/presentation/view/pages/google_map_screen.dart';
 import 'package:weisro/feature/services/presentation/view/widgets/delete_service_dialog.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -50,10 +52,20 @@ class _ServicesDetailsPageViewBodyState
     super.initState();
   }
 
+  LatLng? _getServiceCoordinates() {
+    final latitude =
+        widget.oneService.service?.location?.coordinates?[0] ?? 0.0;
+    final longitude =
+        widget.oneService.service?.location?.coordinates?[1] ?? 0.0;
+
+    if (latitude != 0.0 && longitude != 0.0) {
+      return LatLng(latitude, longitude);
+    }
+    return null; // If coordinates are invalid
+  }
+
   @override
   Widget build(BuildContext context) {
-    AddServiceToFavoriteCubit addServiceToFavoriteCubit =
-        AddServiceToFavoriteCubit.get(context);
     return CustomScrollView(
       slivers: [
         CustomAppBar(
@@ -133,10 +145,14 @@ class _ServicesDetailsPageViewBodyState
         SliverToBoxAdapter(
           child: Row(
             children: [
-              20.kw,
               Visibility(
-                visible: !HelperFunctions.isCurrentUser(
-                    widget.oneService.service?.user?.id ?? ""),
+                  visible: !(HelperFunctions.isCurrentUser(
+                          widget.oneService.service?.user?.id ?? "") ||
+                      widget.isReview),
+                  child: 20.kw),
+              Visibility(
+                visible: !(HelperFunctions.isCurrentUser(
+                    widget.oneService.service?.user?.id ?? "")),
                 child: Expanded(
                   child: NewAppButton(
                     title: S.of(context).Book_Now,
@@ -172,9 +188,10 @@ class _ServicesDetailsPageViewBodyState
                       color: AppColors.second1Color.withOpacity(0.3),
                       style: AppStyles.style16w500Black(context)
                           .copyWith(color: AppColors.orangeColor),
-                      info: widget.oneService.service?.hourlyPrice.toString() ??
-                          widget.oneService.service?.dailyPrice.toString() ??
-                          "")),
+                      info: widget.oneService.service?.hourlyPrice.toString() !=
+                              '0'
+                          ? "${widget.oneService.service?.hourlyPrice.toString()}\$"
+                          : "${widget.oneService.service?.dailyPrice.toString()}\$")),
               20.kw,
             ],
           ),
@@ -183,32 +200,54 @@ class _ServicesDetailsPageViewBodyState
           child: 25.kh,
         ),
         SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Expanded(
-                child: InfoInBookPage(
-              borderedColor: AppColors.orangeColor,
-              color: AppColors.orangeColor,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    IconsPath.iconsLocation,
-                    width: 16,
-                    height: 16,
-                    colorFilter: const ColorFilter.mode(
-                        AppColors.whiteColor, BlendMode.srcIn),
-                  ),
-                  8.kw,
-                  Text(
-                    "${widget.oneService.service?.location?.city ?? ""} ${widget.oneService.service?.location?.country ?? ""}",
-                    style: AppStyles.style12w500Orange(context).copyWith(
-                        color: AppColors.whiteColor,
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-            )),
+          child: GestureDetector(
+            onTap: () {
+              if (!widget.isReview) {
+                final coordinates = _getServiceCoordinates();
+
+                if (coordinates != null) {
+                  HelperFunctions.navigateToScreen(
+                    context,
+                    (context) => GoogleMapScreen(
+                      latitude: coordinates.latitude,
+                      longitude: coordinates.longitude,
+                    ),
+                  );
+                } else {
+                  // Handle the case where coordinates are not available (optional)
+                  // For example, show a message or handle it differently
+                }
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Expanded(
+                  child: InfoInBookPage(
+                borderedColor: AppColors.orangeColor,
+                color: AppColors.orangeColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      IconsPath.iconsLocation,
+                      width: 16,
+                      height: 16,
+                      colorFilter: const ColorFilter.mode(
+                          AppColors.whiteColor, BlendMode.srcIn),
+                    ),
+                    8.kw,
+                    Text(
+                      widget.isReview
+                          ? "${AddServiceCubit.get(context).selectedLocationName}"
+                          : "${widget.oneService.service?.location?.city ?? ""} ${widget.oneService.service?.location?.country ?? ""}",
+                      style: AppStyles.style12w500Orange(context).copyWith(
+                          color: AppColors.whiteColor,
+                          fontWeight: FontWeight.w400),
+                    )
+                  ],
+                ),
+              )),
+            ),
           ),
         ),
         SliverToBoxAdapter(
@@ -238,7 +277,6 @@ class _ServicesDetailsPageViewBodyState
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
           sliver: SliverToBoxAdapter(
               child: CustomTextFormFiled(
-              
             readOnly: true,
             hintText: "",
             controller: deceptionTextController,
@@ -262,7 +300,7 @@ class _ServicesDetailsPageViewBodyState
                   visible: (HelperFunctions.isCurrentUser(
                           widget.oneService.service?.user?.id ?? "") &&
                       !widget.isReview),
-                  child: AppButton(
+                  child: NewAppButton(
                     height: 32,
                     width: 164,
                     onPressed: () {
@@ -270,10 +308,47 @@ class _ServicesDetailsPageViewBodyState
                           context, widget.oneService.service?.id ?? "");
                     },
                     buttonColor: AppColors.redColor,
+                    titleColor: AppColors.whiteColor,
                     borderColor: AppColors.redColor,
-                    text: S.of(context).Delete_Service,
+                    title: S.of(context).Delete_Service,
                   )),
             )),
+        SliverVisibility(
+          visible: widget.isReview,
+          sliver: SliverPadding(
+              padding: HelperFunctions.symmetricHorizontalPadding24,
+              sliver: SliverToBoxAdapter(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: NewAppButton(
+                      borderColor: AppColors.redColor,
+                      buttonColor: AppColors.redColor,
+                      title: S.of(context).Cancel,
+                      titleColor: AppColors.whiteColor,
+                      onPressed: () {
+                        HelperFunctions.navigateToBack(context);
+                      },
+                    ),
+                  ),
+                  10.kw,
+                  Expanded(
+                    child: NewAppButton(
+                      borderColor: AppColors.orangeColor,
+                      buttonColor: AppColors.whiteColor,
+                      title: S.of(context).publish,
+                      textStyle: AppStyles.style18w500Grey(context)
+                          .copyWith(color: AppColors.orangeColor),
+                      onPressed: () async {
+                        await AddServiceCubit.get(context)
+                            .addServiceCallApi(context);
+                      },
+                    ),
+                  )
+                ],
+              ))),
+        ),
         SliverToBoxAdapter(
           child: 60.kh,
         ),

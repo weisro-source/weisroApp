@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/feature/auth/data/models/countries_model.dart';
 import 'package:weisro/feature/auth/google_auth/google_auth.dart';
 import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
@@ -17,13 +20,8 @@ import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_
 import 'package:weisro/feature/auth/register/presentation/view/widgets/city_drop_down.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/city_in_state_drop_down.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_country_dropdown.dart';
-import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
-
-import '../../../../../../core/widgets/app_button.dart';
 import '../../../../../../core/widgets/custom_text_form_filed.dart';
-import '../../../../../../core/widgets/title_for_text_from_filed.dart';
-import '../widgets/custom_steeper_widget.dart';
 import '../widgets/google_auth_button_widget.dart';
 import '../widgets/have_an_account.dart';
 import '../widgets/loading_filed.dart';
@@ -51,45 +49,48 @@ class _WorkerAndClientRegisterPageViewBodyState
         key: registerCubit.registerFormKey,
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: 35.kh,
-            ),
+            34.sKh,
             const SliverToBoxAdapter(
               child: Align(
                 alignment: AlignmentDirectional.topStart,
                 child: LogoImageWidget(),
               ),
             ),
+            24.sKh,
             SliverToBoxAdapter(
-              child: 23.kh,
+              child: Text(
+                S.of(context).Login_Information,
+                style: AppStyles.style18w500Grey(context).copyWith(
+                    color: AppColors.orangeColor, fontWeight: FontWeight.w700),
+              ),
             ),
-            LabeledBorderBox(
-                label: widget.isGoogleAuth
-                    ? S.of(context).Complete_Information
-                    : widget.isWorkerAuth
-                        ? S.of(context).Create_Worker_Account
-                        : S.of(context).Create_Client_account),
+            6.sKh,
             SliverToBoxAdapter(
-              child: 44.kh,
+              child: Text(
+                S.of(context).Fill_Registration_Info,
+                style: AppStyles.style10w400Grey(context),
+              ),
             ),
             //* this a steeper widget
-            const SliverToBoxAdapter(
-                child: CustomSteeperWidget(
-              isTowStepActive: false,
-            )),
+            //! this steeper in old design ....
+            // const SliverToBoxAdapter(
+            //     child: CustomSteeperWidget(
+            //   isTowStepActive: false,
+            // )),
             SliverToBoxAdapter(
-              child: 0.kh,
+              child: 53.kh,
             ),
-            SliverToBoxAdapter(
-                child: Visibility(
-              visible: !widget.isGoogleAuth,
-              child: TitleForTextFromFiled(
-                title: S.of(context).First_Name,
-              ),
-            )),
-            SliverToBoxAdapter(
-              child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
-            ),
+            //!
+            // SliverToBoxAdapter(
+            //     child: Visibility(
+            //   visible: !widget.isGoogleAuth,
+            //   child: TitleForTextFromFiled(
+            //     title: S.of(context).First_Name,
+            //   ),
+            // )),
+            // SliverToBoxAdapter(
+            //   child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
+            // ),
             SliverToBoxAdapter(
               child: Visibility(
                 visible: !widget.isGoogleAuth,
@@ -98,6 +99,8 @@ class _WorkerAndClientRegisterPageViewBodyState
                   controller: registerCubit.firstNameController,
                   focusNode: registerCubit.firstNameFocusNode,
                   keyboardType: TextInputType.name,
+                  borderColor: AppColors.orangeColor,
+                  borderRadius: 20,
                   validator: (value) => Validate.validateFieldWithTitle(
                       value, S.of(context).First_Name, context),
                   onFieldSubmitted: (p0) {
@@ -112,16 +115,16 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: Visibility(visible: !widget.isGoogleAuth, child: 20.kh),
             ),
-            SliverToBoxAdapter(
-                child: Visibility(
-              visible: !widget.isGoogleAuth,
-              child: TitleForTextFromFiled(
-                title: S.of(context).Last_Name,
-              ),
-            )),
-            SliverToBoxAdapter(
-              child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
-            ),
+            // SliverToBoxAdapter(
+            //     child: Visibility(
+            //   visible: !widget.isGoogleAuth,
+            //   child: TitleForTextFromFiled(
+            //     title: S.of(context).Last_Name,
+            //   ),
+            // )),
+            // SliverToBoxAdapter(
+            //   child: Visibility(visible: !widget.isGoogleAuth, child: 5.kh),
+            // ),
             SliverToBoxAdapter(
               child: Visibility(
                 visible: !widget.isGoogleAuth,
@@ -129,6 +132,8 @@ class _WorkerAndClientRegisterPageViewBodyState
                   hintText: S.of(context).Last_Name,
                   controller: registerCubit.lastNameController,
                   focusNode: registerCubit.lastNameFocusNode,
+                  borderColor: AppColors.orangeColor,
+                  borderRadius: 20,
                   validator: (value) => Validate.validateFieldWithTitle(
                       value, S.of(context).Last_Name, context),
                   keyboardType: TextInputType.name,
@@ -144,13 +149,13 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: Visibility(visible: !widget.isGoogleAuth, child: 20.kh),
             ),
-            SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).Country,
-            )),
-            SliverToBoxAdapter(
-              child: 5.kh,
-            ),
+            // SliverToBoxAdapter(
+            //     child: TitleForTextFromFiled(
+            //   title: S.of(context).Country,
+            // )),
+            // SliverToBoxAdapter(
+            //   child: 5.kh,
+            // ),
 
             SliverToBoxAdapter(
               child: BlocBuilder<GetAllCountriesCubit, GetAllCountriesState>(
@@ -159,23 +164,27 @@ class _WorkerAndClientRegisterPageViewBodyState
                     final countries = getAllCountriesState.countries;
                     registerCubit.cityName =
                         GetAllCountriesCubit.get(context).selectedCountry.name;
-                    return CountryDropdown(
-                      countries: countries,
-                      selectedCountry:
-                          GetAllCountriesCubit.get(context).selectedCountry,
-                      onChanged: (newCountry) async {
-                        GetAllCountriesCubit.get(context).selectCountry(
-                            newCountry ?? Country(id: "", flag: "", name: ""));
-                        registerCubit.countryName = newCountry?.name ?? "";
-                        await GetCitiesOfASpecifiedCountryCubit.get(context)
-                            .getAllCitiesOfASpecifiedCountry(
-                                newCountry?.id ?? "");
-                        if (context.mounted) {
-                          registerCubit.cityName = context
-                              .read<GetCitiesOfASpecifiedCountryCubit>()
-                              .cityName;
-                        }
-                      },
+                    return SizedBox(
+                      height: 50,
+                      child: CountryDropdown(
+                        countries: countries,
+                        selectedCountry:
+                            GetAllCountriesCubit.get(context).selectedCountry,
+                        onChanged: (newCountry) async {
+                          GetAllCountriesCubit.get(context).selectCountry(
+                              newCountry ??
+                                  Country(id: "", flag: "", name: ""));
+                          registerCubit.countryName = newCountry?.name ?? "";
+                          await GetCitiesOfASpecifiedCountryCubit.get(context)
+                              .getAllCitiesOfASpecifiedCountry(
+                                  newCountry?.id ?? "");
+                          if (context.mounted) {
+                            registerCubit.cityName = context
+                                .read<GetCitiesOfASpecifiedCountryCubit>()
+                                .cityName;
+                          }
+                        },
+                      ),
                     );
                   } else if (getAllCountriesState is GetAllCountriesLoading) {
                     return const LoadingFiled();
@@ -192,13 +201,13 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 20.kh,
             ),
-            SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).City,
-            )),
-            SliverToBoxAdapter(
-              child: 5.kh,
-            ),
+            // SliverToBoxAdapter(
+            //     child: TitleForTextFromFiled(
+            //   title: S.of(context).City,
+            // )),
+            // SliverToBoxAdapter(
+            //   child: 5.kh,
+            // ),
 
             SliverToBoxAdapter(
               child: BlocBuilder<GetCitiesOfASpecifiedCountryCubit,
@@ -232,10 +241,10 @@ class _WorkerAndClientRegisterPageViewBodyState
                           selectedCity: selectedState,
                         ),
                         20.kh,
-                        TitleForTextFromFiled(
-                          title: S.of(context).City,
-                        ),
-                        5.kh,
+                        // TitleForTextFromFiled(
+                        //   title: S.of(context).City,
+                        // ),
+                        // 5.kh,
                         CityInStateDropdown(
                           cityList: selectedState.cities,
                           selectedCity: selectedState.cities.first,
@@ -257,19 +266,21 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 20.kh,
             ),
-            SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).Postal_Code,
-            )),
-            SliverToBoxAdapter(
-              child: 5.kh,
-            ),
+            // SliverToBoxAdapter(
+            //     child: TitleForTextFromFiled(
+            //   title: S.of(context).Postal_Code,
+            // )),
+            // SliverToBoxAdapter(
+            //   child: 5.kh,
+            // ),
             SliverToBoxAdapter(
               child: CustomTextFormFiled(
                 controller: registerCubit.postalCodeController,
                 focusNode: registerCubit.postalCodeFocusNode,
                 keyboardType: TextInputType.number,
                 hintText: registerCubit.hintTextX,
+                borderColor: AppColors.orangeColor,
+                borderRadius: 20,
                 validator: (value) => Validate.validateFieldWithTitle(
                     value, S.of(context).Postal_Code, context),
                 onFieldSubmitted: (_) {
@@ -283,19 +294,21 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 20.kh,
             ),
-            SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).Street,
-            )),
-            SliverToBoxAdapter(
-              child: 5.kh,
-            ),
+            // SliverToBoxAdapter(
+            //     child: TitleForTextFromFiled(
+            //   title: S.of(context).Street,
+            // )),
+            // SliverToBoxAdapter(
+            //   child: 5.kh,
+            // ),
             SliverToBoxAdapter(
               child: CustomTextFormFiled(
                 hintText: "",
                 controller: registerCubit.streetController,
                 focusNode: registerCubit.streetFocusNode,
                 keyboardType: TextInputType.streetAddress,
+                borderColor: AppColors.orangeColor,
+                borderRadius: 20,
                 validator: (value) => Validate.validateFieldWithTitle(
                     value, S.of(context).Street, context),
                 onFieldSubmitted: (_) {
@@ -309,19 +322,21 @@ class _WorkerAndClientRegisterPageViewBodyState
             SliverToBoxAdapter(
               child: 20.kh,
             ),
-            SliverToBoxAdapter(
-                child: TitleForTextFromFiled(
-              title: S.of(context).House_Number,
-            )),
-            SliverToBoxAdapter(
-              child: 5.kh,
-            ),
+            // SliverToBoxAdapter(
+            //     child: TitleForTextFromFiled(
+            //   title: S.of(context).House_Number,
+            // )),
+            // SliverToBoxAdapter(
+            //   child: 5.kh,
+            // ),
             SliverToBoxAdapter(
               child: CustomTextFormFiled(
                 hintText: registerCubit.hintTextX,
                 controller: registerCubit.houseNumberController,
                 focusNode: registerCubit.houseNumberFocusNode,
                 keyboardType: TextInputType.number,
+                borderColor: AppColors.orangeColor,
+                borderRadius: 20,
                 validator: (value) => Validate.validateFieldWithTitle(
                     value, S.of(context).House_Number, context),
                 onFieldSubmitted: (_) {
@@ -336,7 +351,7 @@ class _WorkerAndClientRegisterPageViewBodyState
               child: 24.kh,
             ),
             SliverToBoxAdapter(
-              child: AppButton(
+              child: NewAppButton(
                   focusNode: registerCubit.nextButtonFocusNode,
                   onPressed: () {
                     if (HelperFunctions.validateForm(
@@ -353,7 +368,7 @@ class _WorkerAndClientRegisterPageViewBodyState
                       );
                     }
                   },
-                  text: S.of(context).Next_Step),
+                  title: S.of(context).Next_Step),
             ),
             SliverToBoxAdapter(
               child: 16.kh,

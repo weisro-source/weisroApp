@@ -12,7 +12,6 @@ import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
-import 'package:weisro/feature/home/presentation/managers/view_type_in_home_page_cubit/view_type_in_home_page_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 import 'package:weisro/generated/l10n.dart';

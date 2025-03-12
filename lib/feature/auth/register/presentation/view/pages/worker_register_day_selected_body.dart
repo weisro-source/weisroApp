@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/styles/app_color.dart';
+import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
@@ -47,30 +49,36 @@ class _WorkerRegisterDaySelectedBodyState
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-  
     RegisterCubit registerCubit = RegisterCubit.get(context);
     return Padding(
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
       child: Form(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: 35.kh,
-            ),
+            34.sKh,
             const SliverToBoxAdapter(
               child: Align(
                 alignment: AlignmentDirectional.topStart,
                 child: LogoImageWidget(),
               ),
             ),
+            24.sKh,
             SliverToBoxAdapter(
-              child: 23.kh,
+              child: Text(
+                S.of(context).Create_Worker_Account,
+                style: AppStyles.style18w500Grey(context).copyWith(
+                    color: AppColors.orangeColor, fontWeight: FontWeight.w700),
+              ),
             ),
-            LabeledBorderBox(label: S.of(context).Create_Worker_Account),
+            6.sKh,
+            SliverToBoxAdapter(
+              child: Text(
+                S.of(context).Fill_Registration_Info,
+                style: AppStyles.style10w400Grey(context),
+              ),
+            ),
             SliverToBoxAdapter(
               child: 37.kh,
             ),

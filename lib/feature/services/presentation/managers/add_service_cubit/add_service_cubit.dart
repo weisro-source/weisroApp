@@ -72,7 +72,7 @@ class AddServiceCubit extends Cubit<AddServiceState> {
             days: formattedDays,
             name: serviceNameController.text,
             //first index latitude second index longitude
-            location: const Location(coordinates: [20, 30]),
+            location: selectedLocation,
             time: [Time(start: formattedStartTime, end: formattedEndTime)]));
   }
 

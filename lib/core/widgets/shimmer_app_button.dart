@@ -6,11 +6,13 @@ import 'package:weisro/core/utils/helper_functions.dart';
 class ShimmerAppButton extends StatelessWidget {
   final double height;
   final ShapeBorder shapeBorder;
-
+  final double borderRadiusValue;
   const ShimmerAppButton.rectangular({
     Key? key,
     this.height = 32,
-    this.shapeBorder = const RoundedRectangleBorder(),
+    this.borderRadiusValue = 20,
+    this.shapeBorder = const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20.0))),
   }) : super(key: key);
 
   @override

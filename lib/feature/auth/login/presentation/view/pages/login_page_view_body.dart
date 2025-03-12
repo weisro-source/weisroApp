@@ -9,7 +9,6 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
@@ -200,7 +199,7 @@ class LoginPageViewBody extends StatelessWidget {
                     // HelperFunctions.navigateToScreenAndRemove(
                     //   context,
                     //   (context) => WorkerAndClientRegisterPageView(
-                    //     isWorkerAuth: widget.isWorkerAuth,
+                    //     isWorkerAuth: isWorkerAuth,
                     //     isGoogleAuth: true,
                     //   ),
                     // );

@@ -28,7 +28,9 @@ class GoogleAuthCubit extends Cubit<GoogleAuthState> {
       (googleSignResult) async {
         // Split the name into first name and last name
         List<String> nameParts = googleSignResult.name.split(' ');
+        // ignore: unused_local_variable
         String firstName = nameParts.isNotEmpty ? nameParts[0] : '';
+        // ignore: unused_local_variable
         String lastName = nameParts.length > 1
             ? nameParts.sublist(1).join(' ') // Join the rest as last name
             : '';
