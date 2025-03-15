@@ -8,13 +8,12 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/feature/auth/data/worker_time.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/worker_day_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/worker_register_upload_image_page_view.dart';
-import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../../core/widgets/days_list.dart';
@@ -93,7 +92,7 @@ class _WorkerRegisterDaySelectedBodyState
               child: 10.kh,
             ),
             const SliverPadding(
-              padding: EdgeInsetsDirectional.only(start: 24),
+              padding: EdgeInsetsDirectional.only(start: 10),
               sliver: DaysList(),
             ),
             SliverToBoxAdapter(
@@ -108,7 +107,7 @@ class _WorkerRegisterDaySelectedBodyState
               child: 12.kh,
             ),
             SliverPadding(
-              padding: const EdgeInsetsDirectional.only(start: 20, end: 6),
+              padding: const EdgeInsetsDirectional.only(start: 10, end: 0),
               sliver: FavoriteTimeGridViewWidget(
                   isTime: true,
                   favoritesTime: WorkerTime.favoriteTimesList(context)),
@@ -132,8 +131,8 @@ class _WorkerRegisterDaySelectedBodyState
               child: 40.kh,
             ),
             SliverToBoxAdapter(
-              child: AppButton(
-                text: S.of(context).Next_Step,
+              child: NewAppButton(
+                title: S.of(context).Next_Step,
                 onPressed: () {
                   HelperFunctions.navigateToScreen(
                     context,

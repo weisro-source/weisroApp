@@ -419,7 +419,10 @@ class _WorkerAndClientRegisterPageViewBodyState
                 buttonTitle: S.of(context).Log_in,
                 onPressed: () {
                   HelperFunctions.navigateToScreen(
-                      context, (context) => const LoginPageView());
+                      context,
+                      (context) => LoginPageView(
+                            role: registerCubit.getRole(widget.isWorkerAuth),
+                          ));
                 },
               ),
             ),

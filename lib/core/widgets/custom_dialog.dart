@@ -11,6 +11,8 @@ import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/new_app_button.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth.dart';
+import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
 import 'package:weisro/feature/profile/presentation/manager/edit_user_info_cubit/edit_user_info_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -389,79 +391,97 @@ class CustomDialog {
     showDialog(
       context: context,
       builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          elevation: 5,
-          backgroundColor: Colors.transparent,
-          shadowColor: AppColors.shadow2Color,
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.92,
-            height: MediaQuery.of(context).size.height * 0.3,
-            decoration: BoxDecoration(
-              color: AppColors.whiteColor,
+        return BlocProvider(
+          create: (context) => GoogleAuthCubit(),
+          child: Dialog(
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
-                ),
-              ],
             ),
-            child: Column(
-              children: [
-                20.kh,
-                Center(
-                  child: Text(
-                    S.of(context).Logout,
-                    style: AppStyles.style20w500Grey(context),
+            elevation: 5,
+            backgroundColor: Colors.transparent,
+            shadowColor: AppColors.shadow2Color,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.92,
+              height: MediaQuery.of(context).size.height * 0.3,
+              decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
                   ),
-                ),
-                10.kh,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    S.of(context).AreYouSureLogout,
-                    textAlign: TextAlign.center,
-                    style: AppStyles.style16w400Grey(context),
+                ],
+              ),
+              child: Column(
+                children: [
+                  20.kh,
+                  Center(
+                    child: Text(
+                      S.of(context).Logout,
+                      style: AppStyles.style20w500Grey(context),
+                    ),
                   ),
-                ),
-                30.kh,
-                Row(
-                  children: [
-                    19.kw,
-                    Expanded(
-                      child: AppButton(
-                        width: 174,
-                        height: 40,
-                        text: S.of(context).YesLogout,
-                        borderColor: AppColors.redColor,
-                        buttonColor: AppColors.redColor,
-                        onPressed: () async {
-                          await HelperFunctions.logoutFunction(context);
-                        },
-                      ),
+                  10.kh,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      S.of(context).AreYouSureLogout,
+                      textAlign: TextAlign.center,
+                      style: AppStyles.style16w400Grey(context),
                     ),
-                    10.kw,
-                    Expanded(
-                      flex: 2,
-                      child: AppButton(
-                        width: 174,
-                        height: 40,
-                        text: S.of(context).NoStayLoggedIn,
-                        borderColor: AppColors.lightgrey2Color,
-                        buttonColor: AppColors.greenColor,
-                        onPressed: () {
-                          HelperFunctions.navigateToBack(context);
-                        },
-                      ),
-                    ),
-                    19.kw,
-                  ],
-                )
-              ],
+                  ),
+                  30.kh,
+                  BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
+                    listener: (context, googleAuthState) async {
+                      if (googleAuthState is GoogleAuthSignedOut) {
+                        await HelperFunctions.logoutFunction(context);
+                      }
+                    },
+                    builder: (context, googleAuthState) {
+                      if (googleAuthState is GoogleAuthLoading) {
+                        return const CustomLoading(
+                          size: 40,
+                        );
+                      } else {
+                        return Row(
+                          children: [
+                            19.kw,
+                            Expanded(
+                              child: AppButton(
+                                width: 174,
+                                height: 40,
+                                text: S.of(context).YesLogout,
+                                borderColor: AppColors.redColor,
+                                buttonColor: AppColors.redColor,
+                                onPressed: () async {
+                                  await GoogleAuthCubit.get(context).signOut();
+                                },
+                              ),
+                            ),
+                            10.kw,
+                            Expanded(
+                              flex: 2,
+                              child: AppButton(
+                                width: 174,
+                                height: 40,
+                                text: S.of(context).NoStayLoggedIn,
+                                borderColor: AppColors.lightgrey2Color,
+                                buttonColor: AppColors.greenColor,
+                                onPressed: () {
+                                  HelperFunctions.navigateToBack(context);
+                                },
+                              ),
+                            ),
+                            19.kw,
+                          ],
+                        );
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         );

@@ -7,6 +7,7 @@ import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
+import 'package:weisro/core/widgets/full_screen_image.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
 
@@ -141,7 +142,7 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
         height: 100,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: AppColors.orangeColor),
-          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Column(
           children: [
@@ -157,7 +158,8 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
               ),
             ),
             const SizedBox(height: 10),
-            Expanded(
+            SizedBox(
+              height: HelperFunctions.getScreenHight(context) * 0.06,
               child: widget.isMultiPick
                   ? ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -168,11 +170,26 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
                             Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: Image.file(
-                                _selectedImages[index],
-                                width: 80,
-                                height: 80,
-                                fit: BoxFit.cover,
+                              child: GestureDetector(
+                                onLongPress: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => FullScreenImageGallery(
+                                        imageList: _selectedImages
+                                            .map((file) => file.path)
+                                            .toList(),
+                                        initialIndex: index,
+                                        isReview: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Image.file(_selectedImages[index],
+                                    fit: BoxFit.cover,
+                                    height: HelperFunctions.getScreenHight(
+                                            context) *
+                                        0.07),
                               ),
                             ),
                             GestureDetector(
@@ -198,11 +215,27 @@ class UploaderContainerWidgetState extends State<UploaderContainerWidget> {
                   : _selectedImages.isNotEmpty
                       ? Stack(
                           children: [
-                            Image.file(
-                              _selectedImages[0],
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
+                            GestureDetector(
+                              onLongPress: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => FullScreenImageGallery(
+                                      imageList: _selectedImages
+                                          .map((file) => file.path)
+                                          .toList(),
+                                      initialIndex: 0,
+                                      isReview: true,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Image.file(
+                                _selectedImages[0],
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             GestureDetector(
                               onTap: () => _removeImage(0),

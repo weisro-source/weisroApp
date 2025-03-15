@@ -82,7 +82,7 @@ class CustomTextFormFiled extends StatelessWidget {
           hintStyle: AppStyles.style12w400Second2(context),
           errorText: errorText,
           contentPadding: EdgeInsetsDirectional.only(
-              start: 15, top: topPadding, bottom: bottomPadding, end: 0),
+              start: 20, top: topPadding, bottom: bottomPadding, end: 0),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 4),
             borderSide: BorderSide(

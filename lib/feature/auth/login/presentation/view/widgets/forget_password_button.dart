@@ -12,11 +12,10 @@ class ForgetPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-    
       onPressed: onPressed,
       child: Text(
         S.of(context).Forget_Password,
-        style: AppStyles.style10w400Red(context)
+        style: AppStyles.style14w400Grey(context)
             .copyWith(color: AppColors.orangeColor),
       ),
     );

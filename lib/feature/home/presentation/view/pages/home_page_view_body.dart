@@ -46,7 +46,6 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
   String? cityName = CacheHelper.getData(key: CacheKeys.kCityName);
   @override
   Widget build(BuildContext context) {
-   
     return SafeArea(
       child: BlocProvider(
         create: (context) => AddServiceToFavoriteCubit(),
@@ -130,7 +129,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                             iconHeight: 24,
                             iconWidth: 10,
                             borderWidth: 1,
-                            borderRadius: 8,
+                            borderRadius: 20,
                             selectedLocation: firstCity,
                             locations: cityNameList,
                             prefixIcon: IconsPath.iconsLocation,
@@ -193,11 +192,11 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                         fillColor: AppColors.whiteColor,
                         borderColor: AppColors.orangeColor,
                         iconColor: AppColors.greyColor,
-                        height: 38,
+                        height: 50,
                         iconHeight: 24,
                         iconWidth: 24,
                         borderWidth: 1,
-                        borderRadius: 8,
+                        borderRadius: 20,
                         selectedLocation: categories.first,
                         locations: categories,
                         prefixIcon: IconsPath.iconsCategory,

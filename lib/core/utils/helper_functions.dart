@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +10,7 @@ import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:image/image.dart' as img;
+import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/feature/auth/login/presentation/view/pages/login_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -102,61 +102,95 @@ class HelperFunctions {
     return formKey.currentState?.validate() ?? false;
   }
 
-  // Resizes the image to a specific width and height
   static Future<File> resizeImage(
     File imageFile, {
-    int width = 341,
-    int height = 220,
-    int quality = 85, // Quality for JPEG encoding (0-100)
-    bool maintainAspectRatio = true, // Maintain original aspect ratio
+    int maxWidth = 341,
+    int maxHeight = 220,
+    int quality = 85,
+    bool maintainAspectRatio = true,
+    bool useWebP = false, // Use WebP for better compression
   }) async {
     try {
-      // Print the original file size
       final originalSize = await imageFile.length();
-      log("Original size: ${originalSize / 1024} KB");
+      log(
+        AnsiColor.colorize(
+          "Original size: ${originalSize / 1024} KB",
+          AnsiColor.brightCyan,
+        ),
+        name: "Resize Image ",
+      );
 
-      // Read bytes and decode the image
+      // Decode the image
       final bytes = await imageFile.readAsBytes();
       final originalImage = img.decodeImage(Uint8List.fromList(bytes));
 
       if (originalImage == null) {
-        log("Failed to decode image. Returning original file.");
-        return imageFile; // Return original file if decoding fails
+        log(
+          AnsiColor.colorize(
+            "Failed to decode image. Returning original file.",
+            AnsiColor.red,
+          ),
+          name: "Resize Image ERROR",
+        );
+        return imageFile;
+      }
+
+      // Calculate new dimensions
+      int newWidth = maxWidth;
+      int newHeight = maxHeight;
+
+      if (maintainAspectRatio) {
+        final aspectRatio = originalImage.width / originalImage.height;
+        if (originalImage.width > originalImage.height) {
+          newWidth = maxWidth;
+          newHeight = (maxWidth / aspectRatio).toInt();
+        } else {
+          newHeight = maxHeight;
+          newWidth = (maxHeight * aspectRatio).toInt();
+        }
       }
 
       // Resize the image
-      img.Image resizedImage;
-      if (maintainAspectRatio) {
-        resizedImage = img.copyResize(originalImage, width: width);
-      } else {
-        resizedImage =
-            img.copyResize(originalImage, width: width, height: height);
-      }
+      final resizedImage =
+          img.copyResize(originalImage, width: newWidth, height: newHeight);
 
-      // Encode the resized image with specified quality
-      final resizedBytes =
+      // Encode the image with selected format
+      Uint8List resizedBytes;
+
+      resizedBytes =
           Uint8List.fromList(img.encodeJpg(resizedImage, quality: quality));
 
-      // Write resized image to a temporary file
-      final resizedFile = await writeToFile(resizedBytes);
+      // Save to file
+      final resizedFile = await writeToFile(resizedBytes, useWebP);
 
-      // Print the resized file size and percentage reduction
       final resizedSize = await resizedFile.length();
-      log("Resized size: ${resizedSize / 1024} KB");
-      log("Size reduction: ${(1 - (resizedSize / originalSize)) * 100}%");
+
+      log(
+        AnsiColor.colorize(
+          "esized size: ${resizedSize / 1024} KB  Size reduction: ${(1 - (resizedSize / originalSize)) * 100}%",
+          AnsiColor.brightCyan,
+        ),
+        name: "Resize Image ",
+      );
 
       return resizedFile;
     } catch (e) {
-      log("Error resizing image: $e");
-      return imageFile; // Return original file on error
+      log(
+        AnsiColor.colorize(
+          "Error resizing image: $e",
+          AnsiColor.red,
+        ),
+        name: "Resize Image ERROR",
+      );
+      return imageFile;
     }
   }
 
   // Writes the resized image to a temporary file
-  static Future<File> writeToFile(Uint8List bytes) async {
+  static Future<File> writeToFile(Uint8List bytes, bool useWebP) async {
     final tempDir = await Directory.systemTemp.createTemp();
     final filePath =
-        '${tempDir.path}/resized_image_${DateTime.now().millisecondsSinceEpoch}.jpg';
+        '${tempDir.path}/resized_image_${DateTime.now().millisecondsSinceEpoch}.${useWebP ? 'webp' : 'jpg'}';
     return File(filePath).writeAsBytes(bytes);
   }
 

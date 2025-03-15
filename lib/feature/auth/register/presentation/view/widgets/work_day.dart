@@ -15,7 +15,7 @@ class WorkDay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector( 
+    return GestureDetector(
       onTap: onTap,
       child: AspectRatio(
         aspectRatio: 1,
@@ -24,7 +24,7 @@ class WorkDay extends StatelessWidget {
             color: isSelected ? AppColors.orangeColor : Colors.white,
             shape: RoundedRectangleBorder(
               side: const BorderSide(width: 1, color: AppColors.orangeColor),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(20),
             ),
             shadows: const [
               BoxShadow(

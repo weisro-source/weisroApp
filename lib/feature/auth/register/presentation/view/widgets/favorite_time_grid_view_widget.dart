@@ -21,9 +21,10 @@ class FavoriteTimeGridViewWidget extends StatelessWidget {
         builder: (context, favoriteTimes) {
           return SliverGrid.builder(
             itemCount: favoriteTimes.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 152 / 38,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: favoriteTimes[0].time != null ? 3 : 2,
+              childAspectRatio:
+                  favoriteTimes[0].time != null ? 112 / 46 : 171 / 40,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),

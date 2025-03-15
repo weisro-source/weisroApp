@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
@@ -19,10 +21,12 @@ import 'package:weisro/feature/auth/register/presentation/view/pages/worker_regi
 import 'package:weisro/feature/auth/register/presentation/view/widgets/custom_phone_input_field.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/google_auth_button_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/or_text_widget.dart';
+import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart';
 import 'package:weisro/feature/profile/presentation/view/pages/static_page_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/i_agree_checkbox.dart';
+import '../widgets/terms_and_privacy_dialog.dart';
 
 class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
   const SecondWorkerAndClientRegisterPageViewBody(
@@ -279,16 +283,23 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                   child: BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, registerState) {
                       if (registerState is RegisterFailures) {
-                        CustomDialog.showCustomDialog(context,
-                            "Error in Register", registerState.errMessage);
+                        CustomDialog.showCustomDialog(
+                            context,
+                            S.of(context).Error_In_Register,
+                            registerState.errMessage);
                       } else if (registerState is RegisterSuccess) {
-                        HelperFunctions.navigateToScreen(
+                        HelperFunctions.navigateToScreenAndRemove(
                             context,
                             (context) => BlocProvider.value(
                                   value: registerCubit,
                                   child: const OtpPageView(
                                       isForgetPassword: false),
                                 ));
+                      } else if (registerState is RegisterGoogleSuccess) {
+                        HelperFunctions.navigateToScreenAndRemove(
+                          context,
+                          (context) => const HomePageView(),
+                        );
                       }
                     },
                     builder: (context, state) {
@@ -300,16 +311,37 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                           onPressed: () async {
                             if (!registerCubit.isTermsOk ||
                                 !registerCubit.isPrivacyOk) {
+                              String message = '';
+
                               if (!registerCubit.isTermsOk) {
-                                Future.delayed(const Duration(milliseconds: 50),
-                                    () {
-                                  if (context.mounted) {
-                                    FocusScope.of(context).requestFocus(
-                                        registerCubit.termsFocusNode);
-                                  }
-                                });
-                              } else if (!registerCubit.isPrivacyOk) {
-                                registerCubit.privacyFocusNode.requestFocus();
+                                log("Terms not accepted.");
+                                message +=
+                                    "• ${S.of(context).Must_Agree_Terms}.\n";
+                              }
+
+                              if (!registerCubit.isPrivacyOk) {
+                                log("Privacy policy not accepted.");
+                                message +=
+                                    "• ${S.of(context).Must_Accept_Privacy}.\n";
+                              }
+
+                              if (message.isNotEmpty) {
+                                if (context.mounted) {
+                                  showGeneralDialog(
+                                    context: context,
+                                    barrierDismissible: true,
+                                    barrierLabel:
+                                        MaterialLocalizations.of(context)
+                                            .modalBarrierDismissLabel,
+                                    transitionDuration:
+                                        const Duration(milliseconds: 300),
+                                    pageBuilder: (context, animation,
+                                        secondaryAnimation) {
+                                      return TermsAndPrivacyDialog(message: message);
+                                    },
+                                  );
+                                }
+                                return;
                               }
                             } else {
                               if (isWorkerAuth) {
@@ -324,7 +356,11 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                                   );
                                 }
                               } else {
-                                await registerCubit.registerClient();
+                                if (isGoogleAuth) {
+                                  await registerCubit.googleAuth();
+                                } else {
+                                  await registerCubit.registerClient();
+                                }
                               }
                             }
                           },

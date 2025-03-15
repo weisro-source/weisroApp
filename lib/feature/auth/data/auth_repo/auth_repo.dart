@@ -24,6 +24,7 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, CountryList>> getAllCountries();
   Future<Either<Failure, CityList>> getCitiesOfASpecifiedCountry(
       String countryName);
-  Future<Either<Failure, WorkerTags>> getAllWorkerTagApi(
-     );
+  Future<Either<Failure, WorkerTags>> getAllWorkerTagApi();
+  Future<Either<Failure, SuccessLoginModel>> googleAuthApi(
+      UserClientModel userToRegister, CancelToken cancelToken);
 }

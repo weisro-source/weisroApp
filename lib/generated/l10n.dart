@@ -2341,6 +2341,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Error in Register`
+  String get Error_In_Register {
+    return Intl.message(
+      'Error in Register',
+      name: 'Error_In_Register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Action Required`
+  String get Action_Required {
+    return Intl.message(
+      'Action Required',
+      name: 'Action_Required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must agree to the Terms of Service`
+  String get Must_Agree_Terms {
+    return Intl.message(
+      'You must agree to the Terms of Service',
+      name: 'Must_Agree_Terms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must accept the Privacy Policy`
+  String get Must_Accept_Privacy {
+    return Intl.message(
+      'You must accept the Privacy Policy',
+      name: 'Must_Accept_Privacy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
