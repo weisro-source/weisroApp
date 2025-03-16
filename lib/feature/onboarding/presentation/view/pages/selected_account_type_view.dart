@@ -6,6 +6,7 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
+import 'package:weisro/feature/onboarding/presentation/view/widgets/circle_button.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/account_type.dart';
@@ -26,23 +27,6 @@ class _SelectedAccountTypeViewState extends State<SelectedAccountTypeView> {
     setState(() {
       selectedAccountType = accountType;
     });
-    if (accountType == 0) {
-      //! navigation to worker Auth
-      HelperFunctions.navigateToScreen(
-        context,
-        (context) => const WorkerAndClientRegisterPageView(
-          isWorkerAuth: true,
-        ),
-      );
-    } else if (accountType == 1) {
-      //*navigation to User Auth
-      HelperFunctions.navigateToScreen(
-        context,
-        (context) => const WorkerAndClientRegisterPageView(
-          isWorkerAuth: false,
-        ),
-      );
-    }
   }
 
   @override
@@ -112,11 +96,45 @@ class _SelectedAccountTypeViewState extends State<SelectedAccountTypeView> {
                   NewAccountTypeWidget(
                     title: S.of(context).Service_Seeker,
                     iconPath: IconsPath.iconsUserIcon,
-                    isSelected: selectedAccountType == 0,
+                    isSelected: selectedAccountType == 1,
                     onTap: () => _onAccountTypeTap(1),
                   ),
                 ],
               ),
+            ),
+          ),
+          48.sKh,
+          SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  height: 45,
+                  width: 45,
+                  child: CircleButton(
+                    value: 0.5,
+                    onTap: () {
+                      if (selectedAccountType == 0) {
+                        //! navigation to worker Auth
+                        HelperFunctions.navigateToScreen(
+                          context,
+                          (context) => const WorkerAndClientRegisterPageView(
+                            isWorkerAuth: true,
+                          ),
+                        );
+                      } else if (selectedAccountType == 1) {
+                        //*navigation to User Auth
+                        HelperFunctions.navigateToScreen(
+                          context,
+                          (context) => const WorkerAndClientRegisterPageView(
+                            isWorkerAuth: false,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                ),
+              ],
             ),
           )
           // Row(

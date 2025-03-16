@@ -65,7 +65,7 @@ class WorkerForOneService extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(width: 1, color: AppColors.orangeColor)),
         child: Column(
           children: [

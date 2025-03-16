@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
 import 'package:weisro/core/widgets/logo_image_widget.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_all_worker_tags_cubit/get_all_worker_tags_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/labeled_border_box.dart';
-import 'package:weisro/feature/auth/register/presentation/view/widgets/loading_filed.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/question_widget.dart';
-import 'package:weisro/feature/auth/register/presentation/view/widgets/tags_drop_down.dart';
 import 'package:weisro/generated/l10n.dart';
 
 import '../widgets/note_widget.dart';
@@ -75,23 +74,110 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           //     ),
           //   ),
           // ),
-          SliverToBoxAdapter(
-            child: BlocBuilder<GetAllWorkerTagsCubit, GetAllWorkerTagsState>(
-              builder: (context, getAllWorkerTagsState) {
-                if (getAllWorkerTagsState is GetAllWorkerTagsLoading) {
-                  return const LoadingFiled();
-                } else if (getAllWorkerTagsState is GetAllWorkerTagsSuccess) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: WorkerTagsDropDown(
-                        allTags: getAllWorkerTagsState.allTags.docs ?? []),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
+          // SliverToBoxAdapter(
+          //   child: BlocBuilder<GetAllWorkerTagsCubit, GetAllWorkerTagsState>(
+          //     builder: (context, getAllWorkerTagsState) {
+          //       if (getAllWorkerTagsState is GetAllWorkerTagsLoading) {
+          //         return const LoadingFiled();
+          //       } else if (getAllWorkerTagsState is GetAllWorkerTagsSuccess) {
+          //         return Padding(
+          //           padding: const EdgeInsets.symmetric(horizontal: 24),
+          //           child: WorkerTagsDropDown(
+          //               allTags: getAllWorkerTagsState.allTags.docs ?? []),
+          //         );
+          //       } else {
+          //         return const SizedBox();
+          //       }
+          //     },
+          //   ),
+          // ),
+          BlocBuilder<GetAllWorkerTagsCubit, GetAllWorkerTagsState>(
+            builder: (context, workerTagState) {
+              final workerCubit = GetAllWorkerTagsCubit.get(context);
+
+              if (workerTagState is GetAllWorkerTagsSuccess) {
+                return SliverGrid.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 13,
+                    childAspectRatio: 171 / 40,
+                  ),
+                  itemCount: workerTagState.allTags.docs?.length,
+                  itemBuilder: (context, index) {
+                    final tag = workerTagState.allTags.docs?[index];
+                    final bool isSelected =
+                        workerCubit.selectedTags.contains(tag);
+
+                    return GestureDetector(
+                      onTap: () {
+                        workerCubit.toggleTagSelection(tag!);
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 100),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: AppColors.orangeColor,
+                          ),
+                          color:
+                              isSelected ? AppColors.orangeColor : Colors.white,
+                        ),
+                        child: Center(
+                          child: Text(tag?.name ?? "",
+                              style: AppStyles.style14w400Orange(context)
+                                  .copyWith(
+                                      color: isSelected
+                                          ? AppColors.whiteColor
+                                          : Colors.black)
+                              // TextStyle(
+                              //   color: isSelected ? Colors.orange : Colors.black,
+                              //   fontWeight: FontWeight.w600,
+                              // ),
+                              ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              } else if (workerTagState is GetAllWorkerTagsLoading) {
+                return SliverGrid.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 13,
+                    childAspectRatio: 171 / 40,
+                  ),
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Shimmer.fromColors(
+                      baseColor: AppColors.shimmerBaseColor,
+                      highlightColor: AppColors.shimmerHighlightColor,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: AppColors.orangeColor),
+                        ),
+                        child: Center(
+                          child: Shimmer.fromColors(
+                            baseColor: AppColors.shimmerBaseColor,
+                            highlightColor: AppColors.shimmerHighlightColor,
+                            child: Text(
+                              "xxx",
+                              style: AppStyles.style18w500Green(context),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
+
           SliverToBoxAdapter(
             child: 32.kh,
           ),
@@ -105,15 +191,17 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 28),
+              padding: const EdgeInsetsDirectional.only(start: 10),
               child: CustomTextFormFiled(
                 hintText: "",
+                borderRadius: 20,
                 borderColor: AppColors.orangeColor,
                 controller: registerCubit.descriptionController,
                 focusNode: registerCubit.descriptionFocusNode,
                 maxLines: 5,
                 minLines: 5,
                 height: null,
+                topPadding: 8,
                 onFieldSubmitted: (p0) => HelperFunctions.requestNextFocus(
                     registerCubit.descriptionFocusNode,
                     registerCubit.costPerHourFocusNode,
@@ -138,12 +226,14 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsetsDirectional.only(start: 28),
+              padding: const EdgeInsetsDirectional.only(start: 10),
               child: CustomTextFormFiled(
                 controller: registerCubit.costPerHourController,
                 focusNode: registerCubit.costPerHourFocusNode,
+                keyboardType: TextInputType.phone,
                 hintText: "",
                 borderColor: AppColors.orangeColor,
+                borderRadius: 20,
               ),
             ),
           ),
@@ -224,29 +314,32 @@ class WorkerRegisterUploadImagePageViewBody extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AppButton(
-                  onPressed: () {
-                    HelperFunctions.navigateToBack(context);
-                  },
-                  buttonColor: AppColors.redColor,
-                  borderColor: AppColors.redColor,
-                  height: 32,
-                  width: 151,
-                  text: S.of(context).Cancel,
+                Expanded(
+                  child: NewAppButton(
+                    onPressed: () {
+                      HelperFunctions.navigateToBack(context);
+                    },
+                    buttonColor: AppColors.redColor,
+                    borderColor: AppColors.redColor,
+                    titleColor: AppColors.whiteColor,
+                    height: 32,
+                    width: 151,
+                    title: S.of(context).Cancel,
+                  ),
                 ),
                 12.kw,
-                Theme(
-                  data: ThemeData(primaryColor: AppColors.whiteColor),
-                  child: AppButton(
+                Expanded(
+                  child: NewAppButton(
                     onPressed: () async {
                       await registerCubit.registerWorker(context);
                     },
-                    buttonColor: Colors.white,
+                    buttonColor: AppColors.orangeColor,
+                    titleColor: AppColors.whiteColor,
                     borderColor: AppColors.orangeColor,
                     height: 32,
                     width: 151,
-                    text: S.of(context).Send_And_Wait,
-                    textStyle: AppStyles.style14w500Orange(context),
+                    title: S.of(context).Send_And_Wait,
+                    textStyle: AppStyles.style14w500White(context),
                   ),
                 ),
               ],

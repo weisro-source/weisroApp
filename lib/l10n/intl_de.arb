@@ -221,5 +221,9 @@
     "Deletion_Failed_Message": "Beim Versuch, die Dienstleistung zu löschen, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     "Login_Information": "Anmeldeinformationen",
     "Service_Provider": "Dienstleister",
-    "Service_Seeker": "Dienstsuchender"
+    "Service_Seeker": "Dienstsuchender",
+    "Error_In_Register": "Fehler bei der Registrierung",
+    "Action_Required": "Handlung erforderlich",
+    "Must_Agree_Terms": "Sie müssen den Nutzungsbedingungen zustimmen",
+    "Must_Accept_Privacy": "Sie müssen die Datenschutzrichtlinie akzeptieren"
 }

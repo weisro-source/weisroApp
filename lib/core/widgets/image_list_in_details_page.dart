@@ -7,7 +7,6 @@ import 'package:weisro/core/assets_path/image_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/widgets/full_screen_image.dart';
-import 'package:weisro/core/widgets/white_back_ground_for_text.dart';
 
 class ImageListInDetailsPage extends StatelessWidget {
   const ImageListInDetailsPage({

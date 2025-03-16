@@ -1,9 +1,11 @@
 import 'dart:developer' as dev;
 import 'dart:math';
 
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weisro/core/api/api_error_handler.dart';
 import 'package:weisro/core/utils/ansi_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 
@@ -12,6 +14,7 @@ import 'package:weisro/core/utils/service_locator.dart';
 
 import 'package:weisro/feature/auth/data/auth_repo/auth_repo.dart';
 import 'package:weisro/feature/auth/data/models/address_model.dart';
+import 'package:weisro/feature/auth/data/models/success_login_model.dart';
 import 'package:weisro/feature/auth/data/models/success_register_model.dart';
 import 'package:weisro/feature/auth/data/models/user_client_model.dart';
 import 'package:weisro/feature/auth/data/models/worker_tags_model.dart';
@@ -70,6 +73,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   CancelToken registerClientCancelToken = CancelToken();
   CancelToken registerWorkerCancelToken = CancelToken();
+  CancelToken googlAuthCancelToken = CancelToken();
   String hintTextX = "xxxxxx";
   String hintTextPassword = "********";
   String countryName = "Germany";
@@ -107,6 +111,14 @@ class RegisterCubit extends Cubit<RegisterState> {
         address: createAddress());
   }
 
+  UserClientModel createClientForGoogle() {
+    return UserClientModel(
+        password: passwordController.text,
+        phone: phoneController.text,
+        countryCode: "+${countryCodeController.text}",
+        address: createAddress());
+  }
+
   void updateSelectedDays(List<String> days) {
     selectedDay = days;
     dev.log("Selected days updated: $selectedDay");
@@ -128,6 +140,44 @@ class RegisterCubit extends Cubit<RegisterState> {
       favoriteHours.remove(time);
     }
     dev.log("Selected Favorite *Hours* updated: $favoriteHours");
+  }
+
+  void initializeTestData() {
+    if (HelperFunctions.isDebugMode()) {
+      // Create a random instance
+      final random = Random();
+
+      // Generate a random phone number with a 3-digit prefix and a 7-digit suffix
+      String randomPhoneNumber =
+          '+1${(random.nextInt(900) + 100)}${(random.nextInt(9000000) + 1000000)}';
+
+      // Generate a random email address
+      String randomEmail = 'user${random.nextInt(1000)}@example.com';
+
+      // Populate fields with random values in debug mode
+      emailController.text = randomEmail;
+      passwordController.text = "TestPassword123";
+      confirmationPasswordController.text = "TestPassword123";
+      firstNameController.text = "John";
+      lastNameController.text = "Doe";
+      phoneController.text = randomPhoneNumber;
+      cityController.text = "Berlin";
+      postalCodeController.text = "10115";
+      streetController.text = "Example Street";
+      houseNumberController.text = "42";
+    }
+  }
+
+  String getRole(bool isWorkerAuth) {
+    if (isWorkerAuth) {
+      return Constants.workerRole;
+    } else {
+      return Constants.clientRole;
+    }
+  }
+
+  Future<void> registerWithGoogle() async {
+    emit(RegisterLoading());
   }
 
   Future<FormData> prepareFormDataForWorkerRegister(
@@ -255,6 +305,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   //   'time[$i]': formattedStartTimes[i],
   // for (int i = 0; i < formattedEndTimes.length; i++)
   //   'time[$i]': formattedEndTimes[i],
+  bool isSecondScreenValidate() {
+    return HelperFunctions.validateForm(registerSecondFormKey);
+  }
+
   Future<void> registerClient() async {
     if (!HelperFunctions.validateForm(registerSecondFormKey)) {
       dev.log("Validation failed", name: "Register");
@@ -272,11 +326,17 @@ class RegisterCubit extends Cubit<RegisterState> {
 
       result.fold(
         (error) {
-          // On error, emit RegisterFailures
-          emit(RegisterFailures(errMessage: error.errMassage));
+          String errMessage = error.errMassage;
+
+          if (errMessage.contains("email_1 dup key:")) {
+            String email = emailController.text;
+            errMessage =
+                "This email ($email) is already in use. Please use a different email or log in if you already have an account.";
+          }
+
+          emit(RegisterFailures(errMessage: errMessage));
         },
         (success) {
-          // On success, emit RegisterSuccess
           emit(RegisterSuccess(successRegister: success));
         },
       );
@@ -309,38 +369,24 @@ class RegisterCubit extends Cubit<RegisterState> {
     });
   }
 
-  void initializeTestData() {
-    if (HelperFunctions.isDebugMode()) {
-      // Create a random instance
-      final random = Random();
-
-      // Generate a random phone number with a 3-digit prefix and a 7-digit suffix
-      String randomPhoneNumber =
-          '+1${(random.nextInt(900) + 100)}${(random.nextInt(9000000) + 1000000)}';
-
-      // Generate a random email address
-      // String randomEmail = 'user${random.nextInt(1000)}@example.com';
-
-      // Populate fields with random values in debug mode
-      // emailController.text = randomEmail;
-      passwordController.text = "TestPassword123";
-      confirmationPasswordController.text = "TestPassword123";
-      firstNameController.text = "John";
-      lastNameController.text = "Doe";
-      phoneController.text = randomPhoneNumber;
-      cityController.text = "Berlin";
-      postalCodeController.text = "10115";
-      streetController.text = "Example Street";
-      houseNumberController.text = "42";
+  Future<void> googleAuth() async {
+    if (!HelperFunctions.validateForm(registerSecondFormKey)) {
+      dev.log("Validation failed", name: "Register");
+      return;
     }
-  }
 
-  String getRole(bool isWorkerAuth) {
-    if (isWorkerAuth) {
-      return Constants.workerRole;
-    } else {
-      return Constants.clientRole;
-    }
+    emit(RegisterLoading());
+    Either<Failure, SuccessLoginModel> result = await getIt
+        .get<AuthenticationRepository>()
+        .googleAuthApi(createClientForGoogle(), googlAuthCancelToken);
+    result.fold(
+      (errorInGoogleAuth) {
+        emit(RegisterFailures(errMessage: errorInGoogleAuth.errMassage));
+      },
+      (successGoogleAuth) {
+        emit(RegisterGoogleSuccess(successLoginModel: successGoogleAuth));
+      },
+    );
   }
 
   /// Clean up resources

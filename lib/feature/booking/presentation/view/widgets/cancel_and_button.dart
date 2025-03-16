@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/generated/l10n.dart';
 

@@ -25,6 +25,6 @@ class _WorkerRegisterUploadImagePageViewState
   Widget build(BuildContext context) {
     return const Scaffold(
         backgroundColor: AppColors.whiteColor,
-        body: WorkerRegisterUploadImagePageViewBody());
+        body: SafeArea(child: WorkerRegisterUploadImagePageViewBody()));
   }
 }

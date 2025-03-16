@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
-import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/ansi_color.dart';
@@ -25,7 +24,6 @@ import 'package:weisro/feature/booking/presentation/view/widgets/hours_grid.dart
 import 'package:weisro/feature/services/data/models/service_model.dart';
 import 'package:weisro/feature/worker/presentation/view/widget/choose_widget.dart';
 import 'package:weisro/generated/l10n.dart';
-import '../../../../worker/presentation/view/widget/one_information.dart';
 import '../widgets/cancel_and_button.dart';
 import '../widgets/selected_type.dart';
 

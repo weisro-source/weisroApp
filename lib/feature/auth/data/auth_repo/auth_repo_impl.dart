@@ -231,4 +231,18 @@ class AuthenticationRepositoryImplementation
       return left(ErrorHandler.handleError(errorInGetWorkerTags));
     }
   }
+
+  @override
+  Future<Either<Failure, SuccessLoginModel>> googleAuthApi(
+      UserClientModel userToRegister, CancelToken cancelToken) async {
+    try {
+      Map<String, dynamic> response = await _apiService.patch(
+          endPoint: ApiEndPoints.getInfoEndPoint,
+          cancelToken: cancelToken,
+          data: userToRegister.toJson());
+      return right(SuccessLoginModel.fromJson(response));
+    } catch (errorInGoogleAuthApi) {
+      return left(ErrorHandler.handleError(errorInGoogleAuthApi));
+    }
+  }
 }

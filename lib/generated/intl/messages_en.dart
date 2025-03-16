@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Accepted": MessageLookupByLibrary.simpleMessage("Accepted"),
         "Accommodation": MessageLookupByLibrary.simpleMessage("Accommodation"),
+        "Action_Required":
+            MessageLookupByLibrary.simpleMessage("Action Required"),
         "Ad_Deleted": MessageLookupByLibrary.simpleMessage("Ad Deleted!"),
         "Ad_Deleted_Success": MessageLookupByLibrary.simpleMessage(
             "The ad has been successfully deleted."),
@@ -121,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Edit_Ad": MessageLookupByLibrary.simpleMessage("Edit Ad"),
         "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "End": MessageLookupByLibrary.simpleMessage("End"),
+        "Error_In_Register":
+            MessageLookupByLibrary.simpleMessage("Error in Register"),
         "Error_Updating_Information": MessageLookupByLibrary.simpleMessage(
             "An error occurred while updating your information. Please try again."),
         "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
@@ -177,6 +181,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "Mo": MessageLookupByLibrary.simpleMessage("Mo"),
         "Mobile_Number": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "Morning": MessageLookupByLibrary.simpleMessage("Morning"),
+        "Must_Accept_Privacy": MessageLookupByLibrary.simpleMessage(
+            "You must accept the Privacy Policy"),
+        "Must_Agree_Terms": MessageLookupByLibrary.simpleMessage(
+            "You must agree to the Terms of Service"),
         "NO_Favorite_Yet":
             MessageLookupByLibrary.simpleMessage("NO Favorite Yet"),
         "Next_Step": MessageLookupByLibrary.simpleMessage("Next Step"),

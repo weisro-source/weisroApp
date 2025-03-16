@@ -12,7 +12,6 @@ import 'package:weisro/core/widgets/custom_error_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/manager/get_cities_of_a_specified_country_cubit/get_cities_of_a_specified_country_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/categories_cubit/categories_cubit.dart';
 import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
-import 'package:weisro/feature/home/presentation/managers/view_type_in_home_page_cubit/view_type_in_home_page_cubit.dart';
 import 'package:weisro/feature/home/presentation/view/widgets/location_flitter_drop_down.dart';
 import 'package:weisro/feature/services/presentation/managers/add_service_to_favorite_cubit/add_service_to_favorite_cubit.dart';
 import 'package:weisro/generated/l10n.dart';
@@ -47,7 +46,6 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
   String? cityName = CacheHelper.getData(key: CacheKeys.kCityName);
   @override
   Widget build(BuildContext context) {
-   
     return SafeArea(
       child: BlocProvider(
         create: (context) => AddServiceToFavoriteCubit(),
@@ -131,7 +129,7 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                             iconHeight: 24,
                             iconWidth: 10,
                             borderWidth: 1,
-                            borderRadius: 8,
+                            borderRadius: 20,
                             selectedLocation: firstCity,
                             locations: cityNameList,
                             prefixIcon: IconsPath.iconsLocation,
@@ -194,11 +192,11 @@ class _HomePageViewBodyState extends State<HomePageViewBody> {
                         fillColor: AppColors.whiteColor,
                         borderColor: AppColors.orangeColor,
                         iconColor: AppColors.greyColor,
-                        height: 38,
+                        height: 50,
                         iconHeight: 24,
                         iconWidth: 24,
                         borderWidth: 1,
-                        borderRadius: 8,
+                        borderRadius: 20,
                         selectedLocation: categories.first,
                         locations: categories,
                         prefixIcon: IconsPath.iconsCategory,

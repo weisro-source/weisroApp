@@ -72,6 +72,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   15.kh,
                   CustomTextFormFiled(
                     hintText: S.of(context).First_Name,
+                    borderRadius: 20,
+                    borderColor: AppColors.orangeColor,
                     controller: editUserInfoCubit.firstNameController,
                     validator: (value) => Validate.validateFieldWithTitle(
                         value, S.of(context).First_Name, context),
@@ -85,6 +87,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   15.kh,
                   CustomTextFormFiled(
                     hintText: S.of(context).Last_Name,
+                    borderRadius: 20,
+                    borderColor: AppColors.orangeColor,
                     controller: editUserInfoCubit.lastNameController,
                     validator: (value) => Validate.validateFieldWithTitle(
                         value, S.of(context).Last_Name, context),
@@ -163,14 +167,14 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                           children: [
                             LocationFlitterDropDown(
                               fillColor: AppColors.whiteColor,
-                              borderColor: AppColors.greyColor,
+                              borderColor: AppColors.orangeColor,
                               iconColor: AppColors.greyColor,
                               height: 50,
                               width: HelperFunctions.getScreenWidth(context),
                               iconHeight: 24,
                               iconWidth: 10,
                               borderWidth: 1,
-                              borderRadius: 8,
+                              borderRadius: 20,
                               selectedLocation: firstCity,
                               locations: cityNameList,
                               prefixIcon: IconsPath.iconsLocation,
@@ -213,6 +217,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   20.kh,
                   CustomTextFormFiled(
                     hintText: S.of(context).Postal_Code,
+                    borderRadius: 20,
+                    borderColor: AppColors.orangeColor,
                     focusNode: editUserInfoCubit.postalCodeFocusNode,
                     controller: editUserInfoCubit.postalCodeController,
                     validator: (value) => Validate.validateFieldWithTitle(
@@ -233,6 +239,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   20.kh,
                   CustomTextFormFiled(
                     hintText: S.of(context).Street,
+                    borderRadius: 20,
+                    borderColor: AppColors.orangeColor,
                     focusNode: editUserInfoCubit.streetFocusNode,
                     controller: editUserInfoCubit.streetController,
                     validator: (value) => Validate.validateFieldWithTitle(
@@ -253,6 +261,8 @@ class _EditProfilePageViewBodyState extends State<EditProfilePageViewBody> {
                   20.kh,
                   CustomTextFormFiled(
                     hintText: S.of(context).House_Number,
+                    borderRadius: 20,
+                    borderColor: AppColors.orangeColor,
                     focusNode: editUserInfoCubit.houseNumberFocusNode,
                     controller: editUserInfoCubit.houseNumberController,
                     validator: (value) => Validate.validateFieldWithTitle(

@@ -228,5 +228,9 @@
     "Login_Information": "Log in information",
     "Fill_Registration_Info": "Fill in the following information to complete the registration process successfully",
     "Service_Provider": "Service Provider",
-    "Service_Seeker": "Service Seeker"
+    "Service_Seeker": "Service Seeker",
+    "Error_In_Register": "Error in Register",
+    "Action_Required": "Action Required",
+    "Must_Agree_Terms": "You must agree to the Terms of Service",
+    "Must_Accept_Privacy": "You must accept the Privacy Policy"
 }

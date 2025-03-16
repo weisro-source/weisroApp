@@ -104,7 +104,8 @@ class ApiService {
     var response = await dio.get(endPoint, cancelToken: cancelToken);
     return response.data;
   }
-Future<Response> getHtml({
+
+  Future<Response> getHtml({
     required String endPoint,
     CancelToken? cancelToken,
   }) async {
@@ -112,6 +113,7 @@ Future<Response> getHtml({
     var response = await dio.get(endPoint, cancelToken: cancelToken);
     return response; // Return the full response
   }
+
   Future<Map<String, dynamic>> getWithBody({
     required String endPoint,
     CancelToken? cancelToken,
@@ -147,12 +149,13 @@ Future<Response> getHtml({
     return response.data;
   }
 
-  Future<Map<String, dynamic>> patch({
-    required String endPoint,
-    required var data,
-  }) async {
+  Future<Map<String, dynamic>> patch(
+      {required String endPoint,
+      required var data,
+      CancelToken? cancelToken}) async {
     await _setHeaders();
-    var response = await dio.patch(endPoint, data: data);
+    var response =
+        await dio.patch(endPoint, data: data, cancelToken: cancelToken);
     return response.data;
   }
 

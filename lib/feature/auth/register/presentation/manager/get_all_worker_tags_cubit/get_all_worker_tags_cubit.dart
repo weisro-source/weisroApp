@@ -11,6 +11,8 @@ class GetAllWorkerTagsCubit extends Cubit<GetAllWorkerTagsState> {
   GetAllWorkerTagsCubit() : super(GetAllWorkerTagsInitial());
   static GetAllWorkerTagsCubit get(context) => BlocProvider.of(context);
   List<Doc> selectedTags = [];
+
+  get itemKeys => null;
   Future<void> getAllWorkerTags() async {
     emit(GetAllWorkerTagsLoading());
     var result =
@@ -23,5 +25,15 @@ class GetAllWorkerTagsCubit extends Cubit<GetAllWorkerTagsState> {
         emit(GetAllWorkerTagsSuccess(allTags: getAllWorkerTags));
       },
     );
+  }
+
+  void toggleTagSelection(Doc tag) {
+    if (selectedTags.contains(tag)) {
+      selectedTags.remove(tag);
+    } else {
+      selectedTags.add(tag);
+    }
+    emit(GetAllWorkerTagsSuccess(
+        allTags: (state as GetAllWorkerTagsSuccess).allTags));
   }
 }

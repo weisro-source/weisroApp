@@ -9,7 +9,6 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/utils/validate.dart';
-import 'package:weisro/core/widgets/app_button.dart';
 import 'package:weisro/core/widgets/custom_dialog.dart';
 import 'package:weisro/core/widgets/custom_loading.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
@@ -22,7 +21,7 @@ import 'package:weisro/feature/auth/google_auth/google_auth.dart';
 import 'package:weisro/feature/auth/google_auth/google_auth_state.dart';
 import 'package:weisro/feature/auth/login/presentation/managers/login_cubit.dart/login_cubit.dart';
 import 'package:weisro/feature/auth/login/presentation/view/widgets/forget_password_button.dart';
-import 'package:weisro/feature/auth/register/presentation/view/pages/worker_and_client_register_page_view.dart';
+import 'package:weisro/feature/auth/register/presentation/manager/register_cubit/register_cubit.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/google_auth_button_widget.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/have_an_account.dart';
 import 'package:weisro/feature/auth/register/presentation/view/widgets/or_text_widget.dart';
@@ -30,8 +29,20 @@ import 'package:weisro/feature/home/presentation/view/pages/home_page_view.dart'
 import 'package:weisro/feature/onboarding/presentation/view/pages/selected_account_type_view.dart';
 import 'package:weisro/generated/l10n.dart';
 
-class LoginPageViewBody extends StatelessWidget {
-  const LoginPageViewBody({super.key});
+class LoginPageViewBody extends StatefulWidget {
+  const LoginPageViewBody({super.key, this.role});
+  final String? role;
+
+  @override
+  State<LoginPageViewBody> createState() => _LoginPageViewBodyState();
+}
+
+class _LoginPageViewBodyState extends State<LoginPageViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    GoogleAuthCubit.get(context).isUserLoggedIn();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,6 +183,9 @@ class LoginPageViewBody extends StatelessWidget {
                         height: 43,
                         focusNode: loginCubit.loginButtonFocusNode,
                         onPressed: () async {
+                          RegisterCubit.get(context)
+                              .googlAuthCancelToken
+                              .cancel();
                           await loginCubit.login(context);
                         },
                         title: S.of(context).Log_in,
@@ -200,7 +214,7 @@ class LoginPageViewBody extends StatelessWidget {
                     // HelperFunctions.navigateToScreenAndRemove(
                     //   context,
                     //   (context) => WorkerAndClientRegisterPageView(
-                    //     isWorkerAuth: widget.isWorkerAuth,
+                    //     isWorkerAuth: isWorkerAuth,
                     //     isGoogleAuth: true,
                     //   ),
                     // );
@@ -215,9 +229,9 @@ class LoginPageViewBody extends StatelessWidget {
                   } else {
                     return GoogleAuthButtonWidget(
                       onPressed: () async {
-                        // await GoogleAuthCubit.get(context)
-                        //     .authenticateWithGoogleAndSendToApi(
-                        //         registerCubit.getRole(widget.isWorkerAuth));
+                        await GoogleAuthCubit.get(context)
+                            .authenticateWithGoogleAndSendToApi(
+                                widget.role ?? "");
                       },
                     );
                   }

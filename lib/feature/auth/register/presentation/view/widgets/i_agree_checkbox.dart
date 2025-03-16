@@ -32,13 +32,17 @@ class IAgreeCheckbox extends StatelessWidget {
         alignment: AlignmentDirectional.topStart,
         child: Row(
           children: [
-            Checkbox.adaptive(
-              value: isChecked,
-              side: const BorderSide(color: AppColors.orangeColor),
-              checkColor: AppColors.whiteColor,
-              activeColor: AppColors.orangeColor,
-              onChanged: onChanged,
+            Focus(
               focusNode: focusNode,
+              child: Checkbox.adaptive(
+                value: isChecked,
+                side: const BorderSide(color: AppColors.orangeColor),
+                checkColor: AppColors.whiteColor,
+                activeColor: AppColors.orangeColor,
+                onChanged: onChanged,
+                // focusNode: focusNode,
+                focusColor: AppColors.orangeColor,
+              ),
             ),
             Text.rich(
               TextSpan(

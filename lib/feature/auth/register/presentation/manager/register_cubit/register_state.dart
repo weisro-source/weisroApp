@@ -13,6 +13,12 @@ final class RegisterSuccess extends RegisterState {
   RegisterSuccess({required this.successRegister});
 }
 
+final class RegisterGoogleSuccess extends RegisterState {
+  final SuccessLoginModel successLoginModel;
+
+  RegisterGoogleSuccess({required this.successLoginModel});
+}
+
 final class RegisterFailures extends RegisterState {
   final String errMessage;
 

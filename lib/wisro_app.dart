@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:weisro/core/app_link/deep_link.dart';
 import 'package:weisro/core/cache/cache_helper.dart';
 import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/manager/language_cubit/language_cubit.dart';
@@ -37,10 +38,12 @@ class WeisroApp extends StatefulWidget {
 
 class _WeisroAppState extends State<WeisroApp> {
   late String? token;
+  final AppLinksDeepLink _appLinksDeepLink = AppLinksDeepLink.instance;
   @override
   void initState() {
     super.initState();
     token = CacheHelper.getData(key: CacheKeys.kToken);
+    _appLinksDeepLink.initDeepLinks();
   }
 
   @override
