@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:weisro/core/app_link/deep_link.dart';
 
 import 'package:weisro/core/assets_path/icons_path.dart';
 import 'package:weisro/core/styles/app_color.dart';
@@ -123,7 +124,11 @@ class _ServicesDetailsPageViewBodyState
                                     },
                                     onSharePressed: () {
                                       // Add share logic here
-                                      
+                                      AppLinksDeepLink.instance.shareDeepLink(
+                                          widget.oneService.service?.id ?? "",
+                                          widget.oneService.service
+                                                  ?.description ??
+                                              "");
                                     },
                                     isFavLoading: false, // Change as needed
                                   ),
