@@ -167,7 +167,7 @@ class HelperFunctions {
 
       log(
         AnsiColor.colorize(
-          "esized size: ${resizedSize / 1024} KB  Size reduction: ${(1 - (resizedSize / originalSize)) * 100}%",
+          "resized size: ${resizedSize / 1024} KB  Size reduction: ${(1 - (resizedSize / originalSize)) * 100}%",
           AnsiColor.brightCyan,
         ),
         name: "Resize Image ",
