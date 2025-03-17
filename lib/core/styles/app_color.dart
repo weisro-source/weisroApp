@@ -14,6 +14,7 @@ class AppColors {
   static const Color lightOrangeColor = Color(0xffFCDABD);
   static const Color greenColor = Color(0xff00BF71);
   static const Color redColor = Color(0xFFED1F24);
+  static const Color gameBackGroundColor = Color(0xff0E1D4E);
   static const Color grey2Color = Color(0xff455A64);
   static const Color grey3Color = Color(0xff455A64);
   static const Color grey4Color = Color(0xffF0F0F0);

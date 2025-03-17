@@ -80,21 +80,25 @@ flutter:
           weight: 700
         - asset: fonts/Roboto-Medium.ttf
           weight: 500
+    - family: RACE
+      fonts:
+        - asset: fonts/FontsFree-Net-RACESPACEREGULAR.ttf
+          weight: 400
 
-# flutter_assets:
-#   assets_path: assets/images
-#   output_path: lib/core/assets_path/
-#   filename: image_path.dart
-#   field_prefix: null
-#   classname: ImagePath
+flutter_assets:
+  assets_path: assets/images
+  output_path: lib/core/assets_path/
+  filename: image_path.dart
+  field_prefix: null
+  classname: ImagePath
 # flutter_intl:
 #   enabled: true
 
-flutter_assets:
-  assets_path: assets/icons
-  output_path: lib/core/assets_path/
-  filename: icons_path.dart
-  field_prefix: null
-  classname: IconsPath
+# flutter_assets:
+#   assets_path: assets/icons
+#   output_path: lib/core/assets_path/
+#   filename: icons_path.dart
+#   field_prefix: null
+#   classname: IconsPath
 flutter_intl:
   enabled: true
