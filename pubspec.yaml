@@ -51,7 +51,7 @@ dependencies:
   photo_view: ^0.15.0
   webview_flutter: ^4.10.0
   qr_flutter: ^4.1.0
-  mobile_scanner:
+  mobile_scanner: ^6.0.7
   firebase_core: ^3.10.1
   google_sign_in: ^6.2.2
   app_links: ^6.4.0
@@ -62,7 +62,6 @@ dev_dependencies:
     sdk: flutter
   mocktail: ^0.3.0
   bloc_test: ^9.1.0
-
   flutter_lints: ^2.0.0
 
 flutter:
@@ -84,21 +83,18 @@ flutter:
       fonts:
         - asset: fonts/FontsFree-Net-RACESPACEREGULAR.ttf
           weight: 400
+    - family: DG
+      fonts:
+        - asset: fonts/DGRafah-Regular.ttf
+          weight: 400
 
+# Commented out for now; update or configure based on your tool/plugin if needed.
 flutter_assets:
   assets_path: assets/images
   output_path: lib/core/assets_path/
   filename: image_path.dart
   field_prefix: null
   classname: ImagePath
-# flutter_intl:
-#   enabled: true
 
-# flutter_assets:
-#   assets_path: assets/icons
-#   output_path: lib/core/assets_path/
-#   filename: icons_path.dart
-#   field_prefix: null
-#   classname: IconsPath
 flutter_intl:
   enabled: true

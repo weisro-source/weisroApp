@@ -10,6 +10,10 @@ class ImagePath {
   /// assets/images/coming-soon.png
   static const String imagesComingSoon = "assets/images/coming-soon.png";
 
+  /// Assets for imagesCouponPlayer
+  /// assets/images/coupon_player.png
+  static const String imagesCouponPlayer = "assets/images/coupon_player.png";
+
   /// Assets for imagesForgetPassword
   /// assets/images/forget_password.svg
   static const String imagesForgetPassword = "assets/images/forget_password.svg";
@@ -50,6 +54,10 @@ class ImagePath {
   /// assets/images/onboardingImage3.png
   static const String imagesOnboardingImage3 = "assets/images/onboardingImage3.png";
 
+  /// Assets for imagesPositionImage
+  /// assets/images/position_image.png
+  static const String imagesPositionImage = "assets/images/position_image.png";
+
   /// Assets for imagesSendCodeImage
   /// assets/images/sendCodeImage.png
   static const String imagesSendCodeImage = "assets/images/sendCodeImage.png";
@@ -66,9 +74,9 @@ class ImagePath {
   /// assets/images/service3.png
   static const String imagesService3 = "assets/images/service3.png";
 
-  /// Assets for imagesWinImage
-  /// assets/images/win-image.png
-  static const String imagesWinImage = "assets/images/win-image.png";
+  /// Assets for imagesSuccessImage
+  /// assets/images/success-image.png
+  static const String imagesSuccessImage = "assets/images/success-image.png";
 
   /// Assets for imagesWorker
   /// assets/images/worker.png
