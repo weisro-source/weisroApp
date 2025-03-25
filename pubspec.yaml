@@ -87,6 +87,10 @@ flutter:
       fonts:
         - asset: fonts/DGRafah-Regular.ttf
           weight: 400
+    - family: 29lt
+      fonts:
+        - asset: fonts/29lt-bukra-regular.ttf
+          weight: 400
 
 # Commented out for now; update or configure based on your tool/plugin if needed.
 flutter_assets:

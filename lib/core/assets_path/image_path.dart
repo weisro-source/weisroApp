@@ -85,5 +85,9 @@ class ImagePath {
   /// Assets for imagesWorker2
   /// assets/images/worker2.png
   static const String imagesWorker2 = "assets/images/worker2.png";
+
+  /// Assets for imagesYouWin
+  /// assets/images/you-win.png
+  static const String imagesYouWin = "assets/images/you-win.png";
 }
 

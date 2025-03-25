@@ -4,7 +4,9 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/feature/game/presentation/view/pages/success_win_page_view.dart';
+import 'package:weisro/feature/game/presentation/view/pages/my_coupons_view.dart';
+
+import '../widgets/linear_text.dart';
 
 class MainPageGameBody extends StatelessWidget {
   const MainPageGameBody({super.key});
@@ -55,7 +57,7 @@ class MainPageGameBody extends StatelessWidget {
               onTap: () {
                 HelperFunctions.navigateToScreen(
                   context,
-                  (context) => const SuccessWinPageView(),
+                  (context) => const MyCouponsPageView(),
                 );
               },
               child: Container(
@@ -80,8 +82,8 @@ class MainPageGameBody extends StatelessWidget {
                       children: [
                         Image.asset(ImagePath.imagesPositionImage),
                         Positioned(
-                          top: 10,
-                          left: 30,
+                          top: HelperFunctions.getScreenHight(context) * 0.01,
+                          left: HelperFunctions.getScreenWidth(context) * 0.06,
                           child: LinearText(
                             title: "${index + 1}",
                             textSize: 27,
@@ -98,37 +100,6 @@ class MainPageGameBody extends StatelessWidget {
         ),
         30.sKh,
       ],
-    );
-  }
-}
-
-class LinearText extends StatelessWidget {
-  const LinearText({
-    super.key,
-    required this.title,
-    required this.textSize,
-  });
-  final String title;
-  final double textSize;
-  @override
-  Widget build(BuildContext context) {
-    return ShaderMask(
-      shaderCallback: (bounds) => const LinearGradient(
-        colors: [
-          AppColors.textColor1, // #F8C300
-          AppColors.textColor2 // #CB5000
-        ],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ).createShader(bounds),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: textSize,
-          color: AppColors.whiteColor,
-          fontFamily: Constants.gameFont2Family,
-        ),
-      ),
     );
   }
 }

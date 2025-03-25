@@ -6,6 +6,7 @@ import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
+import 'package:weisro/core/widgets/new_app_button.dart';
 import 'package:weisro/feature/game/presentation/game_text_style.dart';
 
 class SuccessWinPageViewBody extends StatefulWidget {
@@ -100,8 +101,7 @@ class _SuccessWinPageViewBodyState extends State<SuccessWinPageViewBody> {
             child: Center(
               child: Text(
                 formatTime(duration),
-                style: GameAppStyles.gameTextStyle50w700(
-                    context), 
+                style: GameAppStyles.gameTextStyle50w700(context),
               ),
             ),
           ),
@@ -123,6 +123,39 @@ class _SuccessWinPageViewBodyState extends State<SuccessWinPageViewBody> {
             textAlign: TextAlign.center,
           ),
           15.kh,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              41.kw,
+              Expanded(
+                  child: NewAppButton(
+                onPressed: () {},
+                title: "To menu",
+                height: 46,
+                borderColor: AppColors.redColorGameColor,
+                buttonColor: AppColors.redColorGameColor,
+                borderRadius: 14,
+                textStyle: const TextStyle(
+                    fontSize: 20, fontFamily: Constants.gameFont2Family),
+              )),
+              10.kw,
+              Expanded(
+                  child: NewAppButton(
+                onPressed: () {},
+                height: 46,
+                title: "show Ad",
+                borderColor: AppColors.greenColorGameColor,
+                buttonColor: AppColors.greenColorGameColor,
+                borderRadius: 14,
+                textStyle: const TextStyle(
+                    fontSize: 20, fontFamily: Constants.gameFont2Family),
+              )),
+              41.kw,
+            ],
+          ),
+
+          50.kh,
         ],
       ),
     );

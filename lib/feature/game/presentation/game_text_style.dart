@@ -16,7 +16,7 @@ class GameAppStyles {
   static TextStyle gameTextStyle50w700(context) {
     return getCustomTextStyle(
         context,
-        TextStyle(
+        const TextStyle(
           fontSize: 50,
           fontWeight: FontWeight.w700,
           color: AppColors.whiteColor,

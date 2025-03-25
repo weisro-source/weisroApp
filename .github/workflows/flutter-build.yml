@@ -38,7 +38,7 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
       - name: Upload AppBundle Artifact
-        uses: actions/upload-artifact@v4 
+        uses: actions/upload-artifact@v4
         with:
           name: flutter-release-appbundle
           path: build/app/outputs/bundle/release/app-release.aab
@@ -56,4 +56,8 @@ jobs:
           GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: "nassimsolimanflutter@gmial.com"
+
         run: python upload_to_gdrive.py
