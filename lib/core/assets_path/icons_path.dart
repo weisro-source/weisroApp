@@ -10,6 +10,14 @@ class IconsPath {
   /// assets/icons/arrow_down.svg
   static const String iconsArrowDown = "assets/icons/arrow_down.svg";
 
+  /// Assets for iconsArrowDownBigGame
+  /// assets/icons/arrow_down_big_game.svg
+  static const String iconsArrowDownBigGame = "assets/icons/arrow_down_big_game.svg";
+
+  /// Assets for iconsArrowDownSmallGame
+  /// assets/icons/arrow_down_small_game.svg
+  static const String iconsArrowDownSmallGame = "assets/icons/arrow_down_small_game.svg";
+
   /// Assets for iconsArrowLeft
   /// assets/icons/arrow_left.svg
   static const String iconsArrowLeft = "assets/icons/arrow_left.svg";

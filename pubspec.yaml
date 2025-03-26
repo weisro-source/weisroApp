@@ -93,12 +93,18 @@ flutter:
           weight: 400
 
 # Commented out for now; update or configure based on your tool/plugin if needed.
+# flutter_assets:
+#   assets_path: assets/images
+#   output_path: lib/core/assets_path/
+#   filename: image_path.dart
+#   field_prefix: null
+#   classname: ImagePath
 flutter_assets:
-  assets_path: assets/images
+  assets_path: assets/icons
   output_path: lib/core/assets_path/
-  filename: image_path.dart
+  filename: icons_path.dart
   field_prefix: null
-  classname: ImagePath
+  classname: IconsPath
 
 flutter_intl:
   enabled: true
