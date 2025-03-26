@@ -43,6 +43,18 @@ class QRScannerScreenState extends State<QRScannerScreen> {
             );
           }
         },
+        // onDetect: (barcode, args) {
+        //   final List<Barcode> barCodes = [barcode];
+        //   for (final barcode in barCodes) {
+        //     log(
+        //       AnsiColor.colorize(
+        //         "barcodes $barcode",
+        //         AnsiColor.blue,
+        //       ),
+        //       name: "barCodes List",
+        //     );
+        //   }
+        // },
       ),
     );
   }

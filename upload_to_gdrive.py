@@ -1,11 +1,12 @@
 import os
 import base64
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import requests
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
-
-
 def authenticate_gdrive():
     base64_creds = os.environ.get('GDRIVE_CREDENTIALS')
     if not base64_creds:
@@ -70,6 +71,19 @@ def forward_telegram_message(telegram_token, from_chat_id, message_id, to_chat_i
         raise Exception(f"Failed to forward message: {response.text}")
     print("Message forwarded successfully to another group.")
 
+def send_email(subject, body, email_user, email_password, recipient):
+    msg = MIMEMultipart()
+    msg['From'] = email_user
+    msg['To'] = recipient
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email_user, email_password)
+    server.send_message(msg)
+    server.quit()
+
 
 def sanitize_filename(filename):
     return filename.replace(':', '_').replace('/', '_')
@@ -79,7 +93,10 @@ if __name__ == '__main__':
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
 
-    # Paths and custom names
+    email_user = os.environ.get('EMAIL_USER')
+    email_password = os.environ.get('EMAIL_PASSWORD')
+    recipient = os.environ.get('EMAIL_TO')
+
     apk_path = 'build/app/outputs/flutter-apk/app-release.apk'
     apk_name = sanitize_filename("Weisro-APK_1.0.4+5_2-12-2025.apk")
 
@@ -88,12 +105,24 @@ if __name__ == '__main__':
 
     gdrive_service = authenticate_gdrive()
 
-    # Upload APK and send notifications
-    apk_drive_link = upload_file(gdrive_service, apk_path, apk_name)
-    send_telegram_message(f"✅ Weisro APK uploaded successfully!\nGoogle Drive Link: {apk_drive_link}", telegram_token, chat_id)
-    send_telegram_file(apk_path, telegram_token, chat_id, apk_name)
+    # Upload APK and AAB
+    apk_link = upload_file(gdrive_service, apk_path, apk_name)
+    aab_link = upload_file(gdrive_service, aab_path, aab_name)
 
-    # Upload AAB and send notifications
-    aab_drive_link = upload_file(gdrive_service, aab_path, aab_name)
-    send_telegram_message(f"✅ Weisro AAB uploaded successfully!\nGoogle Drive Link: {aab_drive_link}", telegram_token, chat_id)
-    send_telegram_file(aab_path, telegram_token, chat_id, aab_name)
+    # Send Telegram Notifications
+    send_telegram_message(f"✅ Weisro APK uploaded successfully!\nGoogle Drive Link: {apk_link}", telegram_token, chat_id)
+    send_telegram_message(f"✅ Weisro AAB uploaded successfully!\nGoogle Drive Link: {aab_link}", telegram_token, chat_id)
+
+    # Send Email with Drive Links
+    email_body = f"""
+    Hi,
+
+    The APK and AAB have been successfully built and uploaded to Google Drive. Here are the download links:
+
+    - APK: {apk_link}
+    - AAB: {aab_link}
+
+    Best regards,
+    Your CI/CD Pipeline
+    """
+    send_email("Weisro Build Uploaded", email_body, email_user, email_password, recipient)

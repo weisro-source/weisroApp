@@ -15,6 +15,7 @@ class NewAppButton extends StatelessWidget {
     this.width,
     this.focusNode,
     this.child,
+    this.borderRadius = 20,
   });
   final void Function()? onPressed;
   final String title;
@@ -25,6 +26,7 @@ class NewAppButton extends StatelessWidget {
   final double? height, width;
   final FocusNode? focusNode;
   final Widget? child;
+  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class NewAppButton extends StatelessWidget {
         minimumSize: Size.fromHeight(height ?? 35),
         backgroundColor: buttonColor ?? AppColors.second1Color.withOpacity(0.3),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(borderRadius),
           side: BorderSide(color: borderColor ?? AppColors.second1Color),
         ),
         elevation: 0,
