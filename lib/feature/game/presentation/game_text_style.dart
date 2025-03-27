@@ -23,4 +23,25 @@ class GameAppStyles {
         ));
   }
 
+  static TextStyle gameTextStyle16wBlueGameColorW700(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontSize: 16,
+          fontFamily: Constants.gameFont3Family,
+          fontWeight: FontWeight.w700,
+          color: AppColors.blueGameColor),
+    );
+  }
+
+  static TextStyle gameTextStyle12wWhiteColorW700(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontSize: 12,
+          fontFamily: Constants.gameFont3Family,
+          fontWeight: FontWeight.w700,
+          color: AppColors.whiteColor),
+    );
+  }
 }

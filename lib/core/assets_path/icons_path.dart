@@ -26,6 +26,14 @@ class IconsPath {
   /// assets/icons/arrow-right.svg
   static const String iconsArrowRight = "assets/icons/arrow-right.svg";
 
+  /// Assets for iconsArrowTopBigGame
+  /// assets/icons/arrow_top_big_game.svg
+  static const String iconsArrowTopBigGame = "assets/icons/arrow_top_big_game.svg";
+
+  /// Assets for iconsArrowTopSmallGame
+  /// assets/icons/arrow_top_small_game.svg
+  static const String iconsArrowTopSmallGame = "assets/icons/arrow_top_small_game.svg";
+
   /// Assets for iconsArrowUp
   /// assets/icons/arrow-up.svg
   static const String iconsArrowUp = "assets/icons/arrow-up.svg";
@@ -209,6 +217,10 @@ class IconsPath {
   /// Assets for iconsShare
   /// assets/icons/share.svg
   static const String iconsShare = "assets/icons/share.svg";
+
+  /// Assets for iconsShareGame
+  /// assets/icons/share_game.svg
+  static const String iconsShareGame = "assets/icons/share_game.svg";
 
   /// Assets for iconsSpain
   /// assets/icons/spain.svg
