@@ -34,5 +34,7 @@ class AppColors {
   static const Color greenColorGameColor = Color(0xff89D81A);
   static const Color redColorGameColor = Color(0xffFF2958);
   static const Color darkMagentaGameColor = Color(0xff880097);
+  static const Color blueGameColor = Color(0xff034B96);
+  static const Color greyGameColor = Color(0xff808080);
   // static const Color darkMagentaGameColorWithOpacity = Color(0xff880097);
 }
