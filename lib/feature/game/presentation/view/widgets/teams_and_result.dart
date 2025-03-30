@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/feature/game/presentation/view/pages/my_coupons_page_view_body.dart';
 
 import '../team_name.dart';
 

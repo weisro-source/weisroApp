@@ -58,6 +58,10 @@ class IconsPath {
   /// assets/icons/category.svg
   static const String iconsCategory = "assets/icons/category.svg";
 
+  /// Assets for iconsCrown
+  /// assets/icons/crown.svg
+  static const String iconsCrown = "assets/icons/crown.svg";
+
   /// Assets for iconsEdit
   /// assets/icons/edit.svg
   static const String iconsEdit = "assets/icons/edit.svg";
@@ -89,6 +93,10 @@ class IconsPath {
   /// Assets for iconsFrance
   /// assets/icons/france.svg
   static const String iconsFrance = "assets/icons/france.svg";
+
+  /// Assets for iconsGoldPerson
+  /// assets/icons/gold_person.png
+  static const String iconsGoldPerson = "assets/icons/gold_person.png";
 
   /// Assets for iconsGoogle
   /// assets/icons/google.svg

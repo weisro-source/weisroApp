@@ -20,7 +20,9 @@ class _MyCouponsPageViewBodyState extends State<MyCouponsPageViewBody> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverAppBarWidget(),
+        const SliverAppBarWidget(
+          title: "My Coupons",
+        ),
         28.sKh,
         PinnedHeaderWidget(
           isSelectedRunningSpeculation: isSelectedRunningSpeculation,

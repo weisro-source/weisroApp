@@ -5,8 +5,8 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 
 class SliverAppBarWidget extends StatelessWidget {
-  const SliverAppBarWidget({Key? key}) : super(key: key);
-
+  const SliverAppBarWidget({Key? key, required this.title}) : super(key: key);
+  final String title;
   @override
   Widget build(BuildContext context) {
     double screenHeight = HelperFunctions.getScreenHight(context);
@@ -22,7 +22,7 @@ class SliverAppBarWidget extends StatelessWidget {
               20.kw,
               _buildBackButton(context),
               const Spacer(flex: 3),
-              Text("My Coupons", style: AppStyles.style20w500White(context)),
+              Text(title, style: AppStyles.style20w500White(context)),
               const Spacer(flex: 4),
             ],
           ),

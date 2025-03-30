@@ -44,4 +44,26 @@ class GameAppStyles {
           color: AppColors.whiteColor),
     );
   }
+
+  static TextStyle gameTextStyle10wWhiteColorW700(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontSize: 10,
+          fontFamily: Constants.gameFont3Family,
+          fontWeight: FontWeight.w700,
+          color: AppColors.whiteColor),
+    );
+  }
+
+  static TextStyle gameTextStyle20wWhiteColorW700(context) {
+    return getCustomTextStyle(
+      context,
+      const TextStyle(
+          fontSize: 20,
+          fontFamily: Constants.fontFamily,
+          fontWeight: FontWeight.w700,
+          color: AppColors.whiteColor),
+    );
+  }
 }

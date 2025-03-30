@@ -31,10 +31,15 @@ class AppColors {
   //! game Color
   static const Color textColor1 = Color(0xFFF8C300);
   static const Color textColor2 = Color(0xFFCB5000);
+  static const Color goldColor2 = Color(0xFFFED33C);
   static const Color greenColorGameColor = Color(0xff89D81A);
   static const Color redColorGameColor = Color(0xffFF2958);
   static const Color darkMagentaGameColor = Color(0xff880097);
   static const Color blueGameColor = Color(0xff034B96);
+  static const Color blue2GameColor = Color(0xFF23218F);
+  static const Color blue3GameColor = Color(0xFF0F1E4F);
   static const Color greyGameColor = Color(0xff808080);
+  static const Color blackGameColor = Color(0xff212121);
+  static const Color goldGameColor = Color(0xffFFC107);
   // static const Color darkMagentaGameColorWithOpacity = Color(0xff880097);
 }
