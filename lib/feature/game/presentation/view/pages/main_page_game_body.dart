@@ -4,7 +4,7 @@ import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/utils/constant.dart';
 import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
-import 'package:weisro/feature/game/presentation/view/pages/my_coupons_view.dart';
+import 'package:weisro/feature/game/presentation/view/pages/wins_page_view.dart';
 
 import '../widgets/linear_text.dart';
 
@@ -57,7 +57,7 @@ class MainPageGameBody extends StatelessWidget {
               onTap: () {
                 HelperFunctions.navigateToScreen(
                   context,
-                  (context) => const MyCouponsPageView(),
+                  (context) => const WinsPageView(),
                 );
               },
               child: Container(

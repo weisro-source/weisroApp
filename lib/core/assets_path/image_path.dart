@@ -78,6 +78,10 @@ class ImagePath {
   /// assets/images/success-image.png
   static const String imagesSuccessImage = "assets/images/success-image.png";
 
+  /// Assets for imagesWhitePoints
+  /// assets/images/white_points.png
+  static const String imagesWhitePoints = "assets/images/white_points.png";
+
   /// Assets for imagesWorker
   /// assets/images/worker.png
   static const String imagesWorker = "assets/images/worker.png";
