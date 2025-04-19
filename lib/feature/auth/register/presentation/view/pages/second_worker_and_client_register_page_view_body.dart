@@ -337,7 +337,8 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                                         const Duration(milliseconds: 300),
                                     pageBuilder: (context, animation,
                                         secondaryAnimation) {
-                                      return TermsAndPrivacyDialog(message: message);
+                                      return TermsAndPrivacyDialog(
+                                          message: message);
                                     },
                                   );
                                 }
@@ -372,20 +373,20 @@ class SecondWorkerAndClientRegisterPageViewBody extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: 10.kh,
                 ),
-                const SliverToBoxAdapter(
-                  child: OrTextWidget(),
-                ),
-                SliverToBoxAdapter(
-                  child: 10.kh,
-                ),
-                SliverToBoxAdapter(
-                  child: Visibility(
-                    visible: !isGoogleAuth,
-                    child: GoogleAuthButtonWidget(
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
+                // const SliverToBoxAdapter(
+                //   child: OrTextWidget(),
+                // ),
+                // SliverToBoxAdapter(
+                //   child: 10.kh,
+                // ),
+                // SliverToBoxAdapter(
+                //   child: Visibility(
+                //     visible: !isGoogleAuth,
+                //     child: GoogleAuthButtonWidget(
+                //       onPressed: () {},
+                //     ),
+                //   ),
+                // ),
                 SliverToBoxAdapter(
                   child: 40.kh,
                 ),

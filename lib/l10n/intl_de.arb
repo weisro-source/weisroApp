@@ -225,5 +225,7 @@
     "Error_In_Register": "Fehler bei der Registrierung",
     "Action_Required": "Handlung erforderlich",
     "Must_Agree_Terms": "Sie müssen den Nutzungsbedingungen zustimmen",
-    "Must_Accept_Privacy": "Sie müssen die Datenschutzrichtlinie akzeptieren"
+    "Must_Accept_Privacy": "Sie müssen die Datenschutzrichtlinie akzeptieren",
+    "Service_Added_Successfully": "Dienst wurde erfolgreich hinzugefügt.",
+    "Failed_To_Add_Service": "Dienst konnte nicht hinzugefügt werden."
 }

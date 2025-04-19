@@ -370,46 +370,46 @@ class _WorkerAndClientRegisterPageViewBodyState
                   },
                   title: S.of(context).Next_Step),
             ),
-            SliverToBoxAdapter(
-              child: 16.kh,
-            ),
-            const SliverToBoxAdapter(
-              child: OrTextWidget(),
-            ),
-            SliverToBoxAdapter(
-              child: 9.kh,
-            ),
-            SliverToBoxAdapter(
-              child: BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
-                listener: (context, googleAuthState) {
-                  if (googleAuthState is GoogleAuthTransactionSuccess) {
-                    HelperFunctions.navigateToScreenAndRemove(
-                      context,
-                      (context) => WorkerAndClientRegisterPageView(
-                        isWorkerAuth: widget.isWorkerAuth,
-                        isGoogleAuth: true,
-                      ),
-                    );
-                  }
-                },
-                builder: (context, googleAuthState) {
-                  if (googleAuthState is GoogleAuthLoading) {
-                    return const CustomLoading(
-                      animationType: "staggeredDotsWave",
-                      size: 30,
-                    );
-                  } else {
-                    return GoogleAuthButtonWidget(
-                      onPressed: () async {
-                        await GoogleAuthCubit.get(context)
-                            .authenticateWithGoogleAndSendToApi(
-                                registerCubit.getRole(widget.isWorkerAuth));
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: 16.kh,
+            // ),
+            // const SliverToBoxAdapter(
+            //   child: OrTextWidget(),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: 9.kh,
+            // ),
+            // SliverToBoxAdapter(
+            //   child: BlocConsumer<GoogleAuthCubit, GoogleAuthState>(
+            //     listener: (context, googleAuthState) {
+            //       if (googleAuthState is GoogleAuthTransactionSuccess) {
+            //         HelperFunctions.navigateToScreenAndRemove(
+            //           context,
+            //           (context) => WorkerAndClientRegisterPageView(
+            //             isWorkerAuth: widget.isWorkerAuth,
+            //             isGoogleAuth: true,
+            //           ),
+            //         );
+            //       }
+            //     },
+            //     builder: (context, googleAuthState) {
+            //       if (googleAuthState is GoogleAuthLoading) {
+            //         return const CustomLoading(
+            //           animationType: "staggeredDotsWave",
+            //           size: 30,
+            //         );
+            //       } else {
+            //         return GoogleAuthButtonWidget(
+            //           onPressed: () async {
+            //             await GoogleAuthCubit.get(context)
+            //                 .authenticateWithGoogleAndSendToApi(
+            //                     registerCubit.getRole(widget.isWorkerAuth));
+            //           },
+            //         );
+            //       }
+            //     },
+            //   ),
+            // ),
             SliverToBoxAdapter(
               child: 24.kh,
             ),

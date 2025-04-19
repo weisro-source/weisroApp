@@ -1966,6 +1966,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Service was added successfully.`
+  String get Service_Added_Successfully {
+    return Intl.message(
+      'Service was added successfully.',
+      name: 'Service_Added_Successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to add service.`
+  String get Failed_To_Add_Service {
+    return Intl.message(
+      'Failed to add service.',
+      name: 'Failed_To_Add_Service',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

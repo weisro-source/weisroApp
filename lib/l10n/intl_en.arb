@@ -232,5 +232,7 @@
     "Error_In_Register": "Error in Register",
     "Action_Required": "Action Required",
     "Must_Agree_Terms": "You must agree to the Terms of Service",
-    "Must_Accept_Privacy": "You must accept the Privacy Policy"
+    "Must_Accept_Privacy": "You must accept the Privacy Policy",
+    "Service_Added_Successfully": "Service was added successfully.",
+    "Failed_To_Add_Service": "Failed to add service."
 }
