@@ -154,6 +154,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "An error occurred while updating your information. Please try again.",
     ),
     "Evening": MessageLookupByLibrary.simpleMessage("Evening"),
+    "Failed_To_Add_Service": MessageLookupByLibrary.simpleMessage(
+      "Failed to add service.",
+    ),
     "Favorite_Time": MessageLookupByLibrary.simpleMessage(
       "What\'s your favorite time to work?",
     ),
@@ -320,6 +323,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "Send_And_Wait": MessageLookupByLibrary.simpleMessage("Send and wait"),
     "Send_Code": MessageLookupByLibrary.simpleMessage("Send Code"),
+    "Service_Added_Successfully": MessageLookupByLibrary.simpleMessage(
+      "Service was added successfully.",
+    ),
     "Service_Deleted": MessageLookupByLibrary.simpleMessage("Service Deleted"),
     "Service_Deleted_Message": MessageLookupByLibrary.simpleMessage(
       "The service has been successfully deleted.",

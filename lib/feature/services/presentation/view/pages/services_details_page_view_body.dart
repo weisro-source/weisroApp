@@ -67,6 +67,7 @@ class _ServicesDetailsPageViewBodyState
 
   @override
   Widget build(BuildContext context) {
+    // print(widget.oneService.service?.dailyPrice.toString());
     return CustomScrollView(
       slivers: [
         CustomAppBar(
@@ -195,7 +196,7 @@ class _ServicesDetailsPageViewBodyState
                       style: AppStyles.style16w500Black(context)
                           .copyWith(color: AppColors.orangeColor),
                       info: widget.oneService.service?.hourlyPrice.toString() !=
-                              '0'
+                              '0.0'
                           ? "${widget.oneService.service?.hourlyPrice.toString()}\$"
                           : "${widget.oneService.service?.dailyPrice.toString()}\$")),
               20.kw,

@@ -161,6 +161,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Beim Aktualisieren Ihrer Informationen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     ),
     "Evening": MessageLookupByLibrary.simpleMessage("Abend"),
+    "Failed_To_Add_Service": MessageLookupByLibrary.simpleMessage(
+      "Dienst konnte nicht hinzugefügt werden.",
+    ),
     "Favorite_Time": MessageLookupByLibrary.simpleMessage(
       "Was ist Ihre bevorzugte Arbeitszeit?",
     ),
@@ -337,6 +340,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "Send_And_Wait": MessageLookupByLibrary.simpleMessage("Senden und warten"),
     "Send_Code": MessageLookupByLibrary.simpleMessage("Code senden"),
+    "Service_Added_Successfully": MessageLookupByLibrary.simpleMessage(
+      "Dienst wurde erfolgreich hinzugefügt.",
+    ),
     "Service_Deleted": MessageLookupByLibrary.simpleMessage(
       "Dienstleistung gelöscht",
     ),
