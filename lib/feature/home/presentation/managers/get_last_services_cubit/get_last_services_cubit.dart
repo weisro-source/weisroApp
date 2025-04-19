@@ -13,7 +13,7 @@ class GetLastServicesCubit extends Cubit<GetLastServicesState> {
 
   /// to Get last Services in home page according to city name ....
   Future<void> getLastService(
-      BuildContext context, String cityName, String categoryId) async {
+      BuildContext context, String cityName, String? categoryId) async {
     emit(GetLastServicesLoading());
     var result = await getIt
         .get<HomeRepository>()

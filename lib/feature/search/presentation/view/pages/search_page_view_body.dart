@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:weisro/core/assets_path/icons_path.dart';
+import 'package:weisro/core/cache/cache_helper.dart';
+import 'package:weisro/core/cache/cache_keys.dart';
 import 'package:weisro/core/styles/app_color.dart';
 import 'package:weisro/core/styles/app_style.dart';
 import 'package:weisro/core/styles/style_functions.dart';
@@ -9,17 +11,31 @@ import 'package:weisro/core/utils/helper_functions.dart';
 import 'package:weisro/core/utils/sized_box_extension.dart';
 import 'package:weisro/core/widgets/custom_app_bar.dart';
 import 'package:weisro/core/widgets/custom_text_form_filed.dart';
+import 'package:weisro/feature/home/presentation/managers/get_last_services_cubit/get_last_services_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/search_cubit/search_cubit.dart';
 import 'package:weisro/feature/search/presentation/managers/search_history_cubit/search_history_cubit.dart';
 import 'package:weisro/feature/search/presentation/view/pages/search_result_page_view.dart';
+
 import 'package:weisro/generated/l10n.dart';
 
 import '../../../../../core/widgets/search_icon.dart';
 import '../widgets/recommended_services_list.dart';
 import '../widgets/search_result_item.dart';
 
-class SearchPageBody extends StatelessWidget {
+class SearchPageBody extends StatefulWidget {
   const SearchPageBody({super.key});
+
+  @override
+  State<SearchPageBody> createState() => _SearchPageBodyState();
+}
+
+class _SearchPageBodyState extends State<SearchPageBody> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<GetLastServicesCubit>(context).getLastService(
+        context, CacheHelper.getData(key: CacheKeys.kCityName), null);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +117,27 @@ class SearchPageBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: 10.kh,
           ),
-          const SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsetsDirectional.symmetric(horizontal: 28),
-              child: SizedBox(
-                height: 130,
-                child: RecommendedServicesList(),
-              ),
-            ),
+          BlocBuilder<GetLastServicesCubit, GetLastServicesState>(
+            builder: (context, state) {
+              if (state is GetLastServicesSuccess) {
+                return SliverToBoxAdapter(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.symmetric(horizontal: 28),
+                    child: SizedBox(
+                      height: 130,
+                      child: RecommendedServicesList(
+                        lastServices: state.lastServices.docs ?? [],
+                      ),
+                    ),
+                  ),
+                );
+              } else {
+                return const SliverToBoxAdapter(
+                  child: SizedBox.shrink(),
+                );
+              }
+            },
           )
         ],
       ),
